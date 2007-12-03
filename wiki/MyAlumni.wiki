@@ -1,0 +1,19 @@
+#summary One-sentence summary of this page.
+#labels Featured
+
+= Introduction =
+
+MyAlumni is a Java/Jsp open source project that help keep alive the line of communications between alumni/alumnus of any school that are all over the world. Manage profiles with pics, hiding emails, private messaging, and tons of admin features
+
+
+= Details =
+
+    *  Database Environment: JDBC, SQL-based, Other network-based DBMS
+    * Development Status: 3 - Alpha, 4 - Beta
+    * Intended Audience: Advanced End Users, Education
+    * License: GNU General Public License (GPL)
+    * Operating System: All 32-bit MS Windows (95/98/NT/2000/XP), All BSD Platforms (FreeBSD/NetBSD/OpenBSD/Apple Mac OS X)
+    * Programming Language: Java, JavaScript, JSP
+    * Topic: Education
+    * Translations: English
+    * User Interface: Web-based
