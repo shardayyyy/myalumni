@@ -10,7 +10,7 @@ beta version, but with still some generic customization to be done.
 
 * Application currently supports Mysql and looking to port it to other databases
 
-* 
+* Go to http://code.google.com/p/myalumni/ for the lastest status of the project.
 
 
 Shardayyy (Folashade Adeyosoye)
