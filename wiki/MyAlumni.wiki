@@ -17,3 +17,12 @@ MyAlumni is a Java/Jsp open source project that help keep alive the line of comm
     * Topic: Education
     * Translations: English
     * User Interface: Web-based
+
+*=Administrator Features=*
+#
+#
+
+
+*=Members Features=*
+#
+#
