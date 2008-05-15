@@ -13,7 +13,7 @@ MyAlumni is a Java/Jsp open source project that help keep alive the line of comm
   # Intended Audience: Advanced End Users, Education
   # License: GNU General Public License (GPL)
   # Operating System: All 32-bit MS Windows (95/98/NT/2000/XP), All BSD Platforms (FreeBSD/NetBSD/OpenBSD/Apple Mac OS X)
-  # Programming Language: Java, JavaScript, JSP
+  # Programming Language: Java, Javascript, JSP
   # Topic: Education
   # Translations: English
   # User Interface: Web-based
