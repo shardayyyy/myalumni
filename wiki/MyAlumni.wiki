@@ -19,8 +19,15 @@ MyAlumni is a Java/Jsp open source project that help keep alive the line of comm
     * User Interface: Web-based
 
 = Administrator Features =
-#
-
+# Section 1
+# Section 2
+# Section 3
+# Section 4
+# Section 5
 
 = Members Features =
-#
+# Section 1
+# Section 2
+# Section 3
+# Section 4
+# Section 5
