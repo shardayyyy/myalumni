@@ -19,41 +19,41 @@ MyAlumni is a Java/Jsp open source project that help keep alive the line of comm
   # User Interface: Web-based
 
 = Administrator Features =
-  * My Desktop
-    * New Members:
-    * New Private Message
-    * New Class News
-    * User Currently Online
+  * *My Desktop*
+    * _New Members_: Shows all new members that have registered that needs approval, any locked  or deactivated accounts.
+    * _New Private Message_: Shows any new messages sent to the administrator. Anyone with the Admin priviledge would be able to see this message.
+    * _New Class News_: Show any new class news that needs approval.
+    * _User Currently Online_: Shows all users currently logged on to the system except the current admin logged in.
 
-  * Members
-    * Members Search:
-    * Email Member:
-    * Statistics:
+  * *Members*
+    * _Members Search_: Ability to search for members
+    * _Email Member_: Ability to email a member
+    * _Statistics_: Show the system statistics such as number of males, number of females, number of members per dormitory (if the school has one), number of member in a particular city, number of members with a certain email domain name.
 
-  * Security
-    * List Access History
-    * Manage Users:
-    * Assign Role To Members:
+  * *Security*
+    * _List Access History_: List all login attempt to the system, when from where (IP Address), who and the status of the login attempt.
+    * _Manage Users_: Ability to update user's profile.
+    * _Assign Role To Members_: Ability to assign a role to a member.
 
-  * General
-    * Manage System Look up Codes
+  * *General*
+    * _Manage System Look up Codes_: Manage the drop down menu options.
 
-  * System
-    * Manage Class News
-    * Manage Error Logs
-    * Manage System Logs
-    * Manage RSS Feed
-    * Manage User Timeout
-    * Manage Server URL
-    * Manage Forum URL
-    * Manage Album URL
-    * Manage Reminisce
-    * School Has Dormitory?
-    * Organization Information
+  * *System*
+    * _Manage Class News_: Manage class news
+    * _Manage Error Logs_: Manage and view error logs
+    * _Manage System Logs_: Manage and view system logs
+    * _Manage RSS Feed_: Manage RSS feed
+    * _Manage User Timeout_: Manage user timeout
+    * _Manage Server URL_: Manage server Url
+    * _Manage Forum URL_: Manage forum Url
+    * _Manage Album URL_: Manage Album Url
+    * _Manage Reminisce_: Manage Reminisce
+    * _School Has Dormitory?_: Does the school have a dormitory
+    * _Organization Information_: Update Organization information.
 
-  * Administrator
-    * Backup Database
-    * Jcaptcha Statistics
+  * *Administrator*
+    * _Backup Database_: Ability to backup database.
+    * _Jcaptcha Statistics_: 
 
 = Members Features =
   # Section 1
