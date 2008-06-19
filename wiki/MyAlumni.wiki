@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary MyAlumni is a Java/Jsp open source project that help keep alive the line of communications between alumni/alumnus of any school that are all over the world. Manage profiles with pics, hiding emails, private messaging, and tons of admin features
 #labels Featured
 
 = Introduction =
