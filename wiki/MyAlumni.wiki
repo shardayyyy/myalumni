@@ -19,11 +19,41 @@ MyAlumni is a Java/Jsp open source project that help keep alive the line of comm
   # User Interface: Web-based
 
 = Administrator Features =
-  # Admin Desktop Tab
-  # Members Tab
-  # System Tab
-  # Security Tab
-  # Section 5
+  * My Desktop
+    * New Members:
+    * New Private Message
+    * New Class News
+    * User Currently Online
+
+  * Members
+    * Members Search:
+    * Email Member:
+    * Statistics:
+
+  * Security
+    * List Access History
+    * Manage Users:
+    * Assign Role To Members:
+
+  * General
+    * Manage System Look up Codes
+
+  * System
+    * Manage Class News
+    * Manage Error Logs
+    * Manage System Logs
+    * Manage RSS Feed
+    * Manage User Timeout
+    * Manage Server URL
+    * Manage Forum URL
+    * Manage Album URL
+    * Manage Reminisce
+    * School Has Dormitory?
+    * Organization Information
+
+  * Administrator
+    * Backup Database
+    * Jcaptcha Statistics
 
 = Members Features =
   # Section 1
