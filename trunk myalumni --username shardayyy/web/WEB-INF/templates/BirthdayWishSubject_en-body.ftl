@@ -1,1 +1,0 @@
-MyAlumni: Happy Birthday Wish from ${schoolName}.
