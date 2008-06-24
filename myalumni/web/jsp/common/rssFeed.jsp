@@ -73,7 +73,7 @@
 		                        
 	                            <c:if test="${num_rec == '-1'}">
 	                                      <tr  bgcolor="#ffffff" class="Smallbold">
-	                                        <td height="25">&nbsp;<bean:message key="message.norecordsfound"/></td>
+	                                        <td height="25" colspan="2">&nbsp;<bean:message key="message.norecordsfound"/></td>
 	                                      </tr>
 	                            </c:if>                          
                                                   					  			

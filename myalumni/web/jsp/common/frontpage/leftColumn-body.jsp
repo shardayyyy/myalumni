@@ -12,18 +12,15 @@
 <c:url var="school_listings" value="/jsp/schoolListing.jsp"/>
 <c:url var="banner" value="/jsp/aboutus/schoolBanner.jsp"/>
 <c:url var="otherSide" value="/jsp/reminisce/schoolJokes.jsp"/>
-<c:url var="reminisce" value="/jsp/reminisce/index.jsp"/>
+<c:url var="reminisce" value="/action/member/listReminisce?action=listReminisce"/>
 <c:url var="miniProfile" value="/action/member/displayMiniProfile?action=displayMiniProfile"/>
 <c:url var="faq" value="/jsp/myalumni/faq.jsp"/>
 
 
 <table width="100%"  border="0" cellspacing="1" cellpadding="1">
       <tr>
-        <td class="fieldlabel">&#8226; <a href="<c:out value="${yahooGroup}"/>">Yahoo Groups </a></td>
+        <td class="fieldlabel">&#8226; <a href="<c:out value="${yahooGroup}"/>">Forum </a></td>
         </tr>
-      <tr>
-        <td class="fieldlabel">&#8226; <a href="<c:out value="${school_song}"/>">School Song</a> </td>
-      </tr>
       <tr>
         <td class="fieldlabel">&#8226; <a href="<c:out value="${registration}"/>">Alunmi Registration </a></td>
       </tr>
@@ -34,22 +31,7 @@
         <td class="fieldlabel">&#8226; <a href="<c:out value="${alumni_listings}"/>">Alunmi Listing </a></td>
       </tr>
       <tr>
-        <td class="fieldlabel">&#8226; <a href="<c:out value="${poems}"/>">Poems</a></td>
-      </tr>
-      <tr>
-        <td class="fieldlabel">&#8226; <a href="<c:out value="${school_listings}"/>">School Listing</a> </td>
-      </tr>
-      <tr>
-        <td class="fieldlabel">&#8226; <a href="<c:out value="${banner}"/>">Get our banner </a></td>
-      </tr>
-      <tr>
-        <td class="fieldlabel">&#8226; <a href="<c:out value="${otherSide}"/>">The Other side...</a></td>
-      </tr>
-      <tr>
-        <td class="fieldlabel">&#8226; <a href="<c:out value="${reminisce}"/>">Reminisce Page </a> </td>
-      </tr>
-      <tr>
-        <td class="fieldlabel">&#8226; <a href="http://afrit.port5.com/idoani.htm" onclick="return GB_showFullScreen('', this.href)">Reunion.('04)</a></td>
+        <td class="fieldlabel">&#8226; <a href="<c:out value="${reminisce}"/>">Slange's</a> </td>
       </tr>
       <tr>
         <td class="fieldlabel">&#8226; <a href="<c:out value="${faq}"/>">FAQ</a> <html:img page="/images/update.gif" width="47" height="10" align="middle"/></td>

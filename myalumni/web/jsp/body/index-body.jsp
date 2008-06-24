@@ -30,19 +30,9 @@
 
     	<p></p>
     	<%-- Birthday Announcements --%>
-	<myalumni:buildBirthdayList tableWidth="90%"/>
+		<myalumni:buildBirthdayList tableWidth="90%"/>
 	
 	<br><br>
-	<div align="center">
-      
-      <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://active.macromedia.com/flash2/cabs/swflash.cab#version=4,0,0,0" width="299" height="69">
-        <param name="movie" value="<html:rewrite page='/images/flash/fgc2.swf'/>">
-        <param name="quality" value="high">
-        <param name=bgcolor value=#f5f5f5>
-        <embed src="<html:rewrite page='/images/flash/fgc2.swf'/>" quality="high" width="299" height="69"  type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"> </embed>
-      </object>
-      
-
 	</td>
     <td width="15%" valign="top">
 
