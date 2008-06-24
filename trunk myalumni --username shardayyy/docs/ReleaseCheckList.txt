@@ -1,0 +1,15 @@
+
+- run: 
+  ant jspc to check
+  ant find-java-wrong-keys
+  ant find-jsp-wrong-keys
+     
+- Change the Build Date to today.
+
+- Synchronize style_backup.css to style.css
+
+- search for "requiredfield" and make sure there in ONE space before or after the text
+
+- Check the year of copyright
+
+- Remove Internal Docs
