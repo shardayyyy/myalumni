@@ -193,11 +193,12 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 	public void updateOrgAboutUs(String orgAboutUs, String lastModifiedBy){
 		SystemConfigVO systemSetup = getSystemConfig();
 		
-		if(systemSetup == null)
+		if(systemSetup.getSystemConfigId() == null)
 			systemSetup = new SystemConfigVO();			
 		
 		systemSetup.setOrgAboutUs(orgAboutUs);
 		systemSetup.setLastModifiedBy(lastModifiedBy);
+		systemSetup.setLastModifiedDate(new Date());
 		
 		getHibernateTemplate().saveOrUpdate(systemSetup);
 	}
@@ -220,7 +221,7 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 		
 		SystemConfigVO systemSetup = getSystemConfig();
 		
-		if(systemSetup == null)
+		if(systemSetup.getSystemConfigId() == null)
 			systemSetup = new SystemConfigVO();			
 		
 		systemSetup.setServerUrl(serverUrl);
@@ -233,7 +234,7 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 		
 		SystemConfigVO systemSetup = getSystemConfig();
 		
-		if(systemSetup == null)
+		if(systemSetup.getSystemConfigId() == null)
 			systemSetup = new SystemConfigVO();			
 		
 		systemSetup.setAlbumUrl(albumUrl);
@@ -246,7 +247,7 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 		
 		SystemConfigVO systemSetup = getSystemConfig();
 		
-		if(systemSetup == null)
+		if(systemSetup.getSystemConfigId() == null)
 			systemSetup = new SystemConfigVO();			
 		
 		systemSetup.setForumUrl(forumUrl);
@@ -334,7 +335,7 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 	public void updateDormitory(SystemConfigVO systemConfigVO){
 		SystemConfigVO systemSetup = getSystemConfig();
 	
-	if(systemSetup == null)
+	if(systemSetup.getSystemConfigId() == null)
 		systemSetup = new SystemConfigVO();			
 	
 	systemSetup.setHasDormitory(systemConfigVO.getHasDormitory());

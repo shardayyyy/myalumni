@@ -22,7 +22,7 @@
 	<%= BaseConstants.GUEST_USERNAME_ID %>
 </c:set>
 
-  <table width="100%" border="0" cellspacing="1" cellpadding="3" align="center" class="tborder">
+  <table width="80%" border="0" cellspacing="1" cellpadding="3" align="center" class="tborder">
 
    <tr>
          <td height="30" colspan="2" class="bg0">Sending a message to <bean:write name="privateMessageForm" property="toMemberFirstName"/> <bean:write name="privateMessageForm" property="toMemberLastName"/></td>
@@ -84,13 +84,15 @@
 
     <tr class="portlet-section-body">
       	<td valign="top"><span class="fieldlabel"><jcaptcha:question/>:</span><font color="#cc0000">*</font>
-      	       <%-- Add the image--%>
-               <br><html:img page="/action/jcaptcha" align="absmiddle"/>
+
                <br>
-               
+               <br><br>
                <html:link action="/member/prepareEmailWebmaster?action=prepareEmailWebmaster">Get Another Challenge</html:link>
       	</td>
 		<td valign="middle">
+		       <%-- Add the image--%>
+               <html:img page="/action/jcaptcha" align="absmiddle"/>
+               <br>
                <%-- Add the input tag--%>
                <input type="text"  name="jcaptcha_response" />
 				<br>
