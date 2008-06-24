@@ -1,0 +1,420 @@
+
+
+
+package net.naijatek.myalumni.framework.struts;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import net.naijatek.myalumni.modules.common.domain.MemberVO;
+import net.naijatek.myalumni.util.BaseConstants;
+import net.naijatek.myalumni.util.utilities.StringUtil;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.struts.Globals;
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
+import org.apache.struts.action.ExceptionHandler;
+import org.apache.struts.config.ExceptionConfig;
+
+
+/**
+ * Implementation of <strong>ExceptionHandler</strong> that handles any
+ * Exceptions that are bundles up to_email the Action layer. This allows us to_email
+ * gracelly handle any exception that Action classes do not catch.
+ * 
+ * @author Folashade
+ * @version 1.0
+ */
+public final class MyAlumniExceptionHandler extends ExceptionHandler {
+
+    private static Log logger = LogFactory.getLog(MyAlumniExceptionHandler.class);
+  /**
+     * This method handles any java.lang.Exceptions that are not caught in
+     * previous classes. It will loop through and get all the causes (exception
+     * chain), create ActionErrors, add them to_email the request and then forward to_email
+     * the input.
+     * 
+     * @see org.apache.struts.action.ExceptionHandler#execute()
+     * java.lang.Exception, org.apache.struts.config.ExceptionConfig,
+     * org.apache.struts.action.ActionMapping,
+     * org.apache.struts.action.ActionForm,
+     * javax.servlet.http.HttpServletRequest,
+     * javax.servlet.http.HttpServletResponse )
+     * 
+     * @param ex Exception
+     * @param ae ExceptionConfig
+     * @param mapping ActionMapping
+     * @param form ActionForm
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @throws ServletException
+     * @return ActionForward
+     */
+  public ActionForward execute(Exception ex, ExceptionConfig ae,
+                                 ActionMapping mapping,
+                                 ActionForm form,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response)
+    throws ServletException {
+
+        // if there's already errors in the request, don't process
+        ActionErrors errors =  (ActionErrors) request.getAttribute(Globals.ERROR_KEY);
+
+        if (errors != null) {
+            return null;
+        }
+
+        ActionForward forward = super.execute(ex, ae, mapping, form, request, response);
+
+        // Get the chained exceptions (causes) and add them to the
+        // list of errors as well
+        /*
+        ActionMessage error = null;
+        String property = null;
+
+        while (ex != null) {
+            String msg = ex.getMessage();
+            error = new ActionMessage("errors.detail", msg);
+            property = error.getKey();
+            ex = (Exception) ex.getCause();
+
+            if ((ex != null) && (ex.getMessage() != null)) {
+                // check to see if the child message is the same
+                // if so, don't store it
+                if (msg.indexOf(ex.getMessage()) == -1) {
+                    storeException(request, property, error, forward);
+                }
+            } else {
+                storeException(request, property, error, forward);
+            }
+        }
+      */
+
+      HttpSession session = request.getSession(false);
+      MyAlumniUserContainer container = null;
+      
+      try{
+    	  container = (MyAlumniUserContainer)session.getAttribute(BaseConstants.USER_CONTAINER);
+      }
+      catch(Exception e){
+    	  container = null;
+      }
+      
+      
+      MemberVO token = null;
+      
+      
+      if (container != null){
+    	  container.getToken();
+      }
+
+      String userid = "";
+      if (token != null) {
+        userid = token.getMemberUserName();
+      }
+
+      // Create a error identification for this exception
+      GregorianCalendar ct = new GregorianCalendar();
+      StringBuffer sb = new StringBuffer();
+      sb.append(userid);
+      if (userid != "") {
+		sb.append("_");
+	}
+      sb.append(StringUtil.prefixZeros(String.valueOf(ct.get(Calendar.MONTH)+1), 2));
+      sb.append(StringUtil.prefixZeros(String.valueOf(ct.get(Calendar.DATE)), 2));
+      sb.append(ct.get(Calendar.YEAR));
+      sb.append(StringUtil.prefixZeros(String.valueOf(ct.get(Calendar.HOUR_OF_DAY)), 2));
+      sb.append(StringUtil.prefixZeros(String.valueOf(ct.get(Calendar.MINUTE)), 2));
+      sb.append(StringUtil.prefixZeros(String.valueOf(ct.get(Calendar.SECOND)), 2));
+
+      // Log exception
+      logger.warn("In Excecute(), error id -  "
+                  + sb.toString()
+                  + " message - "
+                  + ex.toString());
+
+      StackTraceElement[] ste = ex.getStackTrace();
+      StringBuffer sbStackTrace = new StringBuffer();
+      for (StackTraceElement element : ste) {
+        sbStackTrace.append(element.toString());
+        sbStackTrace.append("\n");
+      }
+      logger.warn("Stack trace - " + sbStackTrace.toString());
+
+      // Save the error id in the form bean
+      if ( session != null ){
+        session.setAttribute("errorId", sb.toString());
+      }
+
+      //return new ActionForward(ae.getPath());
+      return forward;
+    }
+
+  /**
+     * This method overrides the the ExceptionHandler's storeException method in
+     * order to_email create more than one error message.
+     * 
+     * @param request - The request we are handling
+     * @param property - The property name to_email use for this error
+     * @param error - The error generated from_email the exception mapping
+     * @param forward - The forward generated from_email the input path (from_email the
+     * form or exception mapping)
+     */
+   void storeException(HttpServletRequest request, String property,
+                                  ActionMessage error, ActionForward forward) {
+        ActionMessages errors =
+            (ActionMessages) request.getAttribute(Globals.ERROR_KEY);
+
+        if (errors == null) {
+            errors = new ActionMessages();
+        }
+
+        errors.add(property, error);
+
+        request.setAttribute(Globals.ERROR_KEY, errors);
+    }
+
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------	
+	<!--  All PrivateMessageVO by status -->  
+	<query name="privatemessage.bymessagestatus">
+			<![CDATA[ 
+				from PrivateMessageVO m 
+				where m.messageStatus = :messageStatus 
+				and m.messageToUserId = :memberId 
+				and m.copyMe = 'N' 
+				or m.messageStatus = :messageStatus
+				and m.messageFromUserId = :memberId 
+				and m.copyMe = 'Y'
+				order by m.lastModifiedDate 
+				
+			]]>
+    </query>
+
+  <!--    
+  union
+				from PrivateMessageVO m where m.messageStatus = :messageStatus and m.messageFromUserId = :memberId and m.copyMe = 'Y' order by m.lastModifiedDate
+				
+   	<sql-query name="privatemessage.bymessagestatus">
+		<return alias="p1" class="PrivateMessageVO"/>
+		<![CDATA[
+			select * from MYALUMNI_PRIVATE_MESSAGE_TBL {p1}
+			where p1.MESSAGE_STATUS = :messageStatus and p1.MESSAGE_TO_USER_ID = :memberId and p1.COPY_ME = 'N'
+			union
+			select * from MYALUMNI_PRIVATE_MESSAGE_TBL {p1}
+			where p1.MESSAGE_STATUS = :messageStatus and p1.MESSAGE_FROM_USER_ID = :memberId and p1.COPY_ME = 'Y'
+			order by LASTMODIFIED_DATE desc
+		]]>		
+	</sql-query>
+ -->	   
+    
+    <!--  All PrivateMessageVO by Member and Folder name   
+	<query name="privatemessage.bymemberandfoldername">
+			<![CDATA[ 
+				from PrivateMessageVO m where m.messageToUserId = :memberId and m.folderName = :folderName and m.messageStatus != 'D' and m.copyMe = 'N' order by m.messageDate desc 
+				union
+				from PrivateMessageVO m where m.messageFromUserId = :memberId and m.folderName = :folderName and m.messageStatus != 'D' and m.copyMe = 'Y' order by m.messageDate desc
+			]]>
+    </query>	
+    -->
+    
+    <sql-query name="privatemessage.bymemberandfoldername">
+		<return alias="p1" class="PrivateMessageVO"/>
+		<![CDATA[
+			select distinct {p1.*} from MYALUMNI_PRIVATE_MESSAGE_TBL {p1}
+			where p1.MESSAGE_STATUS != 'D' 
+			and p1.MESSAGE_TO_USER_ID = :memberId
+			and p1.FOLDER_NAME = :folderName 
+			and p1.COPY_ME = 'N'
+			union
+			select distinct {p1.*} from MYALUMNI_PRIVATE_MESSAGE_TBL {p1}
+			where p1.MESSAGE_STATUS != 'D' 
+			and p1.MESSAGE_FROM_USER_ID = :memberId
+			and p1.FOLDER_NAME = :folderName 
+			and p1.COPY_ME = 'Y'
+			order by p1.MESSAGE_DATE desc
+		]]>		
+	</sql-query>
+	   
+	
+   <!--  All PrivateMessageVO by Member  
+	<query name="privatemessage.bymember">
+			<![CDATA[ 
+				from PrivateMessageVO m where m.messageToUserId = :memberId and m.copyMe = 'N'  
+				union
+				from PrivateMessageVO m where m.messageFromUserId = :memberId	and m.copyMe = 'Y'
+			]]>
+    </query>	   
+    -->
+    
+   	<sql-query name="privatemessage.bymember">
+		<return alias="p1" class="PrivateMessageVO"/>
+		<![CDATA[
+			select distinct {p1.*} from MYALUMNI_PRIVATE_MESSAGE_TBL {p1}
+			where p1.MESSAGE_TO_USER_ID = :memberId and p1.COPY_ME = 'N'
+			union
+			select distinct {p1.*} from MYALUMNI_PRIVATE_MESSAGE_TBL {p1}
+			where p1.MESSAGE_FROM_USER_ID = :memberId and p1.COPY_ME = 'Y'
+		]]>		
+	</sql-query>    
+     
+     
+	
+	<!--  Quota of messages by memberid  
+	<query name="privatemessage.quotabyusername">
+			<![CDATA[ 
+				from PrivateMessageVO m where m.messageToUserId = :memberId and m.messageStatus != 'D' and m.copyMe = 'N' 
+				union
+				from PrivateMessageVO m where m.messageFromUserId = :memberId and m.messageStatus != 'D' and m.copyMe = 'Y'
+			]]>
+    </query>
+   -->
+   
+    
+    <sql-query name="privatemessage.quotabyusername">
+		<return alias="p1" class="PrivateMessageVO"/>
+		<![CDATA[
+			select distinct {p1.*} from MYALUMNI_PRIVATE_MESSAGE_TBL {p1}
+			where p1.MESSAGE_TO_USER_ID = :memberId and p1.MESSAGE_STATUS != 'D' and p1.COPY_ME = 'N'
+			union
+			select distinct {p1.*} from MYALUMNI_PRIVATE_MESSAGE_TBL {p1}
+			where p1.MESSAGE_FROM_USER_ID = :memberId and p1.MESSAGE_STATUS != 'D' and p1.COPY_ME = 'Y'
+		]]>		
+	</sql-query> 
+	   
+	
+	
+	
+    
+	<!--  Private Message Ids -->  
+	<query name="privatemessage.ids">
+			<![CDATA[ from PrivateMessageVO m.messageId' ]]>
+    </query>    
+    
+    <!--  A PrivateMessageVO by Member and Mesage Id -->  
+	<query name="privatemessage.bymemberandmessage">
+			<![CDATA[ from PrivateMessageVO m where m.messageToUserId = :memberId and m.messageId = :messageId and m.messageStatus != 'D' order by m.messageDate desc ]]>
+    </query>	
+    
+    <!--  A PrivateMessageVO by Member and Mesage Id Also load the Whom the message is from  -->  
+	<query name="privatemessage.bymemberandmessage.eager">
+			<![CDATA[ 
+				from PrivateMessageVO m 
+				left outer join fetch m.messageFromMember
+				where m.messageToUserId = :memberId 
+				and m.messageId = :messageId 
+				and m.messageStatus != 'D' 
+				order by m.messageDate desc				
+			]]>								
+    </query>   
+    
+    
+    
+    
+    
+    
+    
+    1-13-2008
+    
+    <?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="net.naijatek.myalumni.modules.common.domain">
+	<class name="MessageFolderVO" table="MYALUMNI_MESSAGE_FOLDER_TBL">
+		<id name="messageFolderId" column="MESSAGE_FOLDER_ID" length="40">
+			<generator class="uuid" />
+		</id>
+  
+		<property name="folderName" 	column="FOLDER_NAME"	length="30"	not-null="true"	type="string"/>
+		<property name="folderOrder" 	column="FOLDER_ORDER" 	not-null="true"	type="integer"/>
+		<property name="folderCreationDate" 	column="FOLDER_CREATION_DATE" not-null="true"	type="timestamp"/>
+		<property name="folderModificationDate" 	column="FOLDER_MODIFICATION_DATE" not-null="true"	type="timestamp"/>
+
+		<!-- Member Message Folder -->
+		<many-to-one name="member" column="MEMBER_ID" update="false" />
+		<property name="memberId" 	formula="MEMBER_ID"	length="40"	not-null="true"	type="string"/>
+	
+		<property name="unreadMessageCount" type="integer">
+			<formula>
+			(
+				select count(*) 
+				from MYALUMNI_PRIVATE_MESSAGE_TBL p, MYALUMNI_MESSAGE_FOLDER_TBL mf 
+				where p.FOLDER_NAME = mf.FOLDER_NAME 
+				and p.MESSAGE_TO_USER_ID = mf.MEMBER_ID 
+				and p.MESSAGE_TO_USER_ID = :memberId
+				and p.MESSAGE_STATUS = 'N'
+				and p.COPY_ME = 'N'
+				or
+				p.FOLDER_NAME = mf.FOLDER_NAME 
+				and p.MESSAGE_FROM_USER_ID = mf.MEMBER_ID 
+				and p.MESSAGE_FROM_USER_ID = :memberId
+				and p.MESSAGE_STATUS = 'N'
+				and p.COPY_ME = 'Y'
+			)
+			</formula>
+		</property>
+		
+		<property name="messageCount" type="integer">
+			<formula>
+			(
+				select count(*) 
+				from MYALUMNI_PRIVATE_MESSAGE_TBL p, MYALUMNI_MESSAGE_FOLDER_TBL mf  
+				where mf.FOLDER_NAME = p.FOLDER_NAME 
+				and p.MESSAGE_TO_USER_ID = mf.MEMBER_ID
+				and p.MESSAGE_TO_USER_ID = :memberId
+				and p.COPY_ME = 'N'
+				or
+				mf.FOLDER_NAME = p.FOLDER_NAME 
+				and p.MESSAGE_FROM_USER_ID = mf.MEMBER_ID
+				and p.MESSAGE_FROM_USER_ID = :memberId
+				and p.COPY_ME = 'Y'
+			)
+			</formula>
+		</property>
+		
+
+   
+    	<property name="lastModifiedBy" 	column="LASTMODIFIED_BY"	 length="40" not-null="true"	type="string"/>
+		<property name="lastModification" 	column="LASTMODIFICATION" 	length="1" not-null="true"	type="string"/>
+		<property name="lastModifiedDate" 	column="LASTMODIFIED_DATE" not-null="true"	type="timestamp"/>	  
+	</class>
+	
+	<!--  All MessageFolderVO by status -->  
+	<query name="messagefolder.bystatus">
+			<![CDATA[ from MessageFolderVO m where m.lastModification = :status order by m.lastModifiedDate ]]>
+    </query>
+    
+    
+    <!--  All MessageFoldersVO by Member and Folder name -->  
+	<query name="messagefolder.bymemberandfoldername">
+			<![CDATA[ from MessageFolderVO m where m.memberId = :memberId and m.folderName = :folderName and m.lastModification != 'D' ]]>
+    </query>	
+    
+   <!--  All MessageFoldersVO by Member and Folder name and status  -->  
+	<query name="messagefolder.bymemberandfoldernameandstatus">
+			<![CDATA[ from MessageFolderVO m where m.memberId = :memberId and m.lastModification = :status  and m.folderName = :folderName ]]>
+    </query>    
+
+    	
+    <!--  All MessageFoldersVO by Member  -->  
+	<query name="messagefolder.bymember">
+			<![CDATA[ from MessageFolderVO m where m.memberId = :memberId and m.lastModification != 'D' order by m.folderOrder]]>
+    </query>    		
+    
+    
+</hibernate-mapping>
+    

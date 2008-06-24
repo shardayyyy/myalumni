@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+ <!-- read from properties file -->
+ <bean id="propertyConfiguer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+ 	<property name="locations">
+ 		<list>
+ 			<value>classpath:spring.properties</value>
+ 			<value>classpath:mail.properties</value>
+ 		</list>
+ 	</property>
+ </bean>
+
+
+    
+ <!-- setup datasource -->
+ <bean id="devDatasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+ 	<property name="driverClassName" value="${driver}" />
+ 	<property name="url" value="${url}"/>
+ 	<property name="username" value="${username}"/>
+ 	<property name="password" value="${password}"/>
+ </bean> 
+ 
+ <!--  datasource from JNDI -->
+ <bean id="datasource" class="org.springframework.jndi.JndiObjectFactoryBean">
+ 	<property name="jndiName" value="${datasource}"/>
+ 	<property name="defaultObject" ref="devDatasource"/>
+ </bean>
+ 
+ 
+</beans>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="net.naijatek.myalumni.modules.common.domain">
+	<class name="ScrollVO" table="MYALUMNI_SCROLL_TBL">
+		<id name="scrollId" column="SCROLL_ID" length="40">
+			<generator class="uuid" />
+		</id>
+  
+		<property name="scrollText" 		column="SCROLL_TEXT"		length="150"	not-null="true"	type="string"/>
+		<property name="priority" 			column="PRIORITY" 			length="1" 		not-null="true"	type="string"/>
+			
+		<property name="lastModifiedBy" 	column="LASTMODIFIED_BY"	 length="40" not-null="true"	type="string"/>
+		<property name="lastModification" 	column="LASTMODIFICATION" 	length="1" not-null="true"	type="string"/>
+		<property name="lastModifiedDate" 	column="LASTMODIFIED_DATE" not-null="true"	type="timestamp"/>
+		 		
+	</class>
+	
+	<!--  All ScrollVO by status  -->
+	<query name="scroll.bystatus">
+			<![CDATA[ from ScrollVO m where m.lastModification = :status order by m.lastModifiedDate ]]>
+    </query>
+    		
+</hibernate-mapping>

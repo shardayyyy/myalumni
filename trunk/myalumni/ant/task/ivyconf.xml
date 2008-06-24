@@ -1,0 +1,24 @@
+<ivyconf>
+	<properties file="${ivy.conf.dir}/ivyconf-file.properties" />
+	
+    <conf defaultResolver="default" checkUpToDate="true"/>
+    <resolvers>    
+        <ivyrep name="libraries"/>
+        <chain name="default">              
+ 			<!-- look in user local cache repos. -->
+            <filesystem name="local">
+				<ivy pattern="${ivy.local.default.root}/${ivy.local.default.ivy.pattern}" />
+				<artifact pattern="${ivy.local.default.root}/${ivy.local.default.artifact.pattern}" />
+			</filesystem>			          
+			
+			<!--  use the sandbox -->
+			<ivyrep name="ivyrep" ivyroot="http://opensvn.csie.org/ivyrepsandbox/"/>
+            
+            <url name="maven">
+                <artifact pattern="http://www.ibiblio.org/maven/[organisation]/jars/[module]-[revision].jar"/>
+            </url>   
+			
+        </chain>
+    </resolvers>
+</ivyconf>
+

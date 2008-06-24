@@ -1,0 +1,1 @@
+MyAlumni: Thanks for joining us ${schoolName}.

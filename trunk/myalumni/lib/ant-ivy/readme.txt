@@ -1,0 +1,1 @@
+Copy both of these files into the ant/lib dir, if using ant to resolve ivy
