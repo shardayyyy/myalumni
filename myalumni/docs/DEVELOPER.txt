@@ -1,0 +1,58 @@
+This document is for developers intend to customize and/or extend myAlumni
+
+
+Q. How to receive SVN commit update mail?
+
+A. Please subscribe to <TODO email>
+
+
+
+Q. How to customize the style of myAlumni?
+
+A. myAlumni support customize the style by changing the myalumni.css. You could change
+   a lot of style with this, but there are some changes which you have to make
+   directly to the *.jsp files. This will be addressed in later releases.
+  
+
+Q. How can I join the myAlumni development team?
+
+A. Like many current members of the myAlumni team, joining the development team
+should be naturally:
+
+- Participate on the online naijatek.com, help others to solve their problem and discuss
+  how to improve myAlumni
+
+- Get familiar with the current mvnForum source code and begin writing some patch.
+
+- Prepare a plan on what part of myAlumni that you would like to contribute your effort.
+  You could publicly discuss it on the myAlumni or send me an email. This will help
+  to avoid wasted time if two or more people trying to do the same tasks.
+
+- Send me an email that you would like to contribute to the myAlumni, and also prepare
+  your sourceforge.net ID or gmail ID
+
+- Stick to the existing indentation style even if you hate it. Alternating between
+  indentation styles makes it hard to understand the source code. Make it hard on
+  yourself but easier on others. myAlumni follows the Code Conventions for the
+  Java Programming Language (http://java.sun.com/docs/codeconv/).
+
+- If you contribute to the current source code, put your name and email in the header
+  of current files
+
+- If you write new files, use the copyright notice in the docs/CopyrightTemplate.txt
+  (It has template for .java files and .Jsp files). You also agree to grant copyright
+  of the source code to Naijatek.com, and don't forget to put your name and email
+  to the header of the files.
+
+- Please test your code carefully before commit to the SVN, if you are going to make
+  quite a lot of changes, please discuss it in the online Naijatek.com so that others
+  could have a chance to review and give you suggestions.
+
+
+
+Cheers!
+
+Shardayyy (Folashade Adeyosoye)
+http://www.naijatek.com/myalumni
+shardayyy at naijatek dot com
+

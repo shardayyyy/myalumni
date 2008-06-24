@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN" "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
+       
+       
+<!-- Definitions for Tiles fgc   -->
+<tiles-definitions>
+        <definition name="myalumni.base" path="/jsp/layout/memberBaseLayout.jsp">
+                <put name="miniLogin" value="/jsp/layout/common/miniLogin.jsp"/>
+                <put name="meta" value="/jsp/layout/common/meta.jsp"/>
+                <put name="menu" value="/jsp/layout/common/menu.jsp"/>
+                <put name="scroll" value="/jsp/layout/common/scroll.jsp"/>
+                <put name="message" value="/jsp/layout/common/message.jsp"/>
+                <put name="footer" value="/jsp/layout/common/footer.jsp"/>
+        </definition>   
+
+        <definition name="myalumni.login" path="/jsp/layout/loginBaseLayout.jsp">
+                <put name="meta" value="/jsp/layout/common/meta.jsp"/>
+                <put name="message" value="/jsp/layout/common/message.jsp"/>
+                <put name="footer" value="/jsp/layout/common/loginfooter.jsp"/>
+        </definition>
+
+        <definition name="myalumni.admin" path="/jsp/layout/adminBaseLayout.jsp">
+        	<put name="miniLogin" value="/jsp/admin/common/miniAdminDetail-body.jsp"/>
+        	<put name="menu" value="/admin/common/menu-body.jsp"/>
+        	<put name="scroll" value="/jsp/layout/common/scroll.jsp"/>
+        	<put name="meta" value="/jsp/layout/common/meta.jsp"/>
+        	<put name="message" value="/jsp/layout/common/message.jsp"/>
+            <put name="footer" value="/jsp/layout/common/adminfooter.jsp"/>
+        </definition>
+
+        <definition name="myalumni.blank" path="/jsp/layout/blankBaseLayout.jsp">
+                <put name="meta" value="/jsp/layout/common/meta.jsp"/>
+        </definition>
+        
+        <definition name="myalumni.iphone" path="/iphone/layout/iphoneLayout.jsp">
+                
+        </definition>        
+</tiles-definitions>

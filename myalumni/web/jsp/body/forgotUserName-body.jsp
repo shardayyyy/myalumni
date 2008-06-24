@@ -1,0 +1,61 @@
+<%@ taglib uri="/WEB-INF/tld/struts-html.tld" prefix="html" %>
+<%@ taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
+<%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c" %>
+<%@ taglib uri="/WEB-INF/tld/struts-tiles.tld" prefix="tiles"%>
+
+
+<c:url var="home" value="/jsp/index.jsp"/>
+<c:url var="loginAgain" value="/jsp/login.jsp"/>
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<html:form action="/forgotUserName?action=forgotUserName" focus="memberUserName"  onsubmit="javascript:document.loginForm.elements['JSEnabled'].value='true';">
+
+              <table width="738" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+                <tr align="left">
+                  <td align="center"><br>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td colspan="3" align="center">&nbsp;
+                    </td>
+                      </tr>
+                      <tr>
+                        <td width="1%" height="25">&nbsp;<a href="<c:out value="${home}"/>"><html:img page="/images/logo/myalumni_03.png" altKey="application.name" titleKey="application.name" border="0" align="absmiddle"/></a></td>
+                        <td width="99%" colspan="2"><span class="greenTitle">Request Forgotten UserName</span>&nbsp;<span class="graysmall"><bean:message key="application.version"/></span></td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td height="25">&nbsp;</td>
+                        <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td width="1%" height="25" align="right">&nbsp;</td>
+                        <td width="10%" height="25" align="right"><bean:message key="label.email"/>:&nbsp;&nbsp;&nbsp; </td>
+                        <td width="89%"><html:text property="email" size="50" maxlength="50" titleKey="label.email"/></td>
+                      </tr>
+                      <tr>
+                        <td align="right">&nbsp;</td>
+                        <td height="25" align="right">&nbsp;</td>
+                        <td><html:submit styleClass="button"><bean:message key="button.submit"/></html:submit></td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td height="25">&nbsp;</td>
+                        <td><a href="<c:out value="${loginAgain}"/>" title="Login Again">Login Again</a></td>
+                      </tr>
+                      <tr>
+                        <td height="25" colspan="3">
+                          <tiles:insert name="/jsp/layout/common/message.jsp"/>
+                            <noscript>
+                                <strong><font color="#FF0000" size="2" face="Tahoma"><bean:message key="prompt.jsReq"/></font></strong><br>
+                                <strong><font color="#FF0000" size="2" face="Tahoma"><bean:message key="prompt.jsNote"/></font></strong><br>
+                            </noscript>                        
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+             </table>
+</html:form>

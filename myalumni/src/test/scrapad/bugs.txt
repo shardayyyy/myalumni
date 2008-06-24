@@ -1,0 +1,1 @@
+1/24/2008: The last login date is automatically updated in UserAccountServiceImpl::login method to current time.
