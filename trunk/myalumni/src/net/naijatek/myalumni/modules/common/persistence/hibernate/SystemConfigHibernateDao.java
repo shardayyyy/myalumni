@@ -62,7 +62,7 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 		SystemConfigVO _systemConfig = getSystemConfig();
 		
 
-		if (_systemConfig != null)	{						
+		if (_systemConfig.getSystemConfigId() != null)	{						
 			_systemConfig.setLastModification(BaseConstants.UPDATED);
 			_systemConfig.setLastModifiedBy(config.getLastModifiedBy());
 			_systemConfig.setLastModifiedDate(new Date());
@@ -92,7 +92,7 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 		
 		SystemConfigVO _systemConfig = getSystemConfig();
 		
-		if (_systemConfig != null)	{				
+		if (_systemConfig.getSystemConfigId() != null)	{				
 			config.setOrganizationName(_systemConfig.getOrganizationName());
 			config.setOrganizationShortName(_systemConfig.getOrganizationShortName());
 			config.setOrgEmail(_systemConfig.getOrgEmail());
@@ -111,7 +111,7 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 		SystemConfigVO _systemConfig = getSystemConfig();
 		
 
-		if (_systemConfig != null)	{						
+		if (_systemConfig.getSystemConfigId() != null)	{						
 			_systemConfig.setLastModification(BaseConstants.UPDATED);
 			_systemConfig.setLastModifiedBy(lastModifiedBy);
 			_systemConfig.setLastModifiedDate(new Date());
@@ -137,7 +137,7 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 		
 		SystemConfigVO _systemConfig = getSystemConfig();
 		
-		if (_systemConfig != null)	{	
+		if (_systemConfig.getSystemConfigId() != null)	{	
 			config.setRssUrl(_systemConfig.getRssUrl());
 			config.setRssHeader(_systemConfig.getRssHeader());			
 		}			
@@ -150,7 +150,7 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 		int timeout = SystemConfigConstants.DEFAULT_SESSION_TIMEOUT;
 		SystemConfigVO _systemConfig = getSystemConfig();
 		
-		if (_systemConfig != null)	{	
+		if (_systemConfig.getSystemConfigId() != null)	{	
 			if (_systemConfig.getSessionTimeout() !=  null){
 				try{
 					timeout = Integer.parseInt(_systemConfig.getSessionTimeout());
@@ -168,7 +168,7 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 	public void updateSessionTimeOut(String sessionTimeout, String lastModifiedBy){		
 		SystemConfigVO _systemConfig = getSystemConfig();
 	
-		if(_systemConfig != null){//do update
+		if(_systemConfig.getSystemConfigId() != null){//do update
 			_systemConfig.setLastModification(BaseConstants.UPDATED);
 			_systemConfig.setSessionTimeout(sessionTimeout);			
 		} else{ //do new add
@@ -191,16 +191,22 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 	
 	
 	public void updateOrgAboutUs(String orgAboutUs, String lastModifiedBy){
-		SystemConfigVO systemSetup = getSystemConfig();
+		SystemConfigVO _systemConfig = getSystemConfig();
+				
 		
-		if(systemSetup.getSystemConfigId() == null)
-			systemSetup = new SystemConfigVO();			
+		if(_systemConfig.getSystemConfigId() != null){//do update
+			_systemConfig.setLastModification(BaseConstants.UPDATED);			
+		} else{ //do new add
+			_systemConfig = new SystemConfigVO();
+			_systemConfig.setLastModification(BaseConstants.ADDED);
+		}
+				
 		
-		systemSetup.setOrgAboutUs(orgAboutUs);
-		systemSetup.setLastModifiedBy(lastModifiedBy);
-		systemSetup.setLastModifiedDate(new Date());
+		_systemConfig.setOrgAboutUs(orgAboutUs);
+		_systemConfig.setLastModifiedBy(lastModifiedBy);
+		_systemConfig.setLastModifiedDate(new Date());
 		
-		getHibernateTemplate().saveOrUpdate(systemSetup);
+		getHibernateTemplate().saveOrUpdate(_systemConfig);
 	}
 	
 	
@@ -265,7 +271,7 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 		int year = 1900;
 		SystemConfigVO _systemConfig = getSystemConfig();
 		
-		if (_systemConfig != null)	{	
+		if (_systemConfig.getSystemConfigId() != null)	{	
 			if (_systemConfig.getOrgFirstYear() !=  null){
 				try{
 					year = Integer.parseInt(_systemConfig.getOrgFirstYear());
@@ -283,7 +289,7 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 	public void updateFirstYearofSchool(SystemConfigVO sysConfigVO){
 		SystemConfigVO _systemConfig = getSystemConfig();
 		
-		if(_systemConfig != null){//do update
+		if(_systemConfig.getSystemConfigId() != null){//do update
 			_systemConfig.setLastModification(BaseConstants.UPDATED);
 			_systemConfig.setOrgFirstYear(sysConfigVO.getOrgFirstYear());			
 		} else{ //do new add
@@ -349,7 +355,7 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 		String hasDorm = BaseConstants.BOOLEAN_NO;
 		SystemConfigVO _systemConfig = getSystemConfig();
 		
-		if (_systemConfig != null)	{	
+		if (_systemConfig.getSystemConfigId() != null)	{	
 			if (_systemConfig.getHasDormitory() !=  null){
 				try{
 					hasDorm = _systemConfig.getHasDormitory();

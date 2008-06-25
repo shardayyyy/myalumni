@@ -31,10 +31,10 @@
         <td class="fieldlabel">&#8226; <a href="<c:out value="${alumni_listings}"/>">Alunmi Listing </a></td>
       </tr>
       <tr>
-        <td class="fieldlabel">&#8226; <a href="<c:out value="${reminisce}"/>">Slange's</a> </td>
+        <td class="fieldlabel">&#8226; <a href="<c:out value="${reminisce}"/>">Slang's</a> </td>
       </tr>
       <tr>
-        <td class="fieldlabel">&#8226; <a href="<c:out value="${faq}"/>">FAQ</a> <html:img page="/images/update.gif" width="47" height="10" align="middle"/></td>
+        <td class="fieldlabel">&#8226; <a href="<c:out value="${faq}"/>">FAQ</a></td>
       </tr>
       <tr>
         <td class="fieldlabel">&nbsp;</td>
