@@ -121,7 +121,7 @@ public class LatestMembersTag extends BodyTagSupport {
 				user = (MemberVO) latestmembers.get(i);
 				sb.append("<tr class=\"portlet-section-body\">");
 				sb
-						.append("<td class=\"fieldlabel\"> <a href=\"/"
+						.append("<td> <a href=\"/"
 								+ rootContextName
 								+ "/action/member/displayMiniProfile?action=displayMiniProfile&memberUserName="
 								+ user.getMemberUserName()
@@ -134,7 +134,7 @@ public class LatestMembersTag extends BodyTagSupport {
 				sb.append("</tr>");
 			}
 			if (size == 0) {
-				sb.append("<td class=\"fieldlabel\">None.</td>");
+				sb.append("<td>None.</td>");
 			}
 			sb.append("</table>");
 

@@ -52,7 +52,7 @@
 		<logic:iterate id="user" name="onlineusers" indexId="pIdx">
 
 				<html:img page="/images/arrow.gif" width="11" height="11" align="absbottom"/>
-				<a href="<c:out value="${miniProfile}"/>&memberUserName=<c:out value="${user.memberUserName}"/>"  onclick="return GB_showCenter('', this.href)" title="View <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/> details"><c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/> (<c:out value="${user.yearOut}"/>)</a> <br>
+				<a href="<c:out value="${miniProfile}"/>&memberUserName=<c:out value="${user.memberUserName}"/>"  onclick="newPopup(this.href,'name');return false" title="View <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/> details"><c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/> (<c:out value="${user.yearOut}"/>)</a> <br>
 				<c:set var="num_rec" value="1"/>
 
 		</logic:iterate>

@@ -162,7 +162,7 @@ public class BirthdayListTag extends BodyTagSupport {
 				sb.append("<tr class=\"");
 				sb.append(rowCss);
 				sb.append("\">");
-				sb.append("<td class=\"fieldlabel\">");
+				sb.append("<td>");
 
 				if (today == dt.getDayOfMonth()) {
 					sb.append("<img src=\"" + rootContext.trim() + seperator
@@ -181,9 +181,9 @@ public class BirthdayListTag extends BodyTagSupport {
 								+ user.getFirstName()
 								+ " "
 								+ user.getLastName() + "</td>");
-				sb.append("<td class=\"fieldlabel\">" + user.getYearOut()
+				sb.append("<td>" + user.getYearOut()
 						+ "</td>");
-				sb.append("<td class=\"fieldlabel\"> "
+				sb.append("<td> "
 						+ StringUtil.dobPostfix(dt.getDayOfMonth())
 						+ " of "
 						+ StringUtil.convertToAlphaMonth(now
