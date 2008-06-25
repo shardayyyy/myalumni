@@ -523,6 +523,10 @@ public class MaintainMemberAction  extends MyAlumniDispatchAction{
     	  if (sysConfig.getSessionTimeout() == null || sysConfig.getSessionTimeout().length() == 0){
     		  errors.add(BaseConstants.WARN_KEY, new ActionMessage("core.errorcode.00807"));
     	  }
+    	  
+    	  if (sysConfig.getOrgAboutUs() == null || sysConfig.getOrgAboutUs().length() == 0){
+    		  errors.add(BaseConstants.WARN_KEY, new ActionMessage("core.errorcode.00808"));
+    	  }    	  
     	  saveMessages(request, errors);
     	  
       }

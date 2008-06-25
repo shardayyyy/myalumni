@@ -10,7 +10,7 @@
 
 <br/><br/>
 
-	<div align="center" class="blacksmall">Copyright &copy; 1997-<fmt:formatDate value="${now}" dateStyle="default" pattern="yyyy" /> MyAlumni Board<br>
+	<div align="center" class="blacksmall">Copyright &copy; 1997-<fmt:formatDate value="${now}" dateStyle="default" pattern="yyyy" /> MyAlumni<br>
 	send your comments to <a href="<c:out value="${emailWebmaster}"/>">the webmaster</a>.<br>
       powered by
           <a href="http://www.naijatek.com"  target="_blank"><html:img page="/images/naijateklogo-100x10.gif" alt="Naijatek solutions (www.naijatek.com)" width="100" height="10" align="absmiddle" border="0"/></a><br>
@@ -21,8 +21,5 @@
 		<span class="graysmall">
 			<bean:message key="application.version"/>
 		</span>&nbsp;
-		<a href="<c:out value="${changeLog}"/>">
-			<html:img page="/images/icon/icon_info.gif" title="Version Log" align="ABSMIDDLE" border="0"/>
-		</a>
 	</center>
 <br>

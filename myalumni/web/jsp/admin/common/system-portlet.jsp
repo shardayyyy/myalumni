@@ -50,7 +50,7 @@
 									&#8226;&nbsp;<a href="<c:out value="${listReminisce}"/>">Maintain Reminisce</a><br><br>
 									&#8226;&nbsp;<a href="<c:out value="${dormitory}"/>">School has dormitory?</a><br><br>
 									&#8226;&nbsp;<a href="<c:out value="${orginfo}"/>">Organization Information</a><br><br>
-									&#8226;&nbsp;<a href="<c:out value="${aboutorg}"/>">Update About Organization</a><br><br>										
+									&#8226;&nbsp;<a href="<c:out value="${aboutorg}"/>">Update Organization About Us</a><br><br>										
 									 
 <%--									<br><br>												--%>
 <%--									&#8226;&nbsp;<a href="<c:out value="${emailexception}"/>&task=list">Email Exception</a> - TODO log all emal exceptions in the database to be resent later.<br>--%>

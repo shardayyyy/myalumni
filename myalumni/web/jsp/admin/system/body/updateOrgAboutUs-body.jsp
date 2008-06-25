@@ -14,6 +14,7 @@
                 var sBasePath = '<%=request.getContextPath()%>/html/FCKeditor/';
                 var oFCKeditor = new FCKeditor( 'orgAboutUs' ) ;
                 oFCKeditor.BasePath	= sBasePath ;
+                oFCKeditor.Height	= 400 ;
                 oFCKeditor.ToolbarSet   =  'Default';  // Default, Plain, Basic
                 oFCKeditor.ReplaceTextarea() ;
         }
@@ -51,7 +52,7 @@
 					
 				<tr>
                       <td align="right" class="Smallbold" valign="top"><bean:message key="label.admin.org.aboutus"/>:</td>
-                      <td><html:textarea property="orgAboutUs" cols="90" rows="30"   /></td>
+                      <td><html:textarea property="orgAboutUs" cols="90"   /></td>
                 </tr> 
 		
                 <tr>

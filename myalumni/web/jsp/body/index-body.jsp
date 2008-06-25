@@ -20,9 +20,7 @@
 	<%--   INTRO --%>
 	<tiles:insert name="/jsp/common/frontpage/intro-body.jsp" flush="true"/>
 
-	<%--   PRINCIPLES 
-	<tiles:insert name="/jsp/common/frontpage/principlespix-body.jsp" flush="true"/>--%>
-	
+
 	<br/>
 		<br/>
 
