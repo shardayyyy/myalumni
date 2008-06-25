@@ -240,7 +240,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
       catch(Exception ex){
            errors.add(BaseConstants.FATAL_KEY, new ActionMessage("errors.technical.difficulty"));
            saveMessages(request, errors);
-           logger.fatal("SYSTEM ERROR - " + ex.getMessage());
+           logger.fatal("SYSTEM ERROR - " + ex.getStackTrace());
            return mapping.getInputForward();
       }
       return mapping.findForward(BaseConstants.FWD_SUCCESS);
