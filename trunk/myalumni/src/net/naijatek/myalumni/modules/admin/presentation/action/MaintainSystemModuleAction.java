@@ -206,9 +206,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		systemConfigService.updateOrgAboutUs(orgInfoVO.getOrgAboutUs(), getLastModifiedBy(request));
 		msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.record.updated"));
 		saveMessages(request, msgs);
-		resetToken(request);
-		ServletContext sCtx = request.getSession().getServletContext();
-	    sCtx.setAttribute(BaseConstants.ORGANIZATION_ABOUTUS, orgInfoVO.getOrgAboutUs());	
+		resetToken(request);	
 		return mapping.findForward(BaseConstants.FWD_SUCCESS);
 	}
 
