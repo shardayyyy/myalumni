@@ -5,8 +5,7 @@
 <%@ taglib uri="/WEB-INF/tld/struts-logic.tld" prefix="logic" %>
 <%@ taglib uri="/WEB-INF/tld/displaytag.tld" prefix="display" %>
 
-	<h1 id="pageTitle">MyAlumni - <c:out value="${ORG_NAME}" default="SCHOOL NAME HERE"/></h1>
-	
+
 <c:url var="searchAgain" value="/jsp/myalumni/search.jsp"/>
 <c:url var="miniProfile" value="/action/member/displayMiniProfile?action=displayMiniProfile"/>
 <c:choose>
@@ -124,7 +123,7 @@
   <table width="100%" >
   	<tr>
   		<td>
-			<center><h1><strong><a href="<c:out value="${searchAgain}"/>">Search Again !!!</a></strong></h1></center>
+			<center><h3><strong><a href="<c:out value="${searchAgain}"/>">Search Again !!!</a></strong></h3></center>
   		</td>
   	</tr>
   </table>

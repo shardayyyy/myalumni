@@ -2,15 +2,15 @@
 <%@ taglib uri="/WEB-INF/tld/struts-html.tld" prefix="html" %>
 <%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c" %>
 <%@ taglib uri="/WEB-INF/tld/struts-tiles.tld" prefix="tiles" %>
+<%@ taglib uri="/WEB-INF/tld/myalumni-taglibs.tld" prefix="myalumni" %>
 
 
 
-
-
+<myalumni:loadOrgAboutUs/>
 
 <table width="75%" border="0" cellspacing="1" cellpadding="3" align="center" class="tborder">
   <tr>
-    <td height="30" class="bg0">About <c:out value="${ORGANIZATION_NAME}"/></td>
+    <td height="30" class="bg0">About <c:out value="${ORGANIZATION_SHORT_NAME}"/></td>
   </tr>
   <tr class="portlet-section-body">
     <td>
@@ -32,5 +32,3 @@
 </table>
 <p></p>
 
-	<%-- Begining of Head boys and girls and principles
-	<tiles:insert name="/jsp/common/frontpage/principlesandprefects-body.jsp" flush="true"/> --%>

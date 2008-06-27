@@ -50,6 +50,11 @@
 	<name>loadClassNews</name>
 	<tagclass>net.naijatek.myalumni.util.taglib.DisplayClassNewsTag</tagclass>
 	<bodycontent>jsp</bodycontent>
+  </tag>   
+   <tag>
+	<name>loadOrgAboutUs</name>
+	<tagclass>net.naijatek.myalumni.util.taglib.DisplayAboutUsTag</tagclass>
+	<bodycontent>jsp</bodycontent>
   </tag>     
     <tag>
     <name>dropdown</name>
