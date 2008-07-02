@@ -105,4 +105,10 @@ public interface SystemConfigDao {
      */
     public void updateDormitory(SystemConfigVO systemConfigVO);
     public String getDormitory();
+    
+    
+    /**
+     * Setup
+     */
+    public void setupIntialization(SystemConfigVO systemConfigVO);
 }

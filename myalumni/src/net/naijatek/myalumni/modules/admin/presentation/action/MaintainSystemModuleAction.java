@@ -1079,4 +1079,32 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
         List<ReminisceVO> tasks =  reminisceService.findAll();
         setRequestObject(request, BaseConstants.LIST_OF_REMINISCE, tasks);        
     }
+    
+    
+	public ActionForward setupIntialization(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		logger.debug("in updateOrgInfo...");
+		if (!isTokenValid(request)) {
+			return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+		}
+		ActionMessages msgs = new ActionMessages();
+		SystemConfigForm systemConfigForm = (SystemConfigForm) form;
+		SystemConfigVO systemConfigVO = new SystemConfigVO();
+		BeanUtils.copyProperties(systemConfigVO, systemConfigForm);
+
+		systemConfigVO.setLastModifiedBy(getLastModifiedBy(request));
+
+		systemConfigService.setupIntialization(systemConfigVO);
+		msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.record.updated"));
+		saveMessages(request, msgs);
+		ServletContext sCtx = request.getSession().getServletContext();
+	    sCtx.setAttribute(BaseConstants.ORGANIZATION_NAME, systemConfigVO.getOrganizationName());	
+	    sCtx.setAttribute(BaseConstants.ORGANIZATION_SHORT_NAME, systemConfigVO.getOrganizationShortName());	
+	    sCtx.setAttribute(BaseConstants.ORG_EMAIL, systemConfigVO.getOrgEmail());
+		sCtx.setAttribute(BaseConstants.ALBUM_URL, systemConfigVO.getAlbumUrl());
+		sCtx.setAttribute(BaseConstants.FORUM_URL, systemConfigVO.getForumUrl());
+		sCtx.setAttribute(BaseConstants.SERVER_URL, systemConfigVO.getServerUrl());
+		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+	}    
 }

@@ -14,8 +14,8 @@
     <!-- =========================================  Global Forward  ================================================ -->
   	<global-forwards/>
   
-  <action-mappings>
-
+  <action-mappings>    
+    
     <!-- ******************************************************************* -->
     <!-- ***********        SECURITY                            ************* -->
     <!-- ******************************************************************* -->
@@ -31,7 +31,7 @@
       <forward name="success" path="/jsp/admin/index.jsp" />
     </action>
        
-    
+  
     <!-- ******************************************************************* -->
     <!-- ***********                EMAIL EXCEPTION           ************* -->
     <!-- ******************************************************************* -->      
@@ -313,6 +313,15 @@
       <forward name="success" path="/jsp/admin/system/listSystemLog.jsp" />
     </action> 
     
+    <!-- ******************************************************************* -->
+    <!-- ***********              SETUP               ************* -->
+    <!-- ******************************************************************* -->      
+    <action input="/jsp/setup/index.jsp" name="systemForm" path="/admin/setupIntialization" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/index.jsp" />
+    </action>  
+    
+        
     <!--  ========================================= -->
     <!--  ======     MANAGE ERROR LOGS     ======== -->
     <!--  ========================================= -->

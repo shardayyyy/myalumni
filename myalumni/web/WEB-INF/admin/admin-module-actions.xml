@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
-<beans>
-
+<beans> 
         
     <!-- ******************************************************************* -->
     <!-- ***********                SECURITY                   ************* -->
@@ -184,7 +183,20 @@
     <!-- ******************************************************************* -->
     <!-- ***********                SYSTEM MODULE            ************* -->
     <!-- ******************************************************************* -->     
-     
+    
+    
+    <!--  ========================================= -->
+    <!--  ======            SETUP     ======== -->
+    <!--  ========================================= -->    
+    <bean name="/admin/setupIntialization" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
+        <constructor-arg index="0" ref="errorLoggerService"/>  
+        <constructor-arg index="1" ref="systemConfigService"/> 
+        <constructor-arg index="2" ref="classNewsService"/>
+        <constructor-arg index="3" ref="systemTaskService"/>  
+        <constructor-arg index="4" ref="reminisceService"/>                        
+    </bean>     
+    
+         
     <!--  ========================================= -->
     <!--  ======     MANAGE ERROR LOGS     ======== -->
     <!--  ========================================= -->
