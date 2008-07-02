@@ -127,6 +127,14 @@ public class MyAlumniStartupServlet extends ContextLoaderServlet {
 
 		setupDatabaseCache(startupService, sysConfigService, hasDorm);
 		setupOtherCache(hasDorm);
+		
+		if (sysConfigVO.getSystemConfigId() == null){
+			getServletContext().setAttribute(BaseConstants.FIRST_STARTUP, BaseConstants.BOOLEAN_YES);
+		}
+		else{
+			getServletContext().setAttribute(BaseConstants.FIRST_STARTUP, BaseConstants.BOOLEAN_NO);
+		}
+		
 	}
 
 	/**

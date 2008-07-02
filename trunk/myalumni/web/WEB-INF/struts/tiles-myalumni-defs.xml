@@ -13,6 +13,12 @@
                 <put name="footer" value="/jsp/layout/common/footer.jsp"/>
         </definition>   
 
+        <definition name="myalumni.setup" path="/jsp/layout/setupLayout.jsp">
+                <put name="meta" value="/jsp/layout/common/meta.jsp"/>
+                <put name="message" value="/jsp/layout/common/message.jsp"/>
+                <put name="footer" value="/jsp/layout/common/footer.jsp"/>
+        </definition>   
+
         <definition name="myalumni.login" path="/jsp/layout/loginBaseLayout.jsp">
                 <put name="meta" value="/jsp/layout/common/meta.jsp"/>
                 <put name="message" value="/jsp/layout/common/message.jsp"/>

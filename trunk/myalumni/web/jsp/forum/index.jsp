@@ -2,7 +2,6 @@
 <%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c" %>
 
 <c:set var="menuTab" scope="session" value="forum"/>
-<c:set var="subMenu" scope="session" value="yahoo"/>
 
 
 <tiles:insert definition="myalumni.base" flush="true">
