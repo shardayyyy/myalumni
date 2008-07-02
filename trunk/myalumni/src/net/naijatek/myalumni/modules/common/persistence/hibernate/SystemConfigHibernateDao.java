@@ -368,4 +368,33 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 		return hasDorm;		
 	}
 	
+	/**
+	 * Setup
+	 */
+	public void setupIntialization(SystemConfigVO systemConfigVO){
+		SystemConfigVO systemSetup = getSystemConfig();
+		
+		if(systemSetup.getSystemConfigId() == null)
+			systemSetup = new SystemConfigVO();			
+		
+		systemSetup.setOrgFirstYear(systemConfigVO.getOrgFirstYear());
+		systemSetup.setOrganizationName(systemConfigVO.getOrganizationName());
+		systemSetup.setOrgEmail(systemConfigVO.getOrgEmail());
+		systemSetup.setOrganizationShortName(systemConfigVO.getOrganizationShortName());
+		systemSetup.setHasDormitory(systemConfigVO.getHasDormitory());
+		systemSetup.setAlbumUrl(systemConfigVO.getAlbumUrl());
+		systemSetup.setForumUrl(systemConfigVO.getForumUrl());
+		systemSetup.setServerUrl(systemConfigVO.getServerUrl());
+		systemSetup.setSessionTimeout(systemConfigVO.getSessionTimeout());
+		systemSetup.setRssUrl(systemConfigVO.getRssUrl());
+		
+		systemSetup.setLastModifiedBy(lastModifiedBy);
+		
+		
+		
+		
+		getHibernateTemplate().saveOrUpdate(systemSetup);
+		
+	}
+	
 }

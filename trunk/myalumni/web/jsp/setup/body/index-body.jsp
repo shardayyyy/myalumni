@@ -7,8 +7,8 @@
 
 
 
-<html:form action="/admin/updateOrgInfo">
-        <html:hidden property="action" value="updateOrgInfo"/>
+<html:form action="/admin/setupIntialization">
+        <html:hidden property="action" value="setupIntialization"/>
         <html:hidden property="systemConfigId"/>
 
 

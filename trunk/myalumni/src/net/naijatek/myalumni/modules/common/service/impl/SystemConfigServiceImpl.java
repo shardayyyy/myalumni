@@ -168,4 +168,11 @@ public class SystemConfigServiceImpl implements ISystemConfigService {
     public String getDormitory(){
     	return systemConfigDao.getDormitory();
     }
+    
+	/**
+	 * Setup
+	 */
+	public void setupIntialization(SystemConfigVO systemConfigVO){
+		systemConfigDao.setupIntialization(systemConfigVO);
+	}
 }
