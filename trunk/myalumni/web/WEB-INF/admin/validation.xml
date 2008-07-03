@@ -261,6 +261,43 @@
                         <arg key="label.admin.albumurl"/>
                 </field>                
 	</form>
+	
+	
+<!-- =========== SETUP =================== -->	
+        <form name="/admin/setupIntialization">
+                <field property="orgFirstYear" depends="required,integer,orgFirstYear">
+                          <arg0 key="label.admin.org.year" resource="true"/>
+                  </field>          
+                <field property="organizationName" depends="required">
+                        <arg key="label.admin.org.name"/>
+                </field>       
+                <field property="organizationShortName" depends="required">
+                        <arg key="label.admin.org.shortname"/>
+                </field>                          
+                <field property="orgEmail" depends="required,email">
+                        <arg key="label.admin.org.email"/>
+                </field>
+                <field property="hasDormitory" depends="required">
+                        <arg key="label.admin.dormitory"/>
+                </field>      
+                <field property="albumUrl" depends="required">
+                        <arg key="label.admin.albumurl"/>
+                </field>  
+                <field property="forumUrl" depends="required">
+                        <arg key="label.admin.forumurl"/>
+                </field>         
+                <field property="serverUrl" depends="required">
+                        <arg key="label.admin.serverurl"/>
+                </field>             
+                <field property="sessionTimeout" depends="required">
+                        <arg key="label.admin.sessiontimeout"/>
+                </field>                 
+                <field property="rssUrl" depends="required">
+                        <arg key="label.admin.rss.rssurl"/>
+                </field>
+                                                                           
+	</form>
+
 				
    </formset>
 </form-validation>
