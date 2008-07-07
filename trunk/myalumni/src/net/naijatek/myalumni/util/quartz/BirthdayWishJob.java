@@ -103,8 +103,8 @@ public class BirthdayWishJob extends ContextLoaderServlet implements Job {
             
                     // This job simply prints out its job name and the
                     // date and time that it is running
-                    String jobName = context.getJobDetail().getFullName();
-                    logger.info("===> BirthdayWishJob says: " + jobName + " executing at " + new Date());
+                    //String jobName = context.getJobDetail().getFullName();
+                    //logger.info("===> BirthdayWishJob says: " + jobName + " executing at " + new Date());
             
                     Calendar now = new GregorianCalendar();
                     int today = now.get(java.util.Calendar.DATE);
@@ -112,11 +112,11 @@ public class BirthdayWishJob extends ContextLoaderServlet implements Job {
                     // get the list of birthday people
                     List<MemberVO> members = new ArrayList<MemberVO>();
                     members = memService.getTodayBirthdayMembers(StringUtil.convertToAlphaMonth(now.get(Calendar.MONTH) + 1), String.valueOf(today));
-
+                    System.out.println("Getting memebrs...");
                     for (MemberVO memberVO : members ){
                     	if (memberVO.getEmail() != null && memberVO.getEmail().length() > 0){
-                    		SendMailUtil.sendBirthdayWish(memberVO, sysConfigVO);
-                    		logger.info("Sent birthday wishes to " + memberVO.getFullName());
+                    		//SendMailUtil.sendBirthdayWish(memberVO, sysConfigVO);
+                    		System.out.println("Sent birthday wishes to " + memberVO.getFullName());
                     	}
                     }
                     

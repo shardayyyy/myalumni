@@ -29,16 +29,16 @@
                     
                     <fmt:bundle basename="ApplicationResources">
                         <display:table name="requestScope.listOfReminisce" cellpadding="3" cellspacing="1" pagesize="20" requestURI="/action/member/listReminisce?action=listReminisce" excludedParams="action" id="row">
-                                <display:column titleKey="label.reminisce.when"  class="top">
+                                <display:column titleKey="label.reminisce.when"  class="top" style="width:10%;">
                                     <c:out value="${row.slangYear}"/>
                                 </display:column>
-                                <display:column titleKey="label.reminisce.slang" class="top">
+                                <display:column titleKey="label.reminisce.slang" class="top" style="width:20%;">
                                    <c:out value="${row.slang}"/>
                                 </display:column>
-                                <display:column titleKey="label.reminisce.pronounciation"  class="top">
+                                <display:column titleKey="label.reminisce.pronounciation"  class="top" style="width:20%;">
                                 	<c:out value="${row.pronounce}"/>
                                 </display:column>                                
-                                <display:column titleKey="label.reminisce.meaning"  class="top">
+                                <display:column titleKey="label.reminisce.meaning"  class="top" style="width:50%;">
                                    <c:out value="${row.meaning}"/>
                                 </display:column>
                         </display:table>  

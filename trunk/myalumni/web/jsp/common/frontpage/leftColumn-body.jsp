@@ -43,7 +43,7 @@
         <td class="fieldlabel">&nbsp;</td>
       </tr>
       <tr>
-        <td class="bg0">Members logged in Now: </td>
+        <td class="bg0">Others logged on Now: </td>
       </tr>
       <tr>
         <td>

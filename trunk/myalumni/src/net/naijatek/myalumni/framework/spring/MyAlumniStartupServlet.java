@@ -65,8 +65,6 @@ public class MyAlumniStartupServlet extends ContextLoaderServlet {
 
 	private static Log logger = LogFactory.getLog(MyAlumniStartupServlet.class);
 
-	private final SystemProp sysProp = SystemProp.getInstance();
-
 	private final AppProp appProp = AppProp.getInstance();
 
 	private MyJobScheduler sched = null;
@@ -79,14 +77,13 @@ public class MyAlumniStartupServlet extends ContextLoaderServlet {
 
 	protected void initSystem() throws ServletException {
 		// Initialize the persistence service
-		String runSchedular = sysProp.getValue("FIRE_SCHEDULER");
+		
 		try {
-			if (runSchedular.equalsIgnoreCase("true")) {
-				sched = new MyJobScheduler();
+			//sched = new MyJobScheduler();
 
-				// Starting the schedular jobs
-				sched.run();
-			}
+			// Starting the schedular jobs
+			//sched.run();
+			
 			setupCache();
 		} catch (Exception e) {
 			logger.fatal("ERROR - in initSystem(), exception is thrown - "

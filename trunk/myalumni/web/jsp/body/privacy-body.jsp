@@ -3,7 +3,7 @@
 <%@ taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c" %>
 
-
+<c:url var="webmaster" value="/action/member/prepareEmailWebmaster?action=prepareEmailWebmaster"/>
 
 <table width="100%" border="0" cellspacing="1" cellpadding="3" align="center" class="tborder">
   <tr>
@@ -20,7 +20,7 @@
               <tr>
                 <td align="left" class="head" height="30" vAlign="center" width="100%">
                   <div align="center">
-                    <h2>Federal Government College Idoani Privacy Policy </h2>
+                    <h2><c:out value="${ORGANIZATION_NAME}" default="SCHOOL NAME HERE"/> Privacy Policy </h2>
                   </div>
                 </td>
               </tr>
@@ -51,34 +51,32 @@
                           <tr vAlign="top">
                             <td align="left" vAlign="top" bgcolor="#FFFFFF">
                               <p><br>
-                                1. <b>Information FGC idoani requires</b><br>
+                                1. <b>Information <c:out value="${ORGANIZATION_SHORT_NAME}" default="we"/> require</b><br>
                                 Some personal information is needed in order to
                                 be reached unless you want otherwise: </p>
                               <p><strong>Name</strong> - Your first
                                 and last name help alumni's remember who you might
                                 be. Also a nickname might also be appropriate
-                                since we might have duplicates of common names
-                                such as &quot;Gbenga Ojo&quot; etc. This information
+                                since we might have duplicates of common names. This information
                                 is made available to alumni's who wishes to make
                                 contact.&nbsp; </p>
                                       <p><strong>Email Address </strong>-
                                         Your email address allows alumni's to
                                         send emails to your existing valid email
                                         address. Message Board announcements,
-                                        and messages posted to the <a href="http://www.egroups.com/group/fgcidoani" target="_blank">
-                                        WWWBoard</a> will be sent to you via our
-                                        Yahoo Group portal Homepage. The ability
+                                        and messages posted to the <a href="<c:out value="${FORUM_URL}"/>" target="_blank">
+                                        WWWBoard</a> will be sent to you via the
+                                        group portal Homepage. The ability
                                         to turn off email correspondence from
-                                        FGC Idoani's eGroup is also under your
+                                        <c:out value="${ORGANIZATION_SHORT_NAME}" default="SCHOOL NAME"/>'s eGroup is also under your
                                         direct control, as is the ability to change
                                         your email address that is associated
-                                        to you, both on the FGC idoani webpage
-                                        and the Yahoo Groups board.&nbsp; Due
+                                        to you.&nbsp; Due
                                         to web robots scanning websites for email
                                         address for spam, a decision has been
                                         made to remove all email address from
-                                        the web site. All alumni infoamtion are
-                                        kept safely in a database. Only an an
+                                        the web site. All alumni information are
+                                        kept safely in our database. Only an
                                         email icon would be placed on the site
                                         to indicate an email address is available.</p>
                                       <p><strong>Phone Number</strong>
@@ -89,7 +87,7 @@
                                         this is forwarded to both the webmaster
                                         and intended alumni<font color="#FF0000">*</font>,
                                         and all inquires are answered electronically,
-                                        if an alumni can not be contact. <html:img page="/images/update.gif" width="47" height="10"/>
+                                        if an alumni can not be contact. 
                                       </p>
                                       <p><strong>Instant Messenger</strong>
                                         - Your instant messneger id is never placed
@@ -98,7 +96,7 @@
                                         about an alumni, kindly search for the
                                         alumni and click on the request button,
                                         this is forwarded to the webmaster and
-                                        the alumni* and all inquires are answered
+                                        the alumni<font color="#FF0000">*</font> and all inquires are answered
                                         electronically.</p>
                             </td>
                           </tr>
@@ -110,15 +108,14 @@
                             <td align="left" vAlign="top" bgcolor="#FFFFFF" class="blackregulartext"><p><br>
                                         In this electronic era, when personal
                                         information can easily be obtained through
-                                        various sources, FGC Idoani appreciates
+                                        various sources, we appreciate
                                         the sensitivity of any private information
                                         that you disclose to us. It is our intention
                                         to treat your information with the highest
                                         level of care. If you have further questions
                                         about the policies with regard to how
                                         your information is treated, please feel
-                                        free to send your concerns to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#102;&#103;&#99;&#105;&#100;&#111;&#97;&#110;&#105;&#64;&#104;&#111;&#116;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">fgcidoani</a>
-                                        at hotmail.com.</p>
+                                        free to send your concerns to the <a href="<c:out value="${webmaster}"/>">webmaster</a>.</p>
                                       <p><em><font color="#FF0000">* </font>The
                                         Alumni would need to have a valid email
                                         address for the request to be passed along.</em></p>

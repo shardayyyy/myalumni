@@ -112,6 +112,12 @@ public interface ISystemConfigService {
 	public void updateDormitory(SystemConfigVO systemConfigVO);
 	public String getDormitory();
 	
+    /**
+     * Birthday Notification
+     */
+	public void updateBirthdayNotification(SystemConfigVO systemConfigVO);
+	public String getBirthdayNotification();	
+	
 	/**
 	 * Setup
 	 */

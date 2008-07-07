@@ -28,7 +28,7 @@
 <head>
 
 <tiles:insert attribute="meta" />
-<title><bean:message key="application.name"/> (<c:out value="${ORG_NAME}" default="SCHOOL NAME HERE"/>)&nbsp; - &nbsp;<tiles:getAsString name="title" ignore="true"/></title>
+<title><bean:message key="application.name"/> (<c:out value="${ORGANIZATION_NAME}" default="SCHOOL NAME HERE"/>)&nbsp; - &nbsp;<tiles:getAsString name="title" ignore="true"/></title>
 
 <html:base/>
 
@@ -66,7 +66,7 @@
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <table width="100%"  border="0" align="center" cellpadding="3" cellspacing="0">
   <tr>
-    <td background="<c:out value="${BACKGROUND}"/>"><a href="<c:out value="${HOME}"/>"><html:img page="/images/logo/myalumni_03.png" border="0" align="absmiddle"  altKey="application.name"  titleKey="application.name"/></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="greenTitle"><c:out value="${ORG_NAME}" default="SCHOOL NAME HERE"/></span>&nbsp;</td>
+    <td background="<c:out value="${BACKGROUND}"/>"><a href="<c:out value="${HOME}"/>"><html:img page="/images/logo/myalumni_03.png" border="0" align="absmiddle"  altKey="application.name"  titleKey="application.name"/></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="greenTitle"><c:out value="${ORGANIZATION_NAME}" default="SCHOOL NAME HERE"/></span>&nbsp;</td>
     <td align="right" valign="top" background="<c:out value="${BACKGROUND}"/>">
       <%-- mini login --%>
       <tiles:insert attribute="miniLogin"/>

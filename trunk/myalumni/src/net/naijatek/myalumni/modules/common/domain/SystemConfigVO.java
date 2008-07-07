@@ -50,6 +50,7 @@ public class SystemConfigVO  extends MyAlumniBaseVO{
 	private String rssHeader;
 	private String rssUrl;
 	private String hasDormitory;	
+	private String birthdayNotification;
 	private String adminSignature; // not persisted
 	
 	
@@ -149,6 +150,12 @@ public class SystemConfigVO  extends MyAlumniBaseVO{
 	}
 	public void setForumUrl(String forumUrl) {
 		this.forumUrl = forumUrl;
+	}
+	public String getBirthdayNotification() {
+		return birthdayNotification;
+	}
+	public void setBirthdayNotification(String birthdayNotification) {
+		this.birthdayNotification = birthdayNotification;
 	}
 
 	

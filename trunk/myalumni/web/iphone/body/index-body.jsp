@@ -4,7 +4,7 @@
 <%@ taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 	
 
-			<ul id="welcome" title="<c:out value="${ORG_SHORT_NAME}"/>" selected="true">
+			<ul id="welcome" title="<c:out value="${ORGANIZATION_SHORT_NAME}"/>" selected="true">
 			  <li><a href="#firstname"><div class="list-link"><p>By First Names</p></div></a></li>
 			  <li><a href="#lastname"><div class="list-link"><p>By Last Names</p></div></a></li>
 			   <c:if test="${applicationScope.hasDorm == 'Y'}">
@@ -87,7 +87,7 @@
 		
 		<ul id="about" title="About">
 		  <br>
-		  <center>&nbsp;&nbsp;This is iphone ported version of the <c:out value="${ORG_SHORT_NAME}"/> <bean:message key="application.name"/> application.</center>
+		  <center>&nbsp;&nbsp;This is iphone ported version of the <c:out value="${ORGANIZATION_SHORT_NAME}"/> <bean:message key="application.name"/> application.</center>
 		  
 		  <li><a href="http://www.naijatek.com/"  target="_self"><div class="list-link"><p>Powered by Naijatek Solutions&nbsp;<img src="img/naijateklogo-150x15.gif"></p></div></a></li>
 

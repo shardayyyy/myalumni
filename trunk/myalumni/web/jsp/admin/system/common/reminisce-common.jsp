@@ -69,7 +69,7 @@
                       <td align="right" class="Smallbold" valign="top"><bean:message key="label.reminisce.meaning"/>:</td>
                       <td align="center" valign="top"><html:img page="/images/dot.gif" width="9" height="9"/></td>
                       <td>
-                      	<html:textarea property="meaning" cols="100%" rows="15" titleKey="label.reminisce.meaning" onkeydown="Counter(this,'500','Meaning');" onkeyup="Counter(this,'500','Meaning');"/>
+                      	<html:textarea property="meaning" cols="60%" rows="5" titleKey="label.reminisce.meaning" onkeydown="Counter(this,'500','Meaning');" onkeyup="Counter(this,'500','Meaning');"/>
                       </td>
                 </tr>
            <c:if test="${MODULE == 'ADMIN'}">     
