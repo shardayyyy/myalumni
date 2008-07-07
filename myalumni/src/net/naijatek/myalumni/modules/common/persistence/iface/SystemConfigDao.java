@@ -108,6 +108,13 @@ public interface SystemConfigDao {
     
     
     /**
+     * Birthday Notification
+     */
+	public void updateBirthdayNotification(SystemConfigVO systemConfigVO);
+	public String getBirthdayNotification();
+	
+    
+    /**
      * Setup
      */
     public void setupIntialization(SystemConfigVO systemConfigVO);

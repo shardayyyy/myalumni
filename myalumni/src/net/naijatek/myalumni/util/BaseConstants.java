@@ -113,8 +113,8 @@ public interface BaseConstants {
    //--------------------------------------------------------------------------------------------
    
   public static final String CONTACT_SUBJECT = " would like to make contact.";  
-  public static final String ORGANIZATION_NAME = "ORG_NAME";
-  public static final String ORGANIZATION_SHORT_NAME = "ORG_SHORT_NAME";
+  public static final String ORGANIZATION_NAME = "ORGANIZATION_NAME";
+  public static final String ORGANIZATION_SHORT_NAME = "ORGANIZATION_SHORT_NAME";
   public static final String ORG_EMAIL = "ORG_EMAIL";
   public static final String ORGANIZATION_ABOUTUS = "ORGANIZATION_ABOUTUS";
   public static final String ALBUM_URL = "ALBUM_URL";

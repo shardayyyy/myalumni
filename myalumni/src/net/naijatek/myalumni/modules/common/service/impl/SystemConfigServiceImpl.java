@@ -169,6 +169,20 @@ public class SystemConfigServiceImpl implements ISystemConfigService {
     	return systemConfigDao.getDormitory();
     }
     
+    
+    /**
+     * Birthday Notification
+     */
+    public void updateBirthdayNotification(SystemConfigVO systemConfigVO){
+    	systemConfigDao.updateBirthdayNotification(systemConfigVO);
+    }
+    
+    public String getBirthdayNotification(){
+    	return systemConfigDao.getBirthdayNotification();
+    }
+    
+    
+    
 	/**
 	 * Setup
 	 */

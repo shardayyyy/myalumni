@@ -10,6 +10,7 @@
 <c:url var="emailexception" value="/action/admin/maintainEmailException?action=maintainEmail"/>
 <c:url var="listSystemLogs" value="/action/admin/listSystemLogs?action=listSystemLogs"/>
 <c:url var="dormitory" value="/action/admin/prepareUpdateDormitory?action=prepareUpdateDormitory"/>
+<c:url var="birthday" value="/action/admin/prepareUpdateBirthdayNotification?action=prepareUpdateBirthdayNotification"/>
 
 <c:url var="listClassNews" value="/action/admin/listClassNews?action=listClassNews"/>
 <c:url var="listReminisce" value="/action/admin/listReminisce?action=listReminisce"/>
@@ -49,6 +50,7 @@
 									&#8226;&nbsp;<a href="<c:out value="${scroll}"/>&type=list">Maintain Scroll</a><br><br>
 									&#8226;&nbsp;<a href="<c:out value="${listReminisce}"/>">Maintain Reminisce</a><br><br>
 									&#8226;&nbsp;<a href="<c:out value="${dormitory}"/>">School has dormitory?</a><br><br>
+									&#8226;&nbsp;<a href="<c:out value="${birthday}"/>">Send Birthday Notifications?</a><br><br>
 									&#8226;&nbsp;<a href="<c:out value="${orginfo}"/>">Organization Information</a><br><br>
 									&#8226;&nbsp;<a href="<c:out value="${aboutorg}"/>">Update Organization About Us</a><br><br>										
 									 

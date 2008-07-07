@@ -526,7 +526,11 @@ public class MaintainMemberAction  extends MyAlumniDispatchAction{
     	  
     	  if (sysConfig.getOrgAboutUs() == null || sysConfig.getOrgAboutUs().length() == 0){
     		  errors.add(BaseConstants.WARN_KEY, new ActionMessage("core.errorcode.00808"));
-    	  }    	  
+    	  }  
+    	  
+    	  if (sysConfig.getBirthdayNotification() == null || sysConfig.getBirthdayNotification().length() == 0){
+    		  errors.add(BaseConstants.WARN_KEY, new ActionMessage("core.errorcode.00809"));
+    	  }  
     	  saveMessages(request, errors);
     	  
       }

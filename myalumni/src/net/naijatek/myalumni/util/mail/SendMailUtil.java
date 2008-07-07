@@ -161,8 +161,8 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
   		  	map.put("serverName", StringUtil.safeString(sysConfig.getServerUrl()));
   		  	map.put("adminSignature", StringUtil.safeString(sysConfig.getAdminSignature()));
 
-            String subjectTemplatePrefix = TEMPLATE_USERNAME_REMINDER_SUBJECT + "_" + langId + "-text." + TEMPLATE_EXTENSION;
-            String bodyTemplatePrefix = TEMPLATE_USERNAME_REMINDER_BODY + "_" + langId + "-text." + TEMPLATE_EXTENSION;
+            String subjectTemplatePrefix = TEMPLATE_BIRTHDAY_WISH_SUBJECT + "_" + langId + "-text." + TEMPLATE_EXTENSION;
+            String bodyTemplatePrefix = TEMPLATE_BIRTHDAY_WISH_BODY + "_" + langId + "-text." + TEMPLATE_EXTENSION;
             new FreeMarkerTemplateMailerImpl(mailSender, configuration).mail(memberVO.getEmail(), map, bodyTemplatePrefix, subjectTemplatePrefix);
         }
         catch (Exception e) {

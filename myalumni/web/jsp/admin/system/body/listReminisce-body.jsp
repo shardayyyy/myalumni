@@ -41,10 +41,7 @@
                                 <display:column property="slangYear" titleKey="label.reminisce.reminisceyears" sortable="true"/>                                
 			                    <display:column property="slang" titleKey="label.reminisce.slang" sortable="true"/>
 			                    <display:column property="pronounce" titleKey="label.reminisce.pronounciation"/>
-			                    <display:column property="meaning" titleKey="label.reminisce.meaning"/>
-                                <%--<display:column titleKey="label.admin.system.author" sortable="true">
-                                	<c:out value="${row.author.firstName}"/> <c:out value="${row.author.lastName}"/>
-                                </display:column>    --%>                            
+			                    <display:column property="meaning" titleKey="label.reminisce.meaning"/>                           
                                 <display:column titleKey="label.admin.status">
                                     <c:choose>
                                         <c:when test="${row.status == 'A'}">

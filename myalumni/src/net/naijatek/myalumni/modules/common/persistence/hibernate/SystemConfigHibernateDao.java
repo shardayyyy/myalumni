@@ -368,6 +368,36 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 		return hasDorm;		
 	}
 	
+	
+	/**
+	 * Birthday Notification
+	 */
+	public void updateBirthdayNotification(SystemConfigVO systemConfigVO){
+		SystemConfigVO systemSetup = getSystemConfig();
+	
+	if(systemSetup.getSystemConfigId() == null)
+		systemSetup = new SystemConfigVO();			
+	
+	systemSetup.setBirthdayNotification(systemConfigVO.getBirthdayNotification());
+	
+	getHibernateTemplate().saveOrUpdate(systemSetup);		
+	}
+	
+	
+	
+	public String getBirthdayNotification(){
+		String notification = BaseConstants.BOOLEAN_NO;
+		SystemConfigVO _systemConfig = getSystemConfig();
+		
+		if (_systemConfig.getSystemConfigId() != null)	{	
+			if (_systemConfig.getBirthdayNotification() !=  null){
+					notification = _systemConfig.getBirthdayNotification();
+			}								
+		}		
+		return notification;		
+	}
+	
+	
 	/**
 	 * Setup
 	 */
@@ -387,12 +417,10 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 		systemSetup.setServerUrl(systemConfigVO.getServerUrl());
 		systemSetup.setSessionTimeout(systemConfigVO.getSessionTimeout());
 		systemSetup.setRssUrl(systemConfigVO.getRssUrl());
+		systemSetup.setBirthdayNotification(systemConfigVO.getBirthdayNotification());
 		
-		systemSetup.setLastModifiedBy(lastModifiedBy);
-		
-		
-		
-		
+		systemSetup.setLastModifiedBy("sysadmin");
+	
 		getHibernateTemplate().saveOrUpdate(systemSetup);
 		
 	}

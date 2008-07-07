@@ -111,7 +111,18 @@
                       <td align="center"><html:img page="/images/dot.gif" width="9" height="9"/></td>
                       <td><html:text property="rssUrl" size="75" maxlength="100" titleKey="label.admin.rss.rssurl"/></td>
                 </tr>
-                                                                                                                                                           
+                 <tr>
+                  <td align="center">&nbsp;</td>
+                      <td align="right" class="Smallbold"><bean:message key="label.admin.birthdaynotification"/>?:</td>
+                      <td align="center"><html:img page="/images/dot.gif" width="9" height="9"/></td>
+                      <td>
+							<html:select property="birthdayNotification" titleKey="label.admin.birthdaynotification">
+									<html:option value="">-- <bean:message key="label.admin.birthdaynotification"/> --</html:option>							
+									<html:option value="N"><bean:message key="label.common.no"/></html:option><%-- School has no dormitory --%>
+									<html:option value="Y"><bean:message key="label.common.yes"/></html:option><%-- School does have dormitories --%>                                        
+							</html:select>	                      
+                      </td>
+                </tr>                                                                                                                                                           
                 <tr>
                   <td align="center">&nbsp;</td>
                   <td align="right" class="Smallbold">&nbsp;</td>

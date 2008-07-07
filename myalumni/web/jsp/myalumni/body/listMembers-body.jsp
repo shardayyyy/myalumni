@@ -22,7 +22,13 @@
 
 
 
- 
+   <table width="100%" >
+  	<tr>
+  		<td align="center">
+			<h3><strong><a href="<c:out value="${searchAgain}"/>">Search Again !!!</a></strong></h3>
+  		</td>
+  	</tr>
+  </table>
  <fmt:bundle basename="ApplicationResources">
 
 <display:table name="requestScope.LIST_OF_MEMBERS" cellpadding="3" cellspacing="1" pagesize="20" requestURI="/action/member/memberSearch?action=searchForMembers" excludedParams="action" id="member">

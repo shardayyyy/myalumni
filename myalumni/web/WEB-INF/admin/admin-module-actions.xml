@@ -403,7 +403,7 @@
    <!--  =================================================== -->
     <!--  ======       MAINTAIN DORMITORY         ======== -->
     <!--  =================================================== -->    
-    <!-- Prepare Update Server URL -->
+    <!-- Prepare Update Dormitory -->
     <bean name="/admin/prepareUpdateDormitory" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
@@ -412,7 +412,7 @@
         <constructor-arg index="4" ref="reminisceService"/> 
     </bean>     
     
-    <!-- Update Server URL -->
+    <!-- Update Server Dormitory -->
     <bean name="/admin/updateDormitory" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
@@ -420,7 +420,31 @@
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/>       
     </bean> 
+  
+
+   <!--  =================================================== -->
+    <!--  ======       MAINTAIN BIRTHDAY NOTIFICATION         ======== -->
+    <!--  =================================================== -->    
+    <!-- Prepare Update BirthdayNotification -->
+    <bean name="/admin/prepareUpdateBirthdayNotification" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
+        <constructor-arg index="0" ref="errorLoggerService"/>  
+        <constructor-arg index="1" ref="systemConfigService"/> 
+        <constructor-arg index="2" ref="classNewsService"/>
+        <constructor-arg index="3" ref="systemTaskService"/>  
+        <constructor-arg index="4" ref="reminisceService"/> 
+    </bean>     
     
+    <!-- Update BirthdayNotification -->
+    <bean name="/admin/updateBirthdayNotification" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
+        <constructor-arg index="0" ref="errorLoggerService"/>  
+        <constructor-arg index="1" ref="systemConfigService"/> 
+        <constructor-arg index="2" ref="classNewsService"/> 
+        <constructor-arg index="3" ref="systemTaskService"/>  
+        <constructor-arg index="4" ref="reminisceService"/>       
+    </bean> 
+    
+    
+     
 
      <!-- ******************************************************************* -->
     <!-- ***********                CLASSNEWS             ************* -->

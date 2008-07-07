@@ -12,9 +12,9 @@
 
 <c:choose>
 	<c:when test="${ isOnline == 'Y'}">
-		<font class="menuText2">Welcome <c:out value="${USER_CONTAINER.token.firstName}"/> <c:out value="${USER_CONTAINER.token.lastName}"/><br><a href="<c:out value="${LOGOUT}"/>">Logout</a></font><br>
+		<font class="menuText2">Welcome <c:out value="${USER_CONTAINER.token.firstName}"/> <c:out value="${USER_CONTAINER.token.lastName}"/><br>[<a href="<c:out value="${LOGOUT}"/>">Logout</a>]</font>&nbsp;&nbsp;
 		<c:if test="${USER_CONTAINER.token.isAdmin == 'Y'}">
-			(<font class="menuText2"><a href="<c:out value="${ADMIN_USER}"/>">Administer System</a></font>)
+			<font class="menuText2">[<a href="<c:out value="${ADMIN_USER}"/>">Administer System</a>]</font>
 		</c:if>
 	 </c:when>
 	 <c:otherwise>

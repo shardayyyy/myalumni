@@ -194,11 +194,18 @@
 	</form>
 
 <!-- ========== Update Dormitory ===================== -->
-        <form name="/admin/updateDormitory">
+    <form name="/admin/updateDormitory">
                 <field property="hasDormitory" depends="required">
                         <arg key="label.admin.dormitory"/>
                 </field>                
 	</form>
+	
+<!-- ========== Update Birthday Notification ===================== -->
+    <form name="/admin/updateBirthdayNotification">
+                <field property="birthdayNotification" depends="required">
+                        <arg key="label.admin.birthdaynotification"/>
+                </field>                
+	</form>	
 	
 	<!-- ========== Update ClassNews ===================== -->
         <form name="/admin/updateClassNews">
@@ -295,7 +302,9 @@
                 <field property="rssUrl" depends="required">
                         <arg key="label.admin.rss.rssurl"/>
                 </field>
-                                                                           
+                <field property="birthdayNotification" depends="required">
+                        <arg key="label.admin.birthdaynotification"/>
+                </field>                                                                           
 	</form>
 
 				

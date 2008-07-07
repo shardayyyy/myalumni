@@ -439,6 +439,44 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		return mapping.findForward(BaseConstants.FWD_SUCCESS);
 	}
 
+	
+	//**********************************************************************
+	//******************  BIRTHDAY NOTIFICATION  ********************************
+	//**********************************************************************   
+
+	public ActionForward prepareUpdateBirthdayNotification(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		
+		logger.debug("in prepareUpdateBirthdayNotification...");
+		saveToken(request);
+		SystemConfigForm sysForm = (SystemConfigForm) form;
+		String birthdayNotification = systemConfigService.getBirthdayNotification();
+		sysForm.setBirthdayNotification(birthdayNotification);
+		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+	}
+
+	public ActionForward updateBirthdayNotification(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		logger.debug("in updateBirthdayNotification...");
+		
+		if (!isTokenValid(request)) {
+			return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+		}
+		
+		ActionMessages msgs = new ActionMessages();
+		SystemConfigForm sysForm = (SystemConfigForm) form;
+		SystemConfigVO systemConfigVO = new SystemConfigVO();
+		BeanUtils.copyProperties(systemConfigVO, sysForm);
+
+		systemConfigService.updateBirthdayNotification(systemConfigVO);
+		msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.record.updated"));
+		saveMessages(request, msgs);
+		resetToken(request);
+		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+	}
+
 
 	//**********************************************************************
 	//******************  Session Timeout  ********************************

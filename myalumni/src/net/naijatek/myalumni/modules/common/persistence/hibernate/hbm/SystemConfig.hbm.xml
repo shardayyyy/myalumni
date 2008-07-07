@@ -20,6 +20,7 @@
 		<property name="orgAboutUs" column="ORG_ABOUT_US" type="text" />
 		
 		<property name="hasDormitory" column="HAS_DORMITORY" length="1"/>
+		<property name="birthdayNotification" column="BIRTHDAY_NOTIFICATION" length="1"/>
 		
 		
 		<property name="lastModifiedBy" 	column="LASTMODIFIED_BY"	length="40" not-null="true"	type="string"/>

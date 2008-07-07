@@ -511,9 +511,26 @@
       <set-property property="cancellable" value="true"/>
             <forward name="success" path="/jsp/admin/system/index.jsp"/>
     </action>     
-       
+    
+   <!--  =================================================== -->
+    <!--  ======       MAINTAIN BIRTHDAY NOTIFICATION         ======== -->
+    <!--  =================================================== -->    
+    <!-- Prepare Update BirthdayNotification -->
+    <action input="/jsp/admin/system/updateBirthdayNotification.jsp" name="systemConfigForm" path="/admin/prepareUpdateBirthdayNotification"
+            parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/admin/system/updateBirthdayNotification.jsp"/>
+    </action> 
+    
+    <!-- Update BirthdayNotification -->
+    <action input="/jsp/admin/system/updateBirthdayNotification.jsp" name="systemConfigForm" path="/admin/updateBirthdayNotification"
+            parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <set-property property="cancellable" value="true"/>
+            <forward name="success" path="/jsp/admin/system/index.jsp"/>
+    </action>        
               
-       
+    
    <!--  ========================================= -->
     <!--  ====== MANAGE LOOKUP CODES       ======== -->
     <!--  ========================================= -->
