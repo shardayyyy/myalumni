@@ -77,13 +77,13 @@
                 <tr>
                   <td align="center">&nbsp;</td>
                       <td align="right" class="Smallbold"><bean:message key="label.admin.albumurl"/>:</td>
-                      <td align="center"><html:img page="/images/dot.gif" width="9" height="9"/></td>
+                      <td align="center">&nbsp;&nbsp;</td>
                       <td><html:text property="albumUrl" size="75" maxlength="250" titleKey="label.admin.albumurl"/></td>
                 </tr>  
                 <tr>
                   <td align="center">&nbsp;</td>
                       <td align="right" class="Smallbold"><bean:message key="label.admin.forumurl"/>:</td>
-                      <td align="center"><html:img page="/images/dot.gif" width="9" height="9"/></td>
+                      <td align="center">&nbsp;&nbsp;</td>
                       <td><html:text property="forumUrl" size="75" maxlength="250" titleKey="label.admin.forumurl"/></td>
                 </tr> 
                 <tr>
@@ -108,7 +108,7 @@
                 <tr>
                   <td align="center">&nbsp;</td>
                       <td align="right" class="Smallbold"><bean:message key="label.admin.rss.rssurl"/>:</td>
-                      <td align="center"><html:img page="/images/dot.gif" width="9" height="9"/></td>
+                      <td align="center">&nbsp;&nbsp;</td>
                       <td><html:text property="rssUrl" size="75" maxlength="100" titleKey="label.admin.rss.rssurl"/></td>
                 </tr>
                  <tr>
