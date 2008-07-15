@@ -316,7 +316,7 @@
     <!-- ******************************************************************* -->
     <!-- ***********              SETUP               ************* -->
     <!-- ******************************************************************* -->      
-    <action input="/jsp/setup/index.jsp" name="systemConfigForm" path="/admin/setupIntialization" parameter="action" scope="request"
+    <action input="/jsp/index.jsp" name="systemConfigForm" path="/admin/setupIntialization" parameter="action" scope="request"
             type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
       <forward name="success" path="/jsp/index.jsp" />
     </action>  

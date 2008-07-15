@@ -15,7 +15,7 @@
     	<tiles:insert name="/jsp/common/frontpage/leftColumn-body.jsp" flush="true"/>
 
     </td>
-    <td width="70%" valign="top">
+    <td width="65%" valign="top">
 
 	<%--   INTRO --%>
 	<tiles:insert name="/jsp/common/frontpage/intro-body.jsp" flush="true"/>
@@ -32,7 +32,7 @@
 	
 	<br><br>
 	</td>
-    <td width="15%" valign="top">
+    <td width="20%" valign="top">
 
     	<%-- Birthday Announcements --%>
 	<tiles:insert name="/jsp/common/frontpage/rightColumn-body.jsp" flush="true"/>

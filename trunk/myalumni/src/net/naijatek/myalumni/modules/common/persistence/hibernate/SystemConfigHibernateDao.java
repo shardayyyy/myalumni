@@ -420,6 +420,8 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 		systemSetup.setBirthdayNotification(systemConfigVO.getBirthdayNotification());
 		
 		systemSetup.setLastModifiedBy("sysadmin");
+		systemSetup.setLastModification(BaseConstants.ADDED);
+		systemSetup.setLastModifiedDate(new Date());
 	
 		getHibernateTemplate().saveOrUpdate(systemSetup);
 		
