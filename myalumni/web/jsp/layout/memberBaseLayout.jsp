@@ -79,13 +79,18 @@
 
 	<%--  SCROLL --%>
 	<tiles:insert attribute="scroll"/>
-
-	<%-- GENERAL MESSAGE --%>
-    <tiles:insert attribute="message"/>
-
-	<%--  BODY --%>
-	<tiles:insert attribute="body"/>
-
+	<c:choose>
+		<c:when test="${FIRST_STARTUP == 'N'}">
+			<%-- GENERAL MESSAGE --%>
+		    <tiles:insert attribute="message"/>
+		
+			<%--  BODY --%>
+			<tiles:insert attribute="body"/>
+		</c:when>
+		<c:otherwise>
+			<tiles:insert name="/jsp/setup/body/index-body.jsp"/>				
+		</c:otherwise>	
+	</c:choose>
 	<%-- FOOTER --%>
 	<tiles:insert attribute="footer"/>
 

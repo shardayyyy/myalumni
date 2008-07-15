@@ -13,7 +13,6 @@
 <c:url var="banner" value="/jsp/aboutus/schoolBanner.jsp"/>
 <c:url var="otherSide" value="/jsp/reminisce/schoolJokes.jsp"/>
 <c:url var="reminisce" value="/action/member/listReminisce?action=listReminisce"/>
-<c:url var="miniProfile" value="/action/member/displayMiniProfile?action=displayMiniProfile"/>
 <c:url var="faq" value="/jsp/myalumni/faq.jsp"/>
 
 
@@ -42,25 +41,5 @@
       <tr>
         <td class="fieldlabel">&nbsp;</td>
       </tr>
-      <tr>
-        <td class="bg0">Others logged on Now: </td>
-      </tr>
-      <tr>
-        <td>
-	<c:set var="num_rec" scope="page" value="-1"/>
-	<logic:notEmpty name="onlineusers">
-		<logic:iterate id="user" name="onlineusers" indexId="pIdx">
-
-				<html:img page="/images/arrow.gif" width="11" height="11" align="absbottom"/>
-				<a href="<c:out value="${miniProfile}"/>&memberUserName=<c:out value="${user.memberUserName}"/>"  onclick="newPopup(this.href,'name');return false" title="View <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/> details"><c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/> (<c:out value="${user.yearOut}"/>)</a> <br>
-				<c:set var="num_rec" value="1"/>
-
-		</logic:iterate>
-	</logic:notEmpty>
-        <c:if test="${num_rec == '-1'}">
-            <bean:message key="message.none"/>
-        </c:if>
-
-		</td>
-      </tr>
+      
     </table>

@@ -121,7 +121,7 @@ public class LatestMembersTag extends BodyTagSupport {
 				user = (MemberVO) latestmembers.get(i);
 				sb.append("<tr class=\"portlet-section-body\">");
 				sb
-						.append("<td> <a href=\"/"
+						.append("<td><div class=\"blacksmall\"> <a href=\"/"
 								+ rootContextName
 								+ "/action/member/displayMiniProfile?action=displayMiniProfile&memberUserName="
 								+ user.getMemberUserName()
@@ -130,7 +130,7 @@ public class LatestMembersTag extends BodyTagSupport {
 								+ user.getLastName() + " details\"> "
 								+ user.getFirstName() + " "
 								+ user.getLastName() + " (" + user.getYearOut()
-								+ ")</td>");
+								+ ")</div></td>");
 				sb.append("</tr>");
 			}
 			if (size == 0) {

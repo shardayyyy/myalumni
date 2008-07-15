@@ -7,7 +7,7 @@
 
 <table width="100%" border="0" cellpadding="2" cellspacing="1">
       <tr class="bg0">
-        <td  height="10" align="center" nowrap> <div align="right"> 
+        <td  height="30" align="center" nowrap> <div align="right"> 
         <a href="<c:out value="${PRIVACY}"/>">Privacy Policy </a>&nbsp;</div></td>
         </tr>
     </table>

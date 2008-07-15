@@ -18,7 +18,7 @@
 					
 					<c:choose>
 						<c:when test="${ORGANIZATION_ABOUTUS eq '' or ORGANIZATION_ABOUTUS eq NULL}">
-								<center>Your About Us has not been configured yet.</center>
+								<div class="redhighlight"><center>Your About Us has not been configured yet.</center></div>
 						</c:when>
 						<c:otherwise>
 							<c:out value="${ORGANIZATION_ABOUTUS}" escapeXml="false"/>

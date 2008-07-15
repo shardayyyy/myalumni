@@ -25,9 +25,8 @@
                                     <td valign="top" nowrap>
                                         <font size="2">                                            
 	                                        &#8226;&nbsp;<a href="<c:out value="${backupdatabase}"/>">Backup Database</a> <br><br>
-	                                        &#8226;&nbsp;<a href="<c:out value="${jcaptcha}"/>?task=list">jCaptcha Stats</a><br><br>
-	                                        
-<%--	                                        &#8226;&nbsp;DEVELOPER MODE - <a href="<c:out value="${session}"/>">View Session Contents</a><br>--%>
+<%--                                        &#8226;&nbsp;<a href="<c:out value="${jcaptcha}"/>?task=list">jCaptcha Stats</a><br><br>	                                        
+	                                        &#8226;&nbsp;DEVELOPER MODE - <a href="<c:out value="${session}"/>">View Session Contents</a><br>--%>
                                         </font>
                                     </td>
                             </tr>

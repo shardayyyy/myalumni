@@ -9,7 +9,6 @@
 
 <html:form action="/admin/setupIntialization">
         <html:hidden property="action" value="setupIntialization"/>
-        <html:hidden property="systemConfigId"/>
 
 
 <table width="75%" border="0" cellspacing="0" cellpadding="0" align="center">
@@ -113,7 +112,7 @@
                 </tr>
                  <tr>
                   <td align="center">&nbsp;</td>
-                      <td align="right" class="Smallbold"><bean:message key="label.admin.birthdaynotification"/>?:</td>
+                      <td align="right" class="Smallbold"><bean:message key="label.admin.birthdaynotification"/>:</td>
                       <td align="center"><html:img page="/images/dot.gif" width="9" height="9"/></td>
                       <td>
 							<html:select property="birthdayNotification" titleKey="label.admin.birthdaynotification">
@@ -142,7 +141,7 @@
                       <td>
                                 <html:submit styleClass="button"><bean:message key="button.update"/></html:submit>
                           &nbsp;&nbsp;
-                            <html:link page="/jsp/admin/system/index.jsp" onmouseover="window.status=''; return true">
+                            <html:link page="/jsp/index.jsp" onmouseover="window.status=''; return true">
                                 <html:img page="/images/cancel.png" border="0" align="absbottom"/>    
                             </html:link>
                         </td>

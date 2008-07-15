@@ -1122,16 +1122,14 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	public ActionForward setupIntialization(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		logger.debug("in updateOrgInfo...");
-		if (!isTokenValid(request)) {
-			return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
-		}
+		logger.debug("in setupIntialization...");
+		//if (!isTokenValid(request)) {
+		//	return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+		//}
 		ActionMessages msgs = new ActionMessages();
 		SystemConfigForm systemConfigForm = (SystemConfigForm) form;
 		SystemConfigVO systemConfigVO = new SystemConfigVO();
 		BeanUtils.copyProperties(systemConfigVO, systemConfigForm);
-
-		systemConfigVO.setLastModifiedBy(getLastModifiedBy(request));
 
 		systemConfigService.setupIntialization(systemConfigVO);
 		msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.record.updated"));
@@ -1143,6 +1141,8 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		sCtx.setAttribute(BaseConstants.ALBUM_URL, systemConfigVO.getAlbumUrl());
 		sCtx.setAttribute(BaseConstants.FORUM_URL, systemConfigVO.getForumUrl());
 		sCtx.setAttribute(BaseConstants.SERVER_URL, systemConfigVO.getServerUrl());
+		sCtx.setAttribute(BaseConstants.FIRST_STARTUP, BaseConstants.BOOLEAN_NO);
+		
 		return mapping.findForward(BaseConstants.FWD_SUCCESS);
 	}    
 }

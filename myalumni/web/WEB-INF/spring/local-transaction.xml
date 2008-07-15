@@ -40,6 +40,8 @@
 				<prop key="lockMemberAccount">PROPAGATION_REQUIRED</prop>
 				<prop key="notifyPassword">PROPAGATION_REQUIRED</prop>
 				<prop key="notifyUserName">PROPAGATION_REQUIRED</prop>
+				<prop key="setupIntialization">PROPAGATION_REQUIRED</prop>
+				
 				
 				
 							
