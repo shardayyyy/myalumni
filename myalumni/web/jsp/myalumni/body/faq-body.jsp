@@ -32,7 +32,7 @@
         <a name="1"></a>  <li>Please make sure you have a valid username and password.<br></li>
         <a name="2"></a><li><strong>Please send me my username and password </strong><BR>
           <ul>
-            <li>Browse to the website <A href="http://www.fgcidoani.org">http://www.fgcidoani.org</A></li>
+            <li>Browse to the website <A href="<c:out value="${SERVER_URL}"/>"><c:out value="${SERVER_URL}" default="[ORGANIZATION SERVER URL NOT CONFIGURED]"/></A></li>
             <li>Click the "Alumni Portal" link in the menu bar.</li>
             <li>Put your name in the search criteria.</li>
             <li>When you find your name, click on your name.</li>
@@ -44,9 +44,9 @@
         <a name="3"></a><li>This could be due to a number of reasons
 	        			<ul>
 	        				<li>Make sure you are checking the right email that the system might have.</li>
-	        				<li>Make sure <bean:message key="email.webmaster"/> is not in your blocked/spam list.</li>
+	        				<li>Make sure <c:out value="${ORG_EMAIL}" default="[ORGANIZATION EMAIL NOT CONFIGURED]"/> is not in your blocked/spam list.</li>
 	        				<li>Most users of AOL does not get the email because its been labelled as SPAM.</li>
-	        				<li>Check your Junk folder and make sure you add the <bean:message key="email.webmaster"/> into your safe list.</li>
+	        				<li>Check your Junk folder and make sure you add the <c:out value="${ORG_EMAIL}" default="[ORGANIZATION EMAIL NOT CONFIGURED]"/> into your safe list.</li>
 	        				<li></li>
 	        			</ul>
         			</li>
@@ -57,10 +57,10 @@
         				<li>Size: <bean:message key="avatar.image.size"/> kb.</li>
         			</ul>
         			</li>
-        <a name="5"></a><li>Email the pictures to <bean:message key="email.webmaster"/> and this would be included in the monthly update. Also remember to include the name, year of those inthe picture.<br></li>
-        <a name="6"></a><li>Email the slangs to <bean:message key="email.webmaster"/> and this would be included in the monthly update. Also remember to include the year, slang, slang pronunciation and the meaning of the picture.<br></li>
-        <a name="7"></a><li>Point your browser to <a href="http://www.fgcidoani.org<%=request.getContextPath() %>/action/activate">http://www.fgcidoani.org<%=request.getContextPath() %>/action/activate</a> and click on the "Activate My Account" button.<br></li>
-        <a name="8"></a><li>Point your browser to <a href="http://www.fgcidoani.org<%=request.getContextPath() %>/action/activate">http://www.fgcidoani.org<%=request.getContextPath() %>/action/activate</a> and click on the "Get Lost Password" button.<br></li>
+        <a name="5"></a><li>Email the pictures to <c:out value="${ORG_EMAIL}" default="[ORGANIZATION EMAIL NOT CONFIGURED]"/> and this would be included in the monthly update. Also remember to include the name, year of those inthe picture.<br></li>
+        <a name="6"></a><li>Email the slangs to <c:out value="${ORG_EMAIL}" default="[ORGANIZATION EMAIL NOT CONFIGURED]"/> and this would be included in the monthly update. Also remember to include the year, slang, slang pronunciation and the meaning of the picture.<br></li>
+        <a name="7"></a><li>Point your browser to <a href="<c:out value="${SERVER_URL}"/><%=request.getContextPath() %>/action/activate"><c:out value="${SERVER_URL}"/><%=request.getContextPath() %>/action/activate</a> and click on the "Activate My Account" button.<br></li>
+        <a name="8"></a><li>Point your browser to <a href="<c:out value="${SERVER_URL}"/><%=request.getContextPath() %>/action/activate"><c:out value="${SERVER_URL}"/><%=request.getContextPath() %>/action/activate</a> and click on the "Get Lost Password" button.<br></li>
         <a name="9"></a><li>Login to the system and click on the "Edit My Profile" link.<br></li>
         <a name="10"></a><li>This can be due to the fact that the activation code was copied wrong, Please make sure you copy and paste the code and do not leave off the "==" at the end of the code.<br></li>
         <a name="11"></a><li>Look at Question #8.<br></li>

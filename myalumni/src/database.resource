@@ -1,4 +1,4 @@
-# These values are used inthe spring.properties file
+# These values are used in the spring.properties file
 
 
 #Oracle config

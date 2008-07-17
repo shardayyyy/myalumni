@@ -52,7 +52,6 @@ import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.SystemConfigConstants;
 import net.naijatek.myalumni.util.quartz.MyJobScheduler;
 import net.naijatek.myalumni.util.utilities.AppProp;
-import net.naijatek.myalumni.util.utilities.SystemProp;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -85,12 +84,22 @@ public class MyAlumniStartupServlet extends ContextLoaderServlet {
 			//sched.run();
 			
 			setupCache();
+			validateSystemConfig();
+			
 		} catch (Exception e) {
 			logger.fatal("ERROR - in initSystem(), exception is thrown - "
 					+ e.toString());
 			e.printStackTrace();
 			throw new ServletException(e.toString());
 		}
+	}
+	
+	private void validateSystemConfig() throws Exception {
+		
+		//BaseSystemHelper bh = new BaseSystemHelper();
+		//ActionMessages msgs = new ActionMessages();
+		//msgs = bh.validateSystemConfig();
+	
 	}
 
 	private void setupCache() throws Exception {
