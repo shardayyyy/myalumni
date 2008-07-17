@@ -280,6 +280,11 @@ public interface BaseConstants {
     public static final String GROUP_TITLE = "TIT";
     public static final String GROUP_COUNTRY = "COU";
   
+    // Folder Names
+    public static final String UPLOAD_DIR_NAME="upload";
+    public static final String ADS_UPLOAD_DIR_NAME="ads";
+    public static final String AVATAR_UPLOAD_DIR_NAME="memberavatars";    
+
 	
 	
    

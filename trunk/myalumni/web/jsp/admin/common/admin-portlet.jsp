@@ -5,6 +5,7 @@
 <c:url var="title_line" value="/images/title_line2.gif"/>
 
 <c:url var="backupdatabase" value="/action/admin/listDatabaseBackup?action=listDatabaseBackup"/>
+<c:url var="validatesystemconfig" value="/action/admin/prepareValidateSystemConfig?action=prepareValidateSystemConfig"/>
 <c:url var="jcaptcha" value="/jsp/admin/admin/jcaptcha_stats.jsp"/>
 <c:url var="session" value="/jsp/admin/system/sessioninfo.jsp"/>
 
@@ -25,6 +26,7 @@
                                     <td valign="top" nowrap>
                                         <font size="2">                                            
 	                                        &#8226;&nbsp;<a href="<c:out value="${backupdatabase}"/>">Backup Database</a> <br><br>
+	                                        &#8226;&nbsp;<a href="<c:out value="${validatesystemconfig}"/>">Validate System Configuration</a> <br><br>
 <%--                                        &#8226;&nbsp;<a href="<c:out value="${jcaptcha}"/>?task=list">jCaptcha Stats</a><br><br>	                                        
 	                                        &#8226;&nbsp;DEVELOPER MODE - <a href="<c:out value="${session}"/>">View Session Contents</a><br>--%>
                                         </font>

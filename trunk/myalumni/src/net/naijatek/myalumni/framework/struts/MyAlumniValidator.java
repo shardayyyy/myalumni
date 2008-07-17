@@ -638,7 +638,9 @@ public class MyAlumniValidator extends MyAlumniDispatchAction implements
 		String[] mailArray = new String[0];
 		
 		PrivateMessageForm pmForm = (PrivateMessageForm)bean;
-		mailArray = request.getParameterValues(appProp.getValue("var.privMsgsId"));
+		//mailArray = request.getParameterValues(appProp.getValue("var.privMsgsId"));  messageId
+		// TODO: find a way not to hard code this variable, add string[] to form
+		mailArray = request.getParameterValues("messageId");  
 
 		if (mailArray == null) {
 			messages.add(field.getKey(), Resources.getActionMessage(request,

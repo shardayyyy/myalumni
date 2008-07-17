@@ -16,7 +16,7 @@
       	<ul>
       	<li>Your registered email is required to activate your account.</li>
       	<li>Please enter your email below, and an email would be sent to you on further instructions on how to activate your account.</li>
-      	<li>For further help, please send am email to <bean:message key="email.webmaster"/> from your email account.</li>
+      	<li>For further help, please send am email to <c:out value="${ORG_EMAIL}" default="[ORGANIZATION EMAIL NOT CONFIGURED]"/> from your email account.</li>
       	</ul>
       </td>
       </tr>

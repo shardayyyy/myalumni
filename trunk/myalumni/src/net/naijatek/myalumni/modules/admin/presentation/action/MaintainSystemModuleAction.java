@@ -58,6 +58,7 @@ import net.naijatek.myalumni.modules.common.domain.ErrorLogVO;
 import net.naijatek.myalumni.modules.common.domain.ReminisceVO;
 import net.naijatek.myalumni.modules.common.domain.ScrollVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
+import net.naijatek.myalumni.modules.common.helper.BaseSystemHelper;
 import net.naijatek.myalumni.modules.common.helper.DropDownCacheBuilder;
 import net.naijatek.myalumni.modules.common.presentation.form.ClassNewsForm;
 import net.naijatek.myalumni.modules.common.presentation.form.ReminisceForm;
@@ -509,6 +510,51 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		return mapping.findForward(BaseConstants.FWD_SUCCESS);
 	}
 
+	//**********************************************************************
+	//******************  VALIDATE SYSTEM CONFIGURATION ********************
+	//**********************************************************************   
+	
+	/**
+	 * 
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ActionForward prepareValidateSystemConfig(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+        logger.debug("in prepareValidateSystemConfig...");  
+        saveToken(request);
+		
+		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+	}
+
+	
+	   public ActionForward validateSystemConfig(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+	        logger.debug("in validateSystemConfig...");
+	        if ( !isTokenValid(request) ) {
+	            return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+	        }  
+	        
+	        if (!adminSecurityCheck(request)) {
+	        	return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+	        }
+	        
+	        ActionMessages errors = new ActionMessages();
+	        errors = new BaseSystemHelper().validateSystemConfig();
+			saveMessages(request, errors);
+
+			return mapping.findForward(BaseConstants.FWD_SUCCESS);
+	}       	
+	
+	
 	//**********************************************************************
 	//******************  DATABASE BACK UP  ********************************
 	//**********************************************************************   

@@ -93,9 +93,9 @@ public class BuildImageTag extends BodyTagSupport {
 
 		request = (HttpServletRequest) pageContext.getRequest();
 
-		String uploadDir = prop.getValue("UPLOAD_DIR_NAME");
-		String adsUploadDir = prop.getValue("ADS_UPLOAD_DIR_NAME");
-		String avatarUploadDir = prop.getValue("AVATAR_UPLOAD_DIR_NAME");
+		String uploadDir = BaseConstants.UPLOAD_DIR_NAME;
+		String adsUploadDir = BaseConstants.ADS_UPLOAD_DIR_NAME;
+		String avatarUploadDir = BaseConstants.AVATAR_UPLOAD_DIR_NAME;
 		String seperator = "/";
 		String width_ad = app.getValue("image.width");
 

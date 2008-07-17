@@ -40,6 +40,24 @@
       <forward name="success" path="/admin/listEmailExceptions.jsp" />
     </action>    
 
+
+     <!-- ******************************************************************* -->
+    <!-- ***********        VALIDATE SYSTEM CONFIGURATION       ************* -->
+    <!-- ******************************************************************* -->         
+    <!-- Prepare Validate System Configuration -->
+    <action input="/jsp/admin/admin/validateSystemConfig.jsp" name="systemForm" path="/admin/prepareValidateSystemConfig"
+            parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/admin/admin/validateSystemConfig.jsp"/>
+    </action>    
+    
+     <!-- Validate System Configuration -->
+    <action input="/jsp/admin/admin/validateSystemConfig.jsp" name="systemForm" path="/admin/validateSystemConfig"
+            parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/admin/admin/validateSystemConfig.jsp"/>
+    </action>  
+
     
      <!-- ******************************************************************* -->
     <!-- ***********                DATABASE BACKUP                 ************* -->
