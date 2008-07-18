@@ -14,7 +14,7 @@
         
                 var oFCKeditor = new FCKeditor( 'news' ) ;
                 oFCKeditor.BasePath	= sBasePath ;
-                oFCKeditor.ToolbarSet   =  'Plain';
+                oFCKeditor.ToolbarSet   =  'Default';  // Default, Basic
                 oFCKeditor.ReplaceTextarea() ;
         }
 </script>

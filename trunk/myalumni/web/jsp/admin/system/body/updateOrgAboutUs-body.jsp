@@ -15,7 +15,7 @@
                 var oFCKeditor = new FCKeditor( 'orgAboutUs' ) ;
                 oFCKeditor.BasePath	= sBasePath ;
                 oFCKeditor.Height	= 400 ;
-                oFCKeditor.ToolbarSet   =  'Default';  // Default, Plain, Basic
+                oFCKeditor.ToolbarSet   =  'Default';  // Default, Basic
                 oFCKeditor.ReplaceTextarea() ;
         }
 
