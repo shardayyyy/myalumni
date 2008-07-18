@@ -108,7 +108,7 @@ public class LatestMembersTag extends BodyTagSupport {
 					.getLatestMembers(numOfMembers);
 
 			sb
-					.append("<table width=\\"
+					.append("<table width=\""
 							+ this.getTableWidth()
 							+ "\"  border=\"0\" cellspacing=\"1\" cellpadding=\"3\" align=\"center\"  class=\"tborder\">");
 			sb.append("<tr>");
