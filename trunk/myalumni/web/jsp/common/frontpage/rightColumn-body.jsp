@@ -6,39 +6,33 @@
 
 <c:url var="miniProfile" value="/action/member/displayMiniProfile?action=displayMiniProfile"/>
 
+			
+	<table width="100%"  border="0" cellspacing="1" cellpadding="3" align="center" class="tborder">
+			<tr>
+		        <td height="30" class="bg0">Others logged on Now: </td>
+		    </tr>
 
-<table width="100%"  border="0" cellspacing="1" cellpadding="1">
-<tr>
-        <td class="bg0">Others logged on Now: </td>
-      </tr>
-      <tr>
-        <td>
-	<c:set var="num_rec" scope="page" value="-1"/>
-	<logic:notEmpty name="onlineusers">
-		<logic:iterate id="user" name="onlineusers" indexId="pIdx">
-				<div class="blacksmall"><a href="<c:out value="${miniProfile}"/>&memberUserName=<c:out value="${user.memberUserName}"/>"  onclick="newPopup(this.href,'name');return false" title="View <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/> details"><c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/> (<c:out value="${user.yearOut}"/>)</a></div>
-				<c:set var="num_rec" value="1"/>
+			<c:set var="num_rec" scope="page" value="-1"/>
+			<logic:notEmpty name="onlineusers">
+				<logic:iterate id="user" name="onlineusers" indexId="pIdx">
+				    <tr class="portlet-section-body">
+				        <td >				
+							<div class="blacksmall"><a href="<c:out value="${miniProfile}"/>&memberUserName=<c:out value="${user.memberUserName}"/>"  onclick="newPopup(this.href,'name');return false" title="View <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/> details"><c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/> (<c:out value="${user.yearOut}"/>)</a></div>
+							<c:set var="num_rec" value="1"/>
+						</td>
+				   </tr>
+				</logic:iterate>
+			</logic:notEmpty>
+        	<c:if test="${num_rec == '-1'}">
+			    <tr class="portlet-section-body">
+			        <td >	        	
+			            	<bean:message key="message.none"/>
+					</td>
+			   </tr>            	
+	        </c:if>
+	</table>
 
-		</logic:iterate>
-	</logic:notEmpty>
-        <c:if test="${num_rec == '-1'}">
-            <bean:message key="message.none"/>
-        </c:if>
-
-		</td>
-      </tr>
-      <tr>
-      	<td>&nbsp;</td>
-      </tr>
-      
-      <tr>
-        <td class="fieldlabel">
+<br>
 
 		<myalumni:displayLatestMembers tableWidth="100%"/> 
-        </td>
-      </tr>
-      <tr>
-        <td class="fieldlabel"></td>
-      </tr>
 
-    </table>

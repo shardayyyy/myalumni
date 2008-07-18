@@ -60,7 +60,7 @@
 <script type="text/javascript" src="<c:out value="${AJS_fx}"/>"></script>
 <script type="text/javascript" src="<c:out value="${gb_scripts}"/>"></script>
 <link rel=stylesheet href="<c:out value="${gb_styles}"/>" type="text/css">
-
+<link rel="shortcut icon" href="/favicon.ico">
 </head>
 
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">

@@ -549,7 +549,12 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	        
 	        ActionMessages errors = new ActionMessages();
 	        errors = new BaseSystemHelper().validateSystemConfig();
+			if (errors.isEmpty()){
+				 errors.add(BaseConstants.INFO_KEY, new ActionMessage("core.errorcode.00999"));
+			}	        
 			saveMessages(request, errors);
+			
+
 
 			return mapping.findForward(BaseConstants.FWD_SUCCESS);
 	}       	

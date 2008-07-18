@@ -7,10 +7,10 @@
 <br><br>
 <table width="300" border="0" cellspacing="1" cellpadding="3" align="center" class="tborder">
           <tr>
-            <td height="30" class="bg0">Validate System Confuration</td>
+            <td height="30" class="bg0">Validating System Confuration...</td>
           </tr>
           <tr class="portlet-section-body">
-            <td align="center"><p>
+            <td align="center"><br><p>
 
 		<html:form action="/admin/validateSystemConfig">
 		        <html:hidden property="action" value="validateSystemConfig"/>
