@@ -70,8 +70,6 @@ import org.apache.commons.logging.LogFactory;
     b = canReadMimeType("image/jpeg");    // true
     b = canWriteMimeType("image/gif");    // false
     b = canWriteMimeType("image/jPeg");   // true
-
- * @author folashade.adeyosoye
  *
  */
 public class ImageUtil {
