@@ -63,8 +63,18 @@ MyAlumni is a Java/Jsp open source project that help keep alive the line of comm
   # Section 5
 
 = System Features =
-  # Section 1
-  # Section 2
-  # Section 3
-  # Section 4
-  # Section 5
+  # List most recent members the registered on front page
+  # List current members logged in
+  # List members with birthdays this month
+  # Send a welcome email when member registers
+  # Sends a welcome message when member account is approved
+  # List of RSS feed is presented to the member when logged in
+  # Display classnews tailored to the member logged in
+  # Send a birthday wish to members everyday
+  # Displays a scroll of the days message
+  #
+
+
+
+
+
