@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+   
+    <!-- ******************************************************************* -->
+    <!-- ***********              IPHONE  MEMBERS SEARCH       ************* -->
+    <!-- ******************************************************************* --> 
+   <!--  Filter by First Name / Last Name / Dorms -->     
+   <bean name="/iphone/filter" class="net.naijatek.myalumni.modules.iphone.presentation.action.MaintainIphoneAction">
+        <constructor-arg index="0" ref="memberService"/>
+    </bean>
+    
+   <!--  Get Dorms -->         
+   <bean name="/iphone/getDorms" class="net.naijatek.myalumni.modules.iphone.presentation.action.MaintainIphoneAction">
+        <constructor-arg index="0" ref="memberService"/>
+    </bean>
+    
+   <!--  View Member -->         
+   <bean name="/iphone/viewMember" class="net.naijatek.myalumni.modules.iphone.presentation.action.MaintainIphoneAction">
+        <constructor-arg index="0" ref="memberService"/>
+    </bean>   
+    
+</beans>

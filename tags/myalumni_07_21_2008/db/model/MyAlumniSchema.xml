@@ -1,0 +1,1207 @@
+<?xml version="1.0" standalone="yes" ?>
+<DBMODEL Version="4.0">
+<SETTINGS>
+<GLOBALSETTINGS ModelName="My Alumni Schema" IDModel="0" IDVersion="0" VersionStr="1.0.0.0" Comments="" UseVersionHistroy="1" AutoIncVersion="1" DatabaseType="MySQL" ZoomFac="100.00" XPos="796" YPos="840" DefaultDataType="34" DefaultTablePrefix="0" DefSaveDBConn="" DefSyncDBConn="localdev" DefQueryDBConn="" Printer="" HPageCount="4.0" PageAspectRatio="1.440892512336408" PageOrientation="1" PageFormat="A4 (210x297 mm, 8.26x11.7 inches)" SelectedPages="" UsePositionGrid="0" PositionGridX="20" PositionGridY="20" TableNameInRefs="0" DefaultTableType="0" ActivateRefDefForNewRelations="1" FKPrefix="" FKPostfix="" CreateFKRefDefIndex="0" DBQuoteCharacter="`" CreateSQLforLinkedObjects="0" DefModelFont="Tahoma" CanvasWidth="4096" CanvasHeight="2842" />
+<DATATYPEGROUPS>
+<DATATYPEGROUP Name="Numeric Types" Icon="1" />
+<DATATYPEGROUP Name="Date and Time Types" Icon="2" />
+<DATATYPEGROUP Name="String Types" Icon="3" />
+<DATATYPEGROUP Name="Blob and Text Types" Icon="4" />
+<DATATYPEGROUP Name="User defined Types" Icon="5" />
+<DATATYPEGROUP Name="Geographic Types" Icon="6" />
+</DATATYPEGROUPS>
+<DATATYPES>
+<DATATYPE ID="1" IDGroup="0" TypeName="TINYINT" Description="A very small integer. The signed range is -128 to 127. The unsigned range is 0 to 255." ParamCount="1" OptionCount="2" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="length" />
+</PARAMS>
+<OPTIONS>
+<OPTION Name="UNSIGNED" Default="1" />
+<OPTION Name="ZEROFILL" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="2" IDGroup="0" TypeName="SMALLINT" Description="A small integer. The signed range is -32768 to 32767. The unsigned range is 0 to 65535." ParamCount="1" OptionCount="2" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="length" />
+</PARAMS>
+<OPTIONS>
+<OPTION Name="UNSIGNED" Default="1" />
+<OPTION Name="ZEROFILL" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="3" IDGroup="0" TypeName="MEDIUMINT" Description="A medium-size integer. The signed range is -8388608 to 8388607. The unsigned range is 0 to 16777215." ParamCount="1" OptionCount="2" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="length" />
+</PARAMS>
+<OPTIONS>
+<OPTION Name="UNSIGNED" Default="1" />
+<OPTION Name="ZEROFILL" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="4" IDGroup="0" TypeName="INT" Description="A normal-size integer. The signed range is -2147483648 to 2147483647. The unsigned range is 0 to 4294967295." ParamCount="1" OptionCount="2" ParamRequired="0" EditParamsAsString="0" SynonymGroup="1" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="length" />
+</PARAMS>
+<OPTIONS>
+<OPTION Name="UNSIGNED" Default="0" />
+<OPTION Name="ZEROFILL" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="5" IDGroup="0" TypeName="INTEGER" Description="A normal-size integer. The signed range is -2147483648 to 2147483647. The unsigned range is 0 to 4294967295." ParamCount="1" OptionCount="2" ParamRequired="0" EditParamsAsString="0" SynonymGroup="1" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="length" />
+</PARAMS>
+<OPTIONS>
+<OPTION Name="UNSIGNED" Default="1" />
+<OPTION Name="ZEROFILL" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="6" IDGroup="0" TypeName="BIGINT" Description="A large integer. The signed range is -9223372036854775808 to 9223372036854775807. The unsigned range is 0 to 18446744073709551615." ParamCount="1" OptionCount="2" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="length" />
+</PARAMS>
+<OPTIONS>
+<OPTION Name="UNSIGNED" Default="0" />
+<OPTION Name="ZEROFILL" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="7" IDGroup="0" TypeName="FLOAT" Description="A small (single-precision) floating-point number. Cannot be unsigned. Allowable values are -3.402823466E+38 to -1.175494351E-38, 0, and 1.175494351E-38 to 3.402823466E+38." ParamCount="1" OptionCount="1" ParamRequired="1" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="precision" />
+</PARAMS>
+<OPTIONS>
+<OPTION Name="ZEROFILL" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="8" IDGroup="0" TypeName="FLOAT" Description="A small (single-precision) floating-point number. Cannot be unsigned. Allowable values are -3.402823466E+38 to -1.175494351E-38, 0, and 1.175494351E-38 to 3.402823466E+38." ParamCount="2" OptionCount="1" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="length" />
+<PARAM Name="decimals" />
+</PARAMS>
+<OPTIONS>
+<OPTION Name="ZEROFILL" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="9" IDGroup="0" TypeName="DOUBLE" Description="A normal-size (double-precision) floating-point number. Cannot be unsigned. Allowable values are -1.7976931348623157E+308 to -2.2250738585072014E-308, 0, and 2.2250738585072014E-308 to 1.7976931348623157E+308." ParamCount="2" OptionCount="1" ParamRequired="0" EditParamsAsString="0" SynonymGroup="2" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="length" />
+<PARAM Name="decimals" />
+</PARAMS>
+<OPTIONS>
+<OPTION Name="ZEROFILL" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="10" IDGroup="0" TypeName="DOUBLE PRECISION" Description="This is a synonym for DOUBLE." ParamCount="2" OptionCount="1" ParamRequired="0" EditParamsAsString="0" SynonymGroup="2" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="length" />
+<PARAM Name="decimals" />
+</PARAMS>
+<OPTIONS>
+<OPTION Name="ZEROFILL" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="11" IDGroup="0" TypeName="REAL" Description="This is a synonym for DOUBLE." ParamCount="2" OptionCount="1" ParamRequired="0" EditParamsAsString="0" SynonymGroup="2" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="length" />
+<PARAM Name="decimals" />
+</PARAMS>
+<OPTIONS>
+<OPTION Name="ZEROFILL" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="12" IDGroup="0" TypeName="DECIMAL" Description="An unpacked floating-point number. Cannot be unsigned. Behaves like a CHAR column." ParamCount="2" OptionCount="1" ParamRequired="0" EditParamsAsString="0" SynonymGroup="3" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="length" />
+<PARAM Name="decimals" />
+</PARAMS>
+<OPTIONS>
+<OPTION Name="ZEROFILL" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="13" IDGroup="0" TypeName="NUMERIC" Description="This is a synonym for DECIMAL." ParamCount="2" OptionCount="1" ParamRequired="1" EditParamsAsString="0" SynonymGroup="3" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="length" />
+<PARAM Name="decimals" />
+</PARAMS>
+<OPTIONS>
+<OPTION Name="ZEROFILL" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="14" IDGroup="1" TypeName="DATE" Description="A date. The supported range is \a1000-01-01\a to \a9999-12-31\a." ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="15" IDGroup="1" TypeName="DATETIME" Description="A date and time combination. The supported range is \a1000-01-01 00:00:00\a to \a9999-12-31 23:59:59\a." ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="16" IDGroup="1" TypeName="TIMESTAMP" Description="A timestamp. The range is \a1970-01-01 00:00:00\a to sometime in the year 2037. The length can be 14 (or missing), 12, 10, 8, 6, 4, or 2 representing YYYYMMDDHHMMSS, ... , YYYYMMDD, ... , YY formats." ParamCount="1" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="length" />
+</PARAMS>
+</DATATYPE>
+<DATATYPE ID="17" IDGroup="1" TypeName="TIME" Description="A time. The range is \a-838:59:59\a to \a838:59:59\a." ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="18" IDGroup="1" TypeName="YEAR" Description="A year in 2- or 4-digit format (default is 4-digit)." ParamCount="1" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="length" />
+</PARAMS>
+</DATATYPE>
+<DATATYPE ID="19" IDGroup="2" TypeName="CHAR" Description="A fixed-length string (1 to 255 characters) that is always right-padded with spaces to the specified length when stored. values are sorted and compared in case-insensitive fashion according to the default character set unless the BINARY keyword is given." ParamCount="1" OptionCount="1" ParamRequired="1" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="length" />
+</PARAMS>
+<OPTIONS>
+<OPTION Name="BINARY" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="20" IDGroup="2" TypeName="VARCHAR" Description="A variable-length string (1 to 255 characters). Values are sorted and compared in case-sensitive fashion unless the BINARY keyword is given." ParamCount="1" OptionCount="1" ParamRequired="1" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="length" />
+</PARAMS>
+<OPTIONS>
+<OPTION Name="BINARY" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="21" IDGroup="2" TypeName="BIT" Description="This is a synonym for CHAR(1)." ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="22" IDGroup="2" TypeName="BOOL" Description="This is a synonym for CHAR(1)." ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="23" IDGroup="3" TypeName="TINYBLOB" Description="A column maximum length of 255 (2^8 - 1) characters. Values are sorted and compared in case-sensitive fashion." ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="24" IDGroup="3" TypeName="BLOB" Description="A column maximum length of 65535 (2^16 - 1) characters. Values are sorted and compared in case-sensitive fashion." ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="25" IDGroup="3" TypeName="MEDIUMBLOB" Description="A column maximum length of 16777215 (2^24 - 1) characters. Values are sorted and compared in case-sensitive fashion." ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="26" IDGroup="3" TypeName="LONGBLOB" Description="A column maximum length of 4294967295 (2^32 - 1) characters. Values are sorted and compared in case-sensitive fashion." ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="27" IDGroup="3" TypeName="TINYTEXT" Description="A column maximum length of 255 (2^8 - 1) characters." ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="28" IDGroup="3" TypeName="TEXT" Description="A column maximum length of 65535 (2^16 - 1) characters." ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="29" IDGroup="3" TypeName="MEDIUMTEXT" Description="A column maximum length of 16777215 (2^24 - 1) characters." ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="30" IDGroup="3" TypeName="LONGTEXT" Description="A column maximum length of 4294967295 (2^32 - 1) characters." ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="31" IDGroup="3" TypeName="ENUM" Description="An enumeration. A string object that can have only one value, chosen from the list of values." ParamCount="1" OptionCount="0" ParamRequired="1" EditParamsAsString="1" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="values" />
+</PARAMS>
+</DATATYPE>
+<DATATYPE ID="32" IDGroup="3" TypeName="SET" Description="A set. A string object that can have zero or more values, each of which must be chosen from the list of values." ParamCount="1" OptionCount="0" ParamRequired="1" EditParamsAsString="1" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+<PARAMS>
+<PARAM Name="values" />
+</PARAMS>
+</DATATYPE>
+<DATATYPE ID="33" IDGroup="4" TypeName="Varchar(20)" Description="" ParamCount="0" OptionCount="1" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+<OPTIONS>
+<OPTION Name="BINARY" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="34" IDGroup="4" TypeName="Varchar(45)" Description="" ParamCount="0" OptionCount="1" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+<OPTIONS>
+<OPTION Name="BINARY" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="35" IDGroup="4" TypeName="Varchar(255)" Description="" ParamCount="0" OptionCount="1" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+<OPTIONS>
+<OPTION Name="BINARY" Default="0" />
+</OPTIONS>
+</DATATYPE>
+<DATATYPE ID="36" IDGroup="5" TypeName="GEOMETRY" Description="Geographic Datatype" ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="38" IDGroup="5" TypeName="LINESTRING" Description="Geographic Datatype" ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="39" IDGroup="5" TypeName="POLYGON" Description="Geographic Datatype" ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="40" IDGroup="5" TypeName="MULTIPOINT" Description="Geographic Datatype" ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="41" IDGroup="5" TypeName="MULTILINESTRING" Description="Geographic Datatype" ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="42" IDGroup="5" TypeName="MULTIPOLYGON" Description="Geographic Datatype" ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+<DATATYPE ID="43" IDGroup="5" TypeName="GEOMETRYCOLLECTION" Description="Geographic Datatype" ParamCount="0" OptionCount="0" ParamRequired="0" EditParamsAsString="0" SynonymGroup="0" PhysicalMapping="0" PhysicalTypeName="" >
+</DATATYPE>
+</DATATYPES>
+<COMMON_DATATYPES>
+<COMMON_DATATYPE ID="5" />
+<COMMON_DATATYPE ID="8" />
+<COMMON_DATATYPE ID="20" />
+<COMMON_DATATYPE ID="15" />
+<COMMON_DATATYPE ID="22" />
+<COMMON_DATATYPE ID="28" />
+<COMMON_DATATYPE ID="26" />
+<COMMON_DATATYPE ID="33" />
+<COMMON_DATATYPE ID="34" />
+<COMMON_DATATYPE ID="35" />
+</COMMON_DATATYPES>
+<TABLEPREFIXES>
+<TABLEPREFIX Name="Default (no prefix)" />
+</TABLEPREFIXES>
+<REGIONCOLORS>
+<REGIONCOLOR Color="Red=#FFEEEC" />
+<REGIONCOLOR Color="Yellow=#FEFDED" />
+<REGIONCOLOR Color="Green=#EAFFE5" />
+<REGIONCOLOR Color="Cyan=#ECFDFF" />
+<REGIONCOLOR Color="Blue=#F0F1FE" />
+<REGIONCOLOR Color="Magenta=#FFEBFA" />
+</REGIONCOLORS>
+<POSITIONMARKERS>
+<POSITIONMARKER ZoomFac="-1.0" X="0" Y="0" />
+<POSITIONMARKER ZoomFac="-1.0" X="0" Y="0" />
+<POSITIONMARKER ZoomFac="-1.0" X="0" Y="0" />
+<POSITIONMARKER ZoomFac="-1.0" X="0" Y="0" />
+<POSITIONMARKER ZoomFac="-1.0" X="0" Y="0" />
+<POSITIONMARKER ZoomFac="-1.0" X="0" Y="0" />
+<POSITIONMARKER ZoomFac="-1.0" X="0" Y="0" />
+<POSITIONMARKER ZoomFac="-1.0" X="0" Y="0" />
+<POSITIONMARKER ZoomFac="-1.0" X="0" Y="0" />
+<POSITIONMARKER ZoomFac="-1.0" X="0" Y="0" />
+<POSITIONMARKER ZoomFac="-1.0" X="0" Y="0" />
+</POSITIONMARKERS>
+</SETTINGS>
+<METADATA>
+<REGIONS>
+<REGION ID="2668" RegionName="MYALUMNI" XPos="22" YPos="104" Width="1067" Height="1733" RegionColor="2" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="11" />
+<REGION ID="4252" RegionName="SYSTEM" XPos="1281" YPos="100" Width="877" Height="1713" RegionColor="5" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="13" />
+</REGIONS>
+<TABLES>
+<TABLE ID="2511" Tablename="MYALUMNI_MEMBERS_TBL" PrevTableName="fgc_members" XPos="183" YPos="155" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="6" >
+<COLUMNS>
+<COLUMN ID="2539" ColName="MEMBER_ID" PrevColName="MemberID" Pos="1" idDatatype="20" DatatypeParams="(40)" Width="0" Prec="0" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2541" ColName="USER_NAME" PrevColName="MemberUserName" Pos="3" idDatatype="20" DatatypeParams="(40)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2540" ColName="MEMBER_STATUS" PrevColName="MemberStatus" Pos="2" idDatatype="20" DatatypeParams="(20)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2542" ColName="MEMBER_PASSWORD" PrevColName="MemberPassword" Pos="4" idDatatype="20" DatatypeParams="(40)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2545" ColName="EMAIL" PrevColName="MemberEmail" Pos="7" idDatatype="20" DatatypeParams="(60)" Width="0" Prec="0" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2546" ColName="FIRST_IP_ADDRESS" PrevColName="MemberFirstIP" Pos="8" idDatatype="20" DatatypeParams="(40)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2547" ColName="LAST_IP_ADDRESS" PrevColName="MemberLastIP" Pos="9" idDatatype="20" DatatypeParams="(40)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2548" ColName="CREATION_DATE" PrevColName="MemberCreationDate" Pos="10" idDatatype="16" DatatypeParams="" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2550" ColName="LAST_LOGON_DATE" PrevColName="MemberLastLogon" Pos="12" idDatatype="16" DatatypeParams="" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2552" ColName="ACTIVATION_CODE" PrevColName="MemberActivateCode" Pos="14" idDatatype="20" DatatypeParams="(40)" Width="0" Prec="0" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2553" ColName="SIGNATURE" PrevColName="MemberSignature" Pos="15" idDatatype="20" DatatypeParams="(70)" Width="0" Prec="0" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2554" ColName="TITLE" PrevColName="MemberTitle" Pos="16" idDatatype="20" DatatypeParams="(30)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2555" ColName="AVATAR" PrevColName="MemberAvatar" Pos="17" idDatatype="20" DatatypeParams="(200)" Width="0" Prec="0" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2556" ColName="FIRST_NAME" PrevColName="MemberFirstname" Pos="18" idDatatype="20" DatatypeParams="(70)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2558" ColName="LAST_NAME" PrevColName="MemberLastname" Pos="20" idDatatype="20" DatatypeParams="(70)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2559" ColName="MAIDEN_NAME" PrevColName="MemberMaidenname" Pos="21" idDatatype="20" DatatypeParams="(70)" Width="0" Prec="0" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2579" ColName="NICK_NAME" PrevColName="MemberNickName" Pos="41" idDatatype="20" DatatypeParams="(70)" Width="0" Prec="0" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2560" ColName="GENDER" PrevColName="MemberGender" Pos="22" idDatatype="19" DatatypeParams="(1)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2561" ColName="ADDRESS" PrevColName="MemberAddress" Pos="23" idDatatype="20" DatatypeParams="(200)" Width="0" Prec="0" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2562" ColName="FIRST_EMAIL" PrevColName="MemberFirstEmail" Pos="24" idDatatype="20" DatatypeParams="(60)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2565" ColName="COUNTRY" PrevColName="MemberCountry" Pos="27" idDatatype="20" DatatypeParams="(70)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2566" ColName="PHONE" PrevColName="MemberPhone" Pos="28" idDatatype="20" DatatypeParams="(200)" Width="0" Prec="0" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2570" ColName="OCCUPATION" PrevColName="MemberCareer" Pos="32" idDatatype="20" DatatypeParams="(100)" Width="0" Prec="0" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2572" ColName="WEBSITE" PrevColName="MemberHomepage" Pos="34" idDatatype="20" DatatypeParams="(200)" Width="0" Prec="0" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2577" ColName="FAV_URL_1" PrevColName="MemberCoolLink1" Pos="39" idDatatype="20" DatatypeParams="(200)" Width="0" Prec="0" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2578" ColName="FAV_URL_2" PrevColName="MemberCoolLink2" Pos="40" idDatatype="20" DatatypeParams="(200)" Width="0" Prec="0" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2580" ColName="YEAR_IN" PrevColName="MemberArrivalYear" Pos="42" idDatatype="5" DatatypeParams="" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2581" ColName="YEAR_OUT" PrevColName="MemberDepartureYear" Pos="43" idDatatype="5" DatatypeParams="" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2585" ColName="IS_ADMIN" PrevColName="MemberRole" Pos="47" idDatatype="19" DatatypeParams="(1)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2582" ColName="DORMITORY" PrevColName="MemberHouseColor" Pos="44" idDatatype="20" DatatypeParams="(40)" Width="0" Prec="0" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2583" ColName="COMMENTS" PrevColName="MemberComments" Pos="45" idDatatype="20" DatatypeParams="(1000)" Width="0" Prec="0" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2584" ColName="ADMIN_COMMENTS" PrevColName="MemberAdminComments" Pos="46" idDatatype="20" DatatypeParams="(1000)" Width="0" Prec="0" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2587" ColName="DOB" PrevColName="MemberBirthdayDay" Pos="49" idDatatype="14" DatatypeParams="" Width="0" Prec="0" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4246" ColName="HIDE_EMAIL" PrevColName="" Pos="42" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4247" ColName="HIDE_ADDRESS" PrevColName="" Pos="43" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4248" ColName="HIDE_PHONE" PrevColName="" Pos="44" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4249" ColName="HIDE_IM" PrevColName="" Pos="45" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4419" ColName="PROMPT_CHANGE" PrevColName="" Pos="45" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4138" ColName="LASTMODIFICATION" PrevColName="" Pos="52" idDatatype="20" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4137" ColName="LASTMODIFIED_BY" PrevColName="LASTMODIFIEDBY" Pos="51" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4139" ColName="LASTMODIFIED_DATE" PrevColName="LASTMODIFICATION_2" Pos="53" idDatatype="16" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+</COLUMNS>
+<RELATIONS_START>
+<RELATION_START ID="4461" />
+<RELATION_START ID="4483" />
+</RELATIONS_START>
+<INDICES>
+<INDEX ID="4455" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="2539" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="4278" IndexName="MYALUMNI_MEMBERS_TBL_index4278" IndexKind="1" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="2541" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="4279" IndexName="MYALUMNI_MEMBERS_TBL_index4279" IndexKind="1" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="2539" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="4289" IndexName="MYALUMNI_MEMBERS_TBL_index4289" IndexKind="2" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="2541" LengthParam="0" />
+<INDEXCOLUMN idColumn="2539" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDICES>
+</TABLE>
+<TABLE ID="2512" Tablename="MYALUMNI_MESSAGE_FOLDER_TBL" PrevTableName="fgc_message_folder" XPos="689" YPos="145" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="7" >
+<COLUMNS>
+<COLUMN ID="4305" ColName="MESSAGE_FOLDER_ID" PrevColName="" Pos="5" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4462" ColName="MEMBER_ID" PrevColName="" Pos="1" idDatatype="20" DatatypeParams="(40)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2596" ColName="FOLDER_NAME" PrevColName="FolderName" Pos="1" idDatatype="20" DatatypeParams="(30)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2598" ColName="FOLDER_ORDER" PrevColName="FolderOrder" Pos="3" idDatatype="5" DatatypeParams="" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2602" ColName="FOLDER_CREATION_DATE" PrevColName="FolderCreationDate" Pos="7" idDatatype="16" DatatypeParams="" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2603" ColName="FOLDER_MODIFICATION_DATE" PrevColName="FolderModifiedDate" Pos="8" idDatatype="16" DatatypeParams="" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4398" ColName="LASTMODIFICATION" PrevColName="" Pos="6" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4399" ColName="LASTMODIFIED_BY" PrevColName="" Pos="7" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4400" ColName="LASTMODIFIED_DATE" PrevColName="" Pos="8" idDatatype="16" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+</COLUMNS>
+<RELATIONS_END>
+<RELATION_END ID="4461" />
+</RELATIONS_END>
+<INDICES>
+<INDEX ID="2604" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4305" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="4291" IndexName="MYALUMNI_MESSAGE_FOLDER_TBL_index4291" IndexKind="2" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="2596" LengthParam="0" />
+<INDEXCOLUMN idColumn="4462" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDICES>
+</TABLE>
+<TABLE ID="2513" Tablename="MYALUMNI_PRIVATE_MESSAGE_TBL" PrevTableName="fgc_private_messages" XPos="690" YPos="583" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="8" >
+<COLUMNS>
+<COLUMN ID="2606" ColName="MESSAGE_ID" PrevColName="PrivmsgsID" Pos="1" idDatatype="20" DatatypeParams="(40)" Width="0" Prec="0" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4395" ColName="MESSAGE_FROM_USER_ID" PrevColName="" Pos="9" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4396" ColName="MESSAGE_TO_USER_ID" PrevColName="" Pos="10" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2607" ColName="FOLDER_NAME" PrevColName="FolderName" Pos="2" idDatatype="20" DatatypeParams="(30)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2608" ColName="PRIORITY" PrevColName="PrivMsgsPriority" Pos="3" idDatatype="19" DatatypeParams="(1)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2609" ColName="SUBJECT" PrevColName="PrivMsgsSubject" Pos="4" idDatatype="20" DatatypeParams="(60)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2610" ColName="MESSAGE_DATE" PrevColName="PrivMsgsDate" Pos="5" idDatatype="16" DatatypeParams="" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2611" ColName="IP_ADDRESS" PrevColName="PrivMsgsIP" Pos="6" idDatatype="20" DatatypeParams="(40)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2612" ColName="MESSAGE_TEXT" PrevColName="PrivMsgsText" Pos="7" idDatatype="20" DatatypeParams="(4000)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="2615" ColName="MESSAGE_STATUS" PrevColName="PrivMsgStatus" Pos="10" idDatatype="19" DatatypeParams="(1)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4469" ColName="GUEST_EMAIL" PrevColName="" Pos="14" idDatatype="20" DatatypeParams="(50)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4581" ColName="GUEST_NAME" PrevColName="" Pos="16" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4464" ColName="COPY_ME" PrevColName="" Pos="13" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4471" ColName="TO_WEBMASTER" PrevColName="" Pos="15" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4402" ColName="LASTMODIFIED_BY" PrevColName="" Pos="10" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4403" ColName="LASTMODIFICATION" PrevColName="" Pos="11" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4404" ColName="LASTMODIFIED_DATE" PrevColName="" Pos="12" idDatatype="16" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+</COLUMNS>
+<INDICES>
+<INDEX ID="2619" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="2606" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="4284" IndexName="MYALUMNI_PRIVATE_MESSAGE_TBL_index4284" IndexKind="1" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="2606" LengthParam="0" />
+<INDEXCOLUMN idColumn="2615" LengthParam="0" />
+<INDEXCOLUMN idColumn="4395" LengthParam="0" />
+<INDEXCOLUMN idColumn="4396" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDICES>
+</TABLE>
+<TABLE ID="4125" Tablename="MYALUMNI_SYSTEM_LOOKUP_TBL" PrevTableName="Table_21" XPos="1837" YPos="211" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="17" >
+<COLUMNS>
+<COLUMN ID="4126" ColName="LOOKUP_ID" PrevColName="ID" Pos="0" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4494" ColName="XLATGROUP_ID" PrevColName="" Pos="1" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4127" ColName="THE_LABEL" PrevColName="LABEL" Pos="1" idDatatype="20" DatatypeParams="(150)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4129" ColName="THE_STATUS" PrevColName="STATUS_2" Pos="3" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4131" ColName="LASTMODIFICATION" PrevColName="" Pos="5" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4130" ColName="LASTMODIFIED_BY" PrevColName="LASTMODIFIEDBY" Pos="4" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4132" ColName="LASTMODIFIED_DATE" PrevColName="LASTMODIFIEDDATE" Pos="6" idDatatype="16" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+</COLUMNS>
+<RELATIONS_START>
+<RELATION_START ID="4488" />
+</RELATIONS_START>
+<RELATIONS_END>
+<RELATION_END ID="4493" />
+</RELATIONS_END>
+<INDICES>
+<INDEX ID="4133" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4126" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="4286" IndexName="MYALUMNI_SYSTEM_LOOKUP_TBL_index4286" IndexKind="1" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4126" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="4302" IndexName="MYALUMNI_SYSTEM_LOOKUP_TBL_index4302" IndexKind="2" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4126" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDICES>
+</TABLE>
+<TABLE ID="4148" Tablename="MYALUMNI_CLASS_NEWS_TBL" PrevTableName="Table_12" XPos="1342" YPos="474" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="20" >
+<COLUMNS>
+<COLUMN ID="4149" ColName="CLASS_NEWS_ID" PrevColName="ID" Pos="0" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4154" ColName="SUBJECT" PrevColName="" Pos="5" idDatatype="20" DatatypeParams="(50)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4155" ColName="NEWS" PrevColName="" Pos="6" idDatatype="20" DatatypeParams="(4000)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4156" ColName="FROM_CLASS_YEAR" PrevColName="CLASS_YEAR" Pos="7" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4497" ColName="TO_CLASS_YEAR" PrevColName="" Pos="10" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4150" ColName="AUTHOR_ID" PrevColName="AUTHOR" Pos="1" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4479" ColName="NEWS_STATUS" PrevColName="" Pos="8" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4496" ColName="SYSTEM_NEWS" PrevColName="" Pos="9" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4152" ColName="LASTMODIFICATION" PrevColName="" Pos="3" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4151" ColName="LASTMODIFIED_BY" PrevColName="" Pos="2" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4153" ColName="LASTMODIFIED_DATE" PrevColName="LASTMODIFICATIONDATE" Pos="4" idDatatype="16" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+</COLUMNS>
+<INDICES>
+<INDEX ID="4157" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4149" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="4296" IndexName="MYALUMNI_CLASS_NEWS_TBL_index4296" IndexKind="2" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4149" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDICES>
+</TABLE>
+<TABLE ID="4183" Tablename="MYALUMNI_SCROLL_TBL" PrevTableName="Table_20" XPos="1347" YPos="776" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="16" >
+<COLUMNS>
+<COLUMN ID="4184" ColName="SCROLL_ID" PrevColName="ID" Pos="0" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4185" ColName="SCROLL_TEXT" PrevColName="TEXT" Pos="1" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4187" ColName="PRIORITY" PrevColName="" Pos="3" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4381" ColName="LASTMODIFICATION" PrevColName="" Pos="6" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4186" ColName="LASTMODIFIED_BY" PrevColName="ENTERED_DATE" Pos="2" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4242" ColName="LASTMODIFIED_DATE" PrevColName="LASTMODIFIEDDATE" Pos="4" idDatatype="16" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+</COLUMNS>
+<INDICES>
+<INDEX ID="4188" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4184" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="4298" IndexName="MYALUMNI_SCROLL_TBL_index4298" IndexKind="2" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4184" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDICES>
+</TABLE>
+<TABLE ID="4231" Tablename="MYALUMNI_SYSTEM_GROUP_TBL" PrevTableName="Table_21" XPos="1840" YPos="687" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="17" >
+<COLUMNS>
+<COLUMN ID="4232" ColName="XLATGROUP_ID" PrevColName="ID" Pos="0" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4233" ColName="DESCRIPTION" PrevColName="LABEL" Pos="1" idDatatype="20" DatatypeParams="(150)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4235" ColName="MINLEN" PrevColName="STATUS_2" Pos="3" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4234" ColName="MAXLEN" PrevColName="VALUE" Pos="2" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4237" ColName="UPDATEABLE" PrevColName="LASTMODIFICATION" Pos="5" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+</COLUMNS>
+<RELATIONS_START>
+<RELATION_START ID="4493" />
+</RELATIONS_START>
+<INDICES>
+<INDEX ID="4239" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4232" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="4300" IndexName="MYALUMNI_SYSTEM_GROUP_TBL_index4300" IndexKind="2" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4232" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDICES>
+</TABLE>
+<TABLE ID="4306" Tablename="MYALUMNI_LOGINHISTORY_TBL" PrevTableName="Table_09" XPos="1355" YPos="991" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="16" >
+<COLUMNS>
+<COLUMN ID="4308" ColName="LOGINHISTORY_ID" PrevColName="" Pos="0" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4310" ColName="REQUEST_TIME" PrevColName="" Pos="1" idDatatype="16" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4311" ColName="USER_NAME" PrevColName="" Pos="2" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4312" ColName="SOURCE_IP" PrevColName="" Pos="3" idDatatype="20" DatatypeParams="(50)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4313" ColName="LOGIN_STATUS" PrevColName="" Pos="4" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4314" ColName="USER_AGENT" PrevColName="" Pos="5" idDatatype="20" DatatypeParams="(15)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4315" ColName="REASON_CODE" PrevColName="" Pos="6" idDatatype="19" DatatypeParams="(2)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+</COLUMNS>
+<INDICES>
+<INDEX ID="4309" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4308" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDICES>
+</TABLE>
+<TABLE ID="4316" Tablename="MYALUMNI_ERRORLOG_TBL" PrevTableName="Table_10" XPos="1361" YPos="128" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="17" >
+<COLUMNS>
+<COLUMN ID="4318" ColName="ERRORLOG_ID" PrevColName="" Pos="0" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4320" ColName="ERROR_MESSAGE" PrevColName="" Pos="1" idDatatype="20" DatatypeParams="(4000)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4477" ColName="STACK_TRACE" PrevColName="" Pos="8" idDatatype="20" DatatypeParams="(4000)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4321" ColName="ERROR_DATE" PrevColName="" Pos="2" idDatatype="16" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4322" ColName="CAUSE" PrevColName="" Pos="3" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4323" ColName="LOGGED_BY" PrevColName="" Pos="4" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4391" ColName="LASTMODIFICATION" PrevColName="" Pos="5" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4392" ColName="LASTMODIFIED_BY" PrevColName="" Pos="6" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4393" ColName="LASTMODIFIED_DATE" PrevColName="" Pos="7" idDatatype="16" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+</COLUMNS>
+<INDICES>
+<INDEX ID="4319" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4318" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDICES>
+</TABLE>
+<TABLE ID="4367" Tablename="MYALUMNI_SYSCONFIG_TBL" PrevTableName="Table_12" XPos="1347" YPos="1194" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="30" >
+<COLUMNS>
+<COLUMN ID="4369" ColName="SYSCONFIG_ID" PrevColName="" Pos="0" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4371" ColName="SESSION_TIMEOUT" PrevColName="" Pos="1" idDatatype="20" DatatypeParams="(6)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4372" ColName="RSS_HEADER" PrevColName="" Pos="2" idDatatype="20" DatatypeParams="(35)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4373" ColName="RSS_URL" PrevColName="" Pos="3" idDatatype="20" DatatypeParams="(250)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4417" ColName="SERVER_URL" PrevColName="" Pos="8" idDatatype="20" DatatypeParams="(250)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4578" ColName="ALBUM_URL" PrevColName="" Pos="13" idDatatype="20" DatatypeParams="(250)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4579" ColName="FORUM_URL" PrevColName="" Pos="14" idDatatype="20" DatatypeParams="(250)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4415" ColName="ORG_FIRST_YEAR" PrevColName="" Pos="7" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4466" ColName="ORG_NAME" PrevColName="" Pos="9" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4499" ColName="ORG_SHORT_NAME" PrevColName="" Pos="12" idDatatype="20" DatatypeParams="(20)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4467" ColName="ORG_EMAIL" PrevColName="" Pos="10" idDatatype="20" DatatypeParams="(100)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4583" ColName="ORG_ABOUT_US" PrevColName="" Pos="15" idDatatype="28" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4475" ColName="HAS_DORMITORY" PrevColName="" Pos="11" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4604" ColName="BIRTHDAY_NOTIFICATION" PrevColName="" Pos="16" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4374" ColName="LASTMODIFICATION" PrevColName="" Pos="4" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4375" ColName="LASTMODIFIED_BY" PrevColName="" Pos="5" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4376" ColName="LASTMODIFIED_DATE" PrevColName="" Pos="6" idDatatype="16" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+</COLUMNS>
+<INDICES>
+<INDEX ID="4370" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4369" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDICES>
+</TABLE>
+<TABLE ID="4481" Tablename="MYALUMNI_MEMBER_INSTANT_MESSENGER_TBL" PrevTableName="Table_11" XPos="706" YPos="418" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="16" >
+<COLUMNS>
+<COLUMN ID="4486" ColName="MEMBER_IM_ID" PrevColName="" Pos="1" idDatatype="20" DatatypeParams="(45)" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4489" ColName="LOOKUP_ID" PrevColName="" Pos="1" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4484" ColName="MEMBER_ID" PrevColName="" Pos="1" idDatatype="20" DatatypeParams="(40)" Width="0" Prec="0" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+</COLUMNS>
+<RELATIONS_END>
+<RELATION_END ID="4483" />
+<RELATION_END ID="4488" />
+</RELATIONS_END>
+<INDICES>
+<INDEX ID="4487" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4486" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDICES>
+</TABLE>
+<TABLE ID="4560" Tablename="MYALUMNI_REMINISCE_TBL" PrevTableName="Table_12" XPos="1831" YPos="1005" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="19" >
+<COLUMNS>
+<COLUMN ID="4562" ColName="REMINISCE_ID" PrevColName="" Pos="0" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4564" ColName="FROM_YEAR" PrevColName="SLANG_YEAR" Pos="1" idDatatype="20" DatatypeParams="(4)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4569" ColName="TO_YEAR" PrevColName="" Pos="5" idDatatype="20" DatatypeParams="(4)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4567" ColName="SLANG" PrevColName="" Pos="4" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4565" ColName="PRONOUNCE" PrevColName="" Pos="2" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4566" ColName="MEANING" PrevColName="" Pos="3" idDatatype="20" DatatypeParams="(2000)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4571" ColName="AUTHOR_ID" PrevColName="" Pos="6" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4572" ColName="REMINISCE_STATUS" PrevColName="" Pos="7" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4576" ColName="LASTMODIFICATION" PrevColName="" Pos="10" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4574" ColName="LASTMODIFIED_BY" PrevColName="" Pos="8" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4575" ColName="LASTMODIFIED_DATE" PrevColName="" Pos="9" idDatatype="16" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+</COLUMNS>
+<INDICES>
+<INDEX ID="4563" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4562" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDICES>
+</TABLE>
+</TABLES>
+<RELATIONS>
+<RELATION ID="4461" RelationName="Rel_09" Kind="5" SrcTable="2511" DestTable="2512" FKFields="MEMBER_ID=MEMBER_ID\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="-1" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="25" />
+<RELATION ID="4483" RelationName="Rel_03" Kind="2" SrcTable="2511" DestTable="4481" FKFields="MEMBER_ID=MEMBER_ID\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="-1" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="17" />
+<RELATION ID="4488" RelationName="Rel_04" Kind="2" SrcTable="4125" DestTable="4481" FKFields="LOOKUP_ID=LOOKUP_ID\n" FKFieldsComments="\n" relDirection="4" MidOffset="-193" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="-2" CaptionOffsetY="-3" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="-1" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="18" />
+<RELATION ID="4493" RelationName="Rel_05" Kind="2" SrcTable="4231" DestTable="4125" FKFields="XLATGROUP_ID=XLATGROUP_ID\n" FKFieldsComments="\n" relDirection="1" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="-1" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="18" />
+</RELATIONS>
+<NOTES>
+</NOTES>
+<IMAGES>
+<IMAGE ID="4602" ImageName="Image_01" XPos="1053" YPos="10" Width="272" Height="62" StrechImg="1" ImgWidth="272" ImgHeight="62" ImgFormat="PNG" ImgData="89504E470D0A1A0A0000000D49484452000001100000003E0806000000E3DB44E70000200049444154789CECBD79985DC95527F88BB8EBBB6F5FF2E5BE676A2F2DA5AA52A956ECF25E856D6C8CC7604C43D3D340F335430F3D6D300C66BA1998F1D0D01F7CD0C32C808DC1D80CF65479C1E5B5CA4B2DAEBD4A2A49A5945252EEF9F677F71BCBFCF15E4A2929F3BD97A2CAC6F3D5F9BE9B9F9419F72C11274E9C73E2445C22A5C4EBF03ABC0EAFC38D80FA8366E075781D5E87EF1FD4EC9AF6C4A927EE78FEECF347CF2CBD320C00B343B3178FCEDEFCD4F103C71F8F1B71BE137CA4570F4408814F7CE213A8D56A37C0F6EBF0CF05A490905222D19F1834FA8C63E757CFEF639C27627AAC3A5E187BB1B9D87CDCAB7835420908253F68765F875701A4948004F421FDEEAF9EF9DABF3DBB3CB77720DB6FE613192AC1B156AFF052BDE21F993EFCFC5DA3777ECC5EB49F5735153FF3333F83542AD51177CF06843186D9D959CCCFCFBF0A22BD0E3F403046DF3CFC0B89F1F48FC7AD44A13FDDA7E99A4A5CDF97ABF552107AFEE2DA89D5FFB3F444E9D33F68465F87570FFAEFECFFE9E2C1817FBF7F746FECFE63C7D3638399B4AA080D10F0431E9EBEB454FFFCE38FD717D6566AA7BE7AF2D7C3B3E1D7E6E7E7313E3EDE11EF8E42986C36BB2303A2280A38DF9147D43B6E4D018F5E1BDCFF7F856431993AF0DE037F18CB26EEBA7DD761FDD8DED95C36A55B94481A32CE97CA55FB91175E345F1958F81D7B5763F7F39F79FE3F467EF48366FB75F827C2C4ED13778EDD33F16B47C6F75B3FF1863BC628696A5E5806E32DE781126A1C991D288E0EBC25F5C9AF7E1BE977A7FFD385AF9CBF048E33DD70BFEA3990C27461223B953D12CB59FBCC9491175CCAB011AC386BCE4BE5F3E5EFD52ED54A378257D33514660B7B326399A37AC6D863A48C04F7791436830BCDA5E60BA573A567ED35DB7EB5E5F97E836669C88DE5669203C9DDB16C6C503555C5AFFBBE57F5E61B8B8DD3F5C5FACA8D18654DD7B0E7ED7B3E9CC8A7EE79DF5D6F491E992DF6BB410561D4040010023A5E8C653FF8E63B325F7CFC994B4F62EEA766DF383B77F28B27FFE6D596F175F8FE819931CDE1DB86FFDD786E24F6BE7B8F8F876C4D654C801002A015A2722961BB0ED231DD7CF79D4747FFE24B8F60EADEE97FA7C7F45F04D0314479D50CC8D04D43370D1D1DFE9766C13C168F2532B9644633148D4A48389127AACD463074EBF06A73A1F1D0D9AF9DFD3FEC52EF937DF8F0F0C1D1DB477F494B194753562A954BA65505940808D9F06D51DBD3F4868F8D2C36E6EB9F3FFF9DF31FB74B76F3D592EBFB0566DAD4C76F1BFFB1CC4CF69D5A429FB1CC78D2D03415129090D20DFC30F0FD2A6B86CFAFBEB4FA77F38FCD7F7B27F8876F1E3E6E0D251E78CBE1DBCD43B3B9FE8ABD0280E2729643026E1840A12179D3D17D632BE5DA397140FCB7B9132B5FA95CA8ACBFEA02BF0EDF1718D83B705C4B187BDE78E4704EA2AE864C80A09D17B906FC30C44026611E9E184D7EF3A593B7AD7BEB7B073178B213FE57C580ECBB7FDF070B07FA7EA5902A648EEFB929363332984AC5B518A55C91528231B0B57AD379FAF42BD60BE6DC2F240752779EF9F2E95F5F3DB5FA4AAFB8FB527DE9BBF71F49CC8C14D3568C1A049C4A007E28C2E54ACD796EEE5CF264727E2A3391BDEFCC974F7F78F5D46A57F7EB9F0B0CEE1FDC3BF12313BF65A6AD23BB06A6F49B26A7ACC1BE4C3CA6511D10E012A2EEBAC1F9E5B5ECF3E7CE0E9A79EBDEC26CDF174E7FF9D4EF37579BF55E686467F2EFEC4FF75937EF1E1DA8DA654849B76C27B884AE01374F8FF55DAA54A3E2DEE21B2A172AAFE7437E4821359A3E5648658DA16232ED864D08D93931CEA5C478B190662C6A3C71EAC95B0E4E1D7C6D0DC8DEB7EDFD40DFA1E2478E8C1FD0EEBFFDD661C3084C2F68228804242400020268035935F3CEBB0E67764DF4573EFFDDEFDDB4E7FEBD7FCA19FFB9D2D9D2A5ED70EFBB7FDF07FB0E167FE3C8F801FD81E3B78E6886677841037EC821DB6B2725C498E88F19534347730716862A0F7EF7C9FD7BEEDFFB27CC8BFE45F94265E99F2ADF6B0D53774EDD3B72E7E8EF155285FC8FDE7E77767A245BE0D22661E842B4DC0FA884A03F4B63237DE399A37BC6A2274E9E5DFDAE7AE23D877EE2F0C4C9074FFC4AE54265AD130D336DEA7A5ADF33DE5FD4A91AA9DC97E8A44611E328A412094BD5B4447FF208147C1AAFA79B7EE840D1141829632C6DC5154A991A469DC71D00981088E99A11D33475B1B430D98DC6D6CB508F30B86F706FDFC1E2AF1E1ADBAFBDE79E6393915C376B76152113E00210824008800BC00B196CB7815D43F9DCBBEE3A3A188B1B63B36FDAFD9B7A4257B6C23D7470E8A6C281BEFFEEC8C401FD3DF71E9B0CE5BA51B7EB8898006FE31502605CC20D42D86E1D3343B9DC3BEFBC79C0B48CF1D9B7EEFEB0666AFFACF721870E0EED1DBD6BECF7C7FA46F33F7FFF03A363436A5FCD59264DD741C8041893605C8231013F6468B836A470B57B0E4D8FFCE89DB7E4E359EBE6BDF7EFFB83443E6175A2A3599AA5EA6ADC345585F1A83D2672DB4748805242344215CDD28B0ADD72885E871F02200A554024E182771D772E24B894E042B45F86D60DFF0D1B104551307CDBC8BFCEA7F399B71D3B32D2F0576818B53C0321E5360FD0747D8CF5E59247774DA5CD9C79F7D8D1B1FBAEC5ADE91A193B3EF6CB7DE9BED45B8F1D196D78CB3DE1B65BB85387A7C7926621F686E1C3C377DEA87CAF359869D31CBF6BFCB7F3A97CEE03F7BD7194D04AACE1D89092424A6C29A3942D83693B0E768F14F36F3CB23F676463B7CDBE79F6973B1213682552C4767DB7C5235A31B294E29FB5117E1DB6072E3822275A6BBA36F7A250486CAD571B0F6FD78BD49B1E0F18170923B1D28DC60D1B90CC7866DC2CC48EDD32BBC752B5C008220681560CD5E91190082286BDA3837D49C3D4F3BB0AEF56B4AB57B8BEDD7DFBF48C71CBED7BF627A9E2EA01133DE1E6900819C79EB1A1625C37627D7B8BEFBA51F95E6B98BE67FAFDB14CE2F03B8EDD9157D466CC0D424890EE324A090EC0F103EC9B182EEC1AEA37D293D99F18BA69687F379A12B8B2CA747ADA86060008E8EB671D7E588103F672E385AAED448BEB1587520AD661DC258030E2B8B0B4DE14440647668EBCD08DC40D1B90DC64EEE6B815CF8C0F15328E6F77F10EAE7E18E788C50C3A904EC78C8CB92F3990ECDB8C3B3B95BD2B69A5921343F98CED3BE86639AFC22D3892564C2926938691366FB2F256E246657CAD20914FC433D3D9F7EF1D99D246FB93F9A6B7B3FEDBF0101817B879D7F880A9E9A9E19B873FD88DAE0420D01DF786917ADD72FCF04365AEF26814B2D5274E9C29397E004AB6D0B3F6824129C5FCFCAA3CB3B65ACDC432F37B46F63CDD0DFF0D1B907831BE2F1D8F6B31433143C6C085E8F961420004182C64E28AA6147213B9231B78154D41BC3F716C2857504D939A11E33BC3CD058842908DC7636A4CED4B0FA4276E54C6D70AFA0FF4DFAD5BC6F8A1D9E9AC1B342004D9918C5C0870291032866C2A698CE4B2A6554CDC951BCF0D7424DC8E6FBB3D428A761CFCBA09F96187F27C79B572A6F4578BD57AF48DEF9D58B46D0F845280B446570220948000B8707E15DF7DE9CCA580F070EDC5953FE70E77BAE1BFA15D184553A0278DF194955008950A8B6E40D188405F2E1D3755CDCC8E658F03781800D2C3E9613DA9EF1AEB1F3099082EC7653B014A2592F198418912B3FAAC09002F6DD52E914F249203C96C1444DC5EB7D7FCBACF764247B33424FB9245336D9A4EC971ED925DE261E7ED0A4553909FC93F30982DEA7DB978DA0D2A00E80DCE55094D55303954CC9E5B2FB903370DBCA572A1F2F1ED5B4B300130D1999824AD300600B64BDB27F2092BDE17CF0120CDF566D52DBB3B2EE2D313BA92EA4F15F5B8AE3965C7B6D7EC4AAFD5C5897C2266F55985A011D4EB4BF546A7B666C6D4CDB899B572962EB9845DB66DBFEE577BADB255740556D64AC532B1A4666A34B003EE37FD9ABD66BB3D21D802D243E99C9932E3F5C5FA8ADFECCC88666A30D3662E914FC48942E0565CCFB7FD8A5FF7452FB44E7DF9D45F1D4A1A336704DE5BA9DBE7F64F8C0CF4E7D39661681042C2757C5C5A2ED9A71696573DCA5975BEFAD773DF9C7B103DE4CE6FC880C4D2B198626A839944429592838BEEDB43D74224059289989AB1625AB3103F62264DC36FFA41763C7BD4B2ACDC602197F0C200AD84F0CE66572404129669A8946A56363EB1F96F8AA660F4B6D1FB0AB38507D494B64737F5B41452309FAFB86BCE630B4F5EFA6479BEDC31799428245263C7C7DE9F1C4EDEABC5F511AA2A060FB9C7DCE892BDD4FCC685272EFCFD7655B185E9C28491338FEE1E9DB0840CE88DC8B71942C63150C8C4D331530BC6736FD34CED9391BFF52C9440CB5D1502DB5A0600202DB7566EC1D6D82DA3B714F7F7FFB896360EA8869A054058C0EAAC19BEBC7E6AFDEFE71F9BFF6E379E0B3385D1E1C3C3EF37FBCC635ADC18A00A5545C89DD00ECFD7E76B0F5F78F2C2E7FCFAD6936AF8D0F0CD838706DFA7658CFDAAA114C0E1D8CBCD872F3E71F113E573AD71D34C0D85E9C2AECC78E636ABCF3AAC26B4295557738AAEEA9052F290BB91172D0765FF44ED52ED5BAB27579FF09BFE557D66A64DAD6FA6EFE6CC78E6B8998FDDA4C7F561AAD2045128154C70C9443DB4837977DD7D7AF5E4EAD74B674B17BAC96DA64D75FCB6F177A5C6526F5393C6A4A62B09E18B85E5E796FE6CEED1B9AF6D6E6BE52CBDB8BB782C3D9EB9D348EBFB94983EA4E94A0C84101E719F876C3DA885679B0BF5274A73A5EFD42ED5CADBD10DDD903FF7A9E73EB2FFDDFB17E574FE67BFFADC8B359D52C3503455020858143120D4748DAD3CBBF45F4E7DF9D4DF68446B57AB76861B322066D62A6A8692CFA4927AC8593BE1B6C349200155A1286633D64ABD3E969FCEEF5E7C6EF185CC78F6CE7C2A6B24137ADC0D1C901B89B23860C60C555714C5CC9893505ABF4BF627737B1FD8FB51AB3F7EDF486ED8981C1831E2315D6382C9954A79646EE9E2C1EC44F61D17BF75E17F3AF7D8B947B642DDBFA77FCFEC5B67FF172B95D83B3B38A90D150A06A5920611E397D657262FF62DDD9E9BCABFEBDC37E77E6BF1F9C5EB3C9FC2EEC23B92F1646E62B82FE3064ECBC3FAA7840A1C300C9D8C16F3899AE3EC2DEE1D38B8F8ECA567AF6D4680767EA315FE74322052A0CD579B44C4A1999AB2FF5DFB7F2D3D99F9407FBA3F3E333C6EA42C53171068B876F4CAD2C5D9C460F24DF9A9FCA75FFCEC8BBF1FBAE196DEDCEEFB76BFA3FFE6810FA712A9815D43537A219B32082471C3905F585D9A5A2CAEDE5D982D3CF0CAC3A77F7BED6C697EE33DDDD2D57D3FBAEFDFA527331FE84B1513BB86C78D74C2D2972AABC1A9F8FC686230F9F6F2E9D2DF465EB4909BCDBDD7489B07135632D59F2EE8C54C4E4D25E22A81A420127EC878A95E9D5DAAAC1FAFCDD67F72E4B6D197D74EAC7E72FEBBF30F59592B3F7C74F85DA9F1D43BCC646C2697CCC607B245B590CE6A314355A49444404ADB75D94AB5BC6FB5BAFEE6FCAEC2CF37171B0F5F7CE2E29F97CF9597B792BB38531C9C7ECBF4EFC6B2D61D93C5716DBC7FD05454495F9A3F5B502CF53F67C7B35F3CF7AD737FE4D6DCEAF8D1F1F7E4F6E6DE67A662B3F9642E3694EBD7F2E9B4A6AB8A22A544C8B9A836EAD36BF5CA2DA589CA8F0D1D1D5E6E2CD41F3AFFE8F9BFAC2FD7B73B2E4F4010E38CA13F3BA0EC1A1D37E3966108215069D6FD572E5DE44DAFC954434DB695A327A5BC210312CFC746354D4F24AD981E45515797785B20127DB95442BBA426D223995BCB73E5137AC638385C286A128C3221416E60720908E89A4A4C5555CC9439A2691AB4B4163BF8DE837F982CA48EDF77F8CEC4D4585F1F97AE1AF1108410CC4E14B0677AA8F98DA79E05FD91C9FF1C85D12F5E7AFAD2939BF1E6C673C5DDF7EFFEA3BE7CDFD4DB8FDD53C865B46CC05D08C14109C59E997E2CAC8D541E7DE6B97DBBDFB1E74F01FCC2E2F38B972BF9CCB469A4C6326F1A2F0E6931935A75270221DBFB891B53BC6B0F1081D1FEBECCE94BCBF581FDFD0F6C6540368009D975BC28B99295975248CDD470F0BD077F333D91F9A93BF6DC6A1CDE333520E1EA110F2121A12859EC9F198D9E3A757AF92572FE4307DF73507FFED3CFFF8F5178B513B1FBBEDD6F1F3C36F47BB3FDD3D68F1C3D3A60C67822601EA414A054C1BE994139B7B05CFACE0B2F1EDFF7EE037FCA3FF3C2BF285FA8AC69BA8683EF39F85BA9F1F4078EEFB9553FB27B6A5012578F4488B1D159EC991A6D3E7FE69CFE4ACCF815C69918EF1B8D1D9898890FF66753A641631211E52282902D8F9F5205940C200CF7840B6BE5DA4BE7E62C2DAEED2BEC2AFC98D4D09FCEA4A7A70726B43D1393C9622E9952556E7019820B0E090902024A7300C664C30E9D53172E9A27E3E77E323592BE77E1F14BFFF3DCB7E6BEBA59EEF4503ABBE79D7BFE38954A1D7CEBADF7A687079285503854088ED1A15BD9897397569ED3CFFC582C6F1D148C378D9479D3ECE0B471D3F44CAA2F97482B0AD3998CC0056B8F0F05A57DE09CF24AC3699E3C3F1F7B2576F1175343A937CD7F6BFE772F3E75F1B1CDF4754BA707DF7BF03FA6C7B23F7EF7BE5BCD9B764D0C0AB85AC80300C02E258F437B2682274EBEBC745ABBF0DF1F500F144E7FF6F4EFF67252FF860C8895B3A64CC33062A66E06DC83EC2912BB1E2248A4927133A6EB5AA23F71B8B8A778D8B48CC1C1BE42DC0B5B7825768E5C4802A25058A6A95143295A59CB1ABF7DFCE7AC7CE2F8FDB7BF2153ECD3FB4ACD4B90925C71D3A444DC3492F7DE7A93FE95EF3E7B61F2EEC98F542F543FB8F95CCDD8F1B17F9D4826A6EE3F7E6FBF6E7AA9B5FA3A08A19BCCB5445F26967BC3ED87CCAF7EF7593275EFF4EF942F943FE4D77C0F00060E0C1C3392C6CCCCD868D20D1C4849203B755E8F16249412E994A5E79309C31F0CEF490FA533F5A5EB5722215BF7BA740B6124C1E524AA88843B71E7D4DB93E3A99FB867FFEDE64DBB8747CBCD4B10029BFA0E20946847F74D8E311E2D9C02DE377EE7F85367BF71F6C10D9CF9A9FCF0C0D181DF98294E596FBBF3B6899AB7A236EBE155FD4700323E98ED83B24F7FF4A997E4F41B677EADFC174FFE0FE3778CBF3D31967ADF3DFB8F9937ED19192D3736D19780AEABC9BB8EEC4DCE8E8FD41069C1D850BE10B0A6E28525384D0E805CEF8E4B0942893E548C1787076E299CB9B8B4FAC2E9B3B74F0D8C9B0767667389A492F6C3061AC13284D7321A20E4CA58B77E1045551337EF9D484C8C149BDF79F60542EFA6FF9B99363F7AE2F3273E07B4EAA566EF9BFDB756227EE89D77DD974FA64476ADBED0F2AC094008510F4C0F8F8CF4179A8FBF7092F010FC9EC3B7F6150BB1BC1BD648DD5B8690D8927F102896A565EE38BC3B333D3A50FBF6F32F12E54DEA1FAB86FA1BE7BE73EEE18DA6E3C7C7DF951A4BBFF70D878EC7F74EF70F971A975AAF6FD27DAA28C6ED07672785641739173F3979D7E4E38289AFA10BDC90013132C6643C66A9AAA6687ED0259EEE00444AE8BA865C226154528DD9E15B467F3A6926D44CDA4AF8611DB24BDDFEF620A02A0AE2A6A11320367468E8CEE458EA9D0727F6E88582D1B7DE5805DD10FDF2E424F08200314D330E4C8F159FF45FC1E41D93EF7DF1C117FF1200F253F9B1E448EAED0727F71ABA15A56A760314CA35939BC0F17D244DC3DA37359A7B263C7760F8D0F09BE61E997B08000AB385070AC95CAC2F9BCCD87E199D36C12825B0EB1EFC288AFA0A298DF34E56444055158CF417D22BB5C670716FF147EA4BF5CF5DD5846C24517BF4408484101066D24815F7F7FDCC44614CDF333334B2525B04D9C8AE6D46C3053CCFC79EC9E1E1C5B5D2F9C19B867E7AE1A9852F6D2408476F1DFDC98495E8BFE3C8C1C1B2B3A432C6B155F2B8E9BAE8CFA6D3E3037D7618466F18BB656C7F7E77FEFD1385117DCFCCF0C84A75B11DD692CBEFF2304210D6908AEB194521586B2CA0E5B1D32B7D7C9DC804E000E31E008F4E0EE706A787EECD1B9AAADB41056B8D0874830EC8B63878C4104475C40C3DF986DB0FC51EF9DE0BF3E420F96DA7E494E61F9FFF76663C33660DC6DF76F3EC7E239E92D972B37C8DEE4934DD260C5D4BBEF1B6C3719D5A9C495B5B69945BFAD5813624C083085E50433A6964DE7CFC88F5C853CF5F20F74CFC1E67BC79E1890B8F9969D328EC2DFCD464714C9B992C0E2DD716B7D47DCE3884F0B16F7264646165FDBC7278F0670DCBF826D0F910C3CE120C6D827ADC184F5A96222194A8BDA578230F13AD02B17C3695503425AF27D4BBFAF3059552A9879CDF30DE8D6228CB320D4828FDFBFBDF6FC462D9C9D1C1DCC641B2EDDE0BA208C57C2693B2625A66327BBF99343500183830F0966422999F1C1D2CD4ED1AA424DBE30819F2A954D6D4343D3F95BF1B0072E3B981583E76FBF4F098C964A8B22EFD2620512AD5A3F9B5F55541B6A3758566C438FAF2999465687A6157F11D9A797D15B29400EBA5FF84006FDD5CC654531B5574656CD7C458AAE1570897D896879073A89492FE4C26A926B4A9DC646E1600CCA4A9C78AF13BA686C60CAA45712F0CDBC54BDBCB3290CBE6154A8CB163E3FF52B3F489D9F1B16423A8B6E95FFBAE0497801785B07D174212886DF9DC4257A484E37BB0838ABEDE5C851FB1F6F86EC7E3D5EF0B09786108C1987ADBA1DDE3C9B8151FBF73E22356CE8A65C7B2872CD3CA0E0F167235BBBA8DEE017E14C10D6C5AF556B5A6E7B4DBF54EDF0D7C1021F46387F68E27E25672F2AEC9DFB47296951DCE4E1A49736A666C34D9F0AA4474D0DB907368AA4A07B3D984876057D92F4F7433093BF240A490400209CDD20652F184CA046B0B70E3494001209D4AC40D55D71DCFF587FAFB5341E4814B5C8E596F042421304DC35028550415875396A52ABA8CF95BE7F6AE02455550CC661275C799C94DE60E2C9D587A363194BC7B20D7A7A9BAB46C878176C850132AA128946A84AA46D21C537405FDFBFBDF148F278AA383FD193B68824BA053EC270054EAB6B7DCAC963D160D5121BB96841AA6468A998CE5F8C1E1DC646ED7EACB579F489690ED3A9CCE895B4A5A930F12420A9134349D9A966A79A1DF2E71DFFE5D49082C5DB754A258F1BEF82E002753C3A9413DA60DA4D309D30D9D5628D5417649005D530D952844A6F43B08A862C655CB0BBCAEF43724FD27C10DEA1D17029AA26A7B27478B4F7B67E5F8B1F1F7A9861AB762A64A146E043BB900EB06E61417117445D5F74D8D159F3E79568EDD3AF6DED00D57628619EB7DFC004B372C3FF4E3A72E9E9A39307160AE13CD9D19102E912824FA3553CB25E2713D88C23643377E5C4248013366D044DC4C449CF9B94C32E504F68DF4DFD578C1A19B9AAAA9AAEE05814B1442231151DE03BF920814F2E9F4FCF26AAD30537843E886CB66CADC33DC3F10F322B7B54BD16917141251C421B82444216A229FD09223A9B70DE5FB35DDA4F1BADD25794A80C88F506BDAB6ED787EADE9B9192B96103DD46FF4F765B30BEBA5E6C0FE81776C362004AD5599898D1A8FED0510906052B64F53B7928E920885F1ADB776AFE64100926CF8FE49005074254515AA5195282167E05DE6A7688550848050C9A5A2A88470C90984BCE17CDBF70B8464C867D3E954DCAAE6670B0F846EF08A84E491E05DFBFDD5A25FC8A6D3E98455F5660B3F5ABF54FF3A2411029C8A9EC64F42029402346251D72AEE9D19102911CFC7C7744D8B5B31DD0859D47535EB05144A914E5849851A4D4DA396EBB11BDBBEDD044412A8AA420C4D33FC30743CDF674DDF651A217A37CF86488244C2D21331534F0DA78F6996262DC34A1472E994EBD7D112797B991542613B3E22C1B957712F26FA137BACACB56F627824E1864DD2CDFB50148A7AC34533F09B820B59AED51BE9782CC14477BE53A9B819B7627A662C735F229FF8DFEDB2ED6DFCBD95036957027750640A7AE54466FB4D2E5AD73374CBCC2B84825F497CCB4D3F2120C0F906FDED8112BAB98D2400115202E2CA21BF7FCEA02A14F9742A55AED6873553A582CB7023647FAD0DC806FD42269D2A95EAC3A9E1D441C945B8A3F1BB7C0E8A74EDEC9D25510910CFC5A70CC330345D33021674361D9B32BDB29535DEB28D04904CC513B94C22E7739F302141C8164AD6CAF6B7DED90EDF655609A442619A5AACEE00BE1FB0E552A93ED2D7D7B7514ADF896F9550E4739964B9D6184FC492A3C56C81521596EF3350DAD9B8490EAC976A1E8788EC75FBD9FC4CFECD99542691CD263375BF848EDBECB235636A753B0C58E42994EAEBE55A6374B07FA827BE158A622E936A38EE64FF81FE3BED47ECCB5B8AB25DCACEBAD4815081EB2679CB23115D1550B68F8C5F0B1B75284CC836FDED810A5C171673D92A80DB49B84CDA32CA0D25BB81B9DB7341C406B4C7CF320C8B106242C841009C4BD9B5DF37E32084B41FB44F678B9E659002B04C3341151A3352E66E2925DFC9F8EDA48F776440A84A61A48D09CBB41442A1858C8390ED27132140E88790524AC3D4C9767AC30447369F35D356AEBFE155DB8BFB164A4880C00E004AA46168DBE26B818442094CC334D11A53B9B0B8562AE4B20522BA9B564105B2E9644A57B598EB7BC1D0C040CA0DDD56FCDE6147845202CFF1B05AAE5618636B4123389599CEFD3763C5612392811E31D1B5CF78C451AD351C09E982CB8546DDD9E30441A811AA7759BC21A440369B4AEBCB6B95C274E1FEB947E6BEBAD19552B6AE038878E7CA614ADB49D4ABF0B6BD906E2E3024F8968D0864BB8C9E75DC5102285A6D3673C0DB9E6E2FCA4D00108540300EC896DE4AB993F047B6262F25905C5EFEBC45D70ADE8DB7890451A8A612A246903A0070DE5DEECBB4298164024EDD45143161254C6AC6CD9EBD2F0109AA28AA42A9CA3837A040EE68FC76106AF56E4024A01A2A64528EC76396C204A74C0874FA74085528EC862B1C16D44786FAB38CF3ED9C10504248D529EB426EADDC122DD77E7DB51A24F3A94037B414EF309B2400100AC3D44D42884208CED76BF664B9D668E4D2A934E7A263177109E831434D24AD2417F0329964DAF66B9B8B00B6E69150ACAFD598C723B7B1D8F83AD56821998E4F0E0E14D30DCF06974027CB472841E88668B89ECB3CB6B4F2D2CA9F8E1C1BFD837AD37172A9A4DE49E60DBE35D35052492B161483DBF213F901AFE1355AFCC9CBBB5FB483F412E4F2846D73D5BE70A6BB0282B4CAE5AF434FDAB91521D04D06B991C46DBF076C9CC6EEBE8202ADD5BBBA5895AB6BE56AC479D8D7974DF50F153A5EBA749976FB7D117194562ABCD1683674435706860A29236640C8CE7A03008200ADD31DB4F52FE0F2EE56D789490844C070716EC95DAB56970581D4A842A7A74787B2F994297A3836D2A22F49DB0EEA0021BD8E9F246D0FA4476FAD670322858416D7528891FE78CCD202619CF11200002000494441541EB5CE556C156AB4811020889828556AE5E240210321B65DF939D0D1452368ADFCE56ABDA926CC309EB052ADB8AE03CF00345DD3555549D825FB65D554D5E5D55221994CA4D1E55DA0953C4C26E35953B51CA2C20A3D06DAD17B2088BC106BA56A05906EE56CE5A1DCEEDC4F17B3455D339454AD194021B4235D4A28EA0D47062C7208259E9ED00D1171A7526B3453A96456F4C437453693C9546B4DBB7F7FFF5BCF7DFBDC5F03AD9D9DA8AD489DA601416BAB6FB3B271D99AFCDD14509056DBADB0732911F5604008DA21D4263DE69757D0CE0C104A515FABCBB3E72E9E8B08AB114278FD82ADD3983A95CF6652B24BFF91F6CFC5F995E0D2EACA59A2122E6A42360237B57BD7E4042594C82E23402E17E2B541B642C05E72209452AC2D57D852797D9E3171C959B39F4FF4278E9DBBB810EE4FCDCEAAB455CEDE8DFEB52168AFE347806D3CC8ADA177032225CCB43908DDCFC6AC98E68711589793B2141261C844A361371DDFF74C45B7BABAA0DBFC991282C0F3613B6E3D1D8694A3A58C1D6379294075555355C5600153BC9AF7552B6DED6B3AAE6B1966575E886448675289CC6061B0E1D9A4B5FDD82179AA1054CB0DE9867ED32DBB4F477ED48C1713B78F0C0C598DA0FBFB1B3C379A8E133156D362DABEE19B863F1686915FAF34AB62448E4442D06E4A4824473C69C57543D372E3B9B7AEBCB4F210841452B6AF48ECB28A510944D7B8DBBC5D80D66DF8E836210C416B11E2BC8742B6761DCFE65657E8770F7FAAB5861351EE56E62A9FA89CAB7C65E2CE898FD5EB4E2697CFA522C6D0A9FF082160418852ADB60E8ACA85C72EFC5E229FD84F77A93FED45CC8E695AB2DB04A3D890F18A99E64222EAE63D1080728E7AB3D984AAB04BDF99FF8373DF3EF7959937CCBC77FCF8F86F87A1685243C96C9563BA8EFE8D8E9FDC59A27A470624968D8D0943C4555D3702E674DD53A6008230623C6451BD6137B46CCEEAB6FA6C8B4BA168D41D11B2A819F8415CF460D15B71AC02455155236E4C2D3EB3F897D989EC4FAE972AF191E1C19E78D163A62A349E777C179D526A84002C14582F55EBA008575E5EF9746A34754F3A99CA24B3C9ECBABD06D2E1FD0D9090181E1BD1672676EDDA2C9C4228021920E27EC71CCA0650454132994C7A8EBFABB8BB789B602290B275CD1D13E27282714B5968DB0369FD0F40CBF0456DAFA023DD6B57DF4DB031665D7761E8F5570E88CB2B68B7C9037029B94228B157ECC72F7EEFE2C9A1C3434B0A55F6832888B8B8BE2C7C13104A10B592B55272B976FEB1F35FCA8FE617F2BBF21FA452650CDBCB7799877608B6D1EA72057017DA2000910007049588BC8AB70000CD95E6390082125532297BA68F4DC7407A1E3FBABD07B915F46C400821881562D35CE71A51891178ACA31202AD52753F0C2300B2566DD433D9CCC08D1A102225EA0DDB91906110840617E8AE0C844052024555343DA10FBB3577ADB9D4FC861937DF9FEBCB872A51F46EEE2813027E18B6E97430960A855D73E0786E35F4C3B9E672F399E2C1E22F0D1406355F0466C479C7F06733F824D00319EAD7FE5E70B1B19477C5410124D2894C79BD522ACC161E202A81406B15EC6A40402E4FF22B2B68EBB2A65EE86EE765714840F66040D0AA98BD2A89BA2303D2E65D217A5B082AB1B10A77D1990DD95B7488666A202A315AEBBA6CD7D1F4328137F1495AC9ED6EB4370CC8E5EB2415A2020055A906500829DA1723F7D07F4260B30DDED9F8F53E477B36208AAA20968A4D44245205A4DE754210000C08A328A40A256EDD75FD280CA8A046B7497B1D2A42C0FC08AEE3352825320C4216092EB8681DCFEEFC2E85A2A9BAA2292923610C2F3EB3F8C9EC58F6816AB556C9E7F303BC874E05D0B5329008894AB9EA82225A3FBBFE0FB17C6C36914E4CF7F5155235A7D1BA45BE43BEA867E8B1EB8890507543332C33C6183BCC05174248CE640F1E487B12C94D3E0887EC3AF181F604DEC605165242F6E081105C3F497B3520A4553E7B9D7C52E2B2F7D38B01B9964A6B62B576627A9DC057F1DF83F1DA7050B732C03BA5BFD9806DE4357A1EBFD7220712898844241A8DC7124AC018E14262FB94689B6926C0221E1242481486DCB6DD66DC4A183B2D06A214706C0F218BEA8452258A188B98604C0A1D5D0EDC5122A16ABA4108315383A93DE7BE75EEB376D97E468BEBF724322901D1A35BD0010821081C1F8EED94B9E4A59597563E3F79F7E47FC8A5F306D1D5B45BF341E9B507EF5E6B90A084209E4EE69C865D422BFC95BDE44088BCDA0848B4DCEF5EAE6DA0578E361029250300CE78085CD946EE16C313796D9EA4758F67D483B12712D86E9E6CE4013ACEE1368F5B71C845EBE2EEAE390829AFAEB69557AE51E8E18E9E6DD7AA9DD0BF76ACF816BFDB0A48FB5C4CAFD0B30129D54BD9D5DA6AFF4C71B7E6B110DB167B6D304208A2888173CE09411512D2AE37F3663C5ED869184340D06C3A9E94DC572859128C0D32C62326A17773E70995A09A6A00448BF7C5A779C4B1766AED33C9BEE4EDCDA65D8DC79379718361D5151A14F54A3D04917EED62ED2B924B248AF13BFAFB066235BFA970B95143F0FD054208742B96D4743DC61DCFDE5C89DA2D07D22A3C02405AF92F2685601BC54C9D685209C5D2555996223F91BB757D38FDCDFC64FE380035A6596A256A4076F3402805E31CA27D4E8200570AE0BAD127AD4370D78A7795EC5D72201B9ECEB5AD443B71DF6D2C09DDB40DDD06DE630803D9A2B315EC88FE361E5C37D8C87FF50A3D1B9095CACA9017BA193316D39D68E3AED20E1E08250823060929837A702E74C36523199B0A396352C81DE55EB8CF11385E13423A958BF52F64C6D33F1FB128E204DD95511240A52A0851E299D804002C3EB7F88D912323679AD586A95BF17C371CDDF8636E00B76157880267E199854FF6EFEB7F5B2291C85BA96476A1B9D252C47FEAE19E1BE54FA1444FC472BEE3362E2731BBE58EDA6E7C3B454DA494328842C17BD8058100B4784C4B0F161242F07B0FBEFFE05145A1F15D23BB6354D392BE1342E952C94B00841113B29505F400C4B8943DC5F0A47DEBF8B5D0730823493BFF82EB8C9090120C3D4C60B4AED5BC6C80D11BED16A32D3A5B35EB9DBEBC42BFCDC3E5CBCCBB0001796D76612EAE5D1C0325165155C3F7DAD77D76A04300046124012902272CAD9D59FB4A6634FBBEC0F36D453532B2CB16F0653C0AE0393E98605EE84617D6CFAC3F9A194FFF5C144691D4B5963BD7890F02484A410851344B1F3233A6E6D7FCA074AEF4FF9A29738FEF794D553392F286CE58481085A259B38504B79D75F72967CD7965E68D33BF57C81635578656C81894EF7BF872050805B4443C474AD5052921372A41BB2D84ED6D4002108773A60741180985B694AB9B2C9C2199CB8DF467072C35225EDC4A184227D9F9EA02DD08113AF20C81300C3920052170416072D95B252721DB277199EC417672FD16F6066C18E04E95C81BFC5F1B66F0B6DC1DED0701D0A194BC77FAB8EEC02297DD2B908176F8FA5A8430F3ABF3533133A671023D609D0BAA80D681AC28629C1088C88F6AE557CACFB0BBA215DF713366C6C870D6DBAA4F41E0396EA850448DE5C6D3950B9579C1841B31C688A6758F8B49ABB2128AA269A65A88E7E205BFE62F2F3CB5F050FF9EE287DC462366E50BC91B0A3108200306A7DEAC690A0D975F5AFEEBF448FA8095B66633F9BEE49A5D6B97BEFF008F904A80689AA118464A4821851088BAAC8414A47D6E43525034C011777D37D0E2899EBC0000081D17BE16E50CCDC0BABB0AAFEE43B97C02B95B0C4F10F8610020925CAE4241BE5547D103EDB60772AD741200E33DC84E48BBD00ED8EC8210B42730EF2589492E1B90CDBB58A1101DAF81D860742B03B253FA5B257123D1BD8A96CAAD3DB8ED60271EC8643C9E5402C1352604BA78A1200288C2888180477E54B1CB7660979C17CC5C7C4A4D73C185E8544DBD81053212085DDFD608716B976A8F056EE0F388D7A320626ACC44247867B77063215515832A4A2A9E8F8F94CF9597EB4BF572F562ED61DD327E364C851EA0C476EA261050780D1710AC1EF8D1DCA5A72E7D6BCFDBF6FC723C1EB79846D3CDA6D776D77F40EE07D0AEE624504C3D2B259C8D5C42C71C88D85040A2308FAD492135DF71A660C55ACADB639180178570C3A03D3EA4EB213AA0C56B1871447EE812219BF69AFD726E2C77484881A8873272B427C066F56CA5165A87D922D9B98C9FC8AB77A03623D9A8A5E87A9A5B5C2F2B6BF77B37A5DFC80C5CD76A87F4378CCCE64A5ED643FF91F6454ABD247B811E0D48D36DD2F9D5F9E1583AA1785148784FD56A1C51C4229D8085CD700500AA97AADFCE8D67DFC1A2D0E15249764FC801911B4072E68451B4583A577A317223F08055388F44ABE4B9BBB0840052510C4260C632B14900DF0380A5E7963E53982AFC58D8B4E34A323DBCE3304672F8F5A66DA8345C7869FDC1C88F44BCCF3A645949AD197A5AABD4BEFB486C9CB8DC3948F4329B0901A4AA26244110F5B21341DBBB3004347402C76F067356CEBA3D8AA2404862ECD81EEE40384A01DFF14024774327BAD05C77E60A13058DB777327A5873C0AF31201BB0B10BD3E9FC56AB0C5C6E3989B9042229D14D4F08BD3E0CD8E0BF136DA0D5555C4AA85B48BA13FAAC6D02AF3220BDF6DFAB9D03B17DDBB083663CAF24A81B85ADEFC074A9699012109C3308847ECD5F0780CAF9CA1363B78C9614D74FC9583C29BBBAC304BEEB718D206C949DE7DDB2EB4201229FADF32812544AC98520DD1253ADEA42A96A422A562E96DFF87DE995D25C73B5F19D8CA93E80449C49B183C23A4AE03B01C0828A207475F199C5CF59194B331246112A551A41EB56B5AE095A4210DA3EA29A6DF770CCA205524A3561687A3A19EBA5A88C1002468826006DE3EB73DD92A89B94485B7B79EDE1BEA9C287A2A65D413C31881BCA17F5064C007ECD76632A8D5617AA8F86CDA00E4AE846FCDF75CF9D6C4A026EB859042D6D6D2712952EC5879B0EF26D5C4B4380D69D245C88EE897B103071F5ED631BBB309D6803ED797365D9D9684C3670EC88BE9497FB404809CE4577CFE2EA2474577BD3D384A18442210A02C1C00447C4BBC47284807301C9792421FDC00D4A0050BB545B722BDECB7A261896962539EFF0E57702080E302F700C8504E5F3956F01003810DAE18AE09C0B21582484D63D1622E05C10ADC5F3E5CB4239E7583EB1F2E9F440FA3EE1BA156E58C5AED765B579832008EB7660A94A50BD50F95A6DB1564AF6276354A1C4E72142AE8075EDA7D68FA066BB46E49D5635CDEC185BB4410ACE10080825714004A2FB9C520858C4891F86089556A97647371E04218BA04829A942B0F6CADAA9B1D2D863294D79ABD0F40054355E8B5D25A25078151B9405AB52A1EB0B4F2F3CD837D3770C90085804C6253A1E4524AD622BDE3E6311D48308002808633C82E00C8C0BC82EDBB82117002464C805F73928A50100EEB3403221D16DE123206011972AA42084A85C0A04AC3BEDD6EA0F882BDF3309018010E202E0010BC50EE8432190949250421A1E0B65D4A30166AD6CB50410746BDE9301C926B3FE607670EDA2BDCAA9A5B70A5AB6ED07094229223F001522648C95ED757B1568DD73D158697C373D9CBE9773E64502DB1EB12614603E03E1CC1642944A73A5A736FED65CB3E778C8180BBD804968A4933213403289C80F831825CC5E772E6CFEF3D2734B4F8E1E19792A6EAAF7305DCF4BD1E1AEC1AB788B80D02F1355692C3EB7F4F700E0577D3FB2A3552F703833D49E4205164420515457A81A2CBDB0FCB1D0F16BE86CF945A2983A5898CA7D4884911D499AEAECB5480014CC67DC25F50633B20382771E3F8022740396A484574AEEF9C88D70EEDBE7FEE4D0BB0FDE866A9D86C9D41451D5D606E5AB6447884210D61DA0D1588BC7D470E985E54FD417EBE5F4607A55443CA8BBF580438D7774AF29C0430EC9792089B49D8AB308006EDDBF14F81EE72CC6B994CAF6282408A188FC100601F79C702D7223780D6F8933DE709C4610E9B1AE2104A444E4858106C229A50BCC0F869BBE1D0A09B55382925082280840390F98E4D566A9B90C007ECD5FE2116F384E23EC4EBF15B8445E106894C8D0632FAA86BCC9F19A01876275EC3F0288884304916F688637333C73BEB3A03D1A105DD5E52DBB6E7DFAE5473F7EB7954A3B0C4A7CBB723F4200C90582BA1B665512D4569C17DD8A7BF95ABDD22BA56F0FDF345417AE9B605ACCC2365B528410044D5724293CAFE29F68AE34D736FE56BB587B4644BCC2EBCD38B7120974D812260A45607BD0A3B026555AAB5EA85EF5D1A5C88F44B36C3F9B2AA6EEE88F65FD0BF5725CE9E2041010044D972715EADAA5E6F7964EAE9E0480288C6473CD7E363190BC3B32029743B1B62D8B24AD64975F73784A81EB54DC132F3EF8E2DF7524DC86647FF2F1DCD8AD0FA069A7783C99EAA4508412447E00847E1D023561F90E23DAF6E3B7D1DEF3AA34A6FAB54BB5C70060F5E4EAE94B630B7F347EDBD86F916A6D3E885BE3D4342925E83EA13A00A1EDA5B6EA8036ECF5B4A9D49C92F3E899AF9FF9BF00A0325F391578E1A2DAB0D33C91CA75DAFE2784C26F384810E9F84DFF7C63A9B108008DA5C6F7FA77153FC07CAFC1A1653BE9AE880422C773132A8DD6571ACF014073A559F2ABDE6935618EF0B426440747882804A113400B831AA5F0179F5FFCAF8307067E0376B3C68CB885EDB6C1DB5E6D50735946217E73C539D95C6BD601A0BE5C2FFB35EFB49A3446795AE34242E94CDF871A04555553C20BCF5EF8ABE143431FA675BBCE13C96CC7FE535AFD678AA869A9F14BC399E18E172A033BF8ACC35B6F79EB831933B38A4A6D258A021149D9BEE360D303895048D8A5064C162C52421A0B4F2FFCED663CA5B9D259A76C7F4F6DFA8E8CC2702B3C9C009E1380786E59D79470FDCCDA439B3FBA5C5BAC2D562FD51ED6DCD08763D7422EC0700D1E29C148AB8644541B8DB8A17AF5E5C6D7ABF3D58B9BF9490EA6E3E9A1D49B0BD9014D52CD8A38BB5AA66B1F29E1071188EF557595FACB2FAD7E06FC0A6F8BCF2F3C28025EA2B5E64A148572CB7E92120C805D73A087DEB2AE517FF1D9854FF63A16CDD566637DBEF2A0E245215CA7120A713D0DD1A2118411825223B0285609A849ABCD8B51E8F3CB7C6D7EDAEDA372C34FAAB4E656BDE7564EAD3EB141F7E57F7CF96F2F3DB3F04726816B36EC73AC526FFA5ED03AA0075CC1D3A5FF36684552C2730338ABD5486F342F66626AD5AD7A4F3CF7F7CF7F78E3DBB876C976D6CEAC7F4E0958486C7B7DDBB106E0D61C28AEBB626A4AB47A72ED1F36BE11BC767AED3B91175E506A4E85B168DB318924E0569A3079B82A99A82CBDB4FA65A0E5392F3CBFF42912F280D61B8B216357E4BD46DF7C2F04AF36EDB8A1388DD5E6E3A7BF7AFA4BF6BAF3A466078EF43C3BE4F2FA7E92124C024EB90923F2975495BACB2FAD7C6AE38B2C57E88B80D61A4B216360B203FD4AD38EEB8AED949DC72F3C76E1B1CAC5EA3F2A018B60DBA54E73C5AE3B501C6735A6AB51E9ECFAFF133AA1DF4D17958F7EF4A33D296D2696697CF6A1CF357C6ADFAB05BCE947DC8A08544E5A5B64420A445E0456B5A3240B2EA5E246B8F4E2F21F9F7DE4EC1737E391428247E242FF4CDF3B1046A12F652AA294821008B4F6CB03C707EACD465657CB7EDD7BF2C4975EFE2F2C607C330EA7E4BCD0BFA7789721A515FAA1F4252C4E5AD7C90948B088236A78501BCD72D650D779C8CE9DF8FCC95F77ABAEB3999FA9BB26DF5B9C2ABEB76F74AAF87269292665EBFDED1F82A8E9CAA460ABCC0D5F7CF9CBA7FE9005578A5ADCAA57D7138657184ADD25BDA0E9331167942892B6162D0120E21C61C541CC75963396E1AECF953F7DFAE1337FD9CB6D5B1B60AFD82F15F7F5DF614A990822460342629202B2DD8F9110886C1FB2DAB0338A5CA452AE572ED53E9D4CC7F691207483909921A0F1769F73C611D93E48ADD948AB7249A54AFDD43F9EFA0FD58BD5ABBEF5BA7E66FD6945552F658792FB6314447A9E1D79118938D7991484CB2B63B0C1CBC6C3A500631C2C64608E0FD1743DDD714B6905EB96A9354AE7CA9F7AE9B32FFDA6BD6E3736D36CAE364FF64DF71DB2345A8CBC800752C63921578D7558776038CE4AD6D29BCD35FB2B27BE70E28F78BB222C74C25035B5666134F346E9878E2F6492514241AFF0173186B0624B2BF41752961E2EBFB4F267F38F9DBFFC65367BC59E4F0FA70BE9B4B98FBB81EB7191E0045492F64D6B4C206AFA20F5663DA791151EF18B273E7FF2C36EC56D0476F072FFAEE27D1AE334082335004C8E36FF52220A19C29ACDADC05B4C5B46B07EB6F4F1330F9FF9D4667D68D3CFA733E67EE185AEC745820154D2CDF43D909A5DCB696445307EE9C4174E7ED85EB7EBEEBA7B323F953F6469B410F921F705E297E78A94608C23AC39D2749CD5ACA5376B2BF56F9EFAFCE9FFF5DFFCD2BF11E94CBAA31EF66C408410F8D8473EF6F25A7DBD561CCB1F8E4911C20F5DE1064C3841481CCF3382A09A514839A6A9F6CAE9D5FF7AF20B27FF8C6FF12D8CE66A73DD4819CDC250E64E25089BCC0F65E485947B3E27B6EBC4C2B09433B53A0FD9FC892F9CFCF7F5C57AE95A1C4133F09D8AF7647634BB2F1953338A1F36841744D20D9970FC4075BD6642B2F54C4CB7432778F1C4E74FFE5A69AE7495F761A6CDD8CC1BA63F3A3C3C365851E8D04AA30C4268FBBB255B3C681523294DA79931D4DAF289953F5F7E71F9B96B792B9D2DBD68244D2F3F9C3E6432E67337F4991F12EE8552B83E536CB791926C2565196E6DA9F6F9971E7AE97742A7870FD66C82D00B43AFEA3D5D98CA1F4DA8340ECF73429F11EE8510ED7E8C47E17AD6546B4490E5B38FCC7DF4E52FBEFC377A5C2FE50653872C48417DDF91AE1F52DFF715D7B7139C9532A6DA10219F3FF3F5573EB2F0CCC2F7B6A25D3E5F3E535F683CAC270C924C9BF9B84AA51E454DC50F6CE28781F04226FC90732F94C20BB8F0022E3D3F82ED7BAAEB378D20A826242BA7555A8D294AD9AFBADF9DFBCEB9DF3DF9C5937F137AD77C5017000B18AB5EAC7E3B3791DF958EEB4525089AC20D23E9060C4E10A8AED74881AFA562BADB5CB3BFF6C2675FF88857F3BCCD382A172BA71385A4CCF5250EAB6164732FE0911711E60542B87EA4DA6E2345C44AD2D283D25CF953271E3AF1877C5349AA9412A5B9D2775283E95C3667CD6861644B2F0CC5157DB3E33C5CCF985A83056CEEC443277EB534573A07006EC56D044EF86C6E3C7B34A15283FABE2DBC9071378888E3F9BAE7D7D28A282562BA5B3A57FEBB17FEE185DF67E1D595966DFADF4DF6A73299BC35ABB7E807C20DB868F5811DE7D17A26A63559C05E39F1E0895F5D3FB37EB6AD2B51F562F55BB989DCBE745CEB5382B021DC80493764C2F503CDF51A29C2D7DBFDF7CDE7FFE1C55F8FEAA1F32BBFFA2B48A73B1B10D2EBAAC718C36DB7DE86679F7B1643370DED1FBD65F46753C5F8CD8AA6E640880A800B266A6ED53D71F199858F5F7CF2C2E3DD704EDF3DFD96F16363BFAC5BFAA410D200004A49282256AEAF34BF7BF61B737F529E2F2F76C291C827CCC9BB273F5898CABF438FE923849218002285F4422F5C2ACD95FFF1FC77CE7FDC2ED9CEB5EFCEDE37FB9EE93BA6FED3E8CC4DFD4FAE5DCC311E762EF4A10451334021F02EC40839FBF8C79F7C5F73B959DDAEF9D86D6347C76F19FB57F1AC750494A484900A2100A12488FC6869F9C4CADFBEF2B5573E1EF9D10D97AA66863399E97BA67F393F997B2B55695E70A9820094924844AC545B6E3E32F7E8DC9F97CF951736DEE9DFD33F3376DBD88792C5C4ADBAA9E541A048812874C3E5EA62ED5BF3DF99FF446DB1B6DE13FDD14C7FFF9EFEBBB2A399E356CEDAA5E95A9128C402812684545ABB35048412410006297D1EB1AA5BF3CE3796ED674B73A5474AAF944E5EFB21EEADC04C9BEAECBDB3EF2FCCE4DFA3C7F4D1F658430AE9865E7869F5F4DA3F9CFDC6D94F856EB86D7F4EDF3DFD96D15B46FE951937662481258524841249408228882E2CBDB8FCF1335F3DF399AD163E0050340513C727DE3A7278F80366C298250A4D02A090328802B6565BA87F7DEED1B9FFBBB6582B5FD757C399FCF43DD33F971E49BD41D3B57E428901404A2E9ABE1D9C5D7A69F96FCF7DEBDC97B6A3BD5986A183431FB0D2E6AE4DF4FD3060ABF585FAD7E61E9DFB8BDA62ED3ABD34D3A6317BEFEC4F1666F2EFDC3457A494D20DECE0E2EAE9B5CFCE3D32F777A11B72CBB270EAD4298C8E8E76E4656706E4B6DBF0ECB3577290E9C1742E3D9C9EB27256D2ADBAAEBD6ACFD717EBAB9CF7FE05AE4421112BCC148EA60653BBA942696DB176BEB6507BB176A9B6DA33120066DAD45283A9C964313940554A1A4B8DD5FA72FDBC5FF7B7DC8A32D3A67ECB876EF9FFDABBB7DFB6A9380EE03FC797388E1D3B09ADD3DB68B34E2AA38247D0241E8057F807F6D23F807F00FE0184F81F78AA049318AF20249E260DA149D015C6A8BAD15B9AC6499326BEC43EF639F6E1616B87186DD256EAD2FA7CA4F316E7FC9428DF1C5BE7F2CDEB73736F3B9A5EFDD3DAE224E1E467CA9402F05D379891F95AEBC9FE572B7756BE1C5497288950AA96E60B138545D5542B318AB16339EBED8DF643AFF5E2E0EEF32ACF96278D6BC65BDAB8760D00A8DB72B73A9B9DDF4FFA1CD5B2AA6AA636C5099C4C22E23A0D6717D9283A6B0D4A59C9A963EAA4525426B36A765CCA494656CB0A04131A740337C671DBEFF856BFDDDFB51BF6B1C13BC8D1776D6A150000B7E9369C86B3896C34D4284ED664A134575A34A68D3795A2A2F93DDFF79ADEFAC1CEC1AAD7F282C1EF00202A22E813FA8C5A51AF895951F49A5EC7B5DC0DAFF3F21FD57FA96535AF55B4AA6AAA651C62E2595ECD6ED8DBD81F1CA247FDCB22E8D3FA8C6A1EF5DF7EDEBF3FE85A5997257D42AF16260B664212EAB5BC3DBB6E6F22171DFD702F24402EB31B1FDEF8F8FAADB92F26AB8BE6CFADED32C678C042270E4880613C08EA2559ACAFDC5DBDDD5C6B0E7C4ACD3097D1B00172BA83A5AE08D990C5CA4DF376D118932C1C169DC00789174E9ED3C0016402447449F06DCBB9DF7ED266E1C1A45E2A03A4B250B9953794C5AC31A6AF357732DCBF8EF3FB5F1C0009098C27F181208841E391F5ED696ED318E6AA4A658014678DF71455CBED6154EC057D9079E1D91115C7C9700041488B59C1F57BC1A3FAC3FA838BAB966146D7B9F703BD6C7891074597E7A92809BB7D5B38DCAF323EAE510A6144A04088AD4862D4FCAB7934418961D22E8D23102EC3F102A211E7E1E4F904A7E3471F14384882105E93F82E0EA2EDFAEADE8F17572AC38CB6D405489CC434F4A35D192112721C25097034737C80C47102454CFA85BC821B8F9BDFBB2DD7BBC0721966A4A5EE16066280EE4EF71711C7D8885F5D60E20000013649444154492F84C373575F6E1800481FC194C4EFD398EED77EAB7DF7AACB67985192BE000180C61FD64F818DD6A670D22E528CBC3881089E2D063C6C1107E07B086669DC2AA972B4F7D8FABAB3D1D97BD5B533CC28496580781DCF7B7AEFEFCFA584731639BE56C5D141068514610C0813402106707CBA40E3E6AC91B7DDFDFEFDC3E5E50CC3BC70AA6720DDEE99671F8F9CDAAFB50756C7FAE4E6076F7C66EAB98532647A8808324E80E781C67981863C47A2ADF5FD7B6B77D63E852176676298ABC2F7FDA10E431B7A2A7B9224B0BCBC0CBD5EEFBCB58D044A29247102393D9797A6C48F569EAEBCBFD9DCB8EE04B6AACA5A30559EDE7967FEDD1FD02EBA4B1089337C2A076B4C4A653219585A5A8242A170E2EB860E903468741A46BD5D2F544A15DF2C996D9117075FC43029C60284619833FB0777085D285222220A0000000049454E44AE426082" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="20" />
+</IMAGES>
+</METADATA>
+<PLUGINDATA>
+<PLUGINDATARECORDS>
+<PLUGINDATARECORD PluginName="HTMLReport" Obj_id="-1" DataValue="nil">
+<PLUGINDATAPARAMS>
+<PLUGINDATAPARAM Value="SelectedTables=fgc_adver_annou;fgc_members;fgc_message_folder;fgc_private_messages;fgc_scroll;fgc_system_lookup;" />
+</PLUGINDATAPARAMS>
+</PLUGINDATARECORD>
+</PLUGINDATARECORDS>
+</PLUGINDATA>
+<QUERYDATA>
+<QUERYRECORDS>
+</QUERYRECORDS>
+</QUERYDATA>
+<LINKEDMODELS>
+<LINKEDMODEL IDLinkedModel="1" ModelName="bookshop" IDModel="0" IsStoredInDB="0" ModelFilename="Examples\\bookshop.xml" DriverName="" DBConnName="" HostCaption="" HostName="" Database="" User="" />
+<LINKEDMODEL IDLinkedModel="2" ModelName="persons" IDModel="4" IsStoredInDB="1" ModelFilename="" DriverName="MySQL" DBConnName="Localhost" HostCaption="Localhost" HostName="127.0.0.1" Database="persons" User="mike" />
+</LINKEDMODELS>
+</DBMODEL>
