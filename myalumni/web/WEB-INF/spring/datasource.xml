@@ -25,7 +25,7 @@
  
  <!--  datasource from JNDI -->
  <bean id="datasource" class="org.springframework.jndi.JndiObjectFactoryBean">
- 	<property name="jndiName" value="${datasource}"/>
+ 	<property name="jndiName" value="${jndiName}"/>
  	<property name="defaultObject" ref="devDatasource"/>
  </bean>
  

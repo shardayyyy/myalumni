@@ -2,7 +2,7 @@
  * ====================================================================
  * Copyright (C) 1997-2008 by Naijatek.com
  *
- * All copyright notices regarding MyAlumni Board MUST remain 
+ * All copyright notices regarding MyAlumni MUST remain 
  * intact in the scripts and in the outputted HTML.
  * The "powered by" text/logo with a link back to
  * http://www.naijatek.com in 
@@ -29,7 +29,7 @@
  * Correspondence and Marketing Questions can be sent to:
  * info at naijatek com
  *
- * <p>Title: MyAlumni Board </p>
+ * <p>Title: MyAlumni </p>
  * <p>Description: This system helps keep alive the line of communications between alumni/alumnus</p>
  * <p>Copyright: Copyright (c) 1997-2008</p>
  * <p>Company: Naijatek Solutions (http://www.naijatek.com)</p>
@@ -75,7 +75,7 @@ public class MaintainIphoneAction extends MyAlumniDispatchAction{
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-    	logger.warn("***iPhone***: in Filter First Name...");
+    	logger.info("***iPhone***: in Filter First Name...");
 		MemberForm memberForm = (MemberForm) form;
 		
 		List<MemberVO> lstMemberVO = memService.getFirstNameStartingWith(memberForm.getAlpha(), BaseConstants.BOOLEAN_NO);
@@ -94,7 +94,7 @@ public class MaintainIphoneAction extends MyAlumniDispatchAction{
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-    	logger.warn("***iPhone***: in Filter Last Name...");
+    	logger.info("***iPhone***: in Filter Last Name...");
 		MemberForm memberForm = (MemberForm) form;	
 		
 		List<MemberVO> lstMemberVO = memService.getLastNameStartingWith(memberForm.getAlpha(), BaseConstants.BOOLEAN_NO);
@@ -147,7 +147,7 @@ public class MaintainIphoneAction extends MyAlumniDispatchAction{
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-    	logger.warn("***iPhone***: in Filter Dorms...");
+    	logger.info("***iPhone***: in Filter Dorms...");
 		MemberForm memberForm = (MemberForm) form;	
 		
 		List<MemberVO> lstMemberVO = memService.getMembersInDorm(memberForm.getDormitoryId(), BaseConstants.BOOLEAN_NO);
@@ -165,7 +165,7 @@ public class MaintainIphoneAction extends MyAlumniDispatchAction{
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-    	logger.warn("***iPhone***: in Filter Gender...");
+    	logger.info("***iPhone***: in Filter Gender...");
 		MemberForm memberForm = (MemberForm) form;	
 		
 		List<MemberVO> lstMemberVO = memService.getGenderBy(memberForm.getAlpha(), BaseConstants.BOOLEAN_NO);

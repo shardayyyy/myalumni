@@ -19,17 +19,17 @@ Q. How can I join the myAlumni development team?
 A. Like many current members of the myAlumni team, joining the development team
 should be naturally:
 
-- Participate on the online naijatek.com, help others to solve their problem and discuss
+- Participate on the online http://www.naijatek.com/myalumni/forum, help others to solve their problem and discuss
   how to improve myAlumni
 
-- Get familiar with the current mvnForum source code and begin writing some patch.
+- Get familiar with the current myalumni source code and begin writing some patch.
 
 - Prepare a plan on what part of myAlumni that you would like to contribute your effort.
-  You could publicly discuss it on the myAlumni or send me an email. This will help
+  You could publicly discuss it on the myAlumni forum or send me an email. This will help
   to avoid wasted time if two or more people trying to do the same tasks.
 
 - Send me an email that you would like to contribute to the myAlumni, and also prepare
-  your sourceforge.net ID or gmail ID
+  your gmail ID
 
 - Stick to the existing indentation style even if you hate it. Alternating between
   indentation styles makes it hard to understand the source code. Make it hard on
@@ -45,7 +45,7 @@ should be naturally:
   to the header of the files.
 
 - Please test your code carefully before commit to the SVN, if you are going to make
-  quite a lot of changes, please discuss it in the online Naijatek.com so that others
+  quite a lot of changes, please discuss it in the online forum so that others
   could have a chance to review and give you suggestions.
 
 

@@ -1,4 +1,6 @@
 # These values are used in the spring.properties file
+# This file holds configuration for other databases
+# such as Oracle, PostgreSQL, DB2, SQL Server, Sybase
 
 
 #Oracle config
