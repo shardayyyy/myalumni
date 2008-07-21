@@ -10,7 +10,7 @@ Note: after building myAlumni, see the INSTALL.txt for the instruction
 1. Get the source code, if you have the source package, just extract
    it to a folder. If you don't have the source package or you would
    like to build the latest development source code, check out from
-   SVN. See the SVN.txt for detailed information.
+   SVN. See the Subversion.txt for detailed information.
 
 2. Download ant build tool from http://jakarta.apache.org, then config it
    (please see the document from the ant package)
