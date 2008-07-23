@@ -52,6 +52,7 @@ public class SystemConfigVO  extends MyAlumniBaseVO{
 	private String hasDormitory;	
 	private String birthdayNotification;
 	private String adminSignature; // not persisted
+	private String logoFileName;
 	
 	
 	private String orgFirstYear;	
@@ -157,7 +158,12 @@ public class SystemConfigVO  extends MyAlumniBaseVO{
 	public void setBirthdayNotification(String birthdayNotification) {
 		this.birthdayNotification = birthdayNotification;
 	}
-
+	public String getLogoFileName() {
+		return logoFileName;
+	}
+	public void setLogoFileName(String logoFileName) {
+		this.logoFileName = logoFileName;
+	}
 	
 	
 	

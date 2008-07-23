@@ -51,7 +51,7 @@ public class SystemConfigForm extends MyAlumniBaseForm{
 	private String rssUrl;
 	private String hasDormitory;
 	private String birthdayNotification;
-	
+	private String logoFileName;
 	
 	private String orgFirstYear;	
 	private String organizationName;
@@ -145,6 +145,13 @@ public class SystemConfigForm extends MyAlumniBaseForm{
 	public void setBirthdayNotification(String birthdayNotification) {
 		this.birthdayNotification = birthdayNotification;
 	}
+	public String getLogoFileName() {
+		return logoFileName;
+	}
+	public void setLogoFileName(String logoFileName) {
+		this.logoFileName = logoFileName;
+	}
+
 	
 	
 }

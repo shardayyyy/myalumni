@@ -112,6 +112,13 @@ public interface ISystemConfigService {
 	public void updateDormitory(SystemConfigVO systemConfigVO);
 	public String getDormitory();
 	
+	
+    /**
+     * Upload Logo
+     */
+	public void uploadLogo(SystemConfigVO systemConfigVO);
+	
+	
     /**
      * Birthday Notification
      */

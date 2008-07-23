@@ -108,6 +108,12 @@ public interface SystemConfigDao {
     
     
     /**
+     * Upload Logo
+     */
+	public void uploadLogo(SystemConfigVO systemConfigVO);
+	
+	
+    /**
      * Birthday Notification
      */
 	public void updateBirthdayNotification(SystemConfigVO systemConfigVO);
