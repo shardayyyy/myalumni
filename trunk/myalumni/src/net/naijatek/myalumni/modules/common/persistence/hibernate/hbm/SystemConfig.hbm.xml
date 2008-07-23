@@ -21,7 +21,7 @@
 		
 		<property name="hasDormitory" column="HAS_DORMITORY" length="1"/>
 		<property name="birthdayNotification" column="BIRTHDAY_NOTIFICATION" length="1"/>
-		
+		<property name="logoFileName" column="LOGO_FILE_NAME" length="200"/>
 		
 		<property name="lastModifiedBy" 	column="LASTMODIFIED_BY"	length="40" not-null="true"	type="string"/>
 		<property name="lastModification" 	column="LASTMODIFICATION" 	length="1" not-null="true"	type="string"/>

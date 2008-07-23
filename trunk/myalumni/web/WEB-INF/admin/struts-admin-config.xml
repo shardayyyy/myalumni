@@ -530,6 +530,27 @@
             <forward name="success" path="/jsp/admin/system/index.jsp"/>
     </action>     
     
+    
+    <!--  =================================== -->
+    <!--  ======   UPLOAD LOGO      ======== -->
+    <!--  =================================== -->
+    <!-- Prepare Upload Logo  -->
+    <action input="/jsp/admin/system/uploadLogo.jsp" name="systemConfigForm" path="/admin/prepareUploadLogo"
+            parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/admin/system/uploadLogo.jsp"/>
+    </action>       
+    
+    <!-- Upload Logo -->
+    <action input="/jsp/admin/system/uploadLogo.jsp" name="systemConfigForm" path="/admin/uploadLogo"
+            parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/admin/system/uploadLogo.jsp"/>
+    </action>        
+               
+               
+               
+                   
    <!--  =================================================== -->
     <!--  ======       MAINTAIN BIRTHDAY NOTIFICATION         ======== -->
     <!--  =================================================== -->    
@@ -715,7 +736,8 @@
             type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
       <forward name="success" path="/jsp/admin/security/assignRoleToUser.jsp"/>
     </action> 
-               
+    
+
   </action-mappings>
   
   

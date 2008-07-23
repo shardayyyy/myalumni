@@ -369,6 +369,24 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 	}
 	
 	
+	
+    /**
+     * Upload Logo
+     */	
+	public void uploadLogo(SystemConfigVO systemConfigVO){
+		SystemConfigVO systemSetup = getSystemConfig();
+		
+		if(systemSetup.getSystemConfigId() == null)
+			systemSetup = new SystemConfigVO();			
+		
+		systemSetup.setLogoFileName(systemConfigVO.getLogoFileName());
+		
+		getHibernateTemplate().saveOrUpdate(systemSetup);
+		
+	}
+	
+	
+	
 	/**
 	 * Birthday Notification
 	 */

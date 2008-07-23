@@ -171,6 +171,15 @@ public class SystemConfigServiceImpl implements ISystemConfigService {
     
     
     /**
+     * Upload Logo
+     */
+	public void uploadLogo(SystemConfigVO systemConfigVO){
+		systemConfigDao.uploadLogo(systemConfigVO);
+	}
+	
+	
+    
+    /**
      * Birthday Notification
      */
     public void updateBirthdayNotification(SystemConfigVO systemConfigVO){

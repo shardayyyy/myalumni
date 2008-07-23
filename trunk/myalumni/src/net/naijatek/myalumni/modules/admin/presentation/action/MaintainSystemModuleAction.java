@@ -1196,4 +1196,32 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		
 		return mapping.findForward(BaseConstants.FWD_SUCCESS);
 	}    
+	
+	//**********************************************************************
+	//******************  LOGO       ********************************
+	//********************************************************************** 	
+	
+	public ActionForward prepareUploadLogo(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		logger.debug("in prepareUploadLogo...");
+
+		ActionMessages msgs = new ActionMessages();
+		SystemConfigForm systemConfigForm = (SystemConfigForm) form;
+		SystemConfigVO systemConfigVO = new SystemConfigVO();
+		systemConfigVO = systemConfigService.getSystemConfig();
+		BeanUtils.copyProperties(systemConfigForm, systemConfigVO);		
+		
+		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+	}  	
+	
+	
+	public ActionForward uploadLogo(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		logger.debug("in uploadLogo...");
+		//TODO: Need to finish up
+		
+		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+	}  		
 }
