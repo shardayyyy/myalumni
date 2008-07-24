@@ -545,6 +545,7 @@
     <action input="/jsp/admin/system/uploadLogo.jsp" name="systemConfigForm" path="/admin/uploadLogo"
             parameter="action" scope="request"
             type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+            <set-property property="cancellable" value="true"/>
       <forward name="success" path="/jsp/admin/system/uploadLogo.jsp"/>
     </action>        
                

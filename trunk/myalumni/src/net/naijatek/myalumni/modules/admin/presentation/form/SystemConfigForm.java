@@ -38,6 +38,8 @@
  */
 package net.naijatek.myalumni.modules.admin.presentation.form;
 
+import org.apache.struts.upload.FormFile;
+
 import net.naijatek.myalumni.framework.struts.MyAlumniBaseForm;
 
 public class SystemConfigForm extends MyAlumniBaseForm{
@@ -58,8 +60,7 @@ public class SystemConfigForm extends MyAlumniBaseForm{
 	private String organizationShortName;
 	private String orgEmail;
 	private String orgAboutUs;
-	
-	
+	private FormFile logoUpload;
 	
 	public String getOrgAboutUs() {
 		return orgAboutUs;
@@ -150,6 +151,12 @@ public class SystemConfigForm extends MyAlumniBaseForm{
 	}
 	public void setLogoFileName(String logoFileName) {
 		this.logoFileName = logoFileName;
+	}
+	public FormFile getLogoUpload() {
+		return logoUpload;
+	}
+	public void setLogoUpload(FormFile logoUpload) {
+		this.logoUpload = logoUpload;
 	}
 
 	

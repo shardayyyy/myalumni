@@ -55,6 +55,9 @@ public interface SystemConfigConstants {
 
 	// Mailbox quota
 	public static final int MAIL_QUOTA = 200;
+	
+	// Logo
+	public static final int LOGO_MAX_SIZE = 30000;
 
 	// Messages
 	public static final String UNAUTHORIZED_MSG = "Insufficient Privilege. User needs to be authorized to perform this action.";

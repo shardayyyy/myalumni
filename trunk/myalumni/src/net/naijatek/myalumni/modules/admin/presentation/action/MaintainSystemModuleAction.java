@@ -71,6 +71,7 @@ import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
 import net.naijatek.myalumni.modules.common.service.ISystemTaskService;
 import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.FileHelper;
+import net.naijatek.myalumni.util.SystemConfigConstants;
 import net.naijatek.myalumni.util.utilities.FileUtil;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -81,6 +82,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
+import org.apache.struts.upload.FormFile;
 import org.apache.struts.util.LabelValueBean;
 import org.joda.time.DateTime;
 
@@ -1222,6 +1224,29 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		logger.debug("in uploadLogo...");
 		//TODO: Need to finish up
 		
+		SystemConfigForm systemConfigForm = (SystemConfigForm) form;
+		String fileAllowedTypes = SystemConfigConstants.CONTENT_TYPE;
+		int maxFileSize = SystemConfigConstants.LOGO_MAX_SIZE;		
+		ActionMessages msgs = new ActionMessages();
+		FormFile formFile = systemConfigForm.getLogoUpload();
+		msgs = validateUploadFile(request, formFile, fileAllowedTypes, maxFileSize);
+		
+		if (msgs.isEmpty()){
+			// upload the file and update database
+			try{
+				String logoDir = getSysProp().getValue("AVATAR.FILEPATH");			
+				uploadFromLocalDrive(formFile, logoDir);
+			}
+			catch(Exception e){
+				msgs.add(BaseConstants.WARN_KEY, new ActionMessage("error.cantupload"));
+			}
+			
+			SystemConfigVO systemConfigVO = systemConfigService.getSystemConfig();
+			systemConfigVO.setLogoFileName(formFile.getFileName());
+			systemConfigService.uploadLogo(systemConfigVO);		
+		}
+		
+		saveMessages(request, msgs);
 		return mapping.findForward(BaseConstants.FWD_SUCCESS);
 	}  		
 }
