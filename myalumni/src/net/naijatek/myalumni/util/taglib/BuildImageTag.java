@@ -44,6 +44,10 @@ import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
+import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
+import net.naijatek.myalumni.modules.common.service.IMemberService;
+import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
+import net.naijatek.myalumni.modules.common.service.IXlatService;
 import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.SystemConfigConstants;
 import net.naijatek.myalumni.util.utilities.AppProp;
@@ -51,6 +55,8 @@ import net.naijatek.myalumni.util.utilities.SystemProp;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 
 public class BuildImageTag extends BodyTagSupport {
@@ -64,7 +70,7 @@ public class BuildImageTag extends BodyTagSupport {
 	private HttpServletRequest request = null;
 
 	private final AppProp app = AppProp.getInstance();
-
+	private ISystemConfigService systemConfigService;
 	private final SystemProp prop = SystemProp.getInstance();
 
 	/**
@@ -78,6 +84,8 @@ public class BuildImageTag extends BodyTagSupport {
 	@Override
 	public final int doStartTag() throws JspException {
 		request = (HttpServletRequest) pageContext.getRequest();
+        WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(pageContext.getServletContext());
+        systemConfigService = (ISystemConfigService) wac.getBean(BaseConstants.SERVICE_SYSTEM_CONFIG);		
 		return EVAL_BODY_BUFFERED;
 	}
 
@@ -94,6 +102,7 @@ public class BuildImageTag extends BodyTagSupport {
 		request = (HttpServletRequest) pageContext.getRequest();
 
 		String uploadDir = BaseConstants.UPLOAD_DIR_NAME;
+		String logoUploadDir = BaseConstants.LOGO_UPLOAD_DIR_NAME;
 		String adsUploadDir = BaseConstants.ADS_UPLOAD_DIR_NAME;
 		String avatarUploadDir = BaseConstants.AVATAR_UPLOAD_DIR_NAME;
 		String seperator = "/";
@@ -137,6 +146,17 @@ public class BuildImageTag extends BodyTagSupport {
 				
 			}
 		}
+		else if (imageType.equalsIgnoreCase(BaseConstants.TAGLIB_TYPE_LOGO)) {
+				SystemConfigVO sysConfigVO = systemConfigService.getSystemConfig();
+				if (sysConfigVO.getLogoFileName() != null && sysConfigVO.getLogoFileName().length() > 0){
+					sb.append("<img src=\"" + rootContext.trim() + seperator
+						+ uploadDir + seperator + logoUploadDir + seperator
+						+ sysConfigVO.getLogoFileName().trim() + "\" align=\"absmiddle\">");
+				}
+				else{
+					sb.append("<img src=\"" + rootContext.trim() + seperator + "images" + seperator  + "log.gif\" border=\"0\" align=\"absmiddle\">");					
+				}
+		}		
 		else if (imageType.equalsIgnoreCase(BaseConstants.TAGLIB_TYPE_AVATAR)) {
 			if (imageUrl.length() > 0) {
 				sb.append("<img src=\"" + rootContext.trim() + seperator

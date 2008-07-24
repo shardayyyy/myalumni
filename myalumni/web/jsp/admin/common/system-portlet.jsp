@@ -11,6 +11,7 @@
 <c:url var="listSystemLogs" value="/action/admin/listSystemLogs?action=listSystemLogs"/>
 <c:url var="dormitory" value="/action/admin/prepareUpdateDormitory?action=prepareUpdateDormitory"/>
 <c:url var="birthday" value="/action/admin/prepareUpdateBirthdayNotification?action=prepareUpdateBirthdayNotification"/>
+<c:url var="uploadlogo" value="/action/admin/prepareUploadLogo?action=prepareUploadLogo"/>
 
 <c:url var="listClassNews" value="/action/admin/listClassNews?action=listClassNews"/>
 <c:url var="listReminisce" value="/action/admin/listReminisce?action=listReminisce"/>
@@ -53,6 +54,7 @@
 									&#8226;&nbsp;<a href="<c:out value="${birthday}"/>">Send Birthday Notifications?</a><br><br>
 									&#8226;&nbsp;<a href="<c:out value="${orginfo}"/>">Organization Information</a><br><br>
 									&#8226;&nbsp;<a href="<c:out value="${aboutorg}"/>">Update Organization About Us</a><br><br>										
+									&#8226;&nbsp;<a href="<c:out value="${uploadlogo}"/>">Upload School Logo</a><br><br>
 									 
 <%--									<br><br>												--%>
 <%--									&#8226;&nbsp;<a href="<c:out value="${emailexception}"/>&task=list">Email Exception</a> - TODO log all emal exceptions in the database to be resent later.<br>--%>

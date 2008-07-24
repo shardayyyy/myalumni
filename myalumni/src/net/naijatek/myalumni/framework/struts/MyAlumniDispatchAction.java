@@ -62,6 +62,7 @@ import net.naijatek.myalumni.modules.common.service.IClassNewsService;
 import net.naijatek.myalumni.modules.common.service.IMemberService;
 import net.naijatek.myalumni.modules.common.service.IPrivateMessageService;
 import net.naijatek.myalumni.util.BaseConstants;
+import net.naijatek.myalumni.util.SystemConfigConstants;
 import net.naijatek.myalumni.util.utilities.AppProp;
 import net.naijatek.myalumni.util.utilities.FileUtil;
 import net.naijatek.myalumni.util.utilities.StringUtil;
@@ -662,39 +663,30 @@ public abstract class MyAlumniDispatchAction extends DispatchActionSupport {
 	// --
 	// --------------------------------------------------------------------------
 
-	protected ActionMessages validateUploadedFile(HttpServletRequest request,
-			FormFile uploadedFile) {
+	protected ActionMessages validateUploadFile(HttpServletRequest request,
+			FormFile uploadedFile, String fileAllowedTypes, int maxFileSize) {
 		ActionMessages msgs = new ActionMessages();
-		String name = uploadedFile.getFileName();
-		int size = uploadedFile.getFileSize();
+		
+		String fileName = uploadedFile.getFileName();
+		int fileSize = uploadedFile.getFileSize();
 
-		/*
-		 * logger.debug("Uploaded File Name: " + name); logger.debug("Uploaded
-		 * File Size: " + size); logger.debug("Uploaded File type: " + type);
-		 */
 
-		if (name == null || name.length() == 0) {
-			msgs.add(BaseConstants.WARN_KEY, new ActionMessage(
-					"error.needuploadfile"));
+		if (fileName == null || fileName.length() == 0) {
+			msgs.add(BaseConstants.WARN_KEY, new ActionMessage("error.notreadable"));
 		}
 
-		String fileAllowedTypes = getAppProp().getValue(
-				"fileupload.contenttype").trim();
-
-		int fileAllowedSize = Integer.parseInt(getAppProp().getValue(
-				"fileupload.max.size").trim());
 
 		// Check for space in file name
-		if (name.indexOf(" ") > -1) {
+		if (fileName.indexOf(" ") > -1) {
 			msgs.add(BaseConstants.WARN_KEY, new ActionMessage(
-					"error.filename", name));
+					"error.filename", fileName));
 		}
 
 		// check for file size
-		if (size > fileAllowedSize) {
+		if (fileSize > maxFileSize) {
 			msgs.add(BaseConstants.WARN_KEY, new ActionMessage(
-					"error.filetoobig", String.valueOf(size), String
-							.valueOf(fileAllowedSize)));
+					"error.filetoobig", String.valueOf(fileSize), String
+							.valueOf(maxFileSize)));
 		}
 
 		boolean validExtension = false;

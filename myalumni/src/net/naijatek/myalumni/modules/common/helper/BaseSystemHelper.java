@@ -283,7 +283,12 @@ public class BaseSystemHelper {
 		      key = "BACKUP.FILEPATH";			      
 		      if (systemProperties.getProperty(key).trim() == null || systemProperties.getProperty(key).trim().equals("")){
 		    	  errors.add(BaseConstants.WARN_KEY, new ActionMessage("core.errorcode.00934"));
-		      }				      
+		      }		
+		      
+		      key = "LOGO.FILEPATH";			      
+		      if (systemProperties.getProperty(key).trim() == null || systemProperties.getProperty(key).trim().equals("")){
+		    	  errors.add(BaseConstants.WARN_KEY, new ActionMessage("core.errorcode.00935"));
+		      }			      
 		}
 		catch (Exception ex) {
 		      logger.fatal("Can not read the properties file. " + SYSTEM_PROPERTY_FILENAME);

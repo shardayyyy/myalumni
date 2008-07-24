@@ -99,7 +99,8 @@ public interface BaseConstants {
   public final static String TAGLIB_TYPE_ADVERTISEMENT = "advertisement";
   public final static String TAGLIB_TYPE_AVATAR = "avatar";
   public final static String TAGLIB_TYPE_EDITABLE_AVATAR = "editableavatar";
-    public final static String TAGLIB_TYPE_IMAGE = "image";
+  public final static String TAGLIB_TYPE_LOGO = "logo";
+  public final static String TAGLIB_TYPE_IMAGE = "image";
 
   public final static String ADMIN_ACTION_DEACTIVATE = "Deactivate Account";
   public final static String ADMIN_ACTION_MODIFY = "Modify Account";
@@ -282,6 +283,7 @@ public interface BaseConstants {
   
     // Folder Names
     public static final String UPLOAD_DIR_NAME="upload";
+    public static final String LOGO_UPLOAD_DIR_NAME="logo";
     public static final String ADS_UPLOAD_DIR_NAME="ads";
     public static final String AVATAR_UPLOAD_DIR_NAME="memberavatars";    
 
