@@ -50,17 +50,28 @@ MyAlumni is a Java/Jsp open source project that help keep alive the line of comm
     * _Manage Reminisce_: Manage Reminisce
     * _School Has Dormitory?_: Does the school have a dormitory
     * _Organization Information_: Update Organization information.
+    * _Upload your organization personalized logo
 
   * *Administrator*
     * _Backup Database_: Ability to backup database.
     * _Jcaptcha Statistics_: 
 
 = Members Features =
-  # Section 1
-  # Section 2
-  # Section 3
-  # Section 4
-  # Section 5
+  # Send private message to your fellow mates
+  # View personal profile
+  # update Signature
+  # update personal avatar
+  # update personal email
+  # Change password
+  # submit a slang
+  # View Private Message
+  # Update personal profile
+  # Add class news
+  # Able to read RSS feeds when logged in
+  # See who else is currently logged in
+  # Can request forgotten password
+  # Can request forgotten username
+  # Search for other members on a wide varieties of criteria.
 
 = System Features =
   # List most recent members the registered on front page
@@ -71,10 +82,8 @@ MyAlumni is a Java/Jsp open source project that help keep alive the line of comm
   # List of RSS feed is presented to the member when logged in
   # Display classnews tailored to the member logged in
   # Send a birthday wish to members everyday
-  # Displays a scroll of the days message
-  #
-
-
+  # Displays a scroll across the page, displaying the day's message
+  # Locks members account after a number of unsuccessful login attempts
 
 
 
