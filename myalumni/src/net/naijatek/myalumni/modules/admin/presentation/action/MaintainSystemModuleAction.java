@@ -1051,6 +1051,9 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
         if ( !isTokenValid(request) ) {
             return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
         }          
+		if (!adminSecurityCheck(request)) {
+			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+		}        
         ClassNewsForm classNewsForm = (ClassNewsForm) form;
         ClassNewsVO classNewsVO = new ClassNewsVO();
         BeanUtils.copyProperties(classNewsVO, classNewsForm);
@@ -1076,7 +1079,10 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 
 
     public ActionForward deleteClassNews(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        logger.debug("in deleteClassNews...");        
+        logger.debug("in deleteClassNews...");  
+		if (!adminSecurityCheck(request)) {
+			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+		}        
         ClassNewsForm classNewsForm = (ClassNewsForm) form;
         classNewsService.softDelete(classNewsForm.getClassNewsId(), getLastModifiedBy(request));
         getClassNewsHelper(request);
@@ -1118,6 +1124,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
         if ( !isTokenValid(request) ) {
             return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
         }          
+        
         ReminisceForm classNewsForm = (ReminisceForm) form;
         ReminisceVO classNewsVO = new ReminisceVO();
         BeanUtils.copyProperties(classNewsVO, classNewsForm);
@@ -1134,6 +1141,9 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
         if ( !isTokenValid(request) ) {
             return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
         }          
+		if (!adminSecurityCheck(request)) {
+			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+		}        
         ReminisceForm classNewsForm = (ReminisceForm) form;
         ReminisceVO classNewsVO = new ReminisceVO();
         BeanUtils.copyProperties(classNewsVO, classNewsForm);
@@ -1160,6 +1170,9 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 
     public ActionForward deleteReminisce(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in deleteReminisce...");        
+		if (!adminSecurityCheck(request)) {
+			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+		}        
         ReminisceForm classNewsForm = (ReminisceForm) form;
         reminisceService.softDelete(classNewsForm.getReminisceId(), getLastModifiedBy(request));
         getReminisceHelper(request);
@@ -1207,7 +1220,6 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		logger.debug("in prepareUploadLogo...");
-
 		ActionMessages msgs = new ActionMessages();
 		SystemConfigForm systemConfigForm = (SystemConfigForm) form;
 		SystemConfigVO systemConfigVO = new SystemConfigVO();
@@ -1222,19 +1234,23 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		logger.debug("in uploadLogo...");
-		//TODO: Need to finish up
-		
+
+		if (!adminSecurityCheck(request)) {
+			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+		}		
 		SystemConfigForm systemConfigForm = (SystemConfigForm) form;
 		String fileAllowedTypes = SystemConfigConstants.CONTENT_TYPE;
 		int maxFileSize = SystemConfigConstants.LOGO_MAX_SIZE;		
 		ActionMessages msgs = new ActionMessages();
 		FormFile formFile = systemConfigForm.getLogoUpload();
-		msgs = validateUploadFile(request, formFile, fileAllowedTypes, maxFileSize);
+		int height = SystemConfigConstants.LOGO_HEIGHT;
+		int width = SystemConfigConstants.LOGO_WIDTH;
+		msgs = validateUploadFile(request, formFile, fileAllowedTypes, maxFileSize, true, height, false, width);
 		
 		if (msgs.isEmpty()){
 			// upload the file and update database
 			try{
-				String logoDir = getSysProp().getValue("AVATAR.FILEPATH");			
+				String logoDir = getSysProp().getValue("LOGO.FILEPATH");			
 				uploadFromLocalDrive(formFile, logoDir);
 			}
 			catch(Exception e){
@@ -1244,9 +1260,40 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 			SystemConfigVO systemConfigVO = systemConfigService.getSystemConfig();
 			systemConfigVO.setLogoFileName(formFile.getFileName());
 			systemConfigService.uploadLogo(systemConfigVO);		
+			ServletContext sCtx = request.getSession().getServletContext();
+			sCtx.setAttribute(BaseConstants.LOGO_NAME, systemConfigVO.getLogoFileName());
 		}
 		
 		saveMessages(request, msgs);
 		return mapping.findForward(BaseConstants.FWD_SUCCESS);
 	}  		
+	
+	public ActionForward removeLogo(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		logger.debug("in removeLogo...");
+		if (!adminSecurityCheck(request)) {
+			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+		}
+		
+		
+		ActionMessages msgs = new ActionMessages();
+		String logoFileName = new String();
+		SystemConfigVO systemConfigVO = new SystemConfigVO();
+		systemConfigVO = systemConfigService.getSystemConfig();
+		logoFileName = systemConfigVO.getLogoFileName();
+		systemConfigVO.setLogoFileName(null);
+		systemConfigService.uploadLogo(systemConfigVO);
+		
+		//delete actual logo from file system
+		String logoDir = getSysProp().getValue("LOGO.FILEPATH");
+		File f = new File(logoDir + logoFileName);
+		if (!f.isDirectory() && f.exists())
+			f.delete();
+		
+		ServletContext sCtx = request.getSession().getServletContext();
+		sCtx.setAttribute(BaseConstants.LOGO_NAME, null);		
+		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+	}  	
+		
 }

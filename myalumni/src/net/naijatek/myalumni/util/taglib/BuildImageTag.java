@@ -38,6 +38,8 @@
  */
 package net.naijatek.myalumni.util.taglib;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
@@ -45,9 +47,7 @@ import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
-import net.naijatek.myalumni.modules.common.service.IMemberService;
 import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
-import net.naijatek.myalumni.modules.common.service.IXlatService;
 import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.SystemConfigConstants;
 import net.naijatek.myalumni.util.utilities.AppProp;
@@ -62,16 +62,12 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 public class BuildImageTag extends BodyTagSupport {
 
 	private static Log logger = LogFactory.getLog(BuildImageTag.class);
-
 	private String imageUrl = null;
-
 	private String imageType = null;
-
 	private HttpServletRequest request = null;
 
 	private final AppProp app = AppProp.getInstance();
-	private ISystemConfigService systemConfigService;
-	private final SystemProp prop = SystemProp.getInstance();
+	private final SystemProp sysProp = SystemProp.getInstance();
 
 	/**
 	 * Includes the body of the tag if the page attribute equals the value set
@@ -83,9 +79,7 @@ public class BuildImageTag extends BodyTagSupport {
 	 */
 	@Override
 	public final int doStartTag() throws JspException {
-		request = (HttpServletRequest) pageContext.getRequest();
-        WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(pageContext.getServletContext());
-        systemConfigService = (ISystemConfigService) wac.getBean(BaseConstants.SERVICE_SYSTEM_CONFIG);		
+		request = (HttpServletRequest) pageContext.getRequest();	
 		return EVAL_BODY_BUFFERED;
 	}
 
@@ -121,8 +115,7 @@ public class BuildImageTag extends BodyTagSupport {
 						+ imageUrl.trim() + "\" border=\"0\" width=\""
 						+ width_ad + "\">");
 			} else {
-				sb
-						.append("<img src=\""
+				sb.append("<img src=\""
 								+ rootContext.trim()
 								+ seperator
 								+ "images"
@@ -146,15 +139,21 @@ public class BuildImageTag extends BodyTagSupport {
 				
 			}
 		}
-		else if (imageType.equalsIgnoreCase(BaseConstants.TAGLIB_TYPE_LOGO)) {
-				SystemConfigVO sysConfigVO = systemConfigService.getSystemConfig();
-				if (sysConfigVO.getLogoFileName() != null && sysConfigVO.getLogoFileName().length() > 0){
-					sb.append("<img src=\"" + rootContext.trim() + seperator
+		else if (imageType.equalsIgnoreCase(BaseConstants.TAGLIB_TYPE_LOGO)) {							
+				if (imageUrl.trim() != null && imageUrl.trim().length() > 0){
+					File f = new File(sysProp.getValue("LOGO.FILEPATH") + seperator + imageUrl.trim());
+					if (!f.isDirectory() && f.exists()){
+						sb.append("<img src=\"" + rootContext.trim() + seperator
 						+ uploadDir + seperator + logoUploadDir + seperator
-						+ sysConfigVO.getLogoFileName().trim() + "\" align=\"absmiddle\">");
+						+ imageUrl.trim() + "\" border=\"0\" align=\"absmiddle\" altKey=\"" + app.getValue("application.name") + "\"  titleKey=\"" + app.getValue("application.name") + "\">");
+					}
+					else{
+						sb.append(app.getValue("error.logonotfound"));
+					}
 				}
 				else{
-					sb.append("<img src=\"" + rootContext.trim() + seperator + "images" + seperator  + "log.gif\" border=\"0\" align=\"absmiddle\">");					
+					sb.append("<img src=\"" + rootContext.trim() + seperator + "images" + seperator  + "logo" + seperator  + 
+							"myalumni_03.gif\" border=\"0\" align=\"absmiddle\" altKey=\"" + app.getValue("application.name") + "\"  titleKey=\"" + app.getValue("application.name") + "\">");					
 				}
 		}		
 		else if (imageType.equalsIgnoreCase(BaseConstants.TAGLIB_TYPE_AVATAR)) {

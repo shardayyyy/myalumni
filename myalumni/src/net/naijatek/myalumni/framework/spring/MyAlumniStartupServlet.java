@@ -119,6 +119,7 @@ public class MyAlumniStartupServlet extends ContextLoaderServlet {
 		getServletContext().setAttribute(BaseConstants.FORUM_URL, sysConfigVO.getForumUrl());
 		getServletContext().setAttribute(BaseConstants.SERVER_URL, sysConfigVO.getServerUrl());
 		getServletContext().setAttribute(BaseConstants.ORG_EMAIL, sysConfigVO.getOrgEmail());
+		getServletContext().setAttribute(BaseConstants.LOGO_NAME, sysConfigVO.getLogoFileName());
 		
 		
 		String hasDorm = sysConfigVO.getHasDormitory();

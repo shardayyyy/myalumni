@@ -2,7 +2,7 @@
 <%@ taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c" %>
 <%@ taglib uri="/WEB-INF/tld/struts-tiles.tld" prefix="tiles"%>
-
+<%@ taglib uri="/WEB-INF/tld/myalumni-taglibs.tld" prefix="myalumni" %>
 
 <c:url var="home" value="/jsp/index.jsp"/>
 <c:url var="loginAgain" value="/jsp/login.jsp"/>
@@ -22,7 +22,7 @@
                     </td>
                       </tr>
                       <tr>
-                        <td width="1%" height="25">&nbsp;<a href="<c:out value="${home}"/>"><html:img page="/images/logo/myalumni_03.png" altKey="application.name" titleKey="application.name" border="0" align="absmiddle"/></a></td>
+                        <td width="1%" height="25">&nbsp;<a href="<c:out value="${home}"/>"><myalumni:buildImageTag imageType="logo"><c:out value="${LOGO_NAME}"/></myalumni:buildImageTag></a></td>
                         <td width="99%" colspan="2"><span class="greenTitle">Request Forgotten Password</span>&nbsp;<span class="graysmall"><bean:message key="application.version"/></span></td>
                       </tr>
                       <tr>

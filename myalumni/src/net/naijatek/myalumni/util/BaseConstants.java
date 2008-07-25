@@ -121,6 +121,7 @@ public interface BaseConstants {
   public static final String ALBUM_URL = "ALBUM_URL";
   public static final String FORUM_URL = "FORUM_URL";
   public static final String SERVER_URL = "SERVER_URL";
+  public static final String LOGO_NAME = "LOGO_NAME";
   public static final String FIRST_STARTUP = "FIRST_STARTUP";
   
   
