@@ -203,6 +203,9 @@
                 <field property="titleId" depends="required">
                         <arg0 key="label.title"/>
                 </field>
+                <field property="firstName" depends="required">
+                        <arg0 key="label.firstname"/>
+                </field>                
                 <field property="lastName" depends="required">
                         <arg0 key="label.lastname"/>
                 </field>
