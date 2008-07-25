@@ -2,6 +2,7 @@
 <%@ taglib uri="/WEB-INF/tld/struts-html.tld" prefix="html" %>
 <%@ taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c" %>
+<%@ taglib uri="/WEB-INF/tld/myalumni-taglibs.tld" prefix="myalumni" %>
 
 <c:url var="stylesheet" value="/style/myalumni.css" />
 <c:url var="myalumniJS" value="/js/global.js" />
@@ -49,19 +50,25 @@
 <!-- HEADER -->
 <table width="100%"  border="0" align="center" cellpadding="3" cellspacing="0">
   <tr>
-    <td background="<c:out value="${BACKGROUND}"/>"><a href="<c:out value="${HOME}"/>"><html:img page="/images/logo/myalumni_03.png" border="0" align="absmiddle" titleKey="application.name" altKey="application.name"/></a><span class="greenTitle">Administrator Control Panel</span>&nbsp;</td>
+    <td background="<c:out value="${BACKGROUND}"/>">    	
+    	<table>
+    		<tr>
+    			<td><a href="<c:out value="${HOME}"/>"><myalumni:buildImageTag imageType="logo"><c:out value="${LOGO_NAME}"/></myalumni:buildImageTag></a></td>
+    			<td><span class="greenTitle"><c:out value="${ORGANIZATION_NAME}" default="SCHOOL NAME HERE"/><br>Administrator Control Panel</span>&nbsp;</td>
+    		</tr>
+    	</table>	
+    </td>
     <td align="right" valign="top" background="<c:out value="${BACKGROUND}"/>">
           <%-- mini login  --%>
       <tiles:insert attribute="miniLogin"/>
     </td>
   </tr>
-  <tr>
-  <td></td>
-  </tr>
+
 </table>
 
-	<%--  SCROLL --%>
+	<%--  SCROLL 
 	<tiles:insert attribute="scroll"/>
+	--%>
 	
 <c:if test="${USER_CONTAINER.token.isAdmin == 'Y'}">	
 <table border="0" cellpadding="2" cellspacing="0" width="100%" align="center">

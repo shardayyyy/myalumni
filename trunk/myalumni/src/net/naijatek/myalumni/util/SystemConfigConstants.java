@@ -58,6 +58,8 @@ public interface SystemConfigConstants {
 	
 	// Logo
 	public static final int LOGO_MAX_SIZE = 30000;
+	public static final int LOGO_HEIGHT = 90; 
+	public static final int LOGO_WIDTH = 0;
 
 	// Messages
 	public static final String UNAUTHORIZED_MSG = "Insufficient Privilege. User needs to be authorized to perform this action.";

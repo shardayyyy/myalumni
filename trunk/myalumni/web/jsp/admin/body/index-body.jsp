@@ -2,6 +2,7 @@
 <%@ taglib uri="/WEB-INF/tld/struts-html.tld" prefix="html" %>
 <%@ taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c" %>
+<%@ taglib uri="/WEB-INF/tld/myalumni-taglibs.tld" prefix="myalumni" %>
 
 
 <c:url var="PRIVACY" value="/jsp/privacy.jsp" />
@@ -12,7 +13,7 @@
 
       <table width="95%" border="0" cellspacing="1" cellpadding="3" align="center">
     <tr align="left">
-      <td width="32%" rowspan="4" align="right"><html:img page="/images/logo/myalumni_03.png" altKey="application.name"/> </td>
+      <td width="32%" rowspan="4" align="right"><myalumni:buildImageTag imageType="logo"><c:out value="${LOGO_NAME}"/></myalumni:buildImageTag> </td>
       <td height="34" colspan="2"><span class="greenTitle">&nbsp;&nbsp; Admin Login&nbsp; </span> <span class="graysmall"><bean:message key="application.version"/></span></td>
       </tr>
     <tr>

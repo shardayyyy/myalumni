@@ -2,6 +2,7 @@
 <%@ taglib uri="/WEB-INF/tld/struts-html.tld" prefix="html" %>
 <%@ taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c" %>
+<%@ taglib uri="/WEB-INF/tld/myalumni-taglibs.tld" prefix="myalumni" %>
 
 
 <c:url var="DO_ACTIVATE" value="/jsp/myalumni/requestAccess.jsp"/>
@@ -21,7 +22,7 @@
 <html:form action="/member/login?action=login" focus="memberUserName">
       <table width="95%" border="0" cellspacing="1" cellpadding="3" align="center">
     <tr align="left">
-      <td width="32%" rowspan="4" align="right"><a href="<c:out value="${HOME}"/>" ><html:img page="/images/logo/myalumni_03.png"  altKey="application.name" border="0"/></a> </td>
+      <td width="32%" rowspan="4" align="right"><a href="<c:out value="${HOME}"/>" ><myalumni:buildImageTag imageType="logo"><c:out value="${LOGO_NAME}"/></myalumni:buildImageTag></a> </td>
       <td height="34" colspan="2"><span class="greenTitle">&nbsp;&nbsp; MyAlumni Member Login </span><font color="#6E8F48" size="1"><bean:message key="application.version"/></font></td>
       </tr>
     <tr>

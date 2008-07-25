@@ -2,6 +2,8 @@
 <%@ taglib uri="/WEB-INF/tld/struts-html.tld" prefix="html" %>
 <%@ taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c" %>
+<%@ taglib uri="/WEB-INF/tld/myalumni-taglibs.tld" prefix="myalumni" %>
+
 
 <%-- related path --%>
 <c:url var="stylesheet" value="/style/myalumni.css" />
@@ -49,7 +51,7 @@
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <table width="100%"  border="0" align="center" cellpadding="3" cellspacing="0">
   <tr>
-    <td background="<c:out value="${BACKGROUND}"/>"><a href="<c:out value="${HOME}"/>"><html:img page="/images/logo/myalumni_03.png" border="0" align="absmiddle"  altKey="application.name"  titleKey="application.name"/></a>&nbsp;</td>
+    <td background="<c:out value="${BACKGROUND}"/>"><a href="<c:out value="${HOME}"/>"><myalumni:buildImageTag imageType="logo"><c:out value="${LOGO_NAME}"/></myalumni:buildImageTag></a>&nbsp;</td>
   </tr>
 </table>
 
