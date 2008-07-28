@@ -5,12 +5,14 @@
 
 
 <c:url var="emailWebmaster" value="/action/member/prepareEmailWebmaster?action=prepareEmailWebmaster" />
+<c:url var="myalumnihome" value="http://www.naijatek.com/myalumni" />
+
 
 <jsp:useBean id="now" class="java.util.Date" />
 
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 		<tr>
-			<td align="left"><html:img page="/images/logo/myalumni_03_mini.png"/></td>
+			<td align="left"><a href="<c:out value="${myalumnihome}"/>" target="_blank" title="MyAlumni"><html:img page="/images/logo/myalumni_03_mini.png" border="0" alt="MyAlumni"/></a></td>
 			<td align="right"><span class="graysmall"><bean:message key="application.version"/></span>&nbsp;</td>
 		</tr>
 	</table>
