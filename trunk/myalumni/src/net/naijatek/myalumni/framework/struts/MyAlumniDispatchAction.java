@@ -702,36 +702,35 @@ public abstract class MyAlumniDispatchAction extends DispatchActionSupport {
 			}
 	
 			if (!validExtension) {
-				msgs.add(BaseConstants.WARN_KEY, new ActionMessage("error.imageext"));
+				msgs.add(BaseConstants.WARN_KEY, new ActionMessage("error.imageext", SystemConfigConstants.CONTENT_TYPE));
 			}
-
-			
-		      logger.debug(fileName + " ext = " + getFileExtensionForImageReader(fileName));
-		      Iterator readers = ImageIO.getImageReadersBySuffix(getFileExtensionForImageReader(fileName));
-		      ImageReader reader = (ImageReader) readers.next();
-		   
-		       try {
-		          ImageInputStream iis = ImageIO.createImageInputStream(uploadedFile.getInputStream());
-		          reader.setInput(iis, true);
-		          int width = reader.getWidth(0);
-		          int height = reader.getHeight(0);
-		          logger.debug(uploadedFile.getFileName() + ": width=" + width + ", height=" + height);
-		          
-					if (validateHeight){
-				          if (height >  maxHeight){
-				        	  msgs.add(BaseConstants.WARN_KEY,new ActionMessage("error.heightdimensions", height, maxHeight ));        	  
-				          }						
-					}
-					
-					if (validateWidth){
-				          if (width > maxWidth || height >  maxHeight){
-				        	  msgs.add(BaseConstants.WARN_KEY,new ActionMessage("error.widthdimensions", width, maxWidth ));        	  
-				          }						
-					}					
-		      } catch (IOException e) {
-		          msgs.add(BaseConstants.FATAL_KEY,new ActionMessage("error.notreadable"));
-		      }
-
+			else{						
+				      logger.debug(fileName + " ext = " + getFileExtensionForImageReader(fileName));
+				      Iterator readers = ImageIO.getImageReadersBySuffix(getFileExtensionForImageReader(fileName));
+				      ImageReader reader = (ImageReader) readers.next();
+				   
+				       try {
+				          ImageInputStream iis = ImageIO.createImageInputStream(uploadedFile.getInputStream());
+				          reader.setInput(iis, true);
+				          int width = reader.getWidth(0);
+				          int height = reader.getHeight(0);
+				          logger.debug(uploadedFile.getFileName() + ": width=" + width + ", height=" + height);
+				          
+							if (validateHeight){
+						          if (height >  maxHeight){
+						        	  msgs.add(BaseConstants.WARN_KEY,new ActionMessage("error.heightdimensions", height, maxHeight ));        	  
+						          }						
+							}
+							
+							if (validateWidth){
+						          if (width > maxWidth || height >  maxHeight){
+						        	  msgs.add(BaseConstants.WARN_KEY,new ActionMessage("error.widthdimensions", width, maxWidth ));        	  
+						          }						
+							}					
+				      } catch (IOException e) {
+				          msgs.add(BaseConstants.FATAL_KEY,new ActionMessage("error.notreadable"));
+				      }
+			}
 		}
 		return msgs;
 	}
