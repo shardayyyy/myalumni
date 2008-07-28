@@ -13,39 +13,40 @@
 <p>&nbsp;</p>
 
 <html:form action="/forgotUserName?action=forgotUserName" focus="memberUserName"  onsubmit="javascript:document.loginForm.elements['JSEnabled'].value='true';">
-
               <table width="738" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
                 <tr align="left">
                   <td align="center"><br>
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                       <tr>
-                        <td colspan="3" align="center">&nbsp;
-                    </td>
+                        <td colspan="3" align="center">&nbsp;</td>
                       </tr>
                       <tr>
                         <td width="1%" height="25">&nbsp;<a href="<c:out value="${home}"/>"><myalumni:buildImageTag imageType="logo"><c:out value="${LOGO_NAME}"/></myalumni:buildImageTag></a></td>
-                        <td width="99%" colspan="2"><span class="greenTitle">Request Forgotten UserName</span>&nbsp;<span class="graysmall"><bean:message key="application.version"/></span></td>
+                        <td width="99%" colspan="2">
+							<table>
+								<tr>
+		                        <td>&nbsp;</td>
+		                        <td height="25" colspan="2" nowrap="nowrap"><span class="greenTitle">Request Forgotten UserName</span>&nbsp;<span class="graysmall"><bean:message key="application.version"/></span></td>
+		                      </tr>
+		                      <tr>
+		                        <td width="1%" height="25" align="right">&nbsp;</td>
+		                        <td width="10%" height="25" align="right"><strong><bean:message key="label.email"/>:</strong>&nbsp;&nbsp;&nbsp; </td>
+		                        <td width="89%"><html:text property="email" size="50" maxlength="50" titleKey="label.email"/></td>
+		                      </tr>
+		                      <tr>
+		                        <td align="right">&nbsp;</td>
+		                        <td height="25" align="right">&nbsp;</td>
+		                        <td><html:submit styleClass="button"><bean:message key="button.submit"/></html:submit></td>
+		                      </tr>
+		                      <tr>
+		                        <td>&nbsp;</td>
+		                        <td height="25">&nbsp;</td>
+		                        <td><a href="<c:out value="${loginAgain}"/>" title="Login Again">Login Again</a></td>
+		                      </tr>
+		                    </table>
+						</td>                       						
                       </tr>
-                      <tr>
-                        <td>&nbsp;</td>
-                        <td height="25">&nbsp;</td>
-                        <td>&nbsp;</td>
-                      </tr>
-                      <tr>
-                        <td width="1%" height="25" align="right">&nbsp;</td>
-                        <td width="10%" height="25" align="right"><bean:message key="label.email"/>:&nbsp;&nbsp;&nbsp; </td>
-                        <td width="89%"><html:text property="email" size="50" maxlength="50" titleKey="label.email"/></td>
-                      </tr>
-                      <tr>
-                        <td align="right">&nbsp;</td>
-                        <td height="25" align="right">&nbsp;</td>
-                        <td><html:submit styleClass="button"><bean:message key="button.submit"/></html:submit></td>
-                      </tr>
-                      <tr>
-                        <td>&nbsp;</td>
-                        <td height="25">&nbsp;</td>
-                        <td><a href="<c:out value="${loginAgain}"/>" title="Login Again">Login Again</a></td>
-                      </tr>
+                      
                       <tr>
                         <td height="25" colspan="3">
                           <tiles:insert name="/jsp/layout/common/message.jsp"/>

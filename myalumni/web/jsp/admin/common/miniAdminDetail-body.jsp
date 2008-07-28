@@ -10,7 +10,7 @@
 
 <c:choose>
 	<c:when test="${ isOnline == 'Y'}">
-		<font class="menuText2">Welcome <c:out value="${USER_CONTAINER.token.firstName}"/> <c:out value="${USER_CONTAINER.token.lastName}"/><br>[<a href="<c:out value="${LOGOUT}"/>">Logout</a>]&nbsp;&nbsp;[<a href="<c:out value="${mainsite}"/>">Back to main site</a>]</font>
+		<font class="menuText2">Welcome <c:out value="${USER_CONTAINER.token.firstName}"/> <c:out value="${USER_CONTAINER.token.lastName}"/>&nbsp;&nbsp;[<a href="<c:out value="${LOGOUT}"/>">Logout</a>]&nbsp;<br>[<a href="<c:out value="${mainsite}"/>">Member Index</a>]</font>
 	 </c:when>
 	 <c:otherwise>
 	<html:form  action="/admin/login?action=login" >
