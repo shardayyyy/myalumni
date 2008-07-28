@@ -34,7 +34,8 @@ NOTE: This release supports MySQL DBMS:
 
 ********************************************************************************
 *  NOTE: To upgrade or reinstall, READ THIS SECTION CAREFULLY
-*
+* 
+*  TO UPGRADE
 *  1. Backup your database first.
 *
 *  2. Run the update sql script if any, please look at myAlumni\sql\upgrade
@@ -59,6 +60,15 @@ NOTE: This release supports MySQL DBMS:
 *
 *  9. Run and test if myAlumni can run properly, and confirm the myAlumniHome
 *     has been configured properly
+*
+*
+*  TO INSTALL A CLEAN COPY
+*  1. Run the create sql script, please look at myAlumni\sql\
+* 
+*  2. Run the load sql script, please look at myAlumni\sql\
+*
+*  3. Drop the myalumni.war file in your servlet container directory.
+*
 *
 ********************************************************************************
 
