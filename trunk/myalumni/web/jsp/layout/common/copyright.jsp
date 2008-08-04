@@ -6,6 +6,7 @@
 
 <c:url var="emailWebmaster" value="/action/member/prepareEmailWebmaster?action=prepareEmailWebmaster" />
 <c:url var="myalumnihome" value="http://www.naijatek.com/myalumni" />
+<c:url var="iphone" value="/iphone/index.jsp" />
 
 
 <jsp:useBean id="now" class="java.util.Date" />
@@ -22,5 +23,7 @@
 		send your comments to <a href="<c:out value="${emailWebmaster}"/>">the webmaster</a>.<br>
       powered by <a href="http://www.naijatek.com"  target="_blank"><html:img page="/images/naijateklogo-100x10.gif" alt="Naijatek solutions (www.naijatek.com)" width="100" height="10" align="absmiddle" border="0"/></a><br>
   All rights reserved.
+  <br>
+  <a href="<c:out value="${iphone}"/>">Mobile Site (iPhone)</a>
 </div>
 
