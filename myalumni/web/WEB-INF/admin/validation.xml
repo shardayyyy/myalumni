@@ -200,6 +200,21 @@
                 </field>                
 	</form>
 	
+<!-- ========== Add Lookup Code ===================== -->
+    <form name="/admin/addLookupCode">
+                <field property="label" depends="required">
+                        <arg key="label.admin.general.desc"/>
+                </field>                
+	</form>
+
+<!-- ========== Update Lookup Code ===================== -->
+    <form name="/admin/updateLookupCode">
+                <field property="label" depends="required">
+                        <arg key="label.admin.general.desc"/>
+                </field>                
+	</form>	
+		
+	
 <!-- ========== Update Birthday Notification ===================== -->
     <form name="/admin/updateBirthdayNotification">
                 <field property="birthdayNotification" depends="required">
