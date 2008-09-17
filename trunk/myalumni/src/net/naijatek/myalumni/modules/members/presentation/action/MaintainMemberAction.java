@@ -109,6 +109,9 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
     
 
 
+    
+    
+    
     public ActionForward displayMiniProfile(ActionMapping mapping,
                                        ActionForm form,
                                        HttpServletRequest request,
@@ -247,6 +250,28 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
     }    
     
     
+    public ActionForward validateMemberUserName(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		MemberForm memberForm = (MemberForm) form;
+
+		if (memberForm.getApproach() != null) {
+			boolean available = memService.isMemberAvailableByUserName(memberForm.getMemberUserName());
+
+			//@TODO : check to see that name is not part of the not allowed names.
+
+			response.setContentType("text/xml");
+			response.setHeader("Cache-Control", "no-cache");
+
+			if (available) {
+				response.getWriter().write("<message>false</message>");
+			} else {
+				response.getWriter().write("<message>true</message>");
+			}
+		} 
+		return null;
+	}    
     
     
     public ActionForward searchForMembers(ActionMapping mapping,
@@ -261,10 +286,10 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
      String isAdmin = BaseConstants.BOOLEAN_NO;
 
      MemberForm memberForm = (MemberForm) form;
-      
-     membersArrayList = baseMemberSearch(memberForm, request, searchCount, memService, isAdmin);
-
-     setRequestObject(request, BaseConstants.LIST_OF_MEMBERS , membersArrayList);
+            	
+	 membersArrayList = baseMemberSearch(memberForm, request, searchCount, memService, isAdmin);
+	
+	 setRequestObject(request, BaseConstants.LIST_OF_MEMBERS , membersArrayList);			      
 
      return mapping.findForward(BaseConstants.FWD_SUCCESS);
 

@@ -56,7 +56,7 @@ window.onload = function()
                 <td valign="top"><span class="fieldlabel"><bean:message key="label.membercomments"/><font color="#cc0000">*</font></span></td>
                 <td>
 			<html:textarea property="comments" cols="40" rows="5" titleKey="label.comments" onkeydown="textCounter(document.memberForm.comments,document.memberForm.remLen1,200)" onkeyup="textCounter(document.memberForm.comments,document.memberForm.remLen1,200)"/><div class="graysmall"><br>Maximum Length = <bean:message key="comments.length"/><br/></div>
-		<input type="text" name="remLen1" size="3" maxlength="3" readonly="true" style="text-align:right;border:none;background-color:#FFFFFF;">&nbsp;Characters left
+		<input type="text" id="remLen1" name="remLen1" size="3" maxlength="3" readonly="true" style="text-align:right;border:none;background-color:#FFFFFF;">&nbsp;Characters left
 		</td>
               </tr>
             <c:choose>

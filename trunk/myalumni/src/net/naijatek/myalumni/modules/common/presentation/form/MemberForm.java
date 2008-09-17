@@ -50,6 +50,8 @@ import net.naijatek.myalumni.util.BaseConstants;
 
 public class MemberForm extends MyAlumniBaseForm{
 
+	private String approach;   // used for ajax search
+	
 	private String memberId;
 	private String memberUserName;
 	private String memberTempUserName;
@@ -486,6 +488,12 @@ public class MemberForm extends MyAlumniBaseForm{
 	}
 	public void setAlpha(String alpha) {
 		this.alpha = alpha;
+	}
+	public String getApproach() {
+		return approach;
+	}
+	public void setApproach(String approach) {
+		this.approach = approach;
 	}
 
 }

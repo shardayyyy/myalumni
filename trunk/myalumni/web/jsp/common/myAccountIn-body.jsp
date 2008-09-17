@@ -19,8 +19,9 @@ function initRequest(url) {
 }
 
 function validateUserId() {
+	//alert('Validating User ID');
     if (!target) target = document.getElementById("memberUserName");
-    var url = "<%=request.getContextPath()%>/action/validateMemberUserName?action=validateMemberUserName&memberUserName=" + escape(target.value);    
+    var url = "<%=request.getContextPath()%>/action/member/validateMemberUserName?searchCategory=memberUserName&action=validateMemberUserName&approach=ajax&memberUserName=" + escape(target.value);    
     initRequest(url);
     req.onreadystatechange = processRequest;
     req.open("GET", url, true); 
@@ -30,7 +31,7 @@ function validateUserId() {
 function processRequest() {
     if (req.readyState == 4) {
         if (req.status == 200) {
-            var message = req.responseXML.getElementsByTagName("valid")[0].childNodes[0].nodeValue;
+            var message = req.responseXML.getElementsByTagName("message")[0].childNodes[0].nodeValue;
             setMessageUsingDOM(message);
             var submitBtn = document.getElementById("submit_btn");
             if (message == "false") {
@@ -56,10 +57,10 @@ function setMessageUsingInline(message) {
      var messageText;
      if (message == "false") {
          userMessageElement.style.color = "red";
-         messageText = "Invalid User Id";
+         messageText = "User Name already taken !";
      } else {
          userMessageElement.style.color = "green";
-         messageText = "Valid User Id";
+         messageText = "User Name Available";
      }
      var messageBody = document.createTextNode(messageText);
      // if the messageBody element has been created simple replace it otherwise
@@ -84,9 +85,13 @@ function disableSubmitBtn() {
               </tr>
               <tr class="portlet-section-body">
                 <td width="30%"><span class="fieldlabel"><bean:message key="label.username"/>:<font color="#cc0000">*</font></span></td>
-                <td width="70%">
-                	<html:text property="memberUserName" styleId="memberUserName" size="25" maxlength="25"  titleKey="label.username" onkeyup="validateUserId()"/>
-                	<div id="userIdMessage"></div>
+                <td width="70%">                                	
+                	<table cellpadding="0" cellspacing="0">
+                		<tr>
+                			<td><html:text property="memberUserName" styleId="memberUserName" size="25" maxlength="25"  titleKey="label.username" onblur="validateUserId();"/></td>
+                			<td align="left"><strong><div id="userIdMessage"></div></strong></td>
+                		</tr>
+                	</table>
                 </td>
               </tr>
               <tr class="portlet-section-body">
