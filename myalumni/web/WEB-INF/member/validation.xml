@@ -84,6 +84,13 @@
                 </field>
         </form>
 
+<!-- ========== MEMBER SEARCH ===================== -->
+        <form name="/member/validateMemberUserName">
+                <field property="searchCategory" depends="required, searchCategory">
+                        <arg0 key="label.searchcategory"/>
+                </field>
+        </form>
+
 
 <!-- ========== REGISTRATION ===================== -->
        <form name="/member/jcaptchaAddMember">

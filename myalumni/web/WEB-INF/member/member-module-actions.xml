@@ -219,6 +219,16 @@
         <constructor-arg index="5" ref="messengerService"/>
     </bean>
 
+    <bean name="/member/validateMemberUserName" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+        <constructor-arg index="0" ref="memberService"/>
+        <constructor-arg index="1" ref="pmService"/>
+        <constructor-arg index="2" ref="mfService"/> 
+        <constructor-arg index="3" ref="xlatService"/>
+        <constructor-arg index="4" ref="systemConfigService"/> 
+        <constructor-arg index="5" ref="messengerService"/>
+    </bean>
+
+
 
     
         
