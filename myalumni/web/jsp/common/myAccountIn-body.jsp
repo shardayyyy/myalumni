@@ -34,6 +34,7 @@ function processRequest() {
             var message = req.responseXML.getElementsByTagName("message")[0].childNodes[0].nodeValue;
             setMessageUsingDOM(message);
             var submitBtn = document.getElementById("submit_btn");
+            
             if (message == "false") {
               submitBtn.disabled = true;
             } else {

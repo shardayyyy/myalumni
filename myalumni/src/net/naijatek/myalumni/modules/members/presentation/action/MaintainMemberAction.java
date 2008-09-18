@@ -51,6 +51,7 @@ import javax.imageio.stream.ImageInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.naijatek.myalumni.framework.exceptions.BadInputException;
 import net.naijatek.myalumni.framework.exceptions.CreateException;
 import net.naijatek.myalumni.framework.exceptions.DuplicateEmailException;
 import net.naijatek.myalumni.framework.exceptions.DuplicateMemberException;
@@ -82,6 +83,7 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.upload.FormFile;
+import org.apache.struts.validator.Resources;
 
 
 public class MaintainMemberAction extends MyAlumniDispatchAction{
@@ -258,13 +260,29 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
 
 		if (memberForm.getApproach() != null) {
 			boolean available = memService.isMemberAvailableByUserName(memberForm.getMemberUserName());
+			boolean allowed = false;
+				
+			String memberUserName = memberForm.getMemberUserName();
+			try {
+				StringUtil.checkGoodName(memberUserName);
+				allowed = true;
+			} catch (BadInputException e) {
+				allowed = false;
+			}
 
-			//@TODO : check to see that name is not part of the not allowed names.
-
+			String unActivatePattern = getSysProp().getValue("DEFAULT_USERNAME_PATTERN");
+			
+			StringTokenizer st = new StringTokenizer(unActivatePattern, ",");
+			while (st.hasMoreTokens()) {
+				if (memberUserName.startsWith(st.nextToken())) {
+					allowed = false;
+				}
+			}										
+			
 			response.setContentType("text/xml");
 			response.setHeader("Cache-Control", "no-cache");
 
-			if (available) {
+			if (available || !allowed) {
 				response.getWriter().write("<message>false</message>");
 			} else {
 				response.getWriter().write("<message>true</message>");
@@ -658,7 +676,6 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
       memService.updateMemberSignature(signature, token.getMemberUserName(), getLastModifiedBy(request));
 
       token.setSignature(signature);
-     //TODO set this in the container       setSessionObject(request, BaseConstants.USER_KEY, userVO);
 
       // get the member profile
       MemberVO memberVO = memService.getMemberProfileByUserName(token.getMemberUserName());
