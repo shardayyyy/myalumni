@@ -9,10 +9,10 @@
 		</id>
   
 
-		<property name="label" column="LINK_LABEL"	 not-null="true"	type="string"/>
-		<property name="linkurl" column="LINK_URL"	 not-null="true"	type="string"/>
+		<property name="label" column="LINK_LABEL"	length="40" not-null="true"	type="string"/>
+		<property name="linkurl" column="LINK_URL"	length="200" not-null="true"	type="string"/>
 		<property name="important" column="IMPORTANT" 	length="1" not-null="true"	type="string"/>
-		<property name="status" 	column="LINK_STATUS" 	length="1" not-null="true"	type="string"/>
+		<property name="status" column="LINK_STATUS" 	length="1" not-null="true"	type="string"/>
 
 		<property name="lastModifiedBy" 	column="LASTMODIFIED_BY"	 length="40" not-null="true"	type="string"/>
 		<property name="lastModification" 	column="LASTMODIFICATION" 	length="1" not-null="true"	type="string"/>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.naijatek.myalumni.framework.exceptions.MyAlumniException;
 import net.naijatek.myalumni.modules.common.domain.FrontPageVO;
+import net.naijatek.myalumni.modules.common.domain.ScrollVO;
 import net.naijatek.myalumni.modules.common.persistence.BaseHibernateDao;
 import net.naijatek.myalumni.modules.common.persistence.iface.FrontPageDao;
 
@@ -33,14 +34,15 @@ public class FrontPageHibernateDao extends BaseHibernateDao implements FrontPage
 	
 	@SuppressWarnings("unchecked")
 	public List<FrontPageVO> findAll() {
-		List<FrontPageVO> o = getHibernateTemplate().find("from FrontPageVO r order by r.status desc");
-		return o;
+   		//return getHibernateTemplate().find("from FrontPageVO");
+		//FrontPageVO fp = new FrontPageVO();
+		return getSession().createQuery("select from FrontPageVO r order by r.status desc")
+		.list();	
 	}
         
 	@SuppressWarnings("unchecked")
     public List<FrontPageVO> findAllByStatus(String status) {
-		return getHibernateTemplate().find("from FrontPageVO r order by r.status desc");
-		//return getHibernateTemplate().findByNamedQueryAndNamedParam("FrontPage.bystatus", "status", status);                
+		return getHibernateTemplate().find("from FrontPageVO r order by r.status desc");             
 	}
         
 
