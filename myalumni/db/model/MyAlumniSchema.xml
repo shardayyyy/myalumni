@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="yes" ?>
 <DBMODEL Version="4.0">
 <SETTINGS>
-<GLOBALSETTINGS ModelName="My Alumni Schema" IDModel="0" IDVersion="0" VersionStr="1.0.0.0" Comments="" UseVersionHistroy="1" AutoIncVersion="1" DatabaseType="MySQL" ZoomFac="100.00" XPos="796" YPos="840" DefaultDataType="34" DefaultTablePrefix="0" DefSaveDBConn="" DefSyncDBConn="localdev" DefQueryDBConn="" Printer="" HPageCount="4.0" PageAspectRatio="1.440892512336408" PageOrientation="1" PageFormat="A4 (210x297 mm, 8.26x11.7 inches)" SelectedPages="" UsePositionGrid="0" PositionGridX="20" PositionGridY="20" TableNameInRefs="0" DefaultTableType="0" ActivateRefDefForNewRelations="1" FKPrefix="" FKPostfix="" CreateFKRefDefIndex="0" DBQuoteCharacter="`" CreateSQLforLinkedObjects="0" DefModelFont="Tahoma" CanvasWidth="4096" CanvasHeight="2842" />
+<GLOBALSETTINGS ModelName="My Alumni Schema" IDModel="0" IDVersion="0" VersionStr="1.0.0.0" Comments="" UseVersionHistroy="1" AutoIncVersion="1" DatabaseType="MySQL" ZoomFac="91.00" XPos="1074" YPos="769" DefaultDataType="34" DefaultTablePrefix="0" DefSaveDBConn="" DefSyncDBConn="localdev" DefQueryDBConn="" Printer="" HPageCount="4.0" PageAspectRatio="1.440892512336408" PageOrientation="1" PageFormat="A4 (210x297 mm, 8.26x11.7 inches)" SelectedPages="" UsePositionGrid="0" PositionGridX="20" PositionGridY="20" TableNameInRefs="0" DefaultTableType="0" ActivateRefDefForNewRelations="1" FKPrefix="" FKPostfix="" CreateFKRefDefIndex="0" DBQuoteCharacter="`" CreateSQLforLinkedObjects="0" DefModelFont="Tahoma" CanvasWidth="4096" CanvasHeight="2842" />
 <DATATYPEGROUPS>
 <DATATYPEGROUP Name="Numeric Types" Icon="1" />
 <DATATYPEGROUP Name="Date and Time Types" Icon="2" />
@@ -258,8 +258,8 @@
 </SETTINGS>
 <METADATA>
 <REGIONS>
-<REGION ID="2668" RegionName="MYALUMNI" XPos="22" YPos="104" Width="1067" Height="1733" RegionColor="2" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="11" />
 <REGION ID="4252" RegionName="SYSTEM" XPos="1281" YPos="100" Width="877" Height="1713" RegionColor="5" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="13" />
+<REGION ID="2668" RegionName="MYALUMNI" XPos="22" YPos="104" Width="1067" Height="1733" RegionColor="2" TablePrefix="0" TableType="0" OverwriteTablePrefix="0" OverwriteTableType="0" Comments="" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="11" />
 </REGIONS>
 <TABLES>
 <TABLE ID="2511" Tablename="MYALUMNI_MEMBERS_TBL" PrevTableName="fgc_members" XPos="183" YPos="155" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="6" >
@@ -1175,6 +1175,51 @@
 <INDEX ID="4563" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="4562" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+</INDICES>
+</TABLE>
+<TABLE ID="6908" Tablename="MYALUMNI_FRONTPAGELINK_TBL" PrevTableName="Table_13" XPos="1856" YPos="1334" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="21" >
+<COLUMNS>
+<COLUMN ID="6910" ColName="LINK_ID" PrevColName="" Pos="0" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="6912" ColName="LINK_URL" PrevColName="" Pos="1" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="6913" ColName="IMPORTANT" PrevColName="" Pos="2" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="6914" ColName="LINK_STATUS" PrevColName="" Pos="3" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="6915" ColName="LASTMODIFICATION" PrevColName="" Pos="4" idDatatype="19" DatatypeParams="(1)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="6916" ColName="LASTMODIFIED_BY" PrevColName="" Pos="5" idDatatype="20" DatatypeParams="(40)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="6917" ColName="LASTMODIFIED_DATE" PrevColName="" Pos="6" idDatatype="16" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+</COLUMNS>
+<INDICES>
+<INDEX ID="6911" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="6910" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 </INDICES>

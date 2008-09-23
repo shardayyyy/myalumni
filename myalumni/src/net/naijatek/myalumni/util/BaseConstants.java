@@ -224,6 +224,7 @@ public interface BaseConstants {
    public static final String LIST_OF_IPHONE_MEMBERS = "listOfIphoneMembers";
    public static final String IPHONE_MEMBER_PROFILE = "profile";
    public static final String LIST_OF_IPHONE_DORMS = "listOfIphoneDorms";
+   public static final String LIST_OF_FRONT_PAGE_LINKS = "listOfFronPageLinks";
    
    
    // ROLES

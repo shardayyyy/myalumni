@@ -40,13 +40,19 @@ package net.naijatek.myalumni.modules.admin.presentation.action;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.naijatek.myalumni.framework.struts.MyAlumniDispatchAction;
+import net.naijatek.myalumni.modules.admin.presentation.form.SystemConfigForm;
+import net.naijatek.myalumni.modules.common.domain.FrontPageVO;
+import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
 import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
 import net.naijatek.myalumni.modules.common.domain.XlatGroupVO;
+import net.naijatek.myalumni.modules.common.presentation.form.FrontPageForm;
 import net.naijatek.myalumni.modules.common.presentation.form.SystemGroupForm;
+import net.naijatek.myalumni.modules.common.service.IFrontPageService;
 import net.naijatek.myalumni.modules.common.service.IXlatGroupService;
 import net.naijatek.myalumni.modules.common.service.IXlatService;
 import net.naijatek.myalumni.util.BaseConstants;
@@ -57,6 +63,8 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 
 
 
@@ -66,16 +74,18 @@ public class MaintainGeneralModuleAction  extends MyAlumniDispatchAction {
     
     private IXlatService xlatService;
     private IXlatGroupService xlatGroupService;
+    private IFrontPageService frontPageService;
     
 
     /**
      * Instantiates the service classes
      * @param xlatService
      */
-    public MaintainGeneralModuleAction(IXlatService xlatService, IXlatGroupService xlatGroupService) {
+    public MaintainGeneralModuleAction(IXlatService xlatService, IXlatGroupService xlatGroupService, IFrontPageService frontPageService) {
         super();
         this.xlatService = xlatService ;
         this.xlatGroupService = xlatGroupService;
+        this.frontPageService = frontPageService;
     }    
 
     // ----------------------------------
@@ -151,6 +161,95 @@ public class MaintainGeneralModuleAction  extends MyAlumniDispatchAction {
     }   
     
  
+	//**********************************************************************
+	//******************  FRONT PAGE       ********************************
+	//********************************************************************** 	   
+    public ActionForward prepareAddFrontPageLinks(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        logger.debug("in prepareAddFrontPageLinks...");  
+        saveToken(request);
+        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+    }
     
+    
+    public ActionForward listFrontPageLinks(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        logger.debug("in listFrontPageLinks...");       
+        getFrontPageHelper(request);
+        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+    }    
+
+    public ActionForward viewFrontPageLinks(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        logger.debug("in viewFrontPageLinks...");       
+        FrontPageForm frontPageForm = (FrontPageForm) form;
+        FrontPageVO frontPageVO = new FrontPageVO();
+        frontPageVO = frontPageService.findById(frontPageForm.getLinkId());
+        BeanUtils.copyProperties(frontPageForm, frontPageVO );
+        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+    }    
+ 
+    public ActionForward updateFrontPageLinks(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        logger.debug("in updateFrontPageLinks...");
+        if ( !isTokenValid(request) ) {
+            return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+        }          
+        
+        FrontPageForm frontPageForm = (FrontPageForm) form;
+        FrontPageVO frontPageVO = new FrontPageVO();
+        BeanUtils.copyProperties(frontPageVO, frontPageForm);
+        frontPageVO.setLastModifiedBy(getLastModifiedBy(request));
+        frontPageService.merge(frontPageVO);
+        getFrontPageHelper(request);
+        resetToken(request);
+        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+    }
+
+
+    public ActionForward addFrontPageLinks(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        logger.debug("in addFrontPageLinks...");
+        if ( !isTokenValid(request) ) {
+            return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+        }          
+		if (!adminSecurityCheck(request)) {
+			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+		}        
+        FrontPageForm frontPageForm = (FrontPageForm) form;
+        FrontPageVO frontPageVO = new FrontPageVO();
+        BeanUtils.copyProperties(frontPageVO, frontPageForm);
+        frontPageVO.setLastModifiedBy(getLastModifiedBy(request));
+        frontPageService.save(frontPageVO);
+        getFrontPageHelper(request);
+        resetToken(request);
+        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+    }
+    
+    
+    public ActionForward prepareUpdateFrontPageLinks(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        logger.debug("in prepareUpdateFrontPageLinks...");    
+        saveToken(request);
+        FrontPageForm frontPageForm = (FrontPageForm) form;
+        FrontPageVO frontPageVO = frontPageService.findById(frontPageForm.getLinkId());
+        BeanUtils.copyProperties(frontPageForm, frontPageVO);
+        getFrontPageHelper(request);
+        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+    }
+    
+
+
+    public ActionForward deleteFrontPageLinks(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        logger.debug("in deleteFrontPageLinks...");        
+		if (!adminSecurityCheck(request)) {
+			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+		}        
+        FrontPageForm frontPageForm = (FrontPageForm) form;
+        frontPageService.softDelete(frontPageForm.getLinkId(), getLastModifiedBy(request));
+        getFrontPageHelper(request);
+        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+    }
+
+    private void getFrontPageHelper(HttpServletRequest request){
+        List<FrontPageVO> tasks =  frontPageService.findAll();
+        setRequestObject(request, BaseConstants.LIST_OF_FRONT_PAGE_LINKS, tasks);        
+    }
+    
+	    
     
 }

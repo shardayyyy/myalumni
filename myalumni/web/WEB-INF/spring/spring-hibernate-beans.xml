@@ -4,6 +4,26 @@
 <beans>
      
 
+
+    <!--=====================================================================
+    =             FRONT PAGE SERVICE IMPL                                 =
+    =             FRONT PAGE HIBERNATE DAO                                   =
+    ======================================================================-->
+    <!-- Service -->
+    <bean id="frontPageService" parent="myalumniTransactionController">
+    	<property name="target">
+    		<bean class="net.naijatek.myalumni.modules.common.service.impl.FrontPageServiceImpl">
+    			<constructor-arg index="0" ref="frontPageDao"/>
+    		</bean>
+    	</property>
+    </bean>
+
+    <!-- DAO     -->
+     <bean id="frontPageDao" 
+     	class="net.naijatek.myalumni.modules.common.persistence.hibernate.FrontPageHibernateDao">
+     	<property name="sessionFactory" ref="sessionFactory"></property>     
+     </bean>
+
     <!--=====================================================================
     =             SYSTEM TASKS SERVICE IMPL                                 =
     =             SYSTEM TASKS HIBERNATE DAO                                   =

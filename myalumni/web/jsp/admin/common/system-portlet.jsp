@@ -40,21 +40,21 @@
                             <tr>
                                     <td valign="top" nowrap>
                                         <font size="2">                                         
-                                    &#8226;&nbsp;<a href="<c:out value="${listClassNews}"/>">Manage Class News</a><br><br>  
-                                    &#8226;&nbsp;<a href="<c:out value="${listErrorLogs}"/>">Manage Error Log</a><br><br>
-									&#8226;&nbsp;<a href="<c:out value="${listSystemLogs}"/>">Manage System Log</a><br><br>
-                                    &#8226;&nbsp;<a href="<c:out value="${rss}"/>">Manage RSS Feed</a><br><br>
-                                    &#8226;&nbsp;<a href="<c:out value="${sessionTimeout}"/>">Manage User Session Timeout</a><br><br>
-                                    &#8226;&nbsp;<a href="<c:out value="${serverurl}"/>">Manage Server URL</a><br><br>
-                                    &#8226;&nbsp;<a href="<c:out value="${forumurl}"/>">Manage Forum URL</a><br><br>
-                                    &#8226;&nbsp;<a href="<c:out value="${albumurl}"/>">Manage Album URL</a><br><br>                                                                        		                             
-									&#8226;&nbsp;<a href="<c:out value="${scroll}"/>&type=list">Maintain Scroll</a><br><br>
-									&#8226;&nbsp;<a href="<c:out value="${listReminisce}"/>">Maintain Reminisce</a><br><br>
-									&#8226;&nbsp;<a href="<c:out value="${dormitory}"/>">School has dormitory?</a><br><br>
-									&#8226;&nbsp;<a href="<c:out value="${birthday}"/>">Send Birthday Notifications?</a><br><br>
-									&#8226;&nbsp;<a href="<c:out value="${orginfo}"/>">Organization Information</a><br><br>
-									&#8226;&nbsp;<a href="<c:out value="${aboutorg}"/>">Update Organization About Us</a><br><br>										
-									&#8226;&nbsp;<a href="<c:out value="${uploadlogo}"/>">Upload School Logo</a><br><br>
+                                    &#8226;&nbsp;<a href="<c:out value="${listClassNews}"/>">Manage Class News</a> - <span class="graysmall"><bean:message key="sys_module.classnews"/></span><br><br>  
+                                    &#8226;&nbsp;<a href="<c:out value="${listErrorLogs}"/>">Manage Error Log</a> - <span class="graysmall"><bean:message key="sys_module.errorlog"/></span><br><br>
+									&#8226;&nbsp;<a href="<c:out value="${listSystemLogs}"/>">Manage System Log</a> - <span class="graysmall"><bean:message key="sys_module.systemlog"/></span><br><br>
+                                    &#8226;&nbsp;<a href="<c:out value="${rss}"/>">Manage RSS Feed</a> - <span class="graysmall"><bean:message key="sys_module.rss"/></span><br><br>
+                                    &#8226;&nbsp;<a href="<c:out value="${sessionTimeout}"/>">Manage User Session Timeout</a> - <span class="graysmall"><bean:message key="sys_module.session"/></span><br><br>
+                                    &#8226;&nbsp;<a href="<c:out value="${serverurl}"/>">Manage Server URL</a> - <span class="graysmall"><bean:message key="sys_module.server"/></span><br><br>
+                                    &#8226;&nbsp;<a href="<c:out value="${forumurl}"/>">Manage Forum URL</a> - <span class="graysmall"><bean:message key="sys_module.forum"/></span><br><br>
+                                    &#8226;&nbsp;<a href="<c:out value="${albumurl}"/>">Manage Album URL</a> - <span class="graysmall"><bean:message key="sys_module.album"/></span><br><br>                                                                        		                             
+									&#8226;&nbsp;<a href="<c:out value="${scroll}"/>&type=list">Maintain Scroll</a> - <span class="graysmall"><bean:message key="sys_module.scroll"/></span><br><br>
+									&#8226;&nbsp;<a href="<c:out value="${listReminisce}"/>">Maintain Reminisce</a> - <span class="graysmall"><bean:message key="sys_module.reminisce"/></span><br><br>
+									&#8226;&nbsp;<a href="<c:out value="${dormitory}"/>">School has dormitory?</a> - <span class="graysmall"><bean:message key="sys_module.dorm"/></span><br><br>
+									&#8226;&nbsp;<a href="<c:out value="${birthday}"/>">Send Birthday Notifications?</a> - <span class="graysmall"><bean:message key="sys_module.birthday"/></span><br><br>
+									&#8226;&nbsp;<a href="<c:out value="${orginfo}"/>">Organization Information</a> - <span class="graysmall"><bean:message key="sys_module.orginfo"/></span><br><br>
+									&#8226;&nbsp;<a href="<c:out value="${aboutorg}"/>">Update Organization About Us</a> - <span class="graysmall"><bean:message key="sys_module.aboutus"/></span><br><br>										
+									&#8226;&nbsp;<a href="<c:out value="${uploadlogo}"/>">Upload School Logo</a> - <span class="graysmall"><bean:message key="sys_module.logo"/></span><br><br>
 									 
 <%--									<br><br>												--%>
 <%--									&#8226;&nbsp;<a href="<c:out value="${emailexception}"/>&task=list">Email Exception</a> - TODO log all emal exceptions in the database to be resent later.<br>--%>
