@@ -25,8 +25,8 @@
                             <tr>
                                     <td valign="top" nowrap>
                                         <font size="2">                                            
-	                                        &#8226;&nbsp;<a href="<c:out value="${backupdatabase}"/>">Backup Database</a> <br><br>
-	                                        &#8226;&nbsp;<a href="<c:out value="${validatesystemconfig}"/>">Validate System Configuration</a> <br><br>
+	                                        &#8226;&nbsp;<a href="<c:out value="${backupdatabase}"/>">Backup Database</a> - <span class="graysmall"><bean:message key="admin_module.database"/></span><br><br>
+	                                        &#8226;&nbsp;<a href="<c:out value="${validatesystemconfig}"/>">Validate System Configuration</a> - <span class="graysmall"><bean:message key="admin_module.config"/></span><br><br>
 <%--                                        &#8226;&nbsp;<a href="<c:out value="${jcaptcha}"/>?task=list">jCaptcha Stats</a><br><br>	                                        
 	                                        &#8226;&nbsp;DEVELOPER MODE - <a href="<c:out value="${session}"/>">View Session Contents</a><br>--%>
                                         </font>

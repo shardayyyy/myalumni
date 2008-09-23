@@ -26,9 +26,9 @@
                             </tr>
                             <tr>
                                     <td valign="top" nowrap>
-                                            &#8226;&nbsp;<a href="<c:out value="${search}"/>">Member Search</a><br><br>
-											&#8226;&nbsp;<a href="<c:out value="${emailMember}"/>">Email Member</a><br><br>
-											&#8226;&nbsp;<a href="<c:out value="${statistics}"/>">Statistics</a><br><br>											
+                                            &#8226;&nbsp;<a href="<c:out value="${search}"/>">Member Search</a> - <span class="graysmall"><bean:message key="mem_module.search"/></span><br><br>
+											&#8226;&nbsp;<a href="<c:out value="${emailMember}"/>">Email Member</a> - <span class="graysmall"><bean:message key="mem_module.email"/></span><br><br>
+											&#8226;&nbsp;<a href="<c:out value="${statistics}"/>">Statistics</a> - <span class="graysmall"><bean:message key="mem_module.statistics"/></span><br><br>											
                                       
                                     </td>
                             </tr>

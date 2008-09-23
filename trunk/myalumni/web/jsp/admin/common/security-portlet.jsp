@@ -24,9 +24,9 @@
                             <tr>
                                     <td valign="top" nowrap>
                                         <font size="2">                                            
-                                            &#8226;&nbsp;<a href="<c:out value="${listAccessHistory}"/>">List Access History</a><br><br>
-                                            &#8226;&nbsp;<a href="<c:out value="${listUsers}"/>">Manage Users</a><br><br>
-                                            &#8226;&nbsp;<a href="<c:out value="${displayAssignRoleToUser}"/>">Assign Role to Members</a><br><br> 
+                                            &#8226;&nbsp;<a href="<c:out value="${listAccessHistory}"/>">List Access History</a> - <span class="graysmall"><bean:message key="security_module.history"/></span><br><br>
+                                            &#8226;&nbsp;<a href="<c:out value="${listUsers}"/>">Manage Users</a> - <span class="graysmall"><bean:message key="security_module.users"/></span><br><br>
+                                            &#8226;&nbsp;<a href="<c:out value="${displayAssignRoleToUser}"/>">Assign Role to Members</a> - <span class="graysmall"><bean:message key="security_module.role"/></span><br><br> 
                                             
                                         </font>
                                     </td>

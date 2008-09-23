@@ -610,6 +610,59 @@
     </bean>      
     
         
+     <!-- ******************************************************************* -->
+    <!-- ***********                 FRONT PAGE LINKS              ************* -->
+    <!-- ******************************************************************* -->
+    <!-- List Front Page Links -->
+    <bean name="/admin/listFrontPageLinks" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainGeneralModuleAction">
+        <constructor-arg index="0" ref="xlatService"/>
+        <constructor-arg index="1" ref="xlatGroupService"/>       
+        <constructor-arg index="2" ref="frontPageService"/> 
+    </bean>     
+    
+    <!-- Prepare Add Front Page Links -->
+    <bean name="/admin/prepareAddFrontPageLinks" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainGeneralModuleAction">
+        <constructor-arg index="0" ref="xlatService"/>
+        <constructor-arg index="1" ref="xlatGroupService"/>        
+        <constructor-arg index="2" ref="frontPageService"/>      
+    </bean>        
+    
+    <!-- Add Front Page Links -->
+    <bean name="/admin/addFrontPageLinks" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainGeneralModuleAction">
+        <constructor-arg index="0" ref="xlatService"/>
+        <constructor-arg index="1" ref="xlatGroupService"/>        
+        <constructor-arg index="2" ref="frontPageService"/>    
+    </bean>  
+  
+    <!-- Prepare Update Front Page Links -->
+    <bean name="/admin/prepareUpdateFrontPageLinks" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainGeneralModuleAction">
+        <constructor-arg index="0" ref="xlatService"/>
+        <constructor-arg index="1" ref="xlatGroupService"/>       
+        <constructor-arg index="2" ref="frontPageService"/>      
+    </bean>  
+    
+    <!-- Update Front Page Links -->
+    <bean name="/admin/updateFrontPageLinks" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainGeneralModuleAction">
+        <constructor-arg index="0" ref="xlatService"/>
+        <constructor-arg index="1" ref="xlatGroupService"/>        
+        <constructor-arg index="2" ref="frontPageService"/>     
+    </bean>  
+     
+    <!-- View Front Page Links -->
+    <bean name="/admin/viewFrontPageLinks" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainGeneralModuleAction">
+        <constructor-arg index="0" ref="xlatService"/>
+        <constructor-arg index="1" ref="xlatGroupService"/>        
+        <constructor-arg index="2" ref="frontPageService"/>      
+    </bean>  
+    
+    <!-- Delete Front Page Links -->
+    <bean name="/admin/deleteFrontPageLinks" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainGeneralModuleAction">
+        <constructor-arg index="0" ref="xlatService"/>
+        <constructor-arg index="1" ref="xlatGroupService"/>        
+        <constructor-arg index="2" ref="frontPageService"/>    
+    </bean> 
+    
+            
    <!--  =================================================== -->
     <!--  ======      EMAIL EXCEPTION         ======== -->
     <!--  =================================================== --> 
@@ -723,38 +776,44 @@
     <!-- List Lookup Codes -->
     <bean name="/admin/listLookupCodes" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainGeneralModuleAction">
         <constructor-arg index="0" ref="xlatService"/>
-        <constructor-arg index="1" ref="xlatGroupService"/>
+        <constructor-arg index="1" ref="xlatGroupService"/>       
+        <constructor-arg index="2" ref="frontPageService"/>
     </bean>    
 
     
     <!-- Prepare Add Lookup Code -->
     <bean name="/admin/prepareAddLookupCode" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainGeneralModuleAction">
         <constructor-arg index="0" ref="xlatService"/>
-        <constructor-arg index="1" ref="xlatGroupService"/>
+        <constructor-arg index="1" ref="xlatGroupService"/>       
+        <constructor-arg index="2" ref="frontPageService"/>
     </bean>       
     
     <!-- Add Lookup Code -->
     <bean name="/admin/addLookupCode" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainGeneralModuleAction">
         <constructor-arg index="0" ref="xlatService"/>
-        <constructor-arg index="1" ref="xlatGroupService"/>
+        <constructor-arg index="1" ref="xlatGroupService"/>       
+        <constructor-arg index="2" ref="frontPageService"/>
     </bean>    
     
     <!-- Prepare Update Lookup Code -->
     <bean name="/admin/prepareUpdateLookupCode" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainGeneralModuleAction">
         <constructor-arg index="0" ref="xlatService"/>
-        <constructor-arg index="1" ref="xlatGroupService"/>
+        <constructor-arg index="1" ref="xlatGroupService"/>       
+        <constructor-arg index="2" ref="frontPageService"/>
     </bean>    
     
     <!-- Update Lookup Code -->
     <bean name="/admin/updateLookupCode" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainGeneralModuleAction">
         <constructor-arg index="0" ref="xlatService"/>
-        <constructor-arg index="1" ref="xlatGroupService"/>
+        <constructor-arg index="1" ref="xlatGroupService"/>       
+        <constructor-arg index="2" ref="frontPageService"/>
     </bean>    
     
     <!-- List Lookup Groups -->        
     <bean name="/admin/listLookupGroups" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainGeneralModuleAction">
         <constructor-arg index="0" ref="xlatService"/>
-        <constructor-arg index="1" ref="xlatGroupService"/>
+        <constructor-arg index="1" ref="xlatGroupService"/>       
+        <constructor-arg index="2" ref="frontPageService"/>
     </bean>   
     
     

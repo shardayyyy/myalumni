@@ -19,6 +19,7 @@
           <form-bean name="errorLogForm"  type="net.naijatek.myalumni.modules.admin.presentation.form.ErrorLogForm"/>
           <form-bean name="systemConfigForm"  type="net.naijatek.myalumni.modules.admin.presentation.form.SystemConfigForm"/>
           <form-bean name="generalModuleForm"  type="net.naijatek.myalumni.modules.common.presentation.form.SystemGroupForm"/>          
+          <form-bean name="frontPageForm"  type="net.naijatek.myalumni.modules.common.presentation.form.FrontPageForm"/>          
   </form-beans>
   
   <!-- =========================================  Global Exceptions  ================================================ -->
