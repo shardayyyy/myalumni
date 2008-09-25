@@ -20,4 +20,15 @@
 			
 			
 	</class>    	
+	
+			<!--  All FrontPageVO by status  -->
+	<query name="frontpage.bystatus">
+			<![CDATA[ 
+				from FrontPageVO m 
+				where m.status = :status
+			]]>
+    </query>
+    	
+    	
+    	
 </hibernate-mapping>

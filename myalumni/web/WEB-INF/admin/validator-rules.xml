@@ -71,6 +71,17 @@
                                  javax.servlet.http.HttpServletRequest"
                             msg="error.orgfirstyear">
           </validator>
+<!-- ========================= validateFrontPageUrl ===================== -->
+          <validator name="validateFrontPageUrl"
+                      classname="net.naijatek.myalumni.framework.struts.MyAlumniValidator"
+                      method="validateFrontPageUrl"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="error.homepageurl">
+          </validator>
 
 
    </global>

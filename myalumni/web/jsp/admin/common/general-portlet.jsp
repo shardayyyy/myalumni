@@ -22,7 +22,7 @@
                                     <td valign="top" nowrap>
                                         <font size="2">                                            
                                             &#8226;&nbsp;<a href="<c:out value="${groups}"/>">Manage System Lookup Codes</a> - <span class="graysmall"><bean:message key="gen_module.dropdown"/></span><br><br>
-                                            &#8226;&nbsp;<a href="<c:out value="${frontlinks}"/>">Add Front Page Links</a> - <span class="graysmall"><bean:message key="gen_module.frontpagelinks"/></span>   <br><br>                                            
+                                            &#8226;&nbsp;<a href="<c:out value="${frontlinks}"/>">Manage Front Page Links</a> - <span class="graysmall"><bean:message key="gen_module.frontpagelinks"/></span>   <br><br>                                            
                                         </font>
                                     </td>
                             </tr>

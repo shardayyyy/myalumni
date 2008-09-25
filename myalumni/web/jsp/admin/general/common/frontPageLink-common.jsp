@@ -15,10 +15,10 @@
             <td class="bg0"><div style="padding-bottom: 5px; padding-top: 5px;"> <html:img page="/images/spacer.gif" border="0" height="3" width="10"/> <span class="Bold">
                         <c:choose>
                             <c:when test="${actionMode == 'add'}">
-                                <bean:message key="label.common.add"/> <bean:message key="label.reminisce.reminisce"/>
+                                <bean:message key="label.common.add"/> <bean:message key="label.frontpage.frontpagelink"/>
                             </c:when>
                             <c:when test="${actionMode == 'update'}">
-                                <bean:message key="label.common.update"/> <bean:message key="label.reminisce.reminisce"/>
+                                <bean:message key="label.common.update"/> <bean:message key="label.frontpage.frontpagelink"/>
                             </c:when>
                         </c:choose>              
             </span> </div></td>
@@ -37,42 +37,28 @@
                       <td width="81%">&nbsp;</td>
                     </tr>
 					
-		<tr>
+		        <tr>
                   <td align="center">&nbsp;</td>
-                      <td align="right" class="Smallbold"><bean:message key="label.reminisce.reminisceyears"/>:</td>
+                      <td align="right" class="Smallbold"><bean:message key="label.frontpage.label"/>:</td>
                       <td align="center"><html:img page="/images/dot.gif" width="9" height="9"/></td>
                       <td>
-                      	<myalumni:dropdown type="luSpecific" group="CLASSYEAR" fieldName="fromYear" titleKey="label.reminisce.reminisceyears"><bean:write name="reminisceForm" property="fromYear"/></myalumni:dropdown>
-                      	&nbsp;
-                      	To 
-                      	&nbsp;
-                      	<myalumni:dropdown type="luSpecific" group="CLASSYEAR" fieldName="toYear" titleKey="label.reminisce.reminisceyears"><bean:write name="reminisceForm" property="toYear"/></myalumni:dropdown>
+                      	<html:text property="label" size="40" maxlength="40" titleKey="label.frontpage.label"/>
                       </td>
                 </tr> 
-                <tr>
+		        <tr>
                   <td align="center">&nbsp;</td>
-                      <td align="right" class="Smallbold"><bean:message key="label.reminisce.slang"/>:</td>
+                      <td align="right" class="Smallbold"><bean:message key="label.frontpage.linkurl"/>:</td>
                       <td align="center"><html:img page="/images/dot.gif" width="9" height="9"/></td>
-                      <td><html:text property="slang" size="50" maxlength="50" titleKey="label.reminisce.slang"/></td>
-                </tr>
+                      <td>
+                      	<html:text property="linkurl" size="100" maxlength="200" titleKey="label.frontpage.linkurl"/>
+                      </td>
+                </tr>                 
                 <tr>
                   <td align="center">&nbsp;</td>
-                      <td align="right" class="Smallbold" valign="top"><bean:message key="label.reminisce.pronounciation"/>:</td>
-                      <td align="center" valign="top"><html:img page="/images/dot.gif" width="9" height="9"/></td>
-                      <td>
-                      	<html:text property="pronounce" size="50" maxlength="50" titleKey="label.reminisce.pronounciation" />
-                      	
-                      </td>
-                </tr>                
-                <tr>
-                  <td align="center">&nbsp;</td>
-                      <td align="right" class="Smallbold" valign="top"><bean:message key="label.reminisce.meaning"/>:</td>
-                      <td align="center" valign="top"><html:img page="/images/dot.gif" width="9" height="9"/></td>
-                      <td>
-                      	<html:textarea property="meaning" cols="60%" rows="5" titleKey="label.reminisce.meaning" onkeydown="Counter(this,'500','Meaning');" onkeyup="Counter(this,'500','Meaning');"/>
-                      </td>
-                </tr>
-           <c:if test="${MODULE == 'ADMIN'}">     
+                      <td align="right" class="Smallbold"><bean:message key="label.frontpage.important"/>:</td>
+                      <td align="center"><html:img page="/images/dot.gif" width="9" height="9"/></td>
+                      <td><html:checkbox property="important" value="Y" titleKey="label.frontpage.important"/></td>
+                </tr>  
        			<tr>
                   <td align="center">&nbsp;</td>
                   <td align="right" class="Smallbold"><bean:message key="label.admin.status"/>:</td>
@@ -92,7 +78,6 @@
                         </c:choose>      
                   </td>
                 </tr>
-          </c:if>
                 <tr>
                   <td align="center">&nbsp;</td>
                   <td align="right" class="Smallbold">&nbsp;</td>
@@ -114,18 +99,9 @@
                             </c:when>
                         </c:choose>
                           &nbsp;&nbsp;
-                         <c:choose>
-                            <c:when test="${MODULE == 'ADMIN'}">
-						        <html:link action="/admin/listReminisce?action=listReminisce" onmouseover="window.status=''; return true">
-                                	<html:img page="/images/cancel.png" border="0" align="absbottom"/>    
-                            	</html:link>
-                            </c:when>
-                            <c:otherwise>
-						        <html:link action="/member/listReminisce?action=listReminisce" onmouseover="window.status=''; return true">
-                                	<html:img page="/images/cancel.png" border="0" align="absbottom"/>    
-                            	</html:link>
-                            </c:otherwise>
-                        </c:choose>						
+				        <html:link action="/admin/listFrontPageLinks?action=listFrontPageLinks" onmouseover="window.status=''; return true">
+                              	<html:img page="/images/cancel.png" border="0" align="absbottom"/>    
+                         </html:link>					
 						
 						
 						
