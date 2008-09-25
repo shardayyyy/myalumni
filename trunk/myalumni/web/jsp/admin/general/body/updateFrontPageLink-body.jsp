@@ -4,13 +4,13 @@
 
 
 
-<html:form action="/admin/updateReminisce">
-        <html:hidden property="action" value="updateReminisce"/>
-        <html:hidden property="reminisceId"/>
+<html:form action="/admin/updateFrontPageLinks">
+        <html:hidden property="action" value="updateFrontPageLinks"/>
+        <html:hidden property="linkId"/>
 
 
 	<c:set var="actionMode" value="update" scope="request"/>
-	<tiles:insert name="/jsp/admin/system/common/reminisce-common.jsp"/>
+	<tiles:insert name="/jsp/admin/general/common/frontPageLink-common.jsp"/>
 
 </html:form>
 

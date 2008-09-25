@@ -52,7 +52,8 @@
 		resource="net/naijatek/myalumni/modules/common/persistence/hibernate/hbm/Messenger.hbm.xml" />
 	<mapping
 		resource="net/naijatek/myalumni/modules/common/persistence/hibernate/hbm/Reminisce.hbm.xml" />		
-		
+	<mapping
+		resource="net/naijatek/myalumni/modules/common/persistence/hibernate/hbm/FrontPage.hbm.xml" />		
 
 
 </session-factory>

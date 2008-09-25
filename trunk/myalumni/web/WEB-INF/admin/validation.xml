@@ -170,6 +170,31 @@
                 </field>                              
 	</form>	
 
+<!-- ========== Add FrontPage Link ===================== -->
+        <form name="/admin/addFrontPageLinks">
+                <field property="label" depends="required">
+                        <arg key="label.frontpage.label"/>
+                </field>
+                <field property="linkurl" depends="required,validateFrontPageUrl">
+                        <arg key="label.frontpage.linkurl"/>
+                </field> 
+                <field property="status" depends="required">
+                        <arg key="label.admin.status"/>
+                </field>                              
+	</form>	
+	
+	<!-- ========== Update FrontPage Link ===================== -->
+        <form name="/admin/updateFrontPageLinks">
+                <field property="label" depends="required">
+                        <arg key="label.frontpage.label"/>
+                </field>
+                <field property="linkurl" depends="required,validateFrontPageUrl">
+                        <arg key="label.frontpage.linkurl"/>
+                </field> 
+                <field property="status" depends="required">
+                        <arg key="label.admin.status"/>
+                </field>                              
+	</form>	
 <!-- ========== Update Org Info ===================== -->
         <form name="/admin/updateOrgInfo">              
                 <field property="organizationName" depends="required">

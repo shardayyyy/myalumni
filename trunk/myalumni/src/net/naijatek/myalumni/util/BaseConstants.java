@@ -245,6 +245,7 @@ public interface BaseConstants {
 	public static final String SERVICE_SYSTEM_TASK_LOOKUP = 	"systemTaskService";
 	public static final String SERVICE_ERRORLOGGER_LOOKUP = 	"errorLoggerService";
 	public static final String SERVICE_SYSTEM_CONFIG = "systemConfigService";
+	public static final String SERVICE_FRONT_PAGE = "frontPageService";
 	
 	
 	

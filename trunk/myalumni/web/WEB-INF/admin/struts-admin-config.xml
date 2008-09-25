@@ -625,53 +625,53 @@
     <action input="/jsp/admin/desktop.jsp" name="frontPageForm" path="/admin/listFrontPageLinks" 
     	parameter="action" scope="request" 
     	type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
-      <forward name="success" path="/jsp/admin/general/listFrontPageLinks.jsp"/>
+      <forward name="success" path="/jsp/admin/general/listFrontPageLink.jsp"/>
     </action>
     
     <!-- Prepare Add  Front Page Links -->
-    <action input="/jsp/admin/general/listFrontPageLinks.jsp" name="frontPageForm" path="/admin/prepareAddFrontPageLinks"
+    <action input="/jsp/admin/general/listFrontPageLink.jsp" name="frontPageForm" path="/admin/prepareAddFrontPageLinks"
             parameter="action" scope="request"
             type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
-      <forward name="success" path="/jsp/admin/general/addFrontPageLinks.jsp"/>
+      <forward name="success" path="/jsp/admin/general/addFrontPageLink.jsp"/>
     </action>    
     
     <!-- Add  Front Page Links -->
-    <action input="/jsp/admin/general/addFrontPageLinks.jsp" name="frontPageForm" path="/admin/addFrontPageLinks"
+    <action input="/jsp/admin/general/addFrontPageLink.jsp" name="frontPageForm" path="/admin/addFrontPageLinks"
             parameter="action" scope="request"
             type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
       <set-property property="cancellable" value="true"/>
-            <forward name="success" path="/jsp/admin/general/listFrontPageLinks.jsp"/>
+            <forward name="success" path="/jsp/admin/general/listFrontPageLink.jsp"/>
     </action>    
     
     <!-- Prepare Update  Front Page Links -->
-    <action input="/jsp/admin/system/listFrontPageLinks.jsp" name="frontPageForm" path="/admin/prepareUpdateFrontPageLinks"
+    <action input="/jsp/admin/system/listFrontPageLink.jsp" name="frontPageForm" path="/admin/prepareUpdateFrontPageLinks"
             parameter="action" scope="request"
             type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
-      <forward name="success" path="/jsp/admin/general/updateFrontPageLinks.jsp"/>
+      <forward name="success" path="/jsp/admin/general/updateFrontPageLink.jsp"/>
     </action> 
     
     <!-- Update  Front Page Links -->
-    <action input="/jsp/admin/general/updateFrontPageLinks.jsp" name="frontPageForm" path="/admin/updateFrontPageLinks"
+    <action input="/jsp/admin/general/updateFrontPageLink.jsp" name="frontPageForm" path="/admin/updateFrontPageLinks"
             parameter="action" scope="request"
             type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
       <set-property property="cancellable" value="true"/>
-            <forward name="success" path="/jsp/admin/general/listFrontPageLinks.jsp"/>
+            <forward name="success" path="/jsp/admin/general/listFrontPageLink.jsp"/>
     </action>  
     
     <!-- View  Front Page Links -->
-    <action input="/jsp/admin/general/listFrontPageLinks.jsp" name="frontPageForm" path="/admin/viewFrontPageLinks"
+    <action input="/jsp/admin/general/listFrontPageLink.jsp" name="frontPageForm" path="/admin/viewFrontPageLinks"
             parameter="action" scope="request"
             type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
       <set-property property="cancellable" value="true"/>
-            <forward name="success" path="/jsp/admin/general/viewFrontPageLinks.jsp"/>
+            <forward name="success" path="/jsp/admin/general/viewFrontPageLink.jsp"/>
     </action>         
     
     <!-- Delete  Front Page Links -->
-    <action input="/jsp/admin/general/listFrontPageLinks.jsp" name="frontPageForm" path="/admin/deleteFrontPageLinks"
+    <action input="/jsp/admin/general/listFrontPageLink.jsp" name="frontPageForm" path="/admin/deleteFrontPageLinks"
             parameter="action" scope="request"
             type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
       <set-property property="cancellable" value="true"/>
-            <forward name="success" path="/jsp/admin/general/listFrontPageLinks.jsp"/>
+            <forward name="success" path="/jsp/admin/general/listFrontPageLink.jsp"/>
     </action>      
 
 

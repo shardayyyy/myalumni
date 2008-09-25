@@ -48,6 +48,7 @@ import javax.servlet.http.HttpServletRequest;
 import net.naijatek.myalumni.framework.exceptions.BadInputException;
 import net.naijatek.myalumni.modules.admin.presentation.form.SystemConfigForm;
 import net.naijatek.myalumni.modules.common.presentation.form.ClassNewsForm;
+import net.naijatek.myalumni.modules.common.presentation.form.FrontPageForm;
 import net.naijatek.myalumni.modules.common.presentation.form.LoginForm;
 import net.naijatek.myalumni.modules.common.presentation.form.MemberForm;
 import net.naijatek.myalumni.modules.common.presentation.form.PrivateMessageForm;
@@ -400,6 +401,40 @@ public class MyAlumniValidator extends MyAlumniDispatchAction implements
 
 		return messages.isEmpty();
 	}
+	
+	// ================================================================================================
+	/**
+	 * Validate a URL
+	 * 
+	 * @param bean
+	 *            Object
+	 * @param va
+	 *            ValidatorAction
+	 * @param field
+	 *            Field
+	 * @param messages
+	 *            ActionMessages
+	 * @param request
+	 *            HttpServletRequest
+	 * @return boolean
+	 */
+	public boolean validateFrontPageUrl(Object bean, ValidatorAction va,
+			Field field, ActionMessages messages, HttpServletRequest request) {
+
+		FrontPageForm form = (FrontPageForm)bean;
+		String url = form.getLinkurl();
+
+		try {
+			if (url != null && url.length() > 0) {
+				ParamUtil.getParameterUrl(url);
+			}
+		} catch (BadInputException e) {
+			messages.add(field.getKey(), Resources.getActionMessage(request,
+					va, field));
+		}
+
+		return messages.isEmpty();
+	}	
 
 	// ================================================================================================
 	/**

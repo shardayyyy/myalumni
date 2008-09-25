@@ -26,6 +26,11 @@
           <rtexprvalue>no</rtexprvalue>
     </attribute>      
   </tag>
+    <tag>
+    <name>displayFrontPageLinks</name>
+    <tagclass>net.naijatek.myalumni.util.taglib.FrontPageLinksTag</tagclass>
+    <bodycontent>jsp</bodycontent>  
+  </tag>
   <tag>
     <name>buildBirthdayList</name>
     <tagclass>net.naijatek.myalumni.util.taglib.BirthdayListTag</tagclass>
