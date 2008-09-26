@@ -68,6 +68,13 @@ public interface SystemConfigDao {
 	
 	
 	/**
+	 * Org Intro
+	 */		
+	public String getOrgIntro();
+	public void updateOrgIntro(String orgIntro, String lastModifiedBy);
+	
+	
+	/**
 	 * Server URL
 	 */
 	public SystemConfigVO getSystemConfig();

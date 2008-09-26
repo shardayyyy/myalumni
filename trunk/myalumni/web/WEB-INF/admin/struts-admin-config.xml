@@ -396,6 +396,24 @@
             <forward name="success" path="/jsp/admin/system/index.jsp"/>
     </action> 
     
+   <!--  =================================== -->
+    <!--  ====== MAINTAIN ORG Intro  ======== -->
+    <!--  =================================== -->  
+    <!-- Prepare Update Org Intro -->
+    <action input="/jsp/admin/system/updateOrgIntro.jsp" name="systemConfigForm" path="/admin/prepareUpdateOrgIntro"
+            parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/admin/system/updateOrgIntro.jsp"/>
+    </action> 
+    
+    <!-- Update About Intro -->
+    <action input="/jsp/admin/system/updateOrgIntro.jsp" name="systemConfigForm" path="/admin/updateOrgIntro"
+            parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <set-property property="cancellable" value="true"/>
+            <forward name="success" path="/jsp/admin/system/index.jsp"/>
+    </action> 
+        
     
    <!--  =================================== -->
     <!--  ====== MAINTAIN ORG INFO     ======== -->

@@ -60,7 +60,9 @@ public class SystemConfigForm extends MyAlumniBaseForm{
 	private String organizationShortName;
 	private String orgEmail;
 	private String orgAboutUs;
+	private String orgIntro;
 	private FormFile logoUpload;
+	
 	
 	public String getOrgAboutUs() {
 		return orgAboutUs;
@@ -157,6 +159,12 @@ public class SystemConfigForm extends MyAlumniBaseForm{
 	}
 	public void setLogoUpload(FormFile logoUpload) {
 		this.logoUpload = logoUpload;
+	}
+	public String getOrgIntro() {
+		return orgIntro;
+	}
+	public void setOrgIntro(String orgIntro) {
+		this.orgIntro = orgIntro;
 	}
 
 	

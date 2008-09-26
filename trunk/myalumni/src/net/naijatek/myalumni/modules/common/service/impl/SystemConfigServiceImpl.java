@@ -76,6 +76,17 @@ public class SystemConfigServiceImpl implements ISystemConfigService {
 	}
 	
 	
+	/**
+	 * Org Intro
+	 */		
+	public String getOrgIntro(){
+		return systemConfigDao.getOrgIntro();
+	}
+	
+	public void updateOrgIntro(String orgIntro, String lastModifiedBy){
+		systemConfigDao.updateOrgIntro(orgIntro, lastModifiedBy);
+	}
+	
 	
 	
 	// RSS FEED

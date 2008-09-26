@@ -24,6 +24,8 @@
 <c:url var="rss" value="/action/admin/prepareUpdateRssFeed?action=prepareUpdateRssFeed"/>
 <c:url var="orginfo" value="/action/admin/prepareUpdateOrgInfo?action=prepareUpdateOrgInfo"/>
 <c:url var="aboutorg" value="/action/admin/prepareUpdateOrgAboutUs?action=prepareUpdateOrgAboutUs"/>
+<c:url var="orgintro" value="/action/admin/prepareUpdateOrgIntro?action=prepareUpdateOrgIntro"/>
+
 
  <c:if test="${USER_CONTAINER.token.isAdmin == 'Y'}">
 <table width="100%" border="0" cellpadding="5" cellspacing="5" >
@@ -54,6 +56,7 @@
 									&#8226;&nbsp;<a href="<c:out value="${birthday}"/>">Send Birthday Notifications?</a> - <span class="graysmall"><bean:message key="sys_module.birthday"/></span><br><br>
 									&#8226;&nbsp;<a href="<c:out value="${orginfo}"/>">Organization Information</a> - <span class="graysmall"><bean:message key="sys_module.orginfo"/></span><br><br>
 									&#8226;&nbsp;<a href="<c:out value="${aboutorg}"/>">Update Organization About Us</a> - <span class="graysmall"><bean:message key="sys_module.aboutus"/></span><br><br>										
+									&#8226;&nbsp;<a href="<c:out value="${orgintro}"/>">Update Front Page Introduction</a> - <span class="graysmall"><bean:message key="sys_module.intro"/></span><br><br>										
 									&#8226;&nbsp;<a href="<c:out value="${uploadlogo}"/>">Upload School Logo</a> - <span class="graysmall"><bean:message key="sys_module.logo"/></span><br><br>
 									 
 <%--									<br><br>												--%>

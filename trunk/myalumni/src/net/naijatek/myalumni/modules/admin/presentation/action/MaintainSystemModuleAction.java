@@ -215,6 +215,44 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 
 	
 	
+	//**********************************************************************
+	//******************  Org Intro  ********************************
+	//**********************************************************************   
+
+	public ActionForward prepareUpdateOrgIntro(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		logger.debug("in prepareUpdateOrgIntro...");
+		saveToken(request);
+		SystemConfigForm orgInfoForm = (SystemConfigForm) form;
+		SystemConfigVO orgInfoVO = systemConfigService.getOrgInfo();
+		BeanUtils.copyProperties(orgInfoForm, orgInfoVO);
+		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+	}
+
+	public ActionForward updateOrgIntro(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		logger.debug("in updateOrgIntro...");
+		if (!isTokenValid(request)) {
+			return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+		}
+		ActionMessages msgs = new ActionMessages();
+		SystemConfigForm orgInfoForm = (SystemConfigForm) form;
+		SystemConfigVO orgInfoVO = new SystemConfigVO();
+		BeanUtils.copyProperties(orgInfoVO, orgInfoForm);
+
+		orgInfoVO.setLastModifiedBy(getLastModifiedBy(request));
+
+		systemConfigService.updateOrgIntro(orgInfoVO.getOrgIntro(), getLastModifiedBy(request));
+		msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.record.updated"));
+		saveMessages(request, msgs);
+		resetToken(request);	
+		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+	}
+
+	
+	
 	
 	//**********************************************************************
 	//******************  Org Info  ********************************

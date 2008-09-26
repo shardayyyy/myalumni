@@ -211,6 +211,37 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 	
 	
 	
+	
+	/**
+	 * Org Intro
+	 */		
+	public String getOrgIntro(){
+		return getSystemConfig().getOrgIntro();
+	}
+	
+	
+	public void updateOrgIntro(String orgIntro, String lastModifiedBy){
+		SystemConfigVO _systemConfig = getSystemConfig();
+				
+		
+		if(_systemConfig.getSystemConfigId() != null){//do update
+			_systemConfig.setLastModification(BaseConstants.UPDATED);			
+		} else{ //do new add
+			_systemConfig = new SystemConfigVO();
+			_systemConfig.setLastModification(BaseConstants.ADDED);
+		}
+				
+		
+		_systemConfig.setOrgIntro(orgIntro);
+		_systemConfig.setLastModifiedBy(lastModifiedBy);
+		_systemConfig.setLastModifiedDate(new Date());
+		
+		getHibernateTemplate().saveOrUpdate(_systemConfig);
+	}
+	
+	
+	
+	
 	/**
 	 * Server URL
 	 */

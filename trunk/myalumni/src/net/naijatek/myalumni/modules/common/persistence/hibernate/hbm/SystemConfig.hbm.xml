@@ -18,6 +18,7 @@
 		<property name="organizationShortName" column="ORG_SHORT_NAME" length="20"/>			
 		<property name="orgEmail" column="ORG_EMAIL" length="100"/>
 		<property name="orgAboutUs" column="ORG_ABOUT_US" type="text" />
+		<property name="orgIntro" column="ORG_INTRO" type="text" />
 		
 		<property name="hasDormitory" column="HAS_DORMITORY" length="1"/>
 		<property name="birthdayNotification" column="BIRTHDAY_NOTIFICATION" length="1"/>
