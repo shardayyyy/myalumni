@@ -41,7 +41,7 @@
         			<td class="fieldlabel">&#8226; 		
 						<a href="<c:out value="${row.linkurl}"/>" target="_blank"><c:out value="${row.label}"/></a>
 						<c:if test="${row.important == 'Y'}">
-							<html:image page="/images/new.gif"/>
+							<html:image page="/images/dot.gif"/>
 						</c:if>
 					</td>
 			   </tr>
