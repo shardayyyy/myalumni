@@ -68,6 +68,13 @@ public interface ISystemConfigService {
 	
 	
 	/**
+	 * Org Intro
+	 */		
+	public String getOrgIntro();
+	public void updateOrgIntro(String orgIntro, String lastModifiedBy);	
+	
+	
+	/**
 	 * Session Timeout
 	 */	
 	public int getSessionTimeOut();	

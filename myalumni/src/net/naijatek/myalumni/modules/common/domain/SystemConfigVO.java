@@ -60,8 +60,15 @@ public class SystemConfigVO  extends MyAlumniBaseVO{
 	private String organizationShortName;
 	private String orgEmail;
 	private String orgAboutUs;
+	private String orgIntro;
 	
 	
+	public String getOrgIntro() {
+		return orgIntro;
+	}
+	public void setOrgIntro(String orgIntro) {
+		this.orgIntro = orgIntro;
+	}
 	public String getOrgAboutUs() {
 		return orgAboutUs;
 	}

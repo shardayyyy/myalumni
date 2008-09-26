@@ -60,7 +60,12 @@
 	<name>loadOrgAboutUs</name>
 	<tagclass>net.naijatek.myalumni.util.taglib.DisplayAboutUsTag</tagclass>
 	<bodycontent>jsp</bodycontent>
-  </tag>     
+  </tag>   
+   <tag>
+	<name>loadOrgIntro</name>
+	<tagclass>net.naijatek.myalumni.util.taglib.DisplayOrgIntroTag</tagclass>
+	<bodycontent>jsp</bodycontent>
+  </tag>       
     <tag>
     <name>dropdown</name>
     <tagclass>net.naijatek.myalumni.util.taglib.BuildDropdownTag</tagclass>
