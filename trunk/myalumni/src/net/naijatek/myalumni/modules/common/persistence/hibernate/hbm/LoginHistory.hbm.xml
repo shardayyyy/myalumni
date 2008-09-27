@@ -8,7 +8,7 @@
 			<generator class="uuid"></generator>
 		</id>
 		<property name="requestTime" column="REQUEST_TIME" type="timestamp" not-null="true"/>
-		<property name="userName" column="USER_NAME" length="40" not-null="true"/>
+		<property name="userName" column="USER_NAME" length="40" not-null="false"/>
 		<property name="sourceIP" column="SOURCE_IP" length="50" not-null="true"/>
 		<property name="loginStatus" column="LOGIN_STATUS" length="1" not-null="true"/>		
 		<property name="userAgent" column="USER_AGENT" length="15" not-null="true"/>
