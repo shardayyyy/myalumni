@@ -98,6 +98,7 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 			config.setOrgEmail(_systemConfig.getOrgEmail());
 			config.setOrgFirstYear(_systemConfig.getOrgFirstYear());	
 			config.setOrgAboutUs(_systemConfig.getOrgAboutUs());
+			config.setOrgIntro(_systemConfig.getOrgIntro());
 		}			
 		return config;
 	}
