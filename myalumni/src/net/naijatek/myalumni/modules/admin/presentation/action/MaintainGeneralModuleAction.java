@@ -40,14 +40,11 @@ package net.naijatek.myalumni.modules.admin.presentation.action;
 
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.naijatek.myalumni.framework.struts.MyAlumniDispatchAction;
-import net.naijatek.myalumni.modules.admin.presentation.form.SystemConfigForm;
 import net.naijatek.myalumni.modules.common.domain.FrontPageVO;
-import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
 import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
 import net.naijatek.myalumni.modules.common.domain.XlatGroupVO;
 import net.naijatek.myalumni.modules.common.presentation.form.FrontPageForm;
@@ -63,8 +60,6 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
 
 
 
