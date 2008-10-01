@@ -153,7 +153,7 @@ public class BuildImageTag extends BodyTagSupport {
 				}
 				else{
 					sb.append("<img src=\"" + rootContext.trim() + seperator + "images" + seperator  + "logo" + seperator  + 
-							"myalumni_03.gif\" border=\"0\" align=\"absmiddle\" altKey=\"" + app.getValue("application.name") + "\"  titleKey=\"" + app.getValue("application.name") + "\">");					
+							"myalumni_03.png\" border=\"0\" align=\"absmiddle\" altKey=\"" + app.getValue("application.name") + "\"  titleKey=\"" + app.getValue("application.name") + "\">");					
 				}
 		}		
 		else if (imageType.equalsIgnoreCase(BaseConstants.TAGLIB_TYPE_AVATAR)) {
