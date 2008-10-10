@@ -43,6 +43,10 @@ public interface IMailConstants {
 
     public static String TEMPLATE_EXTENSION = "ftl";
     
+    //Notify Admin about new Member
+    public static String TEMPLATE_NOTIFY_ADMIN_ABOUT_NEW_MEMBER_BODY = "NotifyAdminAboutNewMemberBody";
+    public static String TEMPLATE_NOTIFY_ADMIN_ABOUT_NEW_MEMBER_SUBJECT = "NotifyAdminAboutNewMemberSubject";
+        
     //Password Reminder
     public static String TEMPLATE_PASSWORD_REMINDER_BODY = "PasswordReminderBody";
     public static String TEMPLATE_PASSWORD_REMINDER_SUBJECT = "PasswordReminderSubject";

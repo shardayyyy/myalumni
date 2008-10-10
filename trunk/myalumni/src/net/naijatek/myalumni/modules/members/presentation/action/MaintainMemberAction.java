@@ -83,7 +83,6 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.upload.FormFile;
-import org.apache.struts.validator.Resources;
 
 
 public class MaintainMemberAction extends MyAlumniDispatchAction{
@@ -206,14 +205,14 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
         messengerService.saveAll(messengers, memberId);
         
         // Message Folders
-        mfService.createMemberMessageFolders(memberId, SystemConfigConstants.MESSAGE_FOLDERS, memberVO.getMemberUserName());
-        
+        mfService.createMemberMessageFolders(memberId, SystemConfigConstants.MESSAGE_FOLDERS, memberVO.getMemberUserName());        
         
         StringBuffer message = new StringBuffer();
-        message.append("Thank you " + StringUtil.capitalize(memberVO.getFirstName()) + " " + StringUtil.capitalize(memberVO.getLastName())  + " for registering and Welcome to FGC Idoani's owns space in cyberspace.");
-        message.append("Your account should be active within the next 24 hours. So please try logging into the system as soon as you get the confirmation email.");
+        message.append("Thank you " + StringUtil.capitalize(memberVO.getFirstName()) + " " + StringUtil.capitalize(memberVO.getLastName())  + " for registering and Welcome to " + sysConfigVO.getOrganizationName()  + "'s owns space in cyberspace.");
+        message.append("Your account should be active within the next 24 hours. So please try logging into the system as soon as you get your activation confirmation email.");
         setSessionObject(request, BaseConstants.MESSAGE,  message.toString());
 
+        // send email to registrant
         try {
         	SendMailUtil.sendWelcomeNotice(memberVO.getEmail(), memberVO.getMemberUserName(),getLocale(request).getLanguage(),sysConfigVO);
         }
@@ -223,6 +222,18 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
           saveMessages(request, errors);
           return mapping.findForward(BaseConstants.FWD_SUCCESS);
         }
+        
+        // send email to administrator about new registrant
+        try {
+        	SendMailUtil.notifyAdminAboutNewMember(memberVO, getLocale(request).getLanguage(), sysConfigVO);
+        }
+        catch (Exception ex) {
+          logger.error(ex.getMessage());
+          errors.add(BaseConstants.FATAL_KEY, new ActionMessage("error.mailserver"));
+          saveMessages(request, errors);
+          return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        }
+        
       }
       catch (DuplicateMemberException e) {
         errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.duplicate.member"));
