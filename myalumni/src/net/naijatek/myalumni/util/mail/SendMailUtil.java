@@ -226,6 +226,35 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
     }
 
 //  ------------------------------------------------------------------------------------------------------------------------
+    
+    // Done
+    public static void notifyAdminAboutNewMember(MemberVO memberVO, String langId, SystemConfigVO sysConfigVO)
+    throws Exception{
+    	
+        try {                           
+            Map<String, String> map = new HashMap<String, String>();
+                                      
+            map.put("firstName", memberVO.getFirstName());  
+            map.put("lastName", memberVO.getLastName());
+            map.put("yearIn", String.valueOf(memberVO.getYearIn()));  
+            map.put("yearOut", String.valueOf(memberVO.getYearOut()));             
+            map.put("schoolName", StringUtil.safeString(sysConfigVO.getOrganizationName()));
+  		  	map.put("serverName", StringUtil.safeString(sysConfigVO.getServerUrl()));
+  		  	map.put("adminSignature", StringUtil.safeString(sysConfigVO.getAdminSignature()));
+  		  	
+
+            String subjectTemplatePrefix = TEMPLATE_NOTIFY_ADMIN_ABOUT_NEW_MEMBER_SUBJECT + "_" + langId + "-text." + TEMPLATE_EXTENSION;
+            String bodyTemplatePrefix = TEMPLATE_NOTIFY_ADMIN_ABOUT_NEW_MEMBER_BODY + "_" + langId + "-text." + TEMPLATE_EXTENSION;
+            new FreeMarkerTemplateMailerImpl(mailSender, configuration).mail(sysConfigVO.getOrgEmail(), map, bodyTemplatePrefix, subjectTemplatePrefix);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            logger.error("notifyAdminAboutNewMember: " + e.getMessage());
+            throw new MailServerException("Error encountered sendPasswordReminderMail " + e.getCause().toString());
+        } 
+        
+    }
+//  ------------------------------------------------------------------------------------------------------------------------
 
   /**
      * Send welcome notice to_email user
