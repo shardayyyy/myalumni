@@ -197,7 +197,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
         MessengerVO mesgerVO = null;
         for(String str : memberVO.getLstSelectedIMs()){
         	mesgerVO = new MessengerVO();
-        	mesgerVO.setLastModifiedBy(getLastModifiedBy(request));
+        	mesgerVO.setLastModifiedBy(memberVO.getMemberUserName());
         	mesgerVO.setMemberId(memberId);
         	mesgerVO.setLookupCodeId(str);
         	messengers.add(mesgerVO);
