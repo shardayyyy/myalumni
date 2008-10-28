@@ -619,6 +619,10 @@ public class MemberServiceImpl implements IMemberService {
     	memberDao.saveAll(members);
     }
   
+    
+    public List<String> genericAjaxSearch(String searchWord, String searchCriteria){
+    	return memberDao.genericAjaxSearch(searchWord, searchCriteria);    	
+    }
 
     //******************************************
     // IPHONE MEMBER SERVICE

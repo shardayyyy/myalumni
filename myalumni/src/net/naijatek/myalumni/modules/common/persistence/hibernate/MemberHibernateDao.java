@@ -1054,4 +1054,30 @@ public class MemberHibernateDao extends BaseHibernateDao implements MemberDao {
     }
     	
 	
+	
+	@SuppressWarnings("unchecked")
+	public List<String> genericAjaxSearch(String searchWord, String searchCriteria){
+		List<String> result = new ArrayList<String>();
+		
+		StringBuffer strBuffer = new StringBuffer();
+		
+		if (searchCriteria.equals(BaseConstants.FIRST_NAME)){
+			strBuffer.append("select distinct l.firstName from MemberVO l where lower(l.firstName) like lower('%").append(searchWord).append("%')");
+		}
+		else if (searchCriteria.equals(BaseConstants.LAST_NAME)){
+			strBuffer.append("select distinct l.lastName from MemberVO l where lower(l.lastName) like lower('%").append(searchWord).append("%')");
+		} 
+		else if (searchCriteria.equals(BaseConstants.MAIDEN_NAME)){
+			strBuffer.append("select distinct l.maidenName from MemberVO l where lower(l.maidenName) like lower('%").append(searchWord).append("%')");
+		} 
+		else if (searchCriteria.equals(BaseConstants.NICK_NAME)){
+			strBuffer.append("select distinct l.nickName from MemberVO l where lower(l.nickName) like lower('%").append(searchWord).append("%')");
+		} 		
+		
+		result = getSession().createQuery(strBuffer.toString()).setMaxResults(20).list();						
+	
+		return result;
+	}
+	
+	
 }

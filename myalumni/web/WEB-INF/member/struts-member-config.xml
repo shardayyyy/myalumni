@@ -199,6 +199,12 @@
         </action>
 
     <!-- end JCAPTCHA for ADD MEMBER  -->
+    
+                 
+    <action input="/jsp/common/resultList.jsp" name="memberForm" path="/member/genericAjaxSearch" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+    </action>        
+            
 
     <!-- ******************************************************************* -->
     <!-- ***********                  PRIVATE MESSAGE            ************* -->
