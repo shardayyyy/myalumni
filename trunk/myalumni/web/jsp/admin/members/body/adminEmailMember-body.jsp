@@ -7,19 +7,21 @@
 <html:form action="/admin/emailMember?action=emailMember">
   <table width="100%" border="0" cellspacing="1" cellpadding="3" align="center" class="tborder">
     <tr>
-      <td height="30" colspan="2" class="bg0">Email Member</td>
+      <td height="30" colspan="2" class="bg0"><bean:message key="label.admin.member.emailmember"/></td>
     </tr>
     <tr class="portlet-section-body">
-      <td width="10%" class="fieldlabel">To:</td>
-      <td width="90%"><html:text property="guestEmail" size="60" maxlength="60"/></td>
+      <td width="10%" class="fieldlabel"><bean:message key="label.admin.member.to"/>:</td>
+      <td width="90%">
+			<html:text property="guestEmail" styleId="search" size="60" maxlength="60" titleKey="label.admin.member.to"/>                                  
+      </td>
     </tr>
     <tr class="portlet-section-body">
-      <td width="10%" class="fieldlabel">Subject:</td>
-      <td width="90%"><html:text property="subject" size="60" maxlength="60"/></td>
+      <td width="10%" class="fieldlabel"><bean:message key="label.admin.member.subject"/>:</td>
+      <td width="90%"><html:text property="subject" size="60" maxlength="60" titleKey="label.admin.member.subject"/></td>
     </tr>
     <tr class="portlet-section-body">
-      <td valign="top" class="fieldlabel">Message:</td>
-      <td><html:textarea property="messageText" cols="60" rows="10"/></td>
+      <td valign="top" class="fieldlabel"><bean:message key="label.admin.member.message"/>:</td>
+      <td><html:textarea property="messageText" cols="60" rows="10" titleKey="label.admin.member.message"/></td>
     </tr>
     <tr class="portlet-section-body">
       <td>&nbsp;</td>

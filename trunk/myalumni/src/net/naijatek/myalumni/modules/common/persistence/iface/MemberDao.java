@@ -185,6 +185,8 @@ public interface MemberDao  extends BaseCrudDao<MemberVO, String>{
   
   public List<MemberVO> getEmailStartingWith(String alpha, String isAdmin);
   
+  public List<String> genericAjaxSearch(String searchWord, String searchCriteria);
+  
   
   //******************************************
   // IPHONE MEMBER SERVICE

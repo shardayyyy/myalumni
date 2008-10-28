@@ -292,6 +292,7 @@ public interface BaseConstants {
     public static final String AVATAR_UPLOAD_DIR_NAME="memberavatars";    
 
 	
-	
+	// AJAX pages
+    public static final String FWD_AJAX_JSP = "/jsp/common/resultList.jsp";
    
 }

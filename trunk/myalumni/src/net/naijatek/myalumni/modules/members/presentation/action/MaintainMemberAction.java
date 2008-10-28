@@ -111,6 +111,50 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
 
 
     
+    /**
+     * Searchs for member
+     *
+     * @param mapping
+     * @param form
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    public ActionForward genericAjaxSearch(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        logger.debug("in genericAjaxSearch...");
+        MemberForm memForm = (MemberForm)form;
+        String searchCriteria = memForm.getSearchCriteria();
+        String searchWord = ""; 
+
+        
+    	if(memForm.getApproach() != null){
+    		
+    		if (searchCriteria.equals(BaseConstants.FIRST_NAME)){
+    			searchWord = memForm.getFirstName();
+    		}
+    		else if (searchCriteria.equals(BaseConstants.LAST_NAME)){
+    			searchWord = memForm.getLastName();
+    		} 
+    		else if (searchCriteria.equals(BaseConstants.MAIDEN_NAME)){
+    			searchWord = memForm.getMaidenName();
+    		} 
+    		else if (searchCriteria.equals(BaseConstants.NICK_NAME)){
+    			searchWord = memForm.getNickName();
+    		}     		
+    		
+    		
+    		List<String> result = memService.genericAjaxSearch(searchWord, searchCriteria);
+    		request.setAttribute("result", result);
+    		
+    		request.getRequestDispatcher(BaseConstants.FWD_AJAX_JSP).forward(request, response);
+    		return null;
+       	}
+
+        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+    }
+
+    
     
     
     public ActionForward displayMiniProfile(ActionMapping mapping,

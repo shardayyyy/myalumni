@@ -125,7 +125,7 @@
         <constructor-arg index="5" ref="xlatService"/>      
         <constructor-arg index="6" ref="messengerService"/>
     </bean>
-        
+                
              
     <!-- ******************************************************************* -->
     <!-- ***********                PRIVATE MESSAGE            ************* -->

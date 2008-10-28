@@ -504,3 +504,8 @@ text-align: Center; /* Align Text */
 .adminTableBot {
 	background-color: #dddddd;
 }
+
+
+/* -------------------------------- AJAX Suggestion ----------------------- */
+.selected { background-color: #f1f1f1; }
+#suggestionBox { display:none; border: 1px solid silver; }

@@ -4,6 +4,35 @@
 <%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c" %>
 <%@ taglib uri="/WEB-INF/tld/myalumni-taglibs.tld" prefix="myalumni" %>
 
+<c:url var="prototype" value="/js/prototype/prototype.js" scope="page"/>
+<c:url var="scriptaculous" value="/js/prototype/scriptaculous.js" scope="page"/>
+
+<script type="text/javascript" src='<c:out value="${prototype}"/>'></script>
+<script type="text/javascript" src='<c:out value="${scriptaculous}"/>'></script>
+
+<script type="text/javascript">
+window.onload = function(){
+		completer = new Ajax.Autocompleter('search', 'suggestionBoxFirst',"/myalumni/action/member/genericAjaxSearch", {	
+				indicator: 'indicator',
+				parameters: "action=genericAjaxSearch&approach=ajax&searchCriteria=firstName"
+			}
+		) 
+	}	
+</script>
+
+<%--  var firstNameCompleter = new Ajax.Autocompleter('searchFirstNameId', 'suggestionBoxFirst',"/myalumni/action/member/genericAjaxSearch", {	
+				indicator: 'indicator',	parameters: "action=genericAjaxSearch&approach=ajax&searchCriteria=firstName"})
+				
+  var lastNameCompleter = new Ajax.Autocompleter('searchLastNameId', 'suggestionBoxLast',"/myalumni/action/member/genericAjaxSearch", {	
+				indicator: 'indicator',	parameters: "action=genericAjaxSearch&approach=ajax&searchCriteria=lastName"})
+
+  var maidenNameCompleter = new Ajax.Autocompleter('searchMaidenNameId', 'suggestionBoxMaiden',"/myalumni/action/member/genericAjaxSearch", {	
+				indicator: 'indicator',	parameters: "action=genericAjaxSearch&approach=ajax&searchCriteria=maidenName"})
+				
+  var nickNameCompleter = new Ajax.Autocompleter('searchNickNameId', 'suggestionBoxNick',"/myalumni/action/member/genericAjaxSearch", {	
+				indicator: 'indicator',	parameters: "action=genericAjaxSearch&approach=ajax&searchCriteria=nickName"})			
+	} --%>
+	
 <SCRIPT LANGUAGE="JavaScript" type="text/javascript">
 
 window.onload = function()
@@ -68,25 +97,35 @@ window.onload = function()
     <tr class="portlet-section-body">
       <td align="right" class="fieldlabel"><bean:message key="label.firstname"/>:</td>
       <td>
-                <html:text property="firstName" size="30" maxlength="30" titleKey="label.firstname"/>
+            <html:text property="firstName" styleId="search" size="30" maxlength="30" titleKey="label.firstname"/>                               
+            <div id="suggestionBoxFirst" class="autocomplete"></div>      
+            <span id="indicator" style="display: none"><html:img page="/images/flower.gif" altKey="label.admin.member.working"/></span>                
       </td>
     </tr>
     <tr class="portlet-section-body">
       <td align="right" class="fieldlabel"><bean:message key="label.lastname"/>:</td>
       <td>
-                <html:text property="lastName" size="30" maxlength="30" titleKey="label.lastname"/>
+                <html:text property="lastName" styleId="searchLastNameId"  size="30" maxlength="30" titleKey="label.lastname"/>
+                <div id="suggestionBoxLast" class="autocomplete"></div>      
+               <span id="indicator" style="display: none"><html:img page="/images/flower.gif" altKey="label.admin.member.working"/></span>    
+                
       </td>
     </tr>
     <tr class="portlet-section-body">
       <td align="right" class="fieldlabel"><bean:message key="label.maidenname"/>:</td>
       <td>
-                <html:text property="maidenName" size="30" maxlength="30" titleKey="label.maidenname"/>
+                <html:text property="maidenName" styleId="searchMaidenNameId" size="30" maxlength="30" titleKey="label.maidenname"/>
+                <div id="suggestionBoxMaiden" class="autocomplete"></div>      
+               <span id="indicator" style="display: none"><html:img page="/images/flower.gif" altKey="label.admin.member.working"/></span>    
       </td>
     </tr>
     <tr class="portlet-section-body">
       <td align="right" class="fieldlabel"><bean:message key="label.nickname"/>:</td>
       <td>
-                <html:text property="nickName" size="30" maxlength="30" titleKey="label.nickname"/>
+                <html:text property="nickName" styleId="searchNickNameId" size="30" maxlength="30" titleKey="label.nickname"/>
+                <div id="suggestionBoxNick" class="autocomplete"></div>      
+               <span id="indicator" style="display: none"><html:img page="/images/flower.gif" altKey="label.admin.member.working"/></span>    
+                
       </td>
     </tr>
 	<%-- Dormitory Name --%>

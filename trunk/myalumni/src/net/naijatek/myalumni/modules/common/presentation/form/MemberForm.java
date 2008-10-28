@@ -109,6 +109,7 @@ public class MemberForm extends MyAlumniBaseForm{
 //	 Non Database Support Attributes
 	private String partialNameSearch = BaseConstants.BOOLEAN_NO;
 	private String searchCategory;
+	private String searchCriteria;
 	private FormFile avatarUpload;
 	private String avatarUploadOverwrite;
 	private String adminAction;
@@ -116,6 +117,7 @@ public class MemberForm extends MyAlumniBaseForm{
 	private String deleteConfirm;
     private String[] lstAvailableUsers;
     private String[] lstSelectedUsers;
+    private String guestEmail;
     
     // iphone
     private String alpha;
@@ -494,6 +496,18 @@ public class MemberForm extends MyAlumniBaseForm{
 	}
 	public void setApproach(String approach) {
 		this.approach = approach;
+	}
+	public String getGuestEmail() {
+		return guestEmail;
+	}
+	public void setGuestEmail(String guestEmail) {
+		this.guestEmail = guestEmail;
+	}
+	public String getSearchCriteria() {
+		return searchCriteria;
+	}
+	public void setSearchCriteria(String searchCriteria) {
+		this.searchCriteria = searchCriteria;
 	}
 
 }

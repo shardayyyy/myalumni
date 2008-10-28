@@ -164,6 +164,8 @@ public interface IMemberService  extends BaseCrudService<MemberVO, String>{
     public List<MemberVO> adminGetAllMembers(int offset, int rowsToReturn);
 
     public List<MemberVO> adminGetOneMembersByUserName(String memberUsername);
+    
+    public List<String> genericAjaxSearch(String searchWord, String searchCriteria);
 
   
     
