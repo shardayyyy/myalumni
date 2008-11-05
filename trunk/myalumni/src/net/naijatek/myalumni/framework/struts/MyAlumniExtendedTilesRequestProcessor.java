@@ -70,7 +70,7 @@ import org.springframework.web.struts.DelegatingTilesRequestProcessor;
 public class MyAlumniExtendedTilesRequestProcessor extends
 		DelegatingTilesRequestProcessor {
 
-	private static Log logger = LogFactory.getLog(ErrorAction.class);
+	private static Log logger = LogFactory.getLog(MyAlumniExtendedTilesRequestProcessor.class);
 
 	/**
 	 * Ensures the user locale is identified and stored in the session as
