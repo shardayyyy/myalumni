@@ -20,7 +20,7 @@
 
 <fmt:bundle basename="ApplicationResources">
 
-<display:table name="requestScope.LIST_OF_MEMBERS" cellpadding="3" cellspacing="1" pagesize="20" requestURI="/action/admin/memberSearch?action=searchForMembers" excludedParams="action" id="member">
+<display:table name="requestScope.LIST_OF_MEMBERS" cellpadding="3" cellspacing="1"  pagesize="20" requestURI="/action/admin/memberSearch?action=searchForMembers" excludedParams="action" id="member" export="true">
 		<%-- Name (click on name for details for popup) --%>
 		<display:column title="Name (click on name for details for popup)" sortable="true">
 	        <c:choose>
