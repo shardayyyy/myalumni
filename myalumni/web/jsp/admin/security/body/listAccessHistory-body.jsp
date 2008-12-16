@@ -42,7 +42,7 @@ function deleteRecord()
                     <tr class="bg0">
                       <td><div style="padding-bottom: 5px; padding-top: 5px;"> <html:img page="/images/spacer.gif" border="0" height="3" width="10"/><span class="Bold">Access History</span></div></td>
                       <td align="right">                        
-                            <html:button styleClass="button" property="buttonAction" onclick="javascript:deleteRecord();"><bean:message key="button.purgeallaccesslogs"/></html:button>&nbsp;&nbsp;                        
+                            <html:button property="buttonAction" onclick="javascript:deleteRecord();"><bean:message key="button.purgeallaccesslogs"/></html:button>&nbsp;&nbsp;                        
                         &nbsp;
                       </td>
                     </tr>

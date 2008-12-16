@@ -23,7 +23,7 @@
                     <td><div style="padding-bottom: 5px; padding-top: 5px;"> <html:img page="/images/spacer.gif" border="0" height="3" width="10"/> <span class="Bold"><bean:message key="label.admin.system.listclassnews"/></span></div></td>
                     <td align="right">  
                     	                               
-                         	<html:submit styleClass="button"><bean:message key="button.addclassnews"/></html:submit>                                   
+                         	<html:submit><bean:message key="button.addclassnews"/></html:submit>                                   
     					&nbsp;
                     </td>
                   </tr>

@@ -5,7 +5,9 @@
 <%@ taglib uri="/WEB-INF/tld/myalumni-taglibs.tld" prefix="myalumni" %>
 
 <%-- related path --%>
-<c:url var="stylesheet" value="/style/myalumni.css" />
+<c:url var="stylesheet" value="/style/${CSS_TYPE}/myalumni.css" >
+
+</c:url>
 <c:url var="login" value="/action/member/logout?action=logout" />
 <c:url var="myalumniJS" value="/js/global.js" />
 <c:url var="HOME" value="/jsp/index.jsp" />

@@ -1,11 +1,11 @@
 <%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c" %>
 
 
-<c:url var="stylesheet" value="/style/myalumni.css" />
-<c:url var="fgcJS" value="/js/global.js" />
+<c:url var="stylesheet" value="/style/${CSS_TYPE}/myalumni.css" />
+<c:url var="JS" value="/js/global.js" />
 <c:url var="login" value="/jsp/myalumni/login.jsp"/>
 
-<script language="JavaScript1.2" type="text/javascript" src="<c:out value="${fgcJS}"/>"></script>
+<script language="JavaScript1.2" type="text/javascript" src="<c:out value="${JS}"/>"></script>
 
 
 <table width="75%" border="0" cellspacing="1" cellpadding="3" align="center" class="tborder">

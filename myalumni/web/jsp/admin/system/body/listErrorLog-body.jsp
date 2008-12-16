@@ -40,9 +40,7 @@ function deleteRecord()
                   </tr>
                   <tr class="bg0">
                     <td><div style="padding-bottom: 5px; padding-top: 5px;"> <html:img page="/images/spacer.gif" border="0" height="3" width="10"/> <span class="Bold"><bean:message key="label.admin.system.listerrorlog"/> </span> </div></td>
-                    <td align="right">                                  
-                         <html:button styleClass="button"  property="buttonAction" onclick="javascript:deleteRecord();"><bean:message key="button.purgeallerrorlogs"/></html:button>                                   
-    					&nbsp;
+                    <td align="right">                                         <html:button styleClass="button"  property="buttonAction" onclick="javascript:deleteRecord();"><bean:message key="button.purgeallerrorlogs"/></html:button>                           nbsp;
 						<html:submit styleClass="button" onclick="alert('Not Yet Implemented')"><bean:message key="button.batchlog"/></html:submit>
 	                    &nbsp;
                     </td>

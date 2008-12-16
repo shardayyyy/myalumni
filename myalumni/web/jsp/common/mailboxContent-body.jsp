@@ -246,13 +246,13 @@ function uncheckAll(field)
                               <option value="Inbox">Inbox</option>
                               <option value="Trash">Trash</option>
                             </c:when>
-                            <c:when test="${MESSAGE_CENTER.folderType == 'draft'}">
+                            <c:when test="${rType == 'draft'}">
                               <option value="Trash">Trash</option>
                             </c:when>
                           </c:choose>
                         </select>
 
-                 <html:button  styleClass="button" property="buttonAction" value="Move Private Message" onclick="moveMail(this);"/>
+                 <html:button  styleClass="button" property="buttonAction" value="Moonclick="moveMail(this);"/>
             </c:if>
 
                 <c:if test="${MESSAGE_CENTER.folderType == 'trash'}">

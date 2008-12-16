@@ -20,8 +20,7 @@
                   <html:img page="/images/email.gif" titleKey="label.primaryemail" width="15" height="15" align="absmiddle"/></td>
     </tr>
     <tr align="center" class="portlet-section-body">
-      <td colspan="2">
-      <html:submit styleClass="button">
+      <td colspan="mit styleClass="button">
       	<bean:message key="button.activationInstructions"/>
       </html:submit>
       </td>

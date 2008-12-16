@@ -34,7 +34,7 @@
 				</c:when>
 				<c:otherwise>
 					  <html:form  action="/member/viewMyFeGoCoId?action=displayMyDesktop">
-						<center><html:submit styleClass="button">
+						<center><html:submit>
 							<bean:message key="button.back"/>
 							</html:submit>
 						</center>

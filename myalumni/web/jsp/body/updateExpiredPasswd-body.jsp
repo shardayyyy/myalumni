@@ -50,8 +50,7 @@
                       </tr>
                       <tr>
                         <td align="right">&nbsp;</td>
-                        <td height="25" align="right" class="Small">&nbsp;</td>
-                        <td height="25"><html:submit styleClass="button"><bean:message key="button.submit"/></html:submit></td>
+                        <td height="25" align="right" class="Small">&nbsp;</td>     <td height="25"><html:submit styleClass="button"><bean:message key="button.submit"/></html:submit></td>
                       </tr>
                       <tr class="redhighlight">
                         <td height="25" colspan="3">

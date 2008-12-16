@@ -32,7 +32,9 @@
 								<div class="redhighlight"><center>Your Organization Intro has not been configured yet.</center></div>
 						</c:when>
 						<c:otherwise>
-							<c:out value="${ORGANIZATION_INTRO}" escapeXml="false"/>
+							<blockquote>
+								<c:out value="${ORGANIZATION_INTRO}" escapeXml="false"/>
+							</blockquote>
 						</c:otherwise>
 					</c:choose>
       	</td>

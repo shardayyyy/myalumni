@@ -4,7 +4,7 @@
 <%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c" %>
 <%@ taglib uri="/WEB-INF/tld/myalumni-taglibs.tld" prefix="myalumni" %>
 
-<c:url var="stylesheet" value="/style/myalumni.css" />
+<c:url var="stylesheet" value="/style/${CSS_TYPE}/myalumni.css" />
 <c:url var="myalumniJS" value="/js/global.js" />
 <c:url var="BACKGROUND" value="" /> 
 <c:url var="HOME" value="/action/admin/showAdminDesktop?action=displayMyDesktop" />

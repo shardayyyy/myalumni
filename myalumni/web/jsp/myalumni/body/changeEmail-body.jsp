@@ -22,13 +22,10 @@
     <td><html:text property="emailConfirm" size="60" maxlength="60" titleKey="label.emailconfirm"/></td>
   </tr>
   <tr align="center" class="portlet-section-body">
-    <td colspan="2">
-
-    	<html:submit styleClass="button">
+    <td colspansubmit styleClass="button">
     		<bean:message key="button.submit"/>
     	</html:submit>
-    	&nbsp;&nbsp;&nbsp;
-    	<html:cancel styleClass="button">
+    	&nbsp;&tml:cancel styleClass="button">
     		<bean:message key="button.cancel"/>
     	</html:cancel>
 

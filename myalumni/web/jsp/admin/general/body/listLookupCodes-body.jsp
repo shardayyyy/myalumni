@@ -25,7 +25,7 @@
                             <input name="maxLength" type="hidden" value="<c:out value="${listOfLookupCodes.maxLength}"/>">
                             <input name="lookupGroupId" type="hidden" value="<c:out value="${listOfLookupCodes.lookupGroupId}"/>">
                             <input name="description" type="hidden" value="<c:out value="${listOfLookupCodes.description}"/>">
-                            <html:submit styleClass="button"><bean:message key="button.addlookupcode"/></html:submit>&nbsp;&nbsp;
+                            <html:submit><bean:message key="button.addlookupcode"/></html:submit>&nbsp;&nbsp;
                        
                     </c:if>
                     </td>

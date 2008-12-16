@@ -80,7 +80,7 @@ Yours Sincerly, <br/>
 		    <td width="42%"><br>
 
 					<html:form action="/admin/prepareReply?action=prepareReplyMail">
-						<html:submit styleClass="button">
+						<html:submit>
 							<bean:message key="button.reply"/>
 						</html:submit>
 						<html:hidden property="messageId"/>
@@ -90,7 +90,7 @@ Yours Sincerly, <br/>
 		    <td><br>
 
 			<html:form action="/admin/deleteMail?action=deleteMail">
-				<html:submit styleClass="button">
+				<html:submit>
 					<bean:message key="button.movetotrash"/>
 				</html:submit>
 				<html:hidden property="messageId"/>
@@ -106,7 +106,7 @@ Yours Sincerly, <br/>
 		      <td width="31%" height="30"><br>
 
 			<html:form  action="/member/listMailBox?action=listMailBox">
-				<html:submit styleClass="button">
+				<html:submit>
 					<bean:message key="button.returnToInbox"/>
 				</html:submit>
 			</html:form>
@@ -121,7 +121,7 @@ Yours Sincerly, <br/>
 					</c:when>
 					<c:otherwise>
 							<html:form action="/member/prepareReply?action=prepareReplyMessage">
-								<html:submit styleClass="button">
+								<html:submit>
 									<bean:message key="button.reply"/>
 								</html:submit>
 								<html:hidden property="messageId"/>
@@ -134,7 +134,7 @@ Yours Sincerly, <br/>
 			<html:form action="/member/deleteMail?action=deleteMail">
                           <html:hidden property="privMsgsAction" value="move"/>
                           <html:hidden property="folderName" value="trash"/>
-				<html:submit styleClass="button">
+				<html:submit>
 					<bean:message key="button.movetotrash"/>
 				</html:submit>
 				<html:hidden property="messageId"/>

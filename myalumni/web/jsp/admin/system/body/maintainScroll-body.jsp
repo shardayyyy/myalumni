@@ -40,7 +40,7 @@
 	  <td>&nbsp;</td>
 	</tr>
 	<tr align="center" class="portlet-section-body">
-	  <td colspan="3" valign="top" nowrap>
+	  <td colspnowrap>
 		<html:submit styleClass="button">
 			  <bean:message key="button.updateaddscroll"/>
 		</html:submit>

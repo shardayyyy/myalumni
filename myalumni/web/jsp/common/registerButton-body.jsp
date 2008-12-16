@@ -27,7 +27,7 @@
   </tr>
   <tr>
     <td colspan="2" align="center">
-    	<html:submit styleClass="button" onclick="submitMemberClass();"><bean:message key="button.submit"/></html:submit>
+    	<html:submit onclick="submitMemberClass();"><bean:message key="button.submit"/></html:submit>
     </td>
   </tr>
 </table>

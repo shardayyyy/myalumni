@@ -47,7 +47,7 @@
 
 
             <p><myalumni:buildImageTag imageType="avatar"><c:out value="${members.avatar}"/></myalumni:buildImageTag></p></td>
-    <td width="20%" valign="top" class="bgP"><table width="100%"  border="0" cellpadding="1" cellspacing="3">
+    <td width="20%" valign="top"><table width="100%"  border="0" cellpadding="1" cellspacing="3">
         <tr>
           <td width="26%" class="fieldlabel">Email:</td>
           <td width="74%"><c:out value="${members.email}"/></td>
@@ -140,11 +140,11 @@
 
 			</p>
 			<p>
-			  <html:submit styleClass="button">
+			  <html:submit>
 				<bean:message key="button.submit"/>
 			  </html:submit>
 			  &nbsp;&nbsp;&nbsp;
-			  <html:cancel styleClass="button">
+			  <html:cancel>
 				<bean:message key="button.cancel"/>
 			  </html:cancel>
 		</p>

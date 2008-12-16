@@ -43,7 +43,8 @@ function deleteRecord(logFileName)
                   </tr>
                   <tr class="bg0">
                     <td><div style="padding-bottom: 5px; padding-top: 5px;"> <html:img page="/images/spacer.gif" border="0" height="3" width="10"/>
-                    <span class="Bold">Maintain Database Backups.</span> </div></td>
+                    <span class="Bold">Maintain Database Backups.</span>
+                    </div></td>
                     <td align="right">
                    
 

@@ -14,7 +14,7 @@
 
 		<html:form action="/admin/validateSystemConfig">
 		        <html:hidden property="action" value="validateSystemConfig"/>
-					    <html:submit styleClass="button"><bean:message key="button.validate"/></html:submit>
+					    <html:submit><bean:message key="button.validate"/></html:submit>
 		</html:form>
 
 

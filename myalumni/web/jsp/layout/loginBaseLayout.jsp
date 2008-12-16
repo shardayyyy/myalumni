@@ -3,7 +3,7 @@
 <%@ taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c" %>
 
-<c:url var="stylesheet" value="/style/myalumni.css" />
+<c:url var="stylesheet" value="/style/${CSS_TYPE}/myalumni.css" />
 
 
 <html:html xhtml="true">
