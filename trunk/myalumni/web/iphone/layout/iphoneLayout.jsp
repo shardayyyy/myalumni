@@ -25,11 +25,9 @@
 <meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
 <%-- <title><tiles:getAsString name="title" ignore="true"/></title> --%>
 
-
 <style type="text/css" media="screen">@import "<c:out value="${iphoneCSS}"/>";</style>
 <style type="text/css" media="screen">@import "<c:out value="${customcss}"/>";</style>
 <script type="application/x-javascript" src="<c:out value="${iphoneJS}"/>"></script>
-
 </head>
 
 <body>
