@@ -12,7 +12,7 @@
     <tr class="portlet-section-body">
       <td width="10%" class="fieldlabel"><bean:message key="label.admin.member.to"/>:</td>
       <td width="90%">
-			<html:text property="guestEmail" styleId="search" size="60" maxlength="60" titleKey="label.admin.member.to"/>                                  
+			<html:text property="guestEmail" titleKey="label.admin.member.to"/>                                  
       </td>
     </tr>
     <tr class="portlet-section-body">
@@ -26,11 +26,11 @@
     <tr class="portlet-section-body">
       <td>&nbsp;</td>
       <td>
-      <html:submit styleClass="button">
+      <html:submit>
       		<bean:message key="button.submit"/>
       </html:submit>
       	&nbsp;
-       <html:reset styleClass="button">
+       <html:reset>
       		<bean:message key="button.reset"/>
       </html:reset>
      </td>

@@ -14,22 +14,22 @@
 
 <table width="100%"  border="0" cellspacing="1" cellpadding="1">
       <tr>
-        <td class="fieldlabel">&#8226; <a href="<c:out value="${forum}"/>">Forum </a></td>
+        <td class="fieldlabel"><span>&raquo;</span> <a href="<c:out value="${forum}"/>">Forum </a></td>
         </tr>
       <tr>
-        <td class="fieldlabel">&#8226; <a href="<c:out value="${registration}"/>">Alunmi Registration </a></td>
+        <td class="fieldlabel"><span>&raquo;</span> <a href="<c:out value="${registration}"/>">Alunmi Registration </a></td>
       </tr>
       <tr>
-        <td class="fieldlabel">&#8226; <a href="<c:out value="${album}"/>">Album</a> </td>
+        <td class="fieldlabel"><span>&raquo;</span> <a href="<c:out value="${album}"/>">Album</a> </td>
       </tr>
       <tr>
-        <td class="fieldlabel">&#8226; <a href="<c:out value="${alumni_listings}"/>">Alunmi Listing </a></td>
+        <td class="fieldlabel"><span>&raquo;</span> <a href="<c:out value="${alumni_listings}"/>">Alunmi Listing </a></td>
       </tr>
       <tr>
-        <td class="fieldlabel">&#8226; <a href="<c:out value="${reminisce}"/>">Slang's</a> </td>
+        <td class="fieldlabel"><span>&raquo;</span> <a href="<c:out value="${reminisce}"/>">Slang's</a> </td>
       </tr>
       <tr>
-        <td class="fieldlabel">&#8226; <a href="<c:out value="${faq}"/>">FAQ</a></td>
+        <td class="fieldlabel"><span>&raquo;</span> <a href="<c:out value="${faq}"/>">FAQ</a></td>
       </tr>
 
       
@@ -38,7 +38,7 @@
 		<logic:notEmpty name="allFrontPageLinks">
 			<logic:iterate id="row" name="allFrontPageLinks" indexId="pIdx">
 			   	<tr>
-        			<td class="fieldlabel">&#8226; 		
+        			<td class="fieldlabel"><span>&raquo;</span>  		
 						<a href="<c:out value="${row.linkurl}"/>" target="_blank"><c:out value="${row.label}"/></a>
 						<c:if test="${row.important == 'Y'}">
 							<html:image page="/images/dot.gif"/>

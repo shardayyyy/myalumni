@@ -1,7 +1,7 @@
 <%@ taglib uri="/WEB-INF/tld/struts-html.tld" prefix="html" %>
 <%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c" %>
 
-<%-- FGC related path --%>
+<%-- related path --%>
 <c:url var="LOGOUT" value="/action/member/logout?action=logout" />
 <c:url var="SEND_ACTIVATION_CODE" value="/jsp/myalumni/sendActivationCode.jsp" />
 <c:url var="PRIVACY" value="/jsp/privacy.jsp" />
@@ -12,9 +12,9 @@
 
 <c:choose>
 	<c:when test="${ isOnline == 'Y'}">
-		<font class="menuText2">Welcome <c:out value="${USER_CONTAINER.token.firstName}"/> <c:out value="${USER_CONTAINER.token.lastName}"/>&nbsp;&nbsp;<a href="<c:out value="${LOGOUT}"/>">Logout</a></font>&nbsp;<br>
+		<font class="blueText">Welcome <c:out value="${USER_CONTAINER.token.firstName}"/> <c:out value="${USER_CONTAINER.token.lastName}"/>&nbsp;&nbsp;<a href="<c:out value="${LOGOUT}"/>">Logout</a></font>&nbsp;<br>
 		<c:if test="${USER_CONTAINER.token.isAdmin == 'Y'}">
-			<font class="menuText2">[<a href="<c:out value="${ADMIN_USER}"/>">Admin Index</a>]</font>
+			<font class="blueText">[<a href="<c:out value="${ADMIN_USER}"/>">Admin Index</a>]</font>
 		</c:if>
 	 </c:when>
 	 <c:otherwise>

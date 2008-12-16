@@ -52,11 +52,10 @@ function reselectImage(form) {
 
               <html:file property="avatarUpload" size="80" titleKey="table.title.avatarinst1"/>
 
-    	      &nbsp;&nbsp;&nbsp;&nbsp;
+ p;&nbsp;&nbsp;
 	      <html:submit styleClass="button">
 	      		<bean:message key="button.uploadavatar"/>
-    	      </html:submit>
-    	      &nbsp;&nbsp;&nbsp;&nbsp;
+    	      </html:submit&nbsp;&nbsp;&nbsp;
 	      <html:cancel styleClass="button">
 	      		<bean:message key="button.cancel"/>
     	  </html:cancel>

@@ -47,7 +47,7 @@
               <td>
 		              <html:text property="dob" size="11" maxlength="11" titleKey="label.birthday" readonly="true" styleId="dob"/>
 		              <html:img page="/images/icon/calendar.gif" titleKey="label.birthday" align="absmiddle" styleId="trigger1"/> 
-		              <html:button property="buttonAction" styleClass="button" onclick="document.memberForm.dob.value=''"><bean:message key="label.cleardate"/></html:button>
+		              <html:button property="buttonAction" onclick="document.memberForm.dob.value=''"><bean:message key="label.cleardate"/></html:button>
 
               </td>
             </tr>

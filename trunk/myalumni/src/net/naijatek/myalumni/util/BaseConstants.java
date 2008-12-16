@@ -124,6 +124,7 @@ public interface BaseConstants {
   public static final String SERVER_URL = "SERVER_URL";
   public static final String LOGO_NAME = "LOGO_NAME";
   public static final String FIRST_STARTUP = "FIRST_STARTUP";
+  public static final String CSS_TYPE = "CSS_TYPE";
   
   
   

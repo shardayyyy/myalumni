@@ -173,7 +173,7 @@ window.onload = function()
  
     <tr align="center" class="portlet-section-body">
       <td colspan="2">
-                <html:submit styleClass="button">
+                <html:submit>
                         <bean:message key="button.search"/>
                 </html:submit>
                 &nbsp;&nbsp;&nbsp;

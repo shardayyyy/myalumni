@@ -23,13 +23,10 @@
     <td><html:password property="memberPasswordConfirm" size="25" maxlength="25" titleKey="label.passwordconfirm"/></td>
   </tr>
   <tr align="center" class="portlet-section-body">
-    <td colspan="2">
-
-    	<html:submit styleClass="button">
+    <td colspa:submit styleClass="button">
     		<bean:message key="button.submit"/>
     	</html:submit>
-    	&nbsp;&nbsp;&nbsp;
-    	<html:cancel styleClass="button">
+    	&nbsp;html:cancel styleClass="button">
     		<bean:message key="button.cancel"/>
     	</html:cancel>
 

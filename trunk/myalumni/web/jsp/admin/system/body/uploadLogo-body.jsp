@@ -60,7 +60,7 @@ function removeLogo()
 <html:form action="/admin/uploadLogo?action=uploadLogo" enctype="multipart/form-data">
               <html:file property="logoUpload" size="80" titleKey="table.title.logo"/>
     	      &nbsp;&nbsp;&nbsp;&nbsp;
-	      <html:submit styleClass="button">
+	      <html:submit>
 	      		<bean:message key="button.uploadlogo"/>
     	      </html:submit>              
 </html:form>

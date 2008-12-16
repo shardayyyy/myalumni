@@ -146,7 +146,7 @@
                       <td align="right">&nbsp;</td>
                       <td align="center">&nbsp;</td>
                       <td>
-                        <html:submit styleClass="button" onclick="submitAssignRole2User(this);"><bean:message key="button.save"/></html:submit>
+                        <html:submit onclick="submitAssignRole2User(this);"><bean:message key="button.save"/></html:submit>
                         &nbsp;
                             <html:link page="/jsp/admin/security/index.jsp" onmouseover="window.status=''; return true">
                                 <html:img page="/images/cancel.png" border="0" align="absbottom"/>

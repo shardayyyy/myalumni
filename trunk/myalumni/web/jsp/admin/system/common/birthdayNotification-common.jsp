@@ -59,10 +59,9 @@
                       <td align="center">&nbsp;</td>
                       <td>
                          <c:choose>
-                            <c:when test="${actionMode == 'add'}">
-                                <html:submit styleClass="button"><bean:message key="button.add"/></html:submit>
+                            <c:when test="${action                              <html:submit styleClass="button"><bean:message key="button.add"/></html:submit>
                             </c:when>
-                            <c:when test="${actionMode == 'update'}">
+                            <c:when test="${action
                                 <html:submit styleClass="button"><bean:message key="button.update"/></html:submit>
                             </c:when>
                         </c:choose>

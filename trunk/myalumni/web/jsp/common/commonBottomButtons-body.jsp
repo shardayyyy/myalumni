@@ -25,12 +25,12 @@
   </tr>
   <tr>
     <td> <div align="center">
-		<html:submit styleClass="button" onclick="submitUpdateMemberProfile(this);">
+		<html:submit onclick="submitUpdateMemberProfile(this);">
 			<bean:message key="button.submit"/>
 		</html:submit>    
     </div></td>
     <td><div align="center">
-        <html:cancel styleClass="button">
+        <html:cancel>
                 <bean:message key="button.cancel" />
         </html:cancel>
     </div></td>

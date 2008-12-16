@@ -76,11 +76,11 @@
 						<html:hidden property="memberUserName"/>
 						</p>
 						<p>
-						  <html:submit styleClass="button">
+						  <html:submit>
 							<bean:message key="button.submit"/>
 						  </html:submit>
 						  &nbsp;&nbsp;&nbsp;
-						  <html:cancel styleClass="button">
+						  <html:cancel>
 							<bean:message key="button.cancel"/>
 						  </html:cancel>
 					</p>

@@ -36,7 +36,7 @@
 		                      <tr>
 		                        <td align="right">&nbsp;</td>
 		                        <td height="25" align="right">&nbsp;</td>
-		                        <td><html:submit styleClass="button"><bean:message key="button.submit"/></html:submit></td>
+		                        <td><html:submit><bean:message key="button.submit"/></html:submit></td>
 		                      </tr>
 		                      <tr>
 		                        <td>&nbsp;</td>

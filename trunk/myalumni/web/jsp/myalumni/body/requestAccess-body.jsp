@@ -26,11 +26,11 @@
     </tr>
     <tr class="portlet-section-body">
       <td colspan="2">
-      	<html:submit styleClass="button">
+      	<html:submit>
       		<bean:message key="button.submit"/>
       	</html:submit>
       	&nbsp;&nbsp;
-      	<html:cancel styleClass="button">
+      	<html:cancel>
       		<bean:message key="button.cancel"/>
       	</html:cancel>
       	</td>

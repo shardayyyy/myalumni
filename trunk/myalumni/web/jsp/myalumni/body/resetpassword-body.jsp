@@ -35,8 +35,7 @@ DELETE THIS PAGE
       </tr>
       <tr class="portlet-section-body">
         <td align="center" valign="middle"><br>
-        </td>
-        <td>	<html:submit styleClass="button">
+   <td>	<html:submit styleClass="button">
                     <bean:message key="button.submit"/>
                 </html:submit>
         </td>

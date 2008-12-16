@@ -35,14 +35,14 @@
 <body>
 
 	<a id="backButton" class="button" href="<c:out value="${iphoneHome}"/>">Home</a>
-	<h1 id="pageTitle"><tiles:getAsString name="title" ignore="true"/></h1>
+	<h1 id="pageTitle">[BETA]<tiles:getAsString name="title" ignore="true"/></h1>
 
 	
 	<%-- Header --%>
     <div class="toolbar">
         <h1 id="pageTitle"></h1>
         <a id="backButton" class="button" href="#"></a>
-        <html:link styleClass="button" page="/iphone/index.jsp">Home</html:link>
+        <html:link page="/iphone/index.jsp">Home</html:link>
         
     </div>	
 	

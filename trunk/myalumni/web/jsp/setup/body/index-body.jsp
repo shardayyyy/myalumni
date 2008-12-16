@@ -139,7 +139,7 @@
                       <td align="right">&nbsp;</td>
                       <td align="center">&nbsp;</td>
                       <td>
-                                <html:submit styleClass="button"><bean:message key="button.update"/></html:submit>
+                                <html:submit><bean:message key="button.update"/></html:submit>
                           &nbsp;&nbsp;
                             <html:link page="/jsp/index.jsp" onmouseover="window.status=''; return true">
                                 <html:img page="/images/cancel.png" border="0" align="absbottom"/>    

@@ -143,10 +143,10 @@
                       <td>
                          <c:choose>
                             <c:when test="${actionMode == 'add'}">
-                                <html:submit styleClass="button"><bean:message key="button.save"/></html:submit>
+                                <html:submit><bean:message key="button.save"/></html:submit>
                             </c:when>
                             <c:when test="${actionMode == 'update'}">
-                                <html:submit styleClass="button"><bean:message key="button.update"/></html:submit>
+                                <html:submit><bean:message key="button.update"/></html:submit>
                             </c:when>
                         </c:choose>  
                         &nbsp;&nbsp;
