@@ -54,16 +54,12 @@ import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.helper.OnlineUserManager;
 import net.naijatek.myalumni.modules.common.helper.ReasonCodes;
 import net.naijatek.myalumni.modules.common.presentation.form.LoginForm;
-import net.naijatek.myalumni.modules.common.presentation.form.MemberForm;
 import net.naijatek.myalumni.modules.common.service.IClassNewsService;
 import net.naijatek.myalumni.modules.common.service.IMemberService;
 import net.naijatek.myalumni.modules.common.service.IPrivateMessageService;
 import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
 import net.naijatek.myalumni.modules.common.service.IUserAccountService;
 import net.naijatek.myalumni.util.BaseConstants;
-import net.naijatek.myalumni.util.SystemConfigConstants;
-import net.naijatek.myalumni.util.encryption.Encoder;
-import net.naijatek.myalumni.util.mail.SendMailUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -458,7 +454,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 	   String username = loginForm.getMemberUserName();
 	   
 	   try{
-	       securityService.notifyPassword(username, getLocale(request).getLanguage(), request);
+	       securityService.notifyPassword(username, request);
 	       messages.add(BaseConstants.INFO_KEY, new ActionMessage("errors.account.resetinst"));
 	   }
 	   catch(UserAccountException e){
@@ -505,7 +501,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 	   String email = loginForm.getEmail();
 	   
 	   try{
-	       securityService.notifyUserName(email, getLocale(request).getLanguage(), request);
+	       securityService.notifyUserName(email, request);
 	       messages.add(BaseConstants.INFO_KEY, new ActionMessage("errors.account.resetinst"));
 	   }
 	   catch(UserAccountException e){

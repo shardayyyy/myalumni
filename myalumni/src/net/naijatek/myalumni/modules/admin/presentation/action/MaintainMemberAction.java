@@ -215,7 +215,7 @@ public class MaintainMemberAction  extends MyAlumniDispatchAction{
           // we only want to refresh the list if the user is newly registered
           if (memberVO.getMemberStatus().equalsIgnoreCase(BaseConstants.ACCOUNT_UNAPPROVED)){
              // send a welcome email
-            SendMailUtil.sendWelcomeNotice(memberVO.getEmail(), memberVO.getMemberUserName(),getLocale(request).getLanguage(),sysConfigVO);
+            SendMailUtil.sendWelcomeNotice(memberVO.getEmail(), memberVO.getMemberUserName(),sysConfigVO);
           }
           
           memService.activateMemberByUserName(memberUserName, getLastModifiedBy(request));

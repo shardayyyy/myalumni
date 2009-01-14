@@ -109,7 +109,11 @@
 		<%-- Location --%>
 		<display:column title="Location">
 			<%-- Address --%>
-			<c:out value="${member.address}"/>, <c:out value="${member.country.label}"/>
+			<c:out value="${member.address}"/>
+			<c:if test="${member.address ne ''}">
+				,X
+			</c:if>
+			<c:out value="${member.country.label}"/>
 		</display:column>
 		
 		<%-- Request Information --%>

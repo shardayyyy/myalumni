@@ -574,7 +574,7 @@ public class MemberServiceImpl implements IMemberService {
     }
     
     
-   public void resetPassword(String memberId, String langId, String lastModifiedBy) throws MyAlumniException {
+   public void resetPassword(String memberId, String lastModifiedBy) throws MyAlumniException {
         
     	try{
     		MemberVO memberVO = getUser(memberId);
@@ -588,7 +588,7 @@ public class MemberServiceImpl implements IMemberService {
 	    	
 	    		SystemConfigVO sysConfig = sysConfigDao.getSystemConfig();
 	    	
-	    		SendMailUtil.sendPasswordReminderMail(memberVO.getEmail(), memberVO.getMemberUserName(), newPasswd, langId, sysConfig);
+	    		SendMailUtil.sendPasswordReminderMail(memberVO.getEmail(), memberVO.getMemberUserName(), newPasswd, sysConfig);
     		}
     		else{
     			throw new MyAlumniException("Unable to resetPassword, user not found ");

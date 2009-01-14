@@ -100,7 +100,7 @@ public class MaintainPrivateMessageAction  extends MyAlumniDispatchAction{
 		SystemConfigVO sysConfigVO = sysConfigSerivce.getSystemConfig();
 		
 		
-		SendMailUtil.sendEmail(pmVO, sysConfigVO, getLocale(request).getLanguage());
+		SendMailUtil.sendEmail(pmVO, sysConfigVO);
         ActionMessages errors = new ActionMessages();
         errors.add(BaseConstants.INFO_KEY, new ActionMessage("message.emailsent"));
         saveMessages(request, errors);
@@ -281,22 +281,22 @@ public class MaintainPrivateMessageAction  extends MyAlumniDispatchAction{
     		toMemberEmail = memService.getMemberEmailByMemberId(pmVO.getMessageToUserId());
     		pmVO.setToWebmaster(BaseConstants.BOOLEAN_NO);
     		pmService.contactMail(pmVO, getLastModifiedBy(request),getCurrentIPAddress(request));
-    		SendMailUtil.memberNewMessageNotification(pmVO, sysConfigVO, toMemberEmail, getLocale(request).getLanguage());
+    		SendMailUtil.memberNewMessageNotification(pmVO, sysConfigVO, toMemberEmail);
     	}
     	else{
     		toMemberEmail = pmVO.getGuestEmail();
-    		SendMailUtil.sendEmail(pmVO, sysConfigVO, getLocale(request).getLanguage());
+    		SendMailUtil.sendEmail(pmVO, sysConfigVO);
     	}  
     }
     else if (pmVO.getType().equals("reply")){
       String guestEmail = StringUtil.safeString(pmVO.getGuestEmail());
       if ( guestEmail.length() > 0 ){
-        SendMailUtil.sendEmail(pmVO, sysConfigVO, getLocale(request).getLanguage());
+        SendMailUtil.sendEmail(pmVO, sysConfigVO);
       }else{
     	  toMemberEmail = memService.getMemberEmailByMemberId(pmVO.getMessageToUserId()); 
     	  pmVO.setToWebmaster(BaseConstants.BOOLEAN_NO);
     	  pmService.replyMail(pmVO, getLastModifiedBy(request),getCurrentIPAddress(request));  
-    	  SendMailUtil.memberNewMessageNotification(pmVO, sysConfigVO, toMemberEmail, getLocale(request).getLanguage());
+    	  SendMailUtil.memberNewMessageNotification(pmVO, sysConfigVO, toMemberEmail);
       }
     }
     else{

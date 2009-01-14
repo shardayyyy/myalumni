@@ -69,8 +69,7 @@ public interface IUserAccountService {
 	    *
 	    * @throws <b>UserAccountException</b> if the user cannot be notified.
 	    */
-	    public void notifyPassword(String userName,
-	                               String langId,HttpServletRequest request) throws UserAccountException;
+	    public void notifyPassword(String userName,HttpServletRequest request) throws UserAccountException;
 
 	    /**
 	    * Changes the password for the user.
@@ -142,7 +141,6 @@ public interface IUserAccountService {
 		    *
 		    * @throws <b>UserAccountException</b> if the user cannot be notified.
 		    */
-		    public void notifyUserName(String email,
-		                               String langId,HttpServletRequest request) throws UserAccountException;	     
+		    public void notifyUserName(String email,HttpServletRequest request) throws UserAccountException;	     
 
 }

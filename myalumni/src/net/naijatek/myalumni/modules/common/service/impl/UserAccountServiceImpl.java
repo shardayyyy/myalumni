@@ -162,8 +162,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
     *
     * @throws <b>UserAccountException</b> if the user cannot be notified. 
     */
-    public void notifyPassword(String userName,
-                               String langId, HttpServletRequest request) throws UserAccountException {
+    public void notifyPassword(String userName, HttpServletRequest request) throws UserAccountException {
                                
         // Lookup the user record, and check if user account exists.  
     	MemberVO auth = userAccountDao.getUserAccountByUserName(userName);     
@@ -194,7 +193,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
             String newPasswd =  PasswordGenerator.createPassword(8);
             
             // then use an email template to send the notification.        
-             SendMailUtil.sendPasswordReminderMail(auth.getEmail(), auth.getFullName(), newPasswd, langId, sysConfigVO);
+             SendMailUtil.sendPasswordReminderMail(auth.getEmail(), auth.getFullName(), newPasswd, sysConfigVO);
             
             // update the system with the new user password(encrypted), 
             // and insert a trail for that.
@@ -214,8 +213,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
      *
      * @throws <b>UserAccountException</b> if the user cannot be notified. 
      */
-     public void notifyUserName(String email,
-                                String langId, HttpServletRequest request) throws UserAccountException {
+     public void notifyUserName(String email, HttpServletRequest request) throws UserAccountException {
                                 
          // Lookup the user record, and check if user account exists.  
      	MemberVO auth = userAccountDao.getUserAccountByEmail(email);  
@@ -244,7 +242,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
          try {
         	 
              // then use an email template to send the notification.        
-              SendMailUtil.sendUserNameReminderMail(auth.getEmail(), auth.getFullName(), auth.getMemberUserName(), langId, sysConfigVO);
+              SendMailUtil.sendUserNameReminderMail(auth.getEmail(), auth.getFullName(), auth.getMemberUserName(), sysConfigVO);
              
          } catch (Exception ex) {            
              throw new UserAccountException(ex.getMessage());

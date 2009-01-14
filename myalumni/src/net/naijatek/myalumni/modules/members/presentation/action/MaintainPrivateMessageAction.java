@@ -428,7 +428,7 @@ public class MaintainPrivateMessageAction  extends MyAlumniDispatchAction{
 	        	pmVO.setMessageId(null);
 	        	pmVOCopy.setMessageId(null);
 	        	pmService.contactMail(pmVO, getLastModifiedBy(request), getCurrentIPAddress(request));
-	        	SendMailUtil.memberNewMessageNotification(pmVO, sysConfigVO, toMemberEmail, getLocale(request).getLanguage());
+	        	SendMailUtil.memberNewMessageNotification(pmVO, sysConfigVO, toMemberEmail);
 	        	//copy to sent
 		        if (pmForm.getCopyMe().equalsIgnoreCase(BaseConstants.BOOLEAN_YES)){
 		            pmService.copyMeOnContactMail(pmVOCopy, getLastModifiedBy(request),getCurrentIPAddress(request));
@@ -447,7 +447,7 @@ public class MaintainPrivateMessageAction  extends MyAlumniDispatchAction{
 	      if (quota < SystemConfigConstants.MAIL_QUOTA ){
 	    	pmVO.setMessageId(null); // setting to null becasue its a considered a new
 	        pmService.replyMail(pmVO, getLastModifiedBy(request),getCurrentIPAddress(request));
-	        SendMailUtil.memberNewMessageNotification(pmVO, sysConfigVO, toMemberEmail, getLocale(request).getLanguage());
+	        SendMailUtil.memberNewMessageNotification(pmVO, sysConfigVO, toMemberEmail);
 	        //copy to sent
 	        if (pmForm.getCopyMe().equalsIgnoreCase(BaseConstants.BOOLEAN_YES)){
 	          pmService.copyMeOnReplyMail(pmVOCopy, getLastModifiedBy(request),getCurrentIPAddress(request));
@@ -524,7 +524,7 @@ public class MaintainPrivateMessageAction  extends MyAlumniDispatchAction{
     
     // send email to admin notifying of email
     SystemConfigVO sysConfigVO = sysConfigSerivce.getSystemConfig();
-    SendMailUtil.adminNewMessageNotification(sysConfigVO, sysConfigVO.getOrgEmail(), getLocale(request).getLanguage());
+    SendMailUtil.adminNewMessageNotification(sysConfigVO, sysConfigVO.getOrgEmail());
     
     
     
