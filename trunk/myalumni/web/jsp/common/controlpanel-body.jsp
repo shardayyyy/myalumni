@@ -75,4 +75,14 @@
 
               </td>
    </tr>
+   <tr class="portlet-section-body">
+   	<td align="center"><br>
+   		<html:form action="/member/prepareAddClassNews?action=prepareAddClassNews">
+   			<html:button property="buttonAction" >
+   				<bean:message key="button.deletemyaccount"/>
+   			</html:button>
+   		</html:form>
+   	
+   	</td>
+   </tr>
 </table>

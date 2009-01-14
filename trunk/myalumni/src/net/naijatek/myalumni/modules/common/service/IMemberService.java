@@ -183,7 +183,7 @@ public interface IMemberService  extends BaseCrudService<MemberVO, String>{
     
     public MemberVO getUserWithRolesAndAccessLogs(String id);
     
-    public void resetPassword(String memberId, String langId, String lastModifiedBy) throws MyAlumniException;
+    public void resetPassword(String memberId, String lastModifiedBy) throws MyAlumniException;
     
     public List<MemberVO> filterUsersByAlphabelt(String alphabelt, String searchType, String isAdmin);
     

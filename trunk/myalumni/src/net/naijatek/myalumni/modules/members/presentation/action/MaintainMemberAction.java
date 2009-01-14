@@ -234,7 +234,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
         
         // Member
         memService.createMember(memberVO, request);
-        
+        ////////
        final String memberId = memberVO.getMemberId();
         // Messengers
         List<MessengerVO> messengers = new ArrayList<MessengerVO>();
@@ -258,7 +258,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
 
         // send email to registrant
         try {
-        	SendMailUtil.sendWelcomeNotice(memberVO.getEmail(), memberVO.getMemberUserName(),getLocale(request).getLanguage(),sysConfigVO);
+        	SendMailUtil.sendWelcomeNotice(memberVO.getEmail(), memberVO.getMemberUserName(),sysConfigVO);
         }
         catch (Exception ex) {
           logger.error(ex.getMessage());
@@ -269,7 +269,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
         
         // send email to administrator about new registrant
         try {
-        	SendMailUtil.notifyAdminAboutNewMember(memberVO, getLocale(request).getLanguage(), sysConfigVO);
+        	SendMailUtil.notifyAdminAboutNewMember(memberVO, sysConfigVO);
         }
         catch (Exception ex) {
           logger.error(ex.getMessage());

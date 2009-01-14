@@ -129,7 +129,7 @@ public class MaintainSecurityModuleAction extends MyAlumniDispatchAction{
         logger.debug("in resetMemberPassword..."); 
         ActionMessages message = new ActionMessages(); 
         MemberForm userForm = (MemberForm)form;
-        memberService.resetPassword(userForm.getMemberId(), getLocale(request).getLanguage(), getLastModifiedBy(request));
+        memberService.resetPassword(userForm.getMemberId(), getLastModifiedBy(request));
         message.add(BaseConstants.INFO_KEY, new ActionMessage("message.resetpassword"));
         saveMessages(request, message);          
         listUserHelper(request, form);
@@ -228,7 +228,7 @@ public class MaintainSecurityModuleAction extends MyAlumniDispatchAction{
  
 		try{
 			SystemConfigVO sysConfigVO = sysConfigSerivce.getSystemConfig();
-			SendMailUtil.sendProfileChangeNotificationMail(memberVO.getEmail(), memberVO.getFullName(), getLocale(request).getLanguage(), sysConfigVO, reasonforUpdate);
+			SendMailUtil.sendProfileChangeNotificationMail(memberVO.getEmail(), memberVO.getFullName(), sysConfigVO, reasonforUpdate);
 			messages.add(BaseConstants.INFO_KEY, new ActionMessage("message.userprofile.updated"));
 		}
 		catch(MailServerException e){

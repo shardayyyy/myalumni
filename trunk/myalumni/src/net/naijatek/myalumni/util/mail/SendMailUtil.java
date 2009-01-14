@@ -66,7 +66,7 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
     private static JavaMailSender mailSender;
     private static FreeMarkerConfigurer freeMarker ;
     private static Configuration configuration;
-
+    //private static landId = ""; // getLocale(request).getLanguage()
     
     public SendMailUtil() {
        	
@@ -92,7 +92,7 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
     
 // ------------------------------------------------------------------------------------------------------------------------
     
-    public static void sendProfileChangeNotificationMail(String recipient, String fullName, String langId, SystemConfigVO sysConfig, 
+    public static void sendProfileChangeNotificationMail(String recipient, String fullName, SystemConfigVO sysConfig, 
     		String reasonForUpdate) throws MailServerException {
         
         try {                           
@@ -103,8 +103,8 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
   		  	map.put("adminSignature", StringUtil.safeString(sysConfig.getAdminSignature()));
             map.put("reasonForUpdate", reasonForUpdate);
             
-            String subjectTemplatePrefix = TEMPLATE_PROFILE_CHANGED_SUBJECT + "_" + langId + "-text." + TEMPLATE_EXTENSION;
-            String bodyTemplatePrefix = TEMPLATE_PROFILE_CHANGED_BODY + "_" + langId + "-text." + TEMPLATE_EXTENSION;
+            String subjectTemplatePrefix = TEMPLATE_PROFILE_CHANGED_SUBJECT +  "-text." + TEMPLATE_EXTENSION;
+            String bodyTemplatePrefix = TEMPLATE_PROFILE_CHANGED_BODY +  "-text." + TEMPLATE_EXTENSION;
             new FreeMarkerTemplateMailerImpl(mailSender, configuration).mail(recipient, map, bodyTemplatePrefix, subjectTemplatePrefix);
         }
         catch (Exception e) {
@@ -125,7 +125,7 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
      * @throws Exception
      */
     // Done
-  public static void sendWelcomeNotice(final String email, final String userName, String langId, SystemConfigVO sysConfig)
+  public static void sendWelcomeNotice(final String email, final String userName, SystemConfigVO sysConfig)
          throws Exception{
       try {                           
           Map<String, String> map = new HashMap<String, String>();
@@ -135,8 +135,8 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
 		  map.put("serverName", StringUtil.safeString(sysConfig.getServerUrl()));
 		  map.put("adminSignature", StringUtil.safeString(sysConfig.getAdminSignature()));
 
-          String subjectTemplatePrefix = TEMPLATE_NEW_MEMBER_WELCOME_NOTIFICATION_SUBJECT + "_" + langId + "-text." + TEMPLATE_EXTENSION;
-          String bodyTemplatePrefix = TEMPLATE_NEW_MEMBER_WELCOME_NOTIFICATION_BODY + "_" + langId + "-text." + TEMPLATE_EXTENSION;
+          String subjectTemplatePrefix = TEMPLATE_NEW_MEMBER_WELCOME_NOTIFICATION_SUBJECT +  "-text." + TEMPLATE_EXTENSION;
+          String bodyTemplatePrefix = TEMPLATE_NEW_MEMBER_WELCOME_NOTIFICATION_BODY +  "-text." + TEMPLATE_EXTENSION;
           new FreeMarkerTemplateMailerImpl(mailSender, configuration).mail(email, map, bodyTemplatePrefix, subjectTemplatePrefix);
       }
       catch (Exception e) {
@@ -151,7 +151,6 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
     public static void sendBirthdayWish(final MemberVO memberVO, SystemConfigVO sysConfig)
            throws Exception{
 
-    	String langId = "en";
         try {                           
             Map<String, String> map = new HashMap<String, String>();
                                       
@@ -161,8 +160,8 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
   		  	map.put("serverName", StringUtil.safeString(sysConfig.getServerUrl()));
   		  	map.put("adminSignature", StringUtil.safeString(sysConfig.getAdminSignature()));
 
-            String subjectTemplatePrefix = TEMPLATE_BIRTHDAY_WISH_SUBJECT + "_" + langId + "-text." + TEMPLATE_EXTENSION;
-            String bodyTemplatePrefix = TEMPLATE_BIRTHDAY_WISH_BODY + "_" + langId + "-text." + TEMPLATE_EXTENSION;
+            String subjectTemplatePrefix = TEMPLATE_BIRTHDAY_WISH_SUBJECT +  "-text." + TEMPLATE_EXTENSION;
+            String bodyTemplatePrefix = TEMPLATE_BIRTHDAY_WISH_BODY +  "-text." + TEMPLATE_EXTENSION;
             new FreeMarkerTemplateMailerImpl(mailSender, configuration).mail(memberVO.getEmail(), map, bodyTemplatePrefix, subjectTemplatePrefix);
         }
         catch (Exception e) {
@@ -174,7 +173,7 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
       
 //  ------------------------------------------------------------------------------------------------------------------------  
     // Done
-    public static void sendUserNameReminderMail(String email, String fullName, String memberUserName, String langId, SystemConfigVO sysConfig)
+    public static void sendUserNameReminderMail(String email, String fullName, String memberUserName, SystemConfigVO sysConfig)
     throws Exception{
     	
         try {                           
@@ -186,8 +185,8 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
   		  	map.put("serverName", StringUtil.safeString(sysConfig.getServerUrl()));
   		  	map.put("adminSignature", StringUtil.safeString(sysConfig.getAdminSignature()));
 
-            String subjectTemplatePrefix = TEMPLATE_USERNAME_REMINDER_SUBJECT + "_" + langId + "-text." + TEMPLATE_EXTENSION;
-            String bodyTemplatePrefix = TEMPLATE_USERNAME_REMINDER_BODY + "_" + langId + "-text." + TEMPLATE_EXTENSION;
+            String subjectTemplatePrefix = TEMPLATE_USERNAME_REMINDER_SUBJECT +  "-text." + TEMPLATE_EXTENSION;
+            String bodyTemplatePrefix = TEMPLATE_USERNAME_REMINDER_BODY +  "-text." + TEMPLATE_EXTENSION;
             new FreeMarkerTemplateMailerImpl(mailSender, configuration).mail(email, map, bodyTemplatePrefix, subjectTemplatePrefix);
         }
         catch (Exception e) {
@@ -201,7 +200,7 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
 //  ------------------------------------------------------------------------------------------------------------------------
     
     // Done
-    public static void sendPasswordReminderMail(String email, String fullName, String newPasswd, String langId, SystemConfigVO sysConfig)
+    public static void sendPasswordReminderMail(String email, String fullName, String newPasswd, SystemConfigVO sysConfig)
     throws Exception{
     	
         try {                           
@@ -213,8 +212,8 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
   		  	map.put("serverName", StringUtil.safeString(sysConfig.getServerUrl()));
   		  	map.put("adminSignature", StringUtil.safeString(sysConfig.getAdminSignature()));
 
-            String subjectTemplatePrefix = TEMPLATE_PASSWORD_REMINDER_SUBJECT + "_" + langId + "-text." + TEMPLATE_EXTENSION;
-            String bodyTemplatePrefix = TEMPLATE_PASSWORD_REMINDER_BODY + "_" + langId + "-text." + TEMPLATE_EXTENSION;
+            String subjectTemplatePrefix = TEMPLATE_PASSWORD_REMINDER_SUBJECT +  "-text." + TEMPLATE_EXTENSION;
+            String bodyTemplatePrefix = TEMPLATE_PASSWORD_REMINDER_BODY +  "-text." + TEMPLATE_EXTENSION;
             new FreeMarkerTemplateMailerImpl(mailSender, configuration).mail(email, map, bodyTemplatePrefix, subjectTemplatePrefix);
         }
         catch (Exception e) {
@@ -228,7 +227,7 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
 //  ------------------------------------------------------------------------------------------------------------------------
     
     // Done
-    public static void notifyAdminAboutNewMember(MemberVO memberVO, String langId, SystemConfigVO sysConfigVO)
+    public static void notifyAdminAboutNewMember(MemberVO memberVO, SystemConfigVO sysConfigVO)
     throws Exception{
     	
         try {                           
@@ -243,8 +242,8 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
   		  	map.put("adminSignature", StringUtil.safeString(sysConfigVO.getAdminSignature()));
   		  	
 
-            String subjectTemplatePrefix = TEMPLATE_NOTIFY_ADMIN_ABOUT_NEW_MEMBER_SUBJECT + "_" + langId + "-text." + TEMPLATE_EXTENSION;
-            String bodyTemplatePrefix = TEMPLATE_NOTIFY_ADMIN_ABOUT_NEW_MEMBER_BODY + "_" + langId + "-text." + TEMPLATE_EXTENSION;
+            String subjectTemplatePrefix = TEMPLATE_NOTIFY_ADMIN_ABOUT_NEW_MEMBER_SUBJECT +  "-text." + TEMPLATE_EXTENSION;
+            String bodyTemplatePrefix = TEMPLATE_NOTIFY_ADMIN_ABOUT_NEW_MEMBER_BODY +  "-text." + TEMPLATE_EXTENSION;
             new FreeMarkerTemplateMailerImpl(mailSender, configuration).mail(sysConfigVO.getOrgEmail(), map, bodyTemplatePrefix, subjectTemplatePrefix);
         }
         catch (Exception e) {
@@ -313,7 +312,7 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
    * @throws MessagingException
    * @throws Exception
    */
-  public static void sendEmail(final PrivateMessageVO pm, final SystemConfigVO sysConfigVO , String langId )
+  public static void sendEmail(final PrivateMessageVO pm, final SystemConfigVO sysConfigVO  )
             throws Exception{
 
 	    try {		
@@ -323,8 +322,8 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
 		    map.put("serverName", StringUtil.safeString(sysConfigVO.getServerUrl()));
 		    map.put("adminSignature", StringUtil.safeString(sysConfigVO.getAdminSignature()));
 
-		    String subjectTemplatePrefix = TEMPLATE_EMAIL_MEMBER_SUBJECT + "_" + langId + "-text." + TEMPLATE_EXTENSION;
-		    String bodyTemplatePrefix = TEMPLATE_EMAIL_MEMBER_BODY + "_" + langId + "-text." + TEMPLATE_EXTENSION;
+		    String subjectTemplatePrefix = TEMPLATE_EMAIL_MEMBER_SUBJECT +  "-text." + TEMPLATE_EXTENSION;
+		    String bodyTemplatePrefix = TEMPLATE_EMAIL_MEMBER_BODY +  "-text." + TEMPLATE_EXTENSION;
 		    new FreeMarkerTemplateMailerImpl(mailSender, configuration).mail(pm.getGuestEmail(), map, bodyTemplatePrefix, subjectTemplatePrefix);
 	    }
 	    catch (Exception ex) {
@@ -344,7 +343,7 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
      * @throws MessagingException
      * @throws Exception
      */
-  public static void memberNewMessageNotification(final PrivateMessageVO pm, final SystemConfigVO sysConfig, final String toEmail, String langId)throws  Exception{ //PROOF READ
+  public static void memberNewMessageNotification(final PrivateMessageVO pm, final SystemConfigVO sysConfig, final String toEmail)throws  Exception{ //PROOF READ
 	    try {		
 		    Map<String, String> map = new HashMap<String, String>();
 		    map.put("firstName", pm.getMessageToMember().getFirstName());
@@ -353,8 +352,8 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
 		    map.put("serverName", StringUtil.safeString(sysConfig.getServerUrl()));
 		    map.put("adminSignature", StringUtil.safeString(sysConfig.getAdminSignature()));
 
-		    String subjectTemplatePrefix = TEMPLATE_NEW_MESSAGE_SUBJECT + "_" + langId + "-text." + TEMPLATE_EXTENSION;
-		    String bodyTemplatePrefix = TEMPLATE_NEW_MESSAGE_BODY + "_" + langId + "-text." + TEMPLATE_EXTENSION;
+		    String subjectTemplatePrefix = TEMPLATE_NEW_MESSAGE_SUBJECT +  "-text." + TEMPLATE_EXTENSION;
+		    String bodyTemplatePrefix = TEMPLATE_NEW_MESSAGE_BODY +  "-text." + TEMPLATE_EXTENSION;
 		    new FreeMarkerTemplateMailerImpl(mailSender, configuration).mail(toEmail, map, bodyTemplatePrefix, subjectTemplatePrefix);
 	    }
 	    catch (Exception ex) {
@@ -375,15 +374,15 @@ public class SendMailUtil extends HttpServlet implements IMailConstants{
 		   * @throws MessagingException
 		   * @throws Exception
 		   */
-		public static void adminNewMessageNotification(final SystemConfigVO sysConfig, final String toEmail, String langId)throws  Exception{ //PROOF READ
+		public static void adminNewMessageNotification(final SystemConfigVO sysConfig, final String toEmail)throws  Exception{ //PROOF READ
 			    try {		
 				    Map<String, String> map = new HashMap<String, String>();
 				    map.put("orgName", StringUtil.safeString(sysConfig.getOrganizationName()));
 				    map.put("serverName", StringUtil.safeString(sysConfig.getServerUrl()));
 				    map.put("adminSignature", StringUtil.safeString(sysConfig.getAdminSignature()));
 		
-				    String subjectTemplatePrefix = TEMPLATE_NEW_ADMIN_MESSAGE_SUBJECT + "_" + langId + "-text." + TEMPLATE_EXTENSION;
-				    String bodyTemplatePrefix = TEMPLATE_NEW_ADMIN_MESSAGE_BODY + "_" + langId + "-text." + TEMPLATE_EXTENSION;
+				    String subjectTemplatePrefix = TEMPLATE_NEW_ADMIN_MESSAGE_SUBJECT + "-text." + TEMPLATE_EXTENSION;
+				    String bodyTemplatePrefix = TEMPLATE_NEW_ADMIN_MESSAGE_BODY +  "-text." + TEMPLATE_EXTENSION;
 				    new FreeMarkerTemplateMailerImpl(mailSender, configuration).mail(toEmail, map, bodyTemplatePrefix, subjectTemplatePrefix);
 			    }
 			    catch (Exception ex) {
