@@ -103,7 +103,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
       * @param username username 
       * @param password password 
       */     
-    public MemberVO login(String username, String password) throws UserAccountException{
+    public MemberVO login(String username, String password, String lastIPAddress) throws UserAccountException{
         
     	MemberVO token = userAccountDao.getUserAccountByUserName(username);  
           
@@ -135,8 +135,8 @@ public class UserAccountServiceImpl implements IUserAccountService {
         }
         
         Date lastLogonDate = new Date();
-        userAccountDao.updateLastLogonDate(token.getMemberId(), lastLogonDate);
-            
+        userAccountDao.updateLastLogonDate(token.getMemberId(), lastLogonDate, lastIPAddress);
+        token.setLastIPAddress(lastIPAddress) ;  
         return token;         
     }
     

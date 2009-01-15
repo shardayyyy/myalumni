@@ -112,5 +112,5 @@ public interface UserAccountDao {
      * Updates the member last logon date and time
      * 
      */
-    public void updateLastLogonDate(String memberId, Date lastLogonDate);
+    public void updateLastLogonDate(String memberId, Date lastLogonDate, String ipAddress);
 }

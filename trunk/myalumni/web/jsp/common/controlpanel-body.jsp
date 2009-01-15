@@ -77,10 +77,11 @@
    </tr>
    <tr class="portlet-section-body">
    	<td align="center"><br>
-   		<html:form action="/member/prepareAddClassNews?action=prepareAddClassNews">
-   			<html:button property="buttonAction" >
+   	By deleting your account, your member profile will be completely removed from the system.<br>
+   		<html:form action="/member/prepareDeleteMyMemberProfile?action=prepareDeleteMyMemberProfile">
+   			<html:submit >
    				<bean:message key="button.deletemyaccount"/>
-   			</html:button>
+   			</html:submit>
    		</html:form>
    	
    	</td>

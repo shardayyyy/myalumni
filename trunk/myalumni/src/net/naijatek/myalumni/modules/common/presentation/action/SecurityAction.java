@@ -133,7 +133,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 	        
 	        
 	        try {
-                token = securityService.login(username, password);
+                token = securityService.login(username, password, currentIP);
                 token.setLoginSuccessfull(true);
                 accessHistory.setLoginStatus(BaseConstants.LOGIN_PASS);
                 accessHistory.setReasonCode(ReasonCodes.SUCCESS);

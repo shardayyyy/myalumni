@@ -157,9 +157,10 @@ public class UserAccountHibernateDao extends BaseHibernateDao implements UserAcc
              
 	
 	
-	public void updateLastLogonDate(String memberId, Date lastLogonDate){
+	public void updateLastLogonDate(String memberId, Date lastLogonDate, String lastIPAddress){
 		MemberVO token = (MemberVO) get(MemberVO.class, memberId);
 		token.setLastLogonDate(lastLogonDate);
+		token.setLastIPAddress(lastIPAddress);
 		update(token);
 	}
          
