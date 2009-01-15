@@ -307,6 +307,31 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
     }    
     
     
+    
+
+    public ActionForward prepareDeleteMyMemberProfile(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+    	setSessionObject(request, "ipaddress", getCurrentIPAddress(request));
+    	return mapping.findForward(BaseConstants.FWD_SUCCESS);
+	}    
+    
+
+    public ActionForward deleteMyMemberProfile(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+           
+//        memService.softDelete(getCurrentUserId(request), getLastModifiedBy(request));
+//        ActionMessages errors = new ActionMessages();
+//        errors.add(BaseConstants.INFO_KEY, new ActionMessage("core.errorcode.00713"));
+//        saveMessages(request, errors);
+    	return mapping.findForward(BaseConstants.FWD_SUCCESS);
+	}        
+    
+    
+    
+    
     public ActionForward validateMemberUserName(ActionMapping mapping,
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {

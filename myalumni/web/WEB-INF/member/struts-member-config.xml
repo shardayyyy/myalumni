@@ -200,6 +200,27 @@
 
     <!-- end JCAPTCHA for ADD MEMBER  -->
     
+      <!-- start JCAPTCHA for DELETE MY MEMBER PROFILE -->
+    <action input="/jsp/myalumni/cpanel.jsp" name="memberForm" path="/member/prepareDeleteMyMemberProfile" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="no">
+      <forward name="success" path="/jsp/myalumni/deleteMemberProfile.jsp" />
+    </action>
+          
+      <action input="/jsp/myalumni/cpanel.jsp" path="/member/deleteMyMemberProfile" name="memberForm" parameter="action" scope="request"
+              type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
+          <forward name="success" path="/action/member/jcaptchaDeleteMyMemberProfile?action=deleteMyMemberProfile"/>
+          <forward name="failure" path="/jsp/myalumni/deleteMemberProfile.jsp"/>
+          <forward name="error" path="/jsp/myalumni/deleteMemberProfile.jsp"/>
+      </action>
+      
+        <!-- Add the real action -->
+        <action input="/jsp/myalumni/cpanel.jsp" path="/member/jcaptchaDeleteMyMemberProfile" name="memberForm" parameter="action" scope="request"
+              type="org.springframework.web.struts.DelegatingActionProxy">
+             <forward name="success" path="/action/member/logout?action=logout" />
+        </action>
+
+    <!-- end JCAPTCHA for  DELETE MY MEMBER PROFILE  -->    
+    
                  
     <action input="/jsp/common/resultList.jsp" name="memberForm" path="/member/genericAjaxSearch" parameter="action" scope="request"
             type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">

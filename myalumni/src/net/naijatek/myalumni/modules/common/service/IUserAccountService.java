@@ -114,7 +114,7 @@ public interface IUserAccountService {
 	     * @param <b> username </b> username .
 	     * @param <b> password </b> password.
 	     */
-	     public MemberVO login(String username, String password) throws UserAccountException;
+	     public MemberVO login(String username, String password, String ipAddress) throws UserAccountException;
 
 	     /**
 	     * Logs the system access for the user.
