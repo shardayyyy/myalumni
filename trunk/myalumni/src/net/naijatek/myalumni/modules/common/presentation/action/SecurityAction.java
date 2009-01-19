@@ -180,7 +180,16 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
                     accessHistory.setReasonCode(ReasonCodes.ACCOUNT_DEACTIVATED);
 	    	        securityService.addAccessTrail(accessHistory);
 	                return mapping.getInputForward();
-	            } 	        	
+	            } 	
+	            if (e.getExceptionReason() == NotLoginException.ACCOUNT_DELETED) {
+	                session.invalidate();
+	                errors.add(BaseConstants.WARN_KEY, new ActionMessage("errors.account.deleted"));
+	                saveMessages(request, errors);
+                    accessHistory.setLoginStatus(BaseConstants.LOGIN_FAIL);
+                    accessHistory.setReasonCode(ReasonCodes.ACCOUNT_DELETED);
+	    	        securityService.addAccessTrail(accessHistory);
+	                return mapping.getInputForward();
+	            } 	            
 	            if (e.getExceptionReason() == NotLoginException.ACCOUNT_LOCKED) {
 	                session.invalidate();
 	                errors.add(BaseConstants.WARN_KEY, new ActionMessage("errors.account.locked"));

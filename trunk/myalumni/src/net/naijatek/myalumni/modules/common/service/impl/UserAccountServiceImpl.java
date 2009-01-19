@@ -123,6 +123,10 @@ public class UserAccountServiceImpl implements IUserAccountService {
                 throw new UserAccountException(NotLoginException.ACCOUNT_DEACTIVATED);
             }
 
+            if (token.getMemberStatus().equalsIgnoreCase(BaseConstants.ACCOUNT_DELETED)){
+                throw new UserAccountException(NotLoginException.ACCOUNT_DELETED);
+            }
+            
             if (token.getMemberStatus().equalsIgnoreCase(BaseConstants.ACCOUNT_UNAPPROVED)){
                 throw new UserAccountException(NotLoginException.ACCOUNT_UNAPPROVED);
             }

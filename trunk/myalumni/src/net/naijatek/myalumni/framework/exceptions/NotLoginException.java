@@ -54,6 +54,7 @@ public class NotLoginException extends MyAlumniBaseException {
     public static final int USER_NOT_FOUND          		= 8;     
     public static final int SAME_PASSWORD          		= 9; 
     public static final int PROMPT_CHANGE_PASSWORD		= 10;
+    public static final int ACCOUNT_DELETED				= 11;
     
     
     

@@ -83,7 +83,9 @@ public class MemberHibernateDao extends BaseHibernateDao implements MemberDao {
 
 	public void softDeleteObject(String id, String lastModifiedBy) throws MyAlumniException {
 		try{
-			softDelete(load(MemberVO.class, id), lastModifiedBy);
+			MemberVO o = (MemberVO) getHibernateTemplate().get(MemberVO.class, id);
+			o.setMemberStatus(BaseConstants.ACCOUNT_DELETED);			
+			softDelete(o, lastModifiedBy);
 		} catch(Exception e){
 			throw new MyAlumniException("Could not delete member because " + e.getMessage());
 		}

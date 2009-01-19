@@ -322,10 +322,10 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
            
-//        memService.softDelete(getCurrentUserId(request), getLastModifiedBy(request));
-//        ActionMessages errors = new ActionMessages();
-//        errors.add(BaseConstants.INFO_KEY, new ActionMessage("core.errorcode.00713"));
-//        saveMessages(request, errors);
+        memService.softDelete(getCurrentUserId(request), getLastModifiedBy(request));
+        ActionMessages errors = new ActionMessages();
+        errors.add(BaseConstants.INFO_KEY, new ActionMessage("core.errorcode.00713"));
+        saveMessages(request, errors);
     	return mapping.findForward(BaseConstants.FWD_SUCCESS);
 	}        
     

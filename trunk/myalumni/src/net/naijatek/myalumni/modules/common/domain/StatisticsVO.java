@@ -52,6 +52,8 @@ public class StatisticsVO extends MyAlumniBaseVO {
 	private int unknownGenderCount;
 
 	private int deactivatedAccountCount;
+	
+	private int deletedAccountCount;
 
 	private int lockedAccountCount;
 
@@ -169,6 +171,14 @@ public class StatisticsVO extends MyAlumniBaseVO {
 
 	public void setEmailMap(Map<String, Integer> emailMap) {
 		this.emailMap = emailMap;
+	}
+
+	public int getDeletedAccountCount() {
+		return deletedAccountCount;
+	}
+
+	public void setDeletedAccountCount(int deletedAccountCount) {
+		this.deletedAccountCount = deletedAccountCount;
 	}
 
 }

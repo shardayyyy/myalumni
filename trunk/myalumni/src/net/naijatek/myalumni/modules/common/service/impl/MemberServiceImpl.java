@@ -257,6 +257,7 @@ public class MemberServiceImpl implements IMemberService {
         int femaleCount = 0;//
         int unknownGenderCount = 0;
         int deactivatedAccountCount = 0;//
+        int deletedAccountCount = 0;//
         int lockedAccountCount = 0;//
         int totalCount = 0;//
         int newMembers = 0;//
@@ -339,6 +340,9 @@ public class MemberServiceImpl implements IMemberService {
             else if(mem.getMemberStatus().equalsIgnoreCase(BaseConstants.ACCOUNT_UNAPPROVED)){
                 newMembers++;
             }
+            else if(mem.getMemberStatus().equalsIgnoreCase(BaseConstants.ACCOUNT_DELETED)){
+            	deletedAccountCount++;
+            }            
             
             // no email
             if (mem.getEmail() == null || mem.getEmail().equalsIgnoreCase("")){
@@ -359,6 +363,7 @@ public class MemberServiceImpl implements IMemberService {
         stats.setDeactivatedAccountCount(deactivatedAccountCount);
         stats.setNewMembers(newMembers);
         stats.setNoEmailCount(noEmailCount);
+        stats.setDeletedAccountCount(deletedAccountCount);
         return stats;
     }
     
