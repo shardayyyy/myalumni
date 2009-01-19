@@ -59,6 +59,8 @@ public final class ReasonCodes {
     public static String ACCOUNT_DEACTIVATED = "9";
     
     public static String ACCOUNT_UNAUTHORIZED = "10";
+    
+    public static String ACCOUNT_DELETED		= "11";
 
     
     public static synchronized String  getDescription(String code){
@@ -93,6 +95,9 @@ public final class ReasonCodes {
     	else if (code.equals("10")){
     		return "Account Unauthorized";
     	}
+    	else if (code.equals("11")){
+    		return "Account Previously Deleted";
+    	}    	
     	else{
     		return "Unknown";
     	}

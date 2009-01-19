@@ -56,6 +56,10 @@
         <td class="fieldlabel"><c:out value="${stats.lockedAccountCount}"/></td>
       </tr>
       <tr class="portlet-section-body">
+        <td><span class="fieldlabel">Deleted:</span></td>
+        <td class="fieldlabel"><c:out value="${stats.deletedAccountCount}"/></td>
+      </tr>
+      <tr class="portlet-section-body">
         <td><span class="fieldlabel">No e-Mail:</span></td>
         <td class="fieldlabel"><c:out value="${stats.noEmailCount}"/></td>
       </tr>

@@ -173,6 +173,7 @@ public interface BaseConstants {
    public final static String ACCOUNT_LOCKED = "L";  // member locked from system
    public final static String ACCOUNT_UNAPPROVED = "U"; // registered by the member, but unapproved yet
    public final static String ACCOUNT_DEACTIVATED = "D";  // member account deavtivated
+   public final static String ACCOUNT_DELETED = "X";  // member account deleted
  
    // message priorities
    public final static String PRIORITY_NORMAL = "N";
