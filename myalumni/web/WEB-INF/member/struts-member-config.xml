@@ -119,7 +119,7 @@
       <forward name="success" path="/jsp/myalumni/viewProfile.jsp" />
     </action>
     
-    <action input="/jsp/myalumni/cpanel.jsp" name="memberForm" path="/member/viewMyFeGoCoId" parameter="action" scope="request"
+    <action input="/jsp/myalumni/cpanel.jsp" name="memberForm" path="/member/viewMyDesktop" parameter="action" scope="request"
             type="org.springframework.web.struts.DelegatingActionProxy" validate="no">
       <forward name="success" path="/jsp/myalumni/cpanel.jsp" />
     </action>
@@ -203,6 +203,8 @@
       <!-- start JCAPTCHA for DELETE MY MEMBER PROFILE -->
     <action input="/jsp/myalumni/cpanel.jsp" name="memberForm" path="/member/prepareDeleteMyMemberProfile" parameter="action" scope="request"
             type="org.springframework.web.struts.DelegatingActionProxy" validate="no">
+               <set-property property="cancellable" value="true"/>
+      <forward name="cancel" path="/action/member/viewMyDesktop?action=displayMyDesktop" redirect="false" />
       <forward name="success" path="/jsp/myalumni/deleteMemberProfile.jsp" />
     </action>
           
@@ -258,7 +260,7 @@
             type="org.springframework.web.struts.DelegatingActionProxy" validate="yes" >
       <set-property property="cancellable" value="true"/>
       <forward name="success" path="/jsp/myalumni/mailbox.jsp" />
-      <forward name="cancel" path="/action/member/viewMyFeGoCoId?action=displayMyDesktop" redirect="false" />
+      <forward name="cancel" path="/action/member/viewMyDesktop?action=displayMyDesktop" redirect="false" />
       <forward name="failure" path="/jsp/sysError.jsp" />
     </action>
     
@@ -266,8 +268,8 @@
             type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
             <set-property property="cancellable" value="true"/>
       <!-- <forward name="success" path="/jsp/myalumni/listMembers.jsp" />-->
-      <forward name="success" path="/action/member/viewMyFeGoCoId?action=displayMyDesktop" />
-      <forward name="cancel" path="/action/member/viewMyFeGoCoId?action=displayMyDesktop" redirect="false" />
+      <forward name="success" path="/action/member/viewMyDesktop?action=displayMyDesktop" />
+      <forward name="cancel" path="/action/member/viewMyDesktop?action=displayMyDesktop" redirect="false" />
       <forward name="failure" path="/jsp/sysError.jsp" />
     </action>
     

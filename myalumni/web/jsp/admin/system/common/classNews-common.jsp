@@ -140,7 +140,7 @@
                             	</html:link>
                             </c:when>
                             <c:otherwise>
-						        <html:link action="/member/viewMyFeGoCoId?action=displayMyDesktop" onmouseover="window.status=''; return true">
+						        <html:link action="/member/viewMyDesktop?action=displayMyDesktop" onmouseover="window.status=''; return true">
                                 	<html:img page="/images/cancel.png" border="0" align="absbottom"/>    
                             	</html:link>
                             </c:otherwise>

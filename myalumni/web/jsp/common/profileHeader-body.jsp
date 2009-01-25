@@ -55,6 +55,9 @@
 						<c:when test="${memberForm.memberStatus == 'L'}">
 							<span class="redsmall">(Locked)</span><html:img page="/images/spacer.gif" />
 						</c:when>
+						<c:when test="${memberForm.memberStatus == 'X'}">
+							<span class="redsmall">(Deleted)</span><html:img page="/images/spacer.gif" />
+						</c:when>						
 						<c:otherwise>
 							<span class="redsmall">(Unknown Status)</span><html:img page="/images/spacer.gif" />
 						</c:otherwise>												

@@ -3,7 +3,7 @@
 <%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c" %>
 
 <c:url var="title_line" value="/images/title_line2.gif"/>
-<c:url var="back" value="/action/member/viewMyFeGoCoId?action=displayMyDesktop"/>
+<c:url var="back" value="/action/member/viewMyDesktop?action=displayMyDesktop"/>
 
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

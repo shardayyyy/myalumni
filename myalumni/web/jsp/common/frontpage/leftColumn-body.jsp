@@ -17,13 +17,13 @@
         <td class="fieldlabel"><span>&raquo;</span> <a href="<c:out value="${forum}"/>">Forum </a></td>
         </tr>
       <tr>
-        <td class="fieldlabel"><span>&raquo;</span> <a href="<c:out value="${registration}"/>">Alunmi Registration </a></td>
+        <td class="fieldlabel"><span>&raquo;</span> <a href="<c:out value="${registration}"/>">Registration </a></td>
       </tr>
       <tr>
         <td class="fieldlabel"><span>&raquo;</span> <a href="<c:out value="${album}"/>">Album</a> </td>
       </tr>
       <tr>
-        <td class="fieldlabel"><span>&raquo;</span> <a href="<c:out value="${alumni_listings}"/>">Alunmi Listing </a></td>
+        <td class="fieldlabel"><span>&raquo;</span> <a href="<c:out value="${alumni_listings}"/>">Search </a></td>
       </tr>
       <tr>
         <td class="fieldlabel"><span>&raquo;</span> <a href="<c:out value="${reminisce}"/>">Slang's</a> </td>
