@@ -77,13 +77,16 @@
    </tr>
    <tr class="portlet-section-body">
    	<td align="center"><br>
-   	By deleting your account, your member profile will be completely removed from the system.<br>
+
    		<html:form action="/member/prepareDeleteMyMemberProfile?action=prepareDeleteMyMemberProfile">
    			<html:submit >
    				<bean:message key="button.deletemyaccount"/>
    			</html:submit>
    		</html:form>
-   	
+
+   	<br>
+   	By deleting your account, your member profile will be completely removed from the system.<br>
+
    	</td>
    </tr>
 </table>

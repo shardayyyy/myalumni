@@ -47,6 +47,9 @@
 				<c:when test="${member.memberStatus == 'L'}">
 					<span class="redsmall">(Locked)</span><html:img page="/images/spacer.gif" width="5" /><a href="<c:out value="${unlock}"/>&memberUserName=<c:out value="${member.memberUserName}"/>"><html:img page="/images/lock.gif" border="0" align="absmiddle"/></a>
 				</c:when>
+				<c:when test="${member.memberStatus == 'X'}">
+					<span class="redsmall">(Deleted)</span><html:img height="16" width="16" page="/images/spacer.gif" />
+				</c:when>				
 				<c:otherwise>
 					<span class="redsmall">(Unknown Status)</span><html:img page="/images/spacer.gif" />
 				</c:otherwise>

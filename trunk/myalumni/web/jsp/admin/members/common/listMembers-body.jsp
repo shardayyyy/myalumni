@@ -32,6 +32,7 @@
 	                </c:otherwise>
 	        </c:choose>
 		
+		
 		    <a href="<c:out value="${miniProfile}"/>&memberUserName=<c:out value="${member.memberUserName}"/>" title="View <c:out value="${member.firstName}"/> <c:out value="${member.lastName}"/> details" onclick="newPopup(this.href,'name');return false"><c:out value="${member.firstName}"/> <c:out value="${member.lastName}"/></a>
 		
 		
@@ -56,6 +57,9 @@
              			</c:when>
              			<c:when test="${member.memberStatus eq 'L'}"> <%-- ACCOUNT_LOCKED --%>
                      			<html:img page="/images/icon_locked.jpg" title="Locked Member" align="absmiddle"/>
+             			</c:when>
+             			<c:when test="${member.memberStatus eq 'X'}"> <%-- ACCOUNT_DELETED --%>
+                     			<html:img page="/images/dot.gif" title="Deleted Member" align="absmiddle"/>
              			</c:when>
      			</c:choose>
 

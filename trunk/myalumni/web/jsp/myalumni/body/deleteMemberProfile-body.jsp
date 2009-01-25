@@ -19,7 +19,7 @@
       <td><span class="redhighlight">
       	<ul>
       	<li>By deleteing your member profile, you would not be able to login anymore with your current username and password.</li>
-      	<li>You would not access anymore to you private messages. Please print or copy before proceeding.</li>
+      	<li>You would not be able access your private messages anymore. Please print or copy before proceeding.</li>
       	</ul></span><br>
       </td>
       </tr>
@@ -39,10 +39,6 @@
       	<html:submit>
       		<bean:message key="button.deletemyaccount"/>
       	</html:submit>
-      	&nbsp;&nbsp;
-      	<html:cancel>
-      		<bean:message key="button.cancel"/>
-      	</html:cancel>
       	</td>
       </tr>
   </table>

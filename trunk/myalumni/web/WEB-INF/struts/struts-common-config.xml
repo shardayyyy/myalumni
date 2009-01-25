@@ -38,7 +38,7 @@
   <global-forwards>
       	<forward name="login" path="/jsp/login.jsp" />
     	<forward name="errorpage" path="/jsp/sysError.jsp" />
-    	<forward name="replayToMail" path="/jsp/myfegocoid/contactMember.jsp" />
+    	<forward name="replayToMail" path="/jsp/myalumni/contactMember.jsp" />
     	<forward name="adminLogin" path="/jsp/admin/index.jsp" />
     	<forward name="memberErrorPage" path="/jsp/sysError.jsp" />
     	<forward name="adminErrorPage" path="/jsp/admin/sysError.jsp" />

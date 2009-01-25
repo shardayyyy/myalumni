@@ -6,7 +6,6 @@
 
 <c:url var="backupdatabase" value="/action/admin/listDatabaseBackup?action=listDatabaseBackup"/>
 <c:url var="validatesystemconfig" value="/action/admin/prepareValidateSystemConfig?action=prepareValidateSystemConfig"/>
-<c:url var="jcaptcha" value="/jsp/admin/admin/jcaptcha_stats.jsp"/>
 <c:url var="session" value="/jsp/admin/system/sessioninfo.jsp"/>
 
 
@@ -26,9 +25,8 @@
                                     <td valign="top" nowrap>
                                         <font size="2">                                            
 	                                        &#8226;&nbsp;<a href="<c:out value="${backupdatabase}"/>">Backup Database</a> - <span class="graysmall"><bean:message key="admin_module.database"/></span><br><br>
-	                                        &#8226;&nbsp;<a href="<c:out value="${validatesystemconfig}"/>">Validate System Configuration</a> - <span class="graysmall"><bean:message key="admin_module.config"/></span><br><br>
-<%--                                        &#8226;&nbsp;<a href="<c:out value="${jcaptcha}"/>?task=list">jCaptcha Stats</a><br><br>	                                        
-	                                        &#8226;&nbsp;DEVELOPER MODE - <a href="<c:out value="${session}"/>">View Session Contents</a><br>--%>
+	                                        &#8226;&nbsp;<a href="<c:out value="${validatesystemconfig}"/>">Validate System Configuration</a> - <span class="graysmall"><bean:message key="admin_module.config"/></span><br><br>                                       
+	                                       <%-- &#8226;&nbsp;DEVELOPER MODE - <a href="<c:out value="${session}"/>">View Session Contents</a><br>--%>
                                         </font>
                                     </td>
                             </tr>

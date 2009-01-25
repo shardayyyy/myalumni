@@ -492,6 +492,10 @@ public class MemberHibernateDao extends BaseHibernateDao implements MemberDao {
 			if (!isAdmin.equals(BaseConstants.BOOLEAN_YES)){
 				query.append(verifyFirstCategory(firstCategory) + " e.memberStatus =  '" + BaseConstants.ACCOUNT_ACTIVE + "' ");
 			}
+		//	else{
+		//		query.append(verifyFirstCategory(firstCategory) + " e.memberStatus !=  '" + BaseConstants.ACCOUNT_DELETED + "' ");
+		//	}
+			
 			
 			logger.warn(query.toString());
 			result = getSession().createQuery(query.toString()).list();

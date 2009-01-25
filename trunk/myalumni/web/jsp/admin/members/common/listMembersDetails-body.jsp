@@ -130,6 +130,9 @@
 			<c:when test="${members.memberStatus  == 'U'}"> <%-- ACCOUNT_UNAPPROVED --%>
 				<span class="greenTitle">New</span><br>
 			</c:when>
+			<c:when test="${members.memberStatus  == 'X'}"> <%-- ACCOUNT_DELETED --%>
+				<span class="redTitle">Deleted</span><br>
+			</c:when>			
 		</c:choose>
 		      <%--     ADMIN ACTION    --%>
 			<html:select property="adminAction">

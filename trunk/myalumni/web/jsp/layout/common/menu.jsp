@@ -51,7 +51,7 @@
 
 <%-- ------------------------------------------------------------   MISC --%>
 <c:url var="login" value="/jsp/myalumni/login.jsp" />
-<c:url var="myfegocoid" value="/action/member/viewMyFeGoCoId?action=displayMyDesktop" />
+<c:url var="myalumni" value="/action/member/viewMyDesktop?action=displayMyDesktop" />
 
 
 
@@ -68,7 +68,7 @@
     </c:choose>
 
     <c:choose>
-        <c:when test="${menuTab == 'myfegocoid'}">
+        <c:when test="${menuTab == 'myalumni'}">
                 <td class="menuText" align="center" nowrap> <a href="<c:out value="${portal}"/>" style="color: #FFFFFF; text-decoration: none;" title="<bean:message key="tab.main.portal"/>"> <bean:message key="tab.main.portal"/> </a> </td>
         </c:when>
         <c:otherwise>
@@ -125,11 +125,11 @@
     </c:choose>
 
     <c:choose>
-        <c:when test="${menuTab == 'myfegocoid'}">
+        <c:when test="${menuTab == 'myalumni'}">
                     <td class="menuText" align="center" nowrap>
                     <c:choose>
                         <c:when test="${ isOnline == 'Y'}">
-                                <a href="<c:out value="${myfegocoid}"/>" style="color: #FFFF00; text-decoration: none;" title="<bean:message key="tab.main.myalumni"/>"> <bean:message key="tab.main.myalumni"/></a>
+                                <a href="<c:out value="${myalumni}"/>" style="color: #FFFF00; text-decoration: none;" title="<bean:message key="tab.main.myalumni"/>"> <bean:message key="tab.main.myalumni"/></a>
                         </c:when>
                         <c:otherwise>
                                 <a href="<c:out value="${login}"/>" style="color: #FFFFFF; text-decoration: none;" title="<bean:message key="tab.main.myalumni"/>"> <bean:message key="tab.main.myalumni"/></a>
@@ -142,7 +142,7 @@
 
                     <c:choose>
                         <c:when test="${ isOnline == 'Y'}">
-                                <a href="<c:out value="${myfegocoid}"/>" style="color: #3C4780; text-decoration: none;" title="<bean:message key="tab.main.myalumni"/>"> <bean:message key="tab.main.myalumni"/></a>
+                                <a href="<c:out value="${myalumni}"/>" style="color: #3C4780; text-decoration: none;" title="<bean:message key="tab.main.myalumni"/>"> <bean:message key="tab.main.myalumni"/></a>
                         </c:when>
                         <c:otherwise>
                                 <a href="<c:out value="${login}"/>" style="color: #3C4780; text-decoration: none;" title="<bean:message key="tab.main.myalumni"/>"> <bean:message key="tab.main.myalumni"/></a>

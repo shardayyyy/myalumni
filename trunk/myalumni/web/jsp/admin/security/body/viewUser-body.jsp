@@ -58,6 +58,9 @@
 										<c:when test="${ObjectVO.memberStatus == 'L'}">
 											<span class="redsmall">(Locked)</span>
 										</c:when>
+										<c:when test="${ObjectVO.memberStatus == 'X'}">
+											<span class="redsmall">(Deleted)</span>
+										</c:when>										
 										<c:otherwise>
 											<span class="redsmall">(Unknown Status)</span>
 										</c:otherwise>	                                 
