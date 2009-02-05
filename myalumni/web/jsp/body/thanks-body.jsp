@@ -14,6 +14,7 @@
     	<td class="quote"><br><br><center><c:out value="${MESSAGE}"/></center><br><br></td>
 	  </tr>
 	</table>
+	</div>
   </td>
   </tr>
 </table>

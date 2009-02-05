@@ -252,7 +252,7 @@ function uncheckAll(field)
                           </c:choose>
                         </select>
 
-                 <html:button  styleClass="button" property="buttonAction" value="Moonclick="moveMail(this);"/>
+                 <html:button  styleClass="button" property="buttonAction" value="Move Private Message" onclick="moveMail(this);"/>
             </c:if>
 
                 <c:if test="${MESSAGE_CENTER.folderType == 'trash'}">

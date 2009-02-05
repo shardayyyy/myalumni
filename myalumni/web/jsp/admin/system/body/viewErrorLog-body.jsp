@@ -21,7 +21,7 @@
                     </tr>
                     <tr>
                       <td class="bg0"><div style="padding-bottom: 5px; padding-top: 5px;"> <html:img page="/images/spacer.gif" border="0" height="3" width="10"/> <span class="Bold">View Error Log</span></div></td>
-                      <td align="right" clmit styleClass="button"><bean:message key="button.delete"/></html:submit>
+                      <td align="right" class="bg0"> <html:submit styleClass="button"><bean:message key="button.delete"/></html:submit>
                         &nbsp;&nbsp;</td>
                     </tr>
                     <tr>
