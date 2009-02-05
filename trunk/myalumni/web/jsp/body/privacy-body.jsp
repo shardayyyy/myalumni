@@ -18,7 +18,7 @@
             <table border="0" cellPadding="0" cellSpacing="0" width="100%">
               <tbody>
               <tr>
-                <td align="left" class="head" height="30" vAlign="center" width="100%">
+                <td align="left" class="head" height="30" valign="top" width="100%">
                   <div align="center">
                     <h2><c:out value="${ORGANIZATION_NAME}" default="SCHOOL NAME HERE"/> Privacy Policy </h2>
                   </div>

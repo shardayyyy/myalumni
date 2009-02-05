@@ -17,15 +17,17 @@
     <html:textarea property="signature" cols="40" rows="5" titleKey="label.signature"/>&nbsp;Maximum Length = <bean:message key="signature.length"/></td>
   </tr>
   <tr align="center" class="portlet-section-body">
-    <td colspan="2" valign="top">
-t styleClass="button">
-      		<bean:message key="button.submit"/>
-      	</html:submit>
-    	&nbsp;&nbsp;ancel styleClass="button">
+    <td colspan="2">
+
+    	<html:submit styleClass="button">
+    		<bean:message key="button.submit"/>
+    	</html:submit>
+    	&nbsp;&nbsp;&nbsp;
+    	<html:cancel styleClass="button">
     		<bean:message key="button.cancel"/>
     	</html:cancel>
 
-     </td>
+    </td>
     </tr>
 </table>
 </html:form>
