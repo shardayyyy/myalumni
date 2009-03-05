@@ -115,7 +115,7 @@
 			<%-- Address --%>
 			<c:out value="${member.address}"/>
 			<c:if test="${member.address ne ''}">
-				,X
+				,
 			</c:if>
 			<c:out value="${member.country.label}"/>
 		</display:column>
