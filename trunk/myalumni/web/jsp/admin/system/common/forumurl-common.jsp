@@ -53,11 +53,13 @@
                       <td align="center">&nbsp;</td>
                       <td>
                          <c:choose>
-                            <c:when test="${actionMode =                        <html:submit styleClass="button"><bean:message key="button.add"/></html:submit>
+                            <c:when test="${actionMode == 'add'}">
+                                <html:submit styleClass="button"><bean:message key="button.add"/></html:submit>
                             </c:when>
-                            <c:when test="${actionMode =                           <html:submit styleClass="button"><bean:message key="button.update"/></html:submit>
+                            <c:when test="${actionMode == 'update'}">
+                                <html:submit styleClass="button"><bean:message key="button.update"/></html:submit>
                             </c:when>
-                        </c:choose>
+                        </c:choose> 
                           &nbsp;&nbsp;
                             <html:link page="/jsp/admin/system/index.jsp" onmouseover="window.status=''; return true">
                                 <html:img page="/images/cancel.png" border="0" align="absbottom"/>    
