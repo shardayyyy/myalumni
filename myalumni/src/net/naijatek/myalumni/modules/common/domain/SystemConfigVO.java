@@ -62,7 +62,23 @@ public class SystemConfigVO  extends MyAlumniBaseVO{
 	private String orgAboutUs;
 	private String orgIntro;
 	
+	//twitter
+	private String twitteruser;
+	private String twitterpswd;
 	
+	
+	public String getTwitterpswd() {
+		return twitterpswd;
+	}
+	public void setTwitterpswd(String twitterpswd) {
+		this.twitterpswd = twitterpswd;
+	}
+	public String getTwitteruser() {
+		return twitteruser;
+	}
+	public void setTwitteruser(String twitteruser) {
+		this.twitteruser = twitteruser;
+	}
 	public String getOrgIntro() {
 		return orgIntro;
 	}

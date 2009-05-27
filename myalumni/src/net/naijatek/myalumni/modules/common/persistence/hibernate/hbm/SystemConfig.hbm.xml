@@ -20,6 +20,10 @@
 		<property name="orgAboutUs" column="ORG_ABOUT_US" type="text" />
 		<property name="orgIntro" column="ORG_INTRO" type="text" />
 		
+		<property name="twitteruser" column="TWITTER_USER" length="40"/>
+		<property name="twitterpswd" column="TWITTER_PSWD" length="40"/>		
+		
+		
 		<property name="hasDormitory" column="HAS_DORMITORY" length="1"/>
 		<property name="birthdayNotification" column="BIRTHDAY_NOTIFICATION" length="1"/>
 		<property name="logoFileName" column="LOGO_FILE_NAME" length="200"/>

@@ -42,6 +42,7 @@ import java.util.List;
 
 import net.naijatek.myalumni.modules.common.domain.ScrollVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
+import net.naijatek.myalumni.modules.common.domain.TwitterVO;
 import net.naijatek.myalumni.modules.common.persistence.iface.SystemConfigDao;
 import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
 
@@ -209,4 +210,18 @@ public class SystemConfigServiceImpl implements ISystemConfigService {
 	public void setupIntialization(SystemConfigVO systemConfigVO){
 		systemConfigDao.setupIntialization(systemConfigVO);
 	}
+	
+	
+    /**
+     * Twitter
+     */
+    public void updateTwitterCredentials(TwitterVO twitterVO){
+    	systemConfigDao.updateTwitterCredentials(twitterVO);	
+    }
+    
+    public TwitterVO getTwitterCredentials(){
+    	return systemConfigDao.getTwitterCredentials();    	
+    }
+    
+    
 }

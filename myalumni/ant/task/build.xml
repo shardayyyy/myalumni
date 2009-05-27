@@ -273,8 +273,8 @@
              <sql driver="${db.driver}" password="${db.password}" url="${db.url}" 
                     userid="${db.username}" classpathref="run.classpath" print="off"
                     autocommit="true" onerror="abort">
-                    drop database myalumnidb;
-                    create database myalumnidb;
+                    drop database ${db.dbname};
+                    create database ${db.dbname};
             </sql>
            
             

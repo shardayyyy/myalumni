@@ -25,6 +25,8 @@
 <c:url var="orginfo" value="/action/admin/prepareUpdateOrgInfo?action=prepareUpdateOrgInfo"/>
 <c:url var="aboutorg" value="/action/admin/prepareUpdateOrgAboutUs?action=prepareUpdateOrgAboutUs"/>
 <c:url var="orgintro" value="/action/admin/prepareUpdateOrgIntro?action=prepareUpdateOrgIntro"/>
+<c:url var="twitter" value="/action/admin/prepareUpdateTwitterCred?action=prepareUpdateTwitterCred"/>
+
 
 
  <c:if test="${USER_CONTAINER.token.isAdmin == 'Y'}">
@@ -58,6 +60,7 @@
 									&#8226;&nbsp;<a href="<c:out value="${aboutorg}"/>">Update Organization About Us</a> - <span class="graysmall"><bean:message key="sys_module.aboutus"/></span><br><br>										
 									&#8226;&nbsp;<a href="<c:out value="${orgintro}"/>">Update Front Page Introduction</a> - <span class="graysmall"><bean:message key="sys_module.intro"/></span><br><br>										
 									&#8226;&nbsp;<a href="<c:out value="${uploadlogo}"/>">Upload School Logo</a> - <span class="graysmall"><bean:message key="sys_module.logo"/></span><br><br>
+									&#8226;&nbsp;<a href="<c:out value="${twitter}"/>">Manage Twitter Credentials</a> - <span class="graysmall"><bean:message key="sys_module.twitter"/></span><br><br>
 									 
 <%--									<br><br>												--%>
 <%--									&#8226;&nbsp;<a href="<c:out value="${emailexception}"/>&task=list">Email Exception</a> - TODO log all emal exceptions in the database to be resent later.<br>--%>

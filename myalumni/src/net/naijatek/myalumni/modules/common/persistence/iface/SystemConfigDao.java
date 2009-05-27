@@ -42,6 +42,7 @@ import java.util.List;
 
 import net.naijatek.myalumni.modules.common.domain.ScrollVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
+import net.naijatek.myalumni.modules.common.domain.TwitterVO;
 
 
 
@@ -131,4 +132,11 @@ public interface SystemConfigDao {
      * Setup
      */
     public void setupIntialization(SystemConfigVO systemConfigVO);
+    
+    
+    /**
+     * Twitter
+     */
+    public void updateTwitterCredentials(TwitterVO twitterVO);
+    public TwitterVO getTwitterCredentials();    
 }
