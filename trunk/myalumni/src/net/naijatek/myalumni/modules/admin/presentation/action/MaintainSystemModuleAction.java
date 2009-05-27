@@ -58,6 +58,7 @@ import net.naijatek.myalumni.modules.common.domain.ErrorLogVO;
 import net.naijatek.myalumni.modules.common.domain.ReminisceVO;
 import net.naijatek.myalumni.modules.common.domain.ScrollVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
+import net.naijatek.myalumni.modules.common.domain.TwitterVO;
 import net.naijatek.myalumni.modules.common.helper.BaseSystemHelper;
 import net.naijatek.myalumni.modules.common.helper.DropDownCacheBuilder;
 import net.naijatek.myalumni.modules.common.presentation.form.ClassNewsForm;
@@ -362,6 +363,46 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		return mapping.findForward(BaseConstants.FWD_SUCCESS);
 	}
 
+	
+	//**********************************************************************
+	//******************  Twitter Credential  ********************************
+	//**********************************************************************   
+
+	public ActionForward prepareUpdateTwitterCred(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		logger.debug("in prepareUpdateTwitterCred...");
+		saveToken(request);
+		SystemConfigForm configForm = (SystemConfigForm) form;
+		SystemConfigVO systemSetup = systemConfigService.getSystemConfig();
+		BeanUtils.copyProperties(configForm, systemSetup);
+		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+	}
+
+	public ActionForward updateTwitterCred(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		logger.debug("in updateTwitterCred...");
+		if (!isTokenValid(request)) {
+			return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+		}
+		ActionMessages msgs = new ActionMessages();
+		SystemConfigForm configForm = (SystemConfigForm) form;
+		
+		TwitterVO twitterVO = new TwitterVO();
+		twitterVO.setTwitteruser(configForm.getTwitteruser());
+		twitterVO.setTwitterpswd(configForm.getTwitterpswd());
+		twitterVO.setLastModifiedBy(getLastModifiedBy(request));
+				
+		systemConfigService.updateTwitterCredentials(twitterVO);
+		
+		msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.record.updated"));
+		saveMessages(request, msgs);
+		resetToken(request);
+		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+	}
+	
+	
 	//**********************************************************************
 	//******************  ALBUM URL  ********************************
 	//**********************************************************************   

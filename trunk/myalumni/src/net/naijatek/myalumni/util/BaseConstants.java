@@ -210,7 +210,8 @@ public interface BaseConstants {
    public static final String LIST_OF_USERS_LOGIN_HISTORY = "listOfUserLoginHistory";
    public static final String LIST_OF_USERS = "listOfUsers";
    public static final String LIST_OF_USERS_COUNT = "listOfUsersCount";
-   public static final String OBJECT_VO = "ObjectVO"; 
+   public static final String OBJECT_VO = "ObjectVO";
+   public static final String TWITTER_VO = "TwitterVO";
    public static final String SCROLL_VO = "luScrollVO";
    public static final String LIST_OF_SCROLLS = "luAllScrolls";
    public static final String LIST_OF_OBJECT_VO = "listOfObjectVO";
@@ -249,6 +250,7 @@ public interface BaseConstants {
 	public static final String SERVICE_ERRORLOGGER_LOOKUP = 	"errorLoggerService";
 	public static final String SERVICE_SYSTEM_CONFIG = "systemConfigService";
 	public static final String SERVICE_FRONT_PAGE = "frontPageService";
+
 	
 	
 	

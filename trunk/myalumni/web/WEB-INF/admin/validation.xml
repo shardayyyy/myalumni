@@ -295,6 +295,17 @@
                 </field>                
 	</form>
 	
+<!-- ========== Update twitter cred ===================== -->
+        <form name="/admin/updateTwitterCred">
+                <field property="twitteruser" depends="required">
+                        <arg key="label.admin.twitteruser"/>
+                </field>   
+                <field property="twitterpswd" depends="required">
+                        <arg key="label.admin.twitterpswd"/>
+                </field>                              
+	</form>
+		
+	
 <!-- ========== Update Forum URL ===================== -->
         <form name="/admin/updateForumUrl">
                 <field property="forumUrl" depends="required">

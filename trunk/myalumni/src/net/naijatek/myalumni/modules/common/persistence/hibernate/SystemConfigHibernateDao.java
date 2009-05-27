@@ -43,6 +43,7 @@ import java.util.List;
 
 import net.naijatek.myalumni.modules.common.domain.ScrollVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
+import net.naijatek.myalumni.modules.common.domain.TwitterVO;
 import net.naijatek.myalumni.modules.common.persistence.BaseHibernateDao;
 import net.naijatek.myalumni.modules.common.persistence.iface.SystemConfigDao;
 import net.naijatek.myalumni.util.BaseConstants;
@@ -477,4 +478,47 @@ public class SystemConfigHibernateDao extends BaseHibernateDao implements System
 		
 	}
 	
+	
+	/**
+	 * TwitterCredentials
+	 */
+	public void updateTwitterCredentials(TwitterVO twitterVO){
+		SystemConfigVO _systemConfig = getSystemConfig();
+	
+		if(_systemConfig.getSystemConfigId() != null){//do update
+			_systemConfig.setLastModification(BaseConstants.UPDATED);
+			_systemConfig.setTwitteruser(twitterVO.getTwitteruser());
+			_systemConfig.setTwitterpswd(twitterVO.getTwitterpswd());			
+		} else{ //do new add
+			_systemConfig = new SystemConfigVO();
+			_systemConfig.setTwitteruser(twitterVO.getTwitteruser());
+			_systemConfig.setTwitterpswd(twitterVO.getTwitterpswd());		
+			_systemConfig.setLastModification(BaseConstants.ADDED);
+		}
+		
+		_systemConfig.setLastModifiedDate(new Date());
+		_systemConfig.setLastModifiedBy(twitterVO.getLastModifiedBy());
+		
+		getHibernateTemplate().saveOrUpdate(_systemConfig);		
+	}
+	
+	
+	/**
+	 * TwitterCredentials
+	 * @return
+	 */
+	
+	public TwitterVO getTwitterCredentials(){
+		TwitterVO twitterVO = new TwitterVO();
+		SystemConfigVO _systemConfig = getSystemConfig();
+		
+		if (_systemConfig.getSystemConfigId() != null)	{	
+			if (_systemConfig.getTwitteruser() !=  null){
+				twitterVO.setTwitteruser(_systemConfig.getTwitteruser());
+				twitterVO.setTwitterpswd(_systemConfig.getTwitterpswd());
+			}								
+		}		
+		return twitterVO;		
+	}
+		
 }

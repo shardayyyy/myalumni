@@ -492,6 +492,26 @@
             <forward name="success" path="/jsp/admin/system/index.jsp"/>
     </action>  
     
+    
+    
+    
+   <!--  =================================================== -->
+    <!--  ======       MAINTAIN  TWITTER CRED          ======== -->
+    <!--  =================================================== -->    
+    <!-- Prepare Update TWITTER CRED -->
+    <action input="/jsp/admin/system/updateTwitterCred.jsp" name="systemConfigForm" path="/admin/prepareUpdateTwitterCred"
+            parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/admin/system/updateTwitterCred.jsp"/>
+    </action> 
+    
+    <!-- Update TWITTER CRED -->
+    <action input="/jsp/admin/system/updateTwitterCred.jsp" name="systemConfigForm" path="/admin/updateTwitterCred"
+            parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <set-property property="cancellable" value="true"/>
+            <forward name="success" path="/jsp/admin/system/index.jsp"/>
+    </action>  
    
    <!--  =================================================== -->
     <!--  ======       MAINTAIN SERVER URL         ======== -->
