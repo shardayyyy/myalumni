@@ -121,10 +121,10 @@ public final int doEndTag() throws JspException {
     	   		
     	   	   Twitter twitter = new Twitter(twitterVO.getTwitteruser(),twitterVO.getTwitterpswd());
     	       List<Status> statuses = twitter.getFriendsTimeline();
-    	       System.out.println("Showing friends timeline.");
+    	       // System.out.println("Showing friends timeline.");
     	       for (Status status : statuses) {
-    	           System.out.println(status.getUser().getName() + ":" + status.getText());
-    	           list.add("<strong>" + status.getUser().getName() + "</strong>:" + status.getText());
+    	           //System.out.println(status.getUser().getName() + ":" + status.getText());
+    	           list.add("<img src=\"" + status.getUser().getProfileImageURL() + "\" height=\"48\" width=\"48\" align=\"left\"><strong>" + status.getUser().getName() + "</strong>:" + status.getText());
     	       }    	   		
     	   		
     	   		twitterVO.setMytweets(list);

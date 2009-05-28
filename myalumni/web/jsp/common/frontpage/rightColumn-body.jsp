@@ -38,11 +38,11 @@
 		<myalumni:displayLatestMembers tableWidth="100%"/> 
 		
 		<br><br>
-		
+<%--
 	<twitter:displayMyTweetsTag/>
 	<table width="100%"  border="0" cellspacing="1" cellpadding="3" align="center" class="tborder">
 			<tr>
-		        <td height="30" class="bg0"><c:out value="${TwitterVO.twitteruser}"/> Public TimeLine: </td>
+		        <td height="30" class="bg0"><c:out value="${TwitterVO.twitteruser}"/> Twitter Public TimeLine: </td>
 		    </tr>
 
 			<c:set var="num_rec1" scope="page" value="-1"/>
@@ -64,3 +64,4 @@
 			   </tr>            	
 	        </c:if>
 	</table>
+--%>		
