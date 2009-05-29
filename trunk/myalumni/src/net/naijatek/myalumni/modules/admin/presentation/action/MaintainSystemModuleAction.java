@@ -73,6 +73,7 @@ import net.naijatek.myalumni.modules.common.service.ISystemTaskService;
 import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.FileHelper;
 import net.naijatek.myalumni.util.SystemConfigConstants;
+import net.naijatek.myalumni.util.encryption.base64.Base64Coder;
 import net.naijatek.myalumni.util.utilities.FileUtil;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -391,7 +392,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		
 		TwitterVO twitterVO = new TwitterVO();
 		twitterVO.setTwitteruser(configForm.getTwitteruser());
-		twitterVO.setTwitterpswd(configForm.getTwitterpswd());
+		twitterVO.setTwitterpswd(Base64Coder.encodeString(configForm.getTwitterpswd()));
 		twitterVO.setLastModifiedBy(getLastModifiedBy(request));
 				
 		systemConfigService.updateTwitterCredentials(twitterVO);
