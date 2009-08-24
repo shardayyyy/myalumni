@@ -1,0 +1,27 @@
+***************************************************************************
+* IMPORTANT: Please read the note below carefully before continuing any i18n tasks
+****************************************************************************
+
+
+i18n TODO list
+-----------------------------
+
+- needs to be implemented
+
+
+
+Cheers!
+
+Shardayyy (Folashade Adeyosoye)
+http://www.naijatek.com/myalumni
+shardayyy at naijatek dot com
+
+
+
+==================================================
+           Translation Tracking Sheet
+==================================================
+
+Code     Language                     Maintainer                        Status             Note/Email
+-------------------------------------------------------------------------------------------------------
+
