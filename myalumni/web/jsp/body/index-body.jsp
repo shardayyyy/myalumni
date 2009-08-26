@@ -37,7 +37,8 @@
 	<br><br>
 	
 		
-	<twitter:displayMyTweetsTag/>
+	<%--<twitter:displayMyTweetsTag/>
+	
 	<table width="80%"  border="0" cellspacing="1" cellpadding="3" align="center" class="tborder">
 			<tr>
 		        <td height="30" class="bg0"><c:out value="${TwitterVO.twitteruser}"/> Twitter Public TimeLine: </td>
@@ -63,7 +64,7 @@
 	        </c:if>
 	</table>
 	
-	
+	--%>
 	</td>
     <td width="20%" valign="top">
 
