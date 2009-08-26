@@ -5,9 +5,10 @@
 <%@ taglib uri="/WEB-INF/tld/myalumni-taglibs.tld" prefix="myalumni" %>
 
 <%-- related path --%>
-<c:url var="stylesheet" value="/style/${CSS_TYPE}/myalumni.css" >
+<c:url var="stylesheet" value="/style/${CSS_TYPE}/myalumni.css" />
+<c:url var="stylesheet_menu" value="/style/${CSS_TYPE}/menu.css" />
 
-</c:url>
+
 <c:url var="login" value="/action/member/logout?action=logout" />
 <c:url var="myalumniJS" value="/js/global.js" />
 <c:url var="HOME" value="/jsp/index.jsp" />
@@ -36,6 +37,7 @@
 <html:base/>
 
 <link rel=stylesheet href="<c:out value="${stylesheet}"/>" type="text/css">
+<link rel=stylesheet href="<c:out value="${stylesheet_menu}"/>" type="text/css">
 <link rel=stylesheet href="<c:out value="${displaytag}"/>" type="text/css">
 <script language="JavaScript1.2" type="text/javascript" src="<c:out value="${myalumniJS}"/>"></script>
 <script language="JavaScript1.2" type="text/javascript" src="<c:out value="${overlibmws}"/>"></script>

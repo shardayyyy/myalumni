@@ -54,108 +54,100 @@
 <c:url var="myalumni" value="/action/member/viewMyDesktop?action=displayMyDesktop" />
 
 
-
-<table width="100%" border="0" cellpadding="2" cellspacing="1" bgcolor="#006699">
-  <tr bgcolor="#4E5CA4">
-
+<div id="topbar">
     <c:choose>
         <c:when test="${menuTab == 'home'}">
-                <td class="menuText" height="25" align="center" nowrap> <a href="<c:out value="${home}"/>" style="color: #FFFFFF; text-decoration: none;" title="Home"> <bean:message key="tab.main.home"/> </a> </td>
+                <a href="<c:out value="${home}"/>" title="<bean:message key="tab.main.home"/>" class="active"> <span><bean:message key="tab.main.home"/> </span></a> 
         </c:when>
         <c:otherwise>
-                <td class="menuTextOn" height="25" align="center" nowrap> <a href="<c:out value="${home}"/>" style="color: #3C4780; text-decoration: none;" title="Home"> <bean:message key="tab.main.home"/> </a> </td>
+                <a href="<c:out value="${home}"/>" title="<bean:message key="tab.main.home"/>"> <span><bean:message key="tab.main.home"/> </span></a> 
         </c:otherwise>
     </c:choose>
 
     <c:choose>
         <c:when test="${menuTab == 'myalumni'}">
-                <td class="menuText" align="center" nowrap> <a href="<c:out value="${portal}"/>" style="color: #FFFFFF; text-decoration: none;" title="<bean:message key="tab.main.portal"/>"> <bean:message key="tab.main.portal"/> </a> </td>
+				<a href="<c:out value="${portal}"/>" title="<bean:message key="tab.main.portal"/>" class="active"> <span><bean:message key="tab.main.portal"/> </span></a> 
         </c:when>
-        <c:otherwise>
-                <td class="menuTextOn" align="center" nowrap> <a href="<c:out value="${portal}"/>" style="color: #3C4780; text-decoration: none;" title="<bean:message key="tab.main.portal"/>"> <bean:message key="tab.main.portal"/> </a> </td>
+        <c:otherwise>                
+                <a href="<c:out value="${portal}"/>" title="<bean:message key="tab.main.portal"/>"> <span><bean:message key="tab.main.portal"/> </span></a> 
         </c:otherwise>
     </c:choose>
 
 
     <c:choose>
         <c:when test="${menuTab == 'reminisce'}">
-                <td class="menuText" align="center" nowrap> <a href="<c:out value="${reminisce}"/>" style="color: #FFFFFF; text-decoration: none;" title="<bean:message key="tab.main.reminisce"/>"> <bean:message key="tab.main.reminisce"/></a></td>
+				<a href="<c:out value="${reminisce}"/>" title="<bean:message key="tab.main.reminisce"/>" class="active"> <span><bean:message key="tab.main.reminisce"/> </span></a> 
         </c:when>
         <c:otherwise>
-                <td class="menuTextOn" align="center" nowrap> <a href="<c:out value="${reminisce}"/>" style="color: #3C4780; text-decoration: none;" title="<bean:message key="tab.main.reminisce"/>"> <bean:message key="tab.main.reminisce"/></a></td>
+                <a href="<c:out value="${reminisce}"/>" title="<bean:message key="tab.main.reminisce"/>"> <span><bean:message key="tab.main.reminisce"/> </span></a> 
         </c:otherwise>
     </c:choose>
 
 
+
+
+
+
     <c:choose>
         <c:when test="${menuTab == 'album'}">
-                <td class="menuText" align="center" nowrap> <a href="<c:out value="${album}"/>" style="color: #FFFFFF; text-decoration: none;" title="<bean:message key="tab.main.album"/>"> <bean:message key="tab.main.album"/></a> </td>
+                <a href="<c:out value="${album}"/>" title="<bean:message key="tab.main.album"/>" class="active"> <span><bean:message key="tab.main.album"/> </span></a> 
         </c:when>
         <c:otherwise>
-                <td class="menuTextOn" align="center" nowrap> <a href="<c:out value="${album}"/>" style="color: #3C4780; text-decoration: none;" title="<bean:message key="tab.main.album"/>"> <bean:message key="tab.main.album"/></a> </td>
+                <a href="<c:out value="${album}"/>" title="<bean:message key="tab.main.album"/>"> <span><bean:message key="tab.main.album"/> </span></a> 
         </c:otherwise>
     </c:choose>
 
 
     <c:choose>
         <c:when test="${menuTab == 'forum'}">
-                    <td class="menuText" align="center" nowrap> <a href="<c:out value="${forum}"/>" style="color: #FFFFFF; text-decoration: none;" title="<bean:message key="tab.main.forum"/>"> <bean:message key="tab.main.forum"/></a> </td>
+                    <a href="<c:out value="${forum}"/>" title="<bean:message key="tab.main.forum"/>" class="active"> <span><bean:message key="tab.main.forum"/> </span></a> 
         </c:when>
         <c:otherwise>
-                    <td class="menuTextOn" align="center" nowrap> <a href="<c:out value="${forum}"/>" style="color: #3C4780; text-decoration: none;" title="<bean:message key="tab.main.forum"/>"> <bean:message key="tab.main.forum"/></a> </td>
+                    <a href="<c:out value="${forum}"/>" title="<bean:message key="tab.main.forum"/>"> <span><bean:message key="tab.main.forum"/> </span></a> 
         </c:otherwise>
     </c:choose>
 
     <c:choose>
         <c:when test="${menuTab == 'aboutus'}">
-                    <td class="menuText" align="center" nowrap> <a href="<c:out value="${aboutus}"/>" style="color: #FFFFFF; text-decoration: none;" title="<bean:message key="tab.main.aboutus"/>"> <bean:message key="tab.main.aboutus"/> </a> </td>
+                    <a href="<c:out value="${aboutus}"/>" title="<bean:message key="tab.main.aboutus"/>" class="active"> <span><bean:message key="tab.main.aboutus"/> </span></a> 
         </c:when>
         <c:otherwise>
-                    <td class="menuTextOn" align="center" nowrap> <a href="<c:out value="${aboutus}"/>" style="color: #3C4780; text-decoration: none;" title="<bean:message key="tab.main.aboutus"/>"> <bean:message key="tab.main.aboutus"/> </a> </td>
+                    <a href="<c:out value="${aboutus}"/>" title="<bean:message key="tab.main.aboutus"/>"> <span><bean:message key="tab.main.aboutus"/> </span></a> 
         </c:otherwise>
     </c:choose>
 
     <c:choose>
         <c:when test="${menuTab == 'contact'}">
-                    <td class="menuText" align="center" nowrap><a href="<c:out value="${contactus}"/>"  style="color: #FFFFFF; text-decoration: none;" title="<bean:message key="tab.main.contactus"/>"><bean:message key="tab.main.contactus"/> </a></td>
+                    <a href="<c:out value="${contactus}"/>" title="<bean:message key="tab.main.contactus"/>" class="active"> <span><bean:message key="tab.main.contactus"/> </span></a> 
         </c:when>
         <c:otherwise>
-                    <td class="menuTextOn" align="center" nowrap><a href="<c:out value="${contactus}"/>"  style="color: #3C4780; text-decoration: none;" title="<bean:message key="tab.main.contactus"/>"><bean:message key="tab.main.contactus"/></a></td>
+                    <a href="<c:out value="${contactus}"/>" title="<bean:message key="tab.main.contactus"/>"> <span><bean:message key="tab.main.contactus"/> </span></a> 
         </c:otherwise>
     </c:choose>
 
     <c:choose>
         <c:when test="${menuTab == 'myalumni'}">
-                    <td class="menuText" align="center" nowrap>
                     <c:choose>
                         <c:when test="${ isOnline == 'Y'}">
-                                <a href="<c:out value="${myalumni}"/>" style="color: #FFFF00; text-decoration: none;" title="<bean:message key="tab.main.myalumni"/>"> <bean:message key="tab.main.myalumni"/></a>
+                                <a href="<c:out value="${myalumni}"/>" title="<bean:message key="tab.main.myalumni"/>" class="active"> <span><bean:message key="tab.main.myalumni"/> </span></a> 
                         </c:when>
                         <c:otherwise>
-                                <a href="<c:out value="${login}"/>" style="color: #FFFFFF; text-decoration: none;" title="<bean:message key="tab.main.myalumni"/>"> <bean:message key="tab.main.myalumni"/></a>
+                                <a href="<c:out value="${login}"/>" title="<bean:message key="tab.main.myalumni"/>" class="active"> <span><bean:message key="tab.main.myalumni"/> </span></a> 
                         </c:otherwise>
                     </c:choose>
-                    </td>
         </c:when>
         <c:otherwise>
-                    <td class="menuTextOn" align="center" nowrap>
-
                     <c:choose>
                         <c:when test="${ isOnline == 'Y'}">
-                                <a href="<c:out value="${myalumni}"/>" style="color: #3C4780; text-decoration: none;" title="<bean:message key="tab.main.myalumni"/>"> <bean:message key="tab.main.myalumni"/></a>
+								<a href="<c:out value="${myalumni}"/>" title="<bean:message key="tab.main.myalumni"/>" class="active"> <span><bean:message key="tab.main.myalumni"/> </span></a> 
                         </c:when>
                         <c:otherwise>
-                                <a href="<c:out value="${login}"/>" style="color: #3C4780; text-decoration: none;" title="<bean:message key="tab.main.myalumni"/>"> <bean:message key="tab.main.myalumni"/></a>
+                                <a href="<c:out value="${login}"/>" title="<bean:message key="tab.main.myalumni"/>" class="active"> <span><bean:message key="tab.main.myalumni"/> </span></a> 
                         </c:otherwise> 
                     </c:choose>
-
-
-                    </td>
-
         </c:otherwise>
     </c:choose>
 
-  </tr>
-</table>
+</div>
 
 
