@@ -3,6 +3,15 @@
 <%@ taglib uri="/WEB-INF/tld/struts-bean.tld" prefix="bean" %>
 <%@ taglib uri="/WEB-INF/tld/myalumni-taglibs.tld" prefix="myalumni" %>
 
+<%@ page import="net.naijatek.myalumni.util.BaseConstants"%>
+
+<c:set var="_male">
+	<%= BaseConstants.GENDER_MALE %>
+</c:set>
+
+<c:set var="_female">
+	<%= BaseConstants.GENDER_FEMALE %>
+</c:set>
 
 <table width="100%" border="0" cellspacing="1" cellpadding="3" align="center" class="tborder">
             <tr>
@@ -24,10 +33,18 @@
               <td class="fieldlabel"><bean:message key="label.lastname"/>:<font color="#cc0000">*</font></td>
               <td><html:text property="lastName" size="30" maxlength="30" titleKey="label.lastname"/></td>
             </tr>
-            <tr class="portlet-section-body">
-              <td class="fieldlabel"><bean:message key="label.maidenname"/>:</td>
-              <td><html:text property="maidenName" size="30" maxlength="30" titleKey="label.maidenname"/></td>
-            </tr>
+            
+           <c:choose>
+                <c:when test="${ memberForm.gender == _female}">            
+		            <tr class="portlet-section-body">
+		              <td class="fieldlabel"><bean:message key="label.maidenname"/>:</td>
+		              <td><html:text property="maidenName" size="30" maxlength="30" titleKey="label.maidenname"/></td>
+		            </tr>
+                </c:when>
+           </c:choose>
+            
+            
+            
             <tr class="portlet-section-body">
               <td class="fieldlabel"><bean:message key="label.nickname"/>:</td>
               <td><html:text property="nickName" size="30" maxlength="30" titleKey="label.nickname"/></td>

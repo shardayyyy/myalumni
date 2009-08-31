@@ -52,6 +52,7 @@ import net.naijatek.myalumni.framework.exceptions.MyAlumniException;
 import net.naijatek.myalumni.framework.struts.MyAlumniBaseException;
 import net.naijatek.myalumni.modules.common.domain.LoginHistoryVO;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
+import net.naijatek.myalumni.modules.common.domain.MessengerVO;
 import net.naijatek.myalumni.modules.common.domain.StatisticsVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
 import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
@@ -59,6 +60,7 @@ import net.naijatek.myalumni.modules.common.persistence.iface.MemberDao;
 import net.naijatek.myalumni.modules.common.persistence.iface.SystemConfigDao;
 import net.naijatek.myalumni.modules.common.service.IMemberService;
 import net.naijatek.myalumni.util.BaseConstants;
+import net.naijatek.myalumni.util.SystemConfigConstants;
 import net.naijatek.myalumni.util.encryption.Encoder;
 import net.naijatek.myalumni.util.encryption.PasswordGenerator;
 import net.naijatek.myalumni.util.mail.SendMailUtil;
@@ -66,6 +68,7 @@ import net.naijatek.myalumni.util.utilities.StringUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts.action.ActionMessage;
 
 
 
@@ -185,6 +188,73 @@ public class MemberServiceImpl implements IMemberService {
     	}
     }
 
+    public void createAdminMember(MemberVO member, HttpServletRequest request) throws MyAlumniBaseException {
+    	
+    	MemberVO tempMember  = memberDao.getMemberProfileByUserName(member.getMemberUserName());
+    	
+    	if (memberDao.isEmailRegisteredAlready(member.getEmail())){
+    		throw new DuplicateEmailException("error.duplicate.email");  //Email Already exists
+    	}
+    	
+    	if (tempMember == null){
+    		member.setLastName(StringUtil.capitalize(member.getLastName()));
+    		member.setFirstName(StringUtil.capitalize(member.getFirstName()));
+    		member.setMaidenName(StringUtil.capitalize(member.getLastName()));
+            member.setMemberStatus(BaseConstants.ACCOUNT_ACTIVE);
+            member.setFirstIPAddress(request.getRemoteAddr());
+            member.setLastIPAddress(request.getRemoteAddr());
+            member.setCreationDate(new Date());
+            member.setLastLogonDate(new Date());
+            member.setFirstEmail(member.getEmail());
+            member.setIsAdmin(BaseConstants.BOOLEAN_YES);
+            member.setMemberPassword(Encoder.getMD5_Base64(member.getMemberPassword()));
+            member.setPromptChange(BaseConstants.BOOLEAN_NO);      
+            member.setHideAddress(BaseConstants.BOOLEAN_NO);
+            member.setHideIm(BaseConstants.BOOLEAN_NO);
+            member.setHidePhone(BaseConstants.BOOLEAN_NO);
+            member.setHideEmail(BaseConstants.BOOLEAN_NO);                      
+    		memberDao.createMember(member);
+    	}
+    	else{
+    		throw new DuplicateMemberException("myalumni.errorcode.00001");  //User Already exists
+    	}
+    	
+    	
+    	/*
+        final String memberId = memberVO.getMemberId();
+        // Messengers
+        List<MessengerVO> messengers = new ArrayList<MessengerVO>();
+        MessengerVO mesgerVO = null;
+        for(String str : memberVO.getLstSelectedIMs()){
+        	mesgerVO = new MessengerVO();
+        	mesgerVO.setLastModifiedBy(memberVO.getMemberUserName());
+        	mesgerVO.setMemberId(memberId);
+        	mesgerVO.setLookupCodeId(str);
+        	messengers.add(mesgerVO);
+        }
+        messengerService.saveAll(messengers, memberId);
+        
+        // Message Folders
+        mfService.createMemberMessageFolders(memberId, SystemConfigConstants.MESSAGE_FOLDERS, memberVO.getMemberUserName());        
+        
+        StringBuffer message = new StringBuffer();
+        message.append("Thank you " + StringUtil.capitalize(memberVO.getFirstName()) + " " + StringUtil.capitalize(memberVO.getLastName())  + " for registering and Welcome to " + sysConfigVO.getOrganizationName()  + "'s owns space in cyberspace.");
+        message.append("Your account should be active within the next 24 hours. So please try logging into the system as soon as you get your activation confirmation email.");
+        setSessionObject(request, BaseConstants.MESSAGE,  message.toString());
+
+        // send email to registrant
+        try {
+        	SendMailUtil.sendWelcomeNotice(memberVO.getEmail(), memberVO.getMemberUserName(),sysConfigVO);
+        }
+        catch (Exception ex) {
+          logger.error(ex.getMessage());
+          errors.add(BaseConstants.FATAL_KEY, new ActionMessage("error.mailserver"));
+          saveMessages(request, errors);
+          return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        }*/
+            	
+    }
+    
     public void updateMemberPassword(String memberUserName, 
                                      String memberPassword, String lastModifiedBy) {
     	

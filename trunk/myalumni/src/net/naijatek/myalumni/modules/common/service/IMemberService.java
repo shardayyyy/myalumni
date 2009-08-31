@@ -71,6 +71,8 @@ public interface IMemberService  extends BaseCrudService<MemberVO, String>{
     public boolean isMemberAvailableByUserName(String username);
 
     public void createMember(MemberVO member, HttpServletRequest request) throws MyAlumniBaseException;
+    
+    public void createAdminMember(MemberVO member, HttpServletRequest request) throws MyAlumniBaseException;
 
     public void updateMemberPassword(String memberUserName, 
                                      String memberPassword, String lastModifiedBy);
