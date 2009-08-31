@@ -548,10 +548,8 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
       
       FormFile importFile = memberForm.getAvatarUpload();
       overwrite = StringUtil.safeString(memberForm.getAvatarUploadOverwrite());
-      String importFileName = importFile.getFileName();
+      String importFileName = getCurrentLoggedInUser(request).getMemberUserName() + "." + getFileExtensionForImageReader(importFile.getFileName());
       int size = importFile.getFileSize();
-
-
 
     //--------------------  VALIDATE THE IMAGE -----------------------------------------
       // check width and heigh of image
@@ -586,7 +584,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
       }
 
       //boolean validImageName = false;
-      StringTokenizer st0 = new StringTokenizer(importFileName, ".");
+/*      StringTokenizer st0 = new StringTokenizer(importFileName, ".");
       if (st0.hasMoreTokens()) {
         if (token.getMemberUserName().equals(st0.nextToken())) {
           //validImageName = true;
@@ -596,7 +594,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
           saveMessages(request, errors);
           return mapping.getInputForward();
         }
-      }
+      }*/
 
 
       File f = new File(avatarDir + importFileName);
@@ -637,7 +635,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
 
     //-------------------------------------------------------------
 
-        if(!uploadFromLocalDrive(importFile, avatarDir)){
+        if(!uploadFromLocalDrive(importFile, importFileName ,avatarDir)){
           errors.add(BaseConstants.FATAL_KEY, new ActionMessage("errors.technical.difficulty"));
           saveMessages(request, errors);
           return mapping.getInputForward();

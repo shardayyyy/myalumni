@@ -48,6 +48,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.naijatek.myalumni.framework.exceptions.CreateException;
+import net.naijatek.myalumni.framework.exceptions.DuplicateEmailException;
+import net.naijatek.myalumni.framework.exceptions.DuplicateMemberException;
 import net.naijatek.myalumni.framework.struts.MyAlumniBaseException;
 import net.naijatek.myalumni.framework.struts.MyAlumniDispatchAction;
 import net.naijatek.myalumni.modules.admin.presentation.form.ErrorLogForm;
@@ -55,6 +58,7 @@ import net.naijatek.myalumni.modules.admin.presentation.form.SystemConfigForm;
 import net.naijatek.myalumni.modules.common.domain.ClassNewsVO;
 import net.naijatek.myalumni.modules.common.domain.EmailExceptionVO;
 import net.naijatek.myalumni.modules.common.domain.ErrorLogVO;
+import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.domain.ReminisceVO;
 import net.naijatek.myalumni.modules.common.domain.ScrollVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
@@ -67,6 +71,7 @@ import net.naijatek.myalumni.modules.common.presentation.form.ScrollForm;
 import net.naijatek.myalumni.modules.common.presentation.form.SystemForm;
 import net.naijatek.myalumni.modules.common.service.IClassNewsService;
 import net.naijatek.myalumni.modules.common.service.IErrorLogService;
+import net.naijatek.myalumni.modules.common.service.IMemberService;
 import net.naijatek.myalumni.modules.common.service.IReminisceService;
 import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
 import net.naijatek.myalumni.modules.common.service.ISystemTaskService;
@@ -100,6 +105,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	private IClassNewsService classNewsService;
 	private ISystemTaskService sysService;
 	private IReminisceService reminisceService;
+	private IMemberService memberService;
 	
 	
 
@@ -111,13 +117,15 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 			ISystemConfigService systemConfigService,
 			IClassNewsService classNewsService,
 			ISystemTaskService sysService,
-			IReminisceService reminisceService) {
+			IReminisceService reminisceService,
+			IMemberService memberService) {
 		super();
 		this.logService = logService;
 		this.systemConfigService = systemConfigService;
 		this.classNewsService = classNewsService;
 		this.sysService = sysService;
 		this.reminisceService = reminisceService;
+		this.memberService = memberService;
 	}
 
 	// ----------------------------------
@@ -1269,26 +1277,91 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		logger.debug("in setupIntialization...");
+		
 		//if (!isTokenValid(request)) {
 		//	return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
 		//}
+		ServletContext sCtx = request.getSession().getServletContext();
 		ActionMessages msgs = new ActionMessages();
 		SystemConfigForm systemConfigForm = (SystemConfigForm) form;
 		SystemConfigVO systemConfigVO = new SystemConfigVO();
 		BeanUtils.copyProperties(systemConfigVO, systemConfigForm);
-
-		systemConfigService.setupIntialization(systemConfigVO);
-		msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.record.updated"));
-		saveMessages(request, msgs);
-		ServletContext sCtx = request.getSession().getServletContext();
-	    sCtx.setAttribute(BaseConstants.ORGANIZATION_NAME, systemConfigVO.getOrganizationName());	
-	    sCtx.setAttribute(BaseConstants.ORGANIZATION_SHORT_NAME, systemConfigVO.getOrganizationShortName());	
-	    sCtx.setAttribute(BaseConstants.ORG_EMAIL, systemConfigVO.getOrgEmail());
-		sCtx.setAttribute(BaseConstants.ALBUM_URL, systemConfigVO.getAlbumUrl());
-		sCtx.setAttribute(BaseConstants.FORUM_URL, systemConfigVO.getForumUrl());
-		sCtx.setAttribute(BaseConstants.SERVER_URL, systemConfigVO.getServerUrl());
-		sCtx.setAttribute(BaseConstants.FIRST_STARTUP, BaseConstants.BOOLEAN_NO);
 		
+		try{
+			DateTime dt = new DateTime();
+			int year = dt.getYear();
+			
+			// Admin
+			//INSERT INTO MYALUMNI_MEMBERS_TBL (USER_NAME,MEMBER_ID,MEMBER_STATUS,MEMBER_PASSWORD,EMAIL,FIRST_IP_ADDRESS,LAST_IP_ADDRESS,
+			//CREATION_DATE,LAST_LOGON_DATE,TITLE,NICK_NAME,FIRST_NAME,LAST_NAME,GENDER,FIRST_EMAIL,COUNTRY,YEAR_IN,YEAR_OUT,IS_ADMIN,HIDE_EMAIL,HIDE_ADDRESS,HIDE_PHONE,HIDE_IM,PROMPT_CHANGE,LASTMODIFICATION,LASTMODIFIED_BY,LASTMODIFIED_DATE ) VALUES ('sysadmin', '999999999999999999999999999999','A','X03MO1qnZdYdgyfeuILPmQ==','myalumni@naijatek.com','127.0.0.1','127.0.0.1',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'1000000004999','NickName','FirstName','LastName','U','myalumni@naijatek.com','1000000003999','2007','2007','Y','Y','Y','Y','Y','Y','A','SYSTEM',CURRENT_TIMESTAMP);
+			
+			MemberVO memberVO = new MemberVO();		
+			memberVO.setMemberUserName(systemConfigVO.getMemberUserName());
+			memberVO.setLastName(systemConfigVO.getMemberLastName());
+			memberVO.setFirstName(systemConfigVO.getMemberFirstName());
+			memberVO.setEmail(systemConfigVO.getMemberEmail());
+	        memberVO.setMemberPassword(systemConfigVO.getMemberPassword());
+        
+	        memberVO.setNickName("");
+	        memberVO.setGender(BaseConstants.GENDER_UNKNOWN);
+	        memberVO.setCountryId("1000000003999");
+	        memberVO.setTitleId("1000000004999");
+	        memberVO.setCareerId("1000000001999");
+	        memberVO.setDormitoryId("1000000005999");
+	        
+	        memberVO.setYearIn(year);
+	        memberVO.setYearOut(year);
+	        memberVO.setLastModifiedBy("system");
+	        
+	        
+	        memberService.createAdminMember(memberVO, request);
+
+			
+			// Scroll
+			ScrollVO scrollVO = new ScrollVO();			
+			scrollVO.setLastModifiedBy("system");
+			scrollVO.setScrollId(null);
+			scrollVO.setPriority(BaseConstants.BOOLEAN_YES);
+			scrollVO.setScrollText("Welcome to " + systemConfigVO.getOrganizationName());		
+			systemConfigService.addScroll(scrollVO);				
+			sCtx.setAttribute(BaseConstants.SCROLL_VO, scrollVO);		
+			
+	
+			systemConfigService.setupIntialization(systemConfigVO);
+		
+		    sCtx.setAttribute(BaseConstants.ORGANIZATION_NAME, systemConfigVO.getOrganizationName());	
+		    sCtx.setAttribute(BaseConstants.ORGANIZATION_SHORT_NAME, systemConfigVO.getOrganizationShortName());	
+		    sCtx.setAttribute(BaseConstants.ORG_EMAIL, systemConfigVO.getOrgEmail());
+			sCtx.setAttribute(BaseConstants.ALBUM_URL, systemConfigVO.getAlbumUrl());
+			sCtx.setAttribute(BaseConstants.FORUM_URL, systemConfigVO.getForumUrl());
+			sCtx.setAttribute(BaseConstants.SERVER_URL, systemConfigVO.getServerUrl());
+			sCtx.setAttribute(BaseConstants.FIRST_STARTUP, BaseConstants.BOOLEAN_NO);
+		
+		}
+		catch (DuplicateMemberException e) {
+			msgs.add(BaseConstants.WARN_KEY, new ActionMessage("error.duplicate.member"));
+	      saveMessages(request, msgs);
+	      logger.info("DUPLICATE USER NAME - " + e.getMessage());
+	      return mapping.getInputForward();
+	    }
+      catch (DuplicateEmailException e) {
+          msgs.add(BaseConstants.WARN_KEY, new ActionMessage("error.duplicate.email"));
+          saveMessages(request, msgs);
+          logger.info("DUPLICATE EMAIL - " + e.getMessage());
+          return mapping.getInputForward();
+        }		
+	    catch (CreateException e) {
+	    	msgs.add(BaseConstants.WARN_KEY, new ActionMessage("errors.technical.difficulty"));
+	      saveMessages(request, msgs);
+	      logger.fatal("SYSTEM ERROR - " + e.getMessage());
+	      return mapping.getInputForward();
+	    }
+	    catch(Exception ex){
+	    	msgs.add(BaseConstants.FATAL_KEY, new ActionMessage("errors.technical.difficulty"));
+	         saveMessages(request, msgs);
+	         logger.fatal("SYSTEM ERROR - " + ex.getMessage());
+	         return mapping.getInputForward();
+	    }				
 		return mapping.findForward(BaseConstants.FWD_SUCCESS);
 	}    
 	
@@ -1300,7 +1373,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		logger.debug("in prepareUploadLogo...");
-		ActionMessages msgs = new ActionMessages();
+		//ActionMessages msgs = new ActionMessages();
 		SystemConfigForm systemConfigForm = (SystemConfigForm) form;
 		SystemConfigVO systemConfigVO = new SystemConfigVO();
 		systemConfigVO = systemConfigService.getSystemConfig();
@@ -1331,7 +1404,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 			// upload the file and update database
 			try{
 				String logoDir = getSysProp().getValue("LOGO.FILEPATH");			
-				uploadFromLocalDrive(formFile, logoDir);
+				uploadFromLocalDrive(formFile, formFile.getFileName() ,logoDir);
 			}
 			catch(Exception e){
 				msgs.add(BaseConstants.WARN_KEY, new ActionMessage("error.cantupload"));
@@ -1357,7 +1430,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		}
 		
 		
-		ActionMessages msgs = new ActionMessages();
+		//ActionMessages msgs = new ActionMessages();
 		String logoFileName = new String();
 		SystemConfigVO systemConfigVO = new SystemConfigVO();
 		systemConfigVO = systemConfigService.getSystemConfig();

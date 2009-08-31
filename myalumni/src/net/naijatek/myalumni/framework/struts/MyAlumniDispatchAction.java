@@ -243,10 +243,10 @@ public abstract class MyAlumniDispatchAction extends DispatchActionSupport {
 	 * @throws Exception
 	 * @return String
 	 */
-	protected boolean uploadFromLocalDrive(FormFile importFile, String destDir)
+	protected boolean uploadFromLocalDrive(FormFile importFile, String importFileName, String destDir)
 			throws Exception {
 		boolean valid = true;
-		String importFileName = importFile.getFileName();
+		//String importFileName = importFile.getFileName();
 		String destFile = destDir + importFileName;
 
 		setupUploadDestDir(destDir);

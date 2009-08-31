@@ -193,7 +193,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/>                        
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>                               
     </bean>     
     
          
@@ -206,7 +207,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/>                        
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>                        
     </bean>      
 
     <!-- Batch Error Log -->
@@ -216,6 +218,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>         
 
     <!-- View Error Log -->
@@ -225,6 +228,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>       
     
     <!-- Purge Error Log -->
@@ -234,6 +238,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>       
 
     <!-- Delete Error Log -->    
@@ -243,6 +248,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>     
                 
     <!--  ========================================= -->
@@ -255,6 +261,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>
     
     <!-- Update Org ABout Us -->
@@ -264,6 +271,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>  
     
     <!--  ========================================= -->
@@ -276,6 +284,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>
     
     <!-- Update Org Intro -->
@@ -285,6 +294,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>  
         
                     
@@ -298,6 +308,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>
     
     <!-- Update Org Info -->
@@ -307,6 +318,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>  
     
     <!--  ========================================= -->
@@ -319,6 +331,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>
     
     <!-- Update RssFeed -->
@@ -328,6 +341,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>              
     
    <!--  =================================================== -->
@@ -340,6 +354,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>      
     
     <!-- Update Session Timeout -->
@@ -349,6 +364,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>            
     
     
@@ -362,6 +378,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>     
     
     <!-- Update Server URL -->
@@ -370,7 +387,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>   
-        <constructor-arg index="4" ref="reminisceService"/>      
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>      
     </bean>    
       
       
@@ -384,6 +402,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>     
     
     <!-- Update Twitter Crred -->
@@ -392,7 +411,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>   
-        <constructor-arg index="4" ref="reminisceService"/>      
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>      
     </bean>    
             
       
@@ -406,6 +426,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>     
     
     <!-- Update Server URL -->
@@ -414,7 +435,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>   
-        <constructor-arg index="4" ref="reminisceService"/>      
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>      
     </bean>        
       
       
@@ -429,6 +451,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>     
     
     <!-- Update Server URL -->
@@ -437,7 +460,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>   
-        <constructor-arg index="4" ref="reminisceService"/>      
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>      
     </bean> 
     
     
@@ -452,6 +476,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>     
     
     <!-- Update Server Dormitory -->
@@ -460,7 +485,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/>       
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>       
     </bean> 
   
   
@@ -473,7 +499,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/>       
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>       
     </bean>     
     
     <!-- Upload Logo -->
@@ -482,7 +509,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/>       
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>       
     </bean>   
     
     <!-- Remove Logo -->
@@ -491,7 +519,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/>       
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>       
     </bean>     
       
 
@@ -505,6 +534,7 @@
         <constructor-arg index="2" ref="classNewsService"/>
         <constructor-arg index="3" ref="systemTaskService"/>  
         <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
     </bean>     
     
     <!-- Update BirthdayNotification -->
@@ -513,7 +543,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/>       
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>       
     </bean> 
     
     
@@ -528,7 +559,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/>       
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>       
     </bean>     
     
     <!-- Prepare Add ClassNews -->
@@ -537,7 +569,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/>       
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>       
     </bean>        
     
     <!-- Add ClassNews -->
@@ -546,7 +579,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>   
-        <constructor-arg index="4" ref="reminisceService"/>      
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>      
     </bean>  
   
     <!-- Prepare Update ClassNews -->
@@ -555,7 +589,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>   
-        <constructor-arg index="4" ref="reminisceService"/>      
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>      
     </bean>  
     
     <!-- Update ClassNews -->
@@ -564,7 +599,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/>       
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>       
     </bean>  
      
     <!-- View ClassNews -->
@@ -573,7 +609,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/>       
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>       
     </bean>  
     
     <!-- Delete ClassNews -->
@@ -582,7 +619,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>   
-        <constructor-arg index="4" ref="reminisceService"/>      
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>      
     </bean>      
     
      <!-- ******************************************************************* -->
@@ -594,7 +632,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/>       
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>       
     </bean>     
     
     <!-- Prepare Add Reminisce -->
@@ -603,7 +642,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/>       
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>       
     </bean>        
     
     <!-- Add Reminisce -->
@@ -612,7 +652,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>   
-        <constructor-arg index="4" ref="reminisceService"/>      
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>      
     </bean>  
   
     <!-- Prepare Update Reminisce -->
@@ -621,7 +662,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>   
-        <constructor-arg index="4" ref="reminisceService"/>      
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>      
     </bean>  
     
     <!-- Update Reminisce -->
@@ -630,7 +672,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/>       
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>       
     </bean>  
      
     <!-- View Reminisce -->
@@ -639,7 +682,8 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/>       
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>       
     </bean>  
     
     <!-- Delete Reminisce -->
@@ -648,9 +692,129 @@
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
         <constructor-arg index="3" ref="systemTaskService"/>   
-        <constructor-arg index="4" ref="reminisceService"/>      
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/>      
     </bean>      
     
+
+     <!-- ******************************************************************* -->
+    <!-- ***********        VALIDATE SYSTEM CONFIGURATION       ************* -->
+    <!-- ******************************************************************* -->         
+    <!-- Prepare Validate System Configuration -->
+    <bean name="/admin/prepareValidateSystemConfig" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
+        <constructor-arg index="0" ref="errorLoggerService"/>  
+        <constructor-arg index="1" ref="systemConfigService"/> 
+        <constructor-arg index="2" ref="classNewsService"/> 
+        <constructor-arg index="3" ref="systemTaskService"/>  
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
+    </bean>
+    
+     <!-- Validate System Configuration -->
+    <bean name="/admin/validateSystemConfig" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
+        <constructor-arg index="0" ref="errorLoggerService"/>  
+        <constructor-arg index="1" ref="systemConfigService"/> 
+        <constructor-arg index="2" ref="classNewsService"/> 
+        <constructor-arg index="3" ref="systemTaskService"/>  
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
+    </bean>     
+
+      
+   <!--  =================================================== -->
+    <!--  ======       BACKUP DATABASE         ======== -->
+    <!--  =================================================== -->     
+    <bean name="/admin/listDatabaseBackup" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
+        <constructor-arg index="0" ref="errorLoggerService"/>  
+        <constructor-arg index="1" ref="systemConfigService"/> 
+        <constructor-arg index="2" ref="classNewsService"/> 
+        <constructor-arg index="3" ref="systemTaskService"/>  
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
+    </bean>
+    
+    <bean name="/admin/databaseBackup" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
+        <constructor-arg index="0" ref="errorLoggerService"/>  
+        <constructor-arg index="1" ref="systemConfigService"/> 
+        <constructor-arg index="2" ref="classNewsService"/> 
+        <constructor-arg index="3" ref="systemTaskService"/>  
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
+    </bean>
+
+    <bean name="/admin/deleteDatabaseBackup" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
+        <constructor-arg index="0" ref="errorLoggerService"/>  
+        <constructor-arg index="1" ref="systemConfigService"/> 
+        <constructor-arg index="2" ref="classNewsService"/> 
+        <constructor-arg index="3" ref="systemTaskService"/>  
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
+    </bean>
+    
+    <bean name="/admin/viewDatabaseBackup" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
+        <constructor-arg index="0" ref="errorLoggerService"/>  
+        <constructor-arg index="1" ref="systemConfigService"/> 
+        <constructor-arg index="2" ref="classNewsService"/> 
+        <constructor-arg index="3" ref="systemTaskService"/>  
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
+    </bean>      
+
+   <!--  =================================================== -->
+    <!--  ======       VIEW LOG 4J Log         ======== -->
+    <!--  =================================================== --> 
+    <bean name="/admin/viewSystemLogs" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
+        <constructor-arg index="0" ref="errorLoggerService"/>  
+        <constructor-arg index="1" ref="systemConfigService"/> 
+        <constructor-arg index="2" ref="classNewsService"/> 
+        <constructor-arg index="3" ref="systemTaskService"/>  
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
+    </bean>
+    
+    <bean name="/admin/listSystemLogs" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
+        <constructor-arg index="0" ref="errorLoggerService"/>  
+        <constructor-arg index="1" ref="systemConfigService"/> 
+        <constructor-arg index="2" ref="classNewsService"/> 
+        <constructor-arg index="3" ref="systemTaskService"/>  
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
+    </bean>   
+    
+    <bean name="/admin/deleteSystemLog" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
+        <constructor-arg index="0" ref="errorLoggerService"/>  
+        <constructor-arg index="1" ref="systemConfigService"/> 
+        <constructor-arg index="2" ref="classNewsService"/> 
+        <constructor-arg index="3" ref="systemTaskService"/>  
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
+    </bean>       
+    
+    <!--  ========================================= -->
+    <!--  ====== SCROLL       ======== -->
+    <!--  ========================================= -->     
+    <bean name="/admin/maintainScroll" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
+        <constructor-arg index="0" ref="errorLoggerService"/>  
+        <constructor-arg index="1" ref="systemConfigService"/> 
+        <constructor-arg index="2" ref="classNewsService"/> 
+        <constructor-arg index="3" ref="systemTaskService"/>  
+        <constructor-arg index="4" ref="reminisceService"/> 
+		<constructor-arg index="5" ref="memberService"/> 
+    </bean>    
+    
+    
+   <!--  =================================================== -->
+    <!--  ======      EMAIL EXCEPTION         ======== -->
+    <!--  =================================================== --> 
+    <bean name="/admin/maintainEmailException" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
+        <constructor-arg index="0" ref="errorLoggerService"/>  
+        <constructor-arg index="1" ref="systemConfigService"/> 
+        <constructor-arg index="2" ref="classNewsService"/> 
+        <constructor-arg index="3" ref="systemTaskService"/>  
+        <constructor-arg index="4" ref="reminisceService"/> 
+        <constructor-arg index="5" ref="memberService"/>
+    </bean>    
+        
         
      <!-- ******************************************************************* -->
     <!-- ***********                 FRONT PAGE LINKS              ************* -->
@@ -705,113 +869,8 @@
     </bean> 
     
             
-   <!--  =================================================== -->
-    <!--  ======      EMAIL EXCEPTION         ======== -->
-    <!--  =================================================== --> 
-    <bean name="/admin/maintainEmailException" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
-        <constructor-arg index="0" ref="errorLoggerService"/>  
-        <constructor-arg index="1" ref="systemConfigService"/> 
-        <constructor-arg index="2" ref="classNewsService"/> 
-        <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/> 
-    </bean>    
-    
-     <!-- ******************************************************************* -->
-    <!-- ***********        VALIDATE SYSTEM CONFIGURATION       ************* -->
-    <!-- ******************************************************************* -->         
-    <!-- Prepare Validate System Configuration -->
-    <bean name="/admin/prepareValidateSystemConfig" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
-        <constructor-arg index="0" ref="errorLoggerService"/>  
-        <constructor-arg index="1" ref="systemConfigService"/> 
-        <constructor-arg index="2" ref="classNewsService"/> 
-        <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/> 
-    </bean>
-    
-     <!-- Validate System Configuration -->
-    <bean name="/admin/validateSystemConfig" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
-        <constructor-arg index="0" ref="errorLoggerService"/>  
-        <constructor-arg index="1" ref="systemConfigService"/> 
-        <constructor-arg index="2" ref="classNewsService"/> 
-        <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/> 
-    </bean>     
 
-      
-   <!--  =================================================== -->
-    <!--  ======       BACKUP DATABASE         ======== -->
-    <!--  =================================================== -->     
-    <bean name="/admin/listDatabaseBackup" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
-        <constructor-arg index="0" ref="errorLoggerService"/>  
-        <constructor-arg index="1" ref="systemConfigService"/> 
-        <constructor-arg index="2" ref="classNewsService"/> 
-        <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/> 
-    </bean>
-    
-    <bean name="/admin/databaseBackup" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
-        <constructor-arg index="0" ref="errorLoggerService"/>  
-        <constructor-arg index="1" ref="systemConfigService"/> 
-        <constructor-arg index="2" ref="classNewsService"/> 
-        <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/> 
-    </bean>
-
-    <bean name="/admin/deleteDatabaseBackup" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
-        <constructor-arg index="0" ref="errorLoggerService"/>  
-        <constructor-arg index="1" ref="systemConfigService"/> 
-        <constructor-arg index="2" ref="classNewsService"/> 
-        <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/> 
-    </bean>
-    
-    <bean name="/admin/viewDatabaseBackup" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
-        <constructor-arg index="0" ref="errorLoggerService"/>  
-        <constructor-arg index="1" ref="systemConfigService"/> 
-        <constructor-arg index="2" ref="classNewsService"/> 
-        <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/> 
-    </bean>
-      
-
-   <!--  =================================================== -->
-    <!--  ======       VIEW LOG 4J Log         ======== -->
-    <!--  =================================================== --> 
-    <bean name="/admin/viewSystemLogs" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
-        <constructor-arg index="0" ref="errorLoggerService"/>  
-        <constructor-arg index="1" ref="systemConfigService"/> 
-        <constructor-arg index="2" ref="classNewsService"/> 
-        <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/> 
-    </bean>
-    
-    <bean name="/admin/listSystemLogs" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
-        <constructor-arg index="0" ref="errorLoggerService"/>  
-        <constructor-arg index="1" ref="systemConfigService"/> 
-        <constructor-arg index="2" ref="classNewsService"/> 
-        <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/> 
-    </bean>   
-    
-    <bean name="/admin/deleteSystemLog" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
-        <constructor-arg index="0" ref="errorLoggerService"/>  
-        <constructor-arg index="1" ref="systemConfigService"/> 
-        <constructor-arg index="2" ref="classNewsService"/> 
-        <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/> 
-    </bean>       
-    
-    <!--  ========================================= -->
-    <!--  ====== SCROLL       ======== -->
-    <!--  ========================================= -->     
-    <bean name="/admin/maintainScroll" class="net.naijatek.myalumni.modules.admin.presentation.action.MaintainSystemModuleAction">
-        <constructor-arg index="0" ref="errorLoggerService"/>  
-        <constructor-arg index="1" ref="systemConfigService"/> 
-        <constructor-arg index="2" ref="classNewsService"/> 
-        <constructor-arg index="3" ref="systemTaskService"/>  
-        <constructor-arg index="4" ref="reminisceService"/> 
-    </bean>    
-    
+        
     <!--  ========================================= -->
     <!--  ====== MANAGE LOOKUP CODES       ======== -->
     <!--  ========================================= -->

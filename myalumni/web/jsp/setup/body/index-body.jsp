@@ -10,7 +10,73 @@
 <html:form action="/admin/setupIntialization">
         <html:hidden property="action" value="setupIntialization"/>
 
+      <table width="75%" border="0" cellpadding="0" cellspacing="0" align="center">
+        <tbody>
+          <tr>
+            <td colspan="2" class="adminTableTrim"><html:img page="/images/spacer.gif" height="1" width="1"/></td>
+            </tr>
+          <tr>
+            <td class="bg0"><div style="padding-bottom: 5px; padding-top: 5px;"> <html:img page="/images/spacer.gif" border="0" height="3" width="10"/> <span class="Bold">
+                  <bean:message key="label.common.setup"/> <bean:message key="label.admin.org.admin"/>
+            </span> </div></td>
+              <td align="right" class="bg0">&nbsp;&nbsp;</td>
+            </tr>
+          <tr>
+            <td colspan="2" class="adminTableBot"><html:img page="/images/spacer.gif" height="2" width="2"/></td>
+            </tr>
+          <tr>
+            <td colspan="2" valign="top" ><table width="100%" border="0" cellpadding="2" cellspacing="0">
+              <tbody>
+                <tr>
+                  <td width="6%"><html:img page="/images/spacer.gif" height="8" width="15"/></td>
+                      <td width="26%">&nbsp;</td>
+                      <td width="3%" align="center"><html:img page="/images/spacer.gif" height="1" width="10"/></td>
+                      <td width="65%">&nbsp;</td>
+                    </tr>
+		<tr>
+                  <td align="center">&nbsp;</td>
+                      <td align="right" class="Smallbold"><bean:message key="label.firstname"/>:</td>
+                      <td align="center"><html:img page="/images/dot.gif" width="9" height="9"/></td>
+                      <td><html:text property="memberFirstName" size="40" maxlength="40" titleKey="label.firstname"/></td>
+                </tr> 
+		<tr>
+                  <td align="center">&nbsp;</td>
+                      <td align="right" class="Smallbold"><bean:message key="label.lastname"/>:</td>
+                      <td align="center"><html:img page="/images/dot.gif" width="9" height="9"/></td>
+                      <td><html:text property="memberLastName" size="40" maxlength="40" titleKey="label.lastname"/></td>
+                </tr>                 					
+		<tr>
+                  <td align="center">&nbsp;</td>
+                      <td align="right" class="Smallbold"><bean:message key="label.username"/>:</td>
+                      <td align="center"><html:img page="/images/dot.gif" width="9" height="9"/></td>
+                      <td><html:text property="memberUserName" size="40" maxlength="40" titleKey="label.username"/></td>
+                </tr> 
+		<tr>
+                  <td align="center">&nbsp;</td>
+                      <td align="right" class="Smallbold"><bean:message key="label.password"/>:</td>
+                      <td align="center"><html:img page="/images/dot.gif" width="9" height="9"/></td>
+                      <td><html:password property="memberPassword" size="40" maxlength="40" titleKey="label.password"/></td>
+                </tr>  
+		<tr>
+                  <td align="center">&nbsp;</td>
+                      <td align="right" class="Smallbold"><bean:message key="label.primaryemail"/>:</td>
+                      <td align="center"><html:img page="/images/dot.gif" width="9" height="9"/></td>
+                      <td><html:text property="memberEmail" size="50" maxlength="50" titleKey="label.primaryemail"/></td>
+                </tr>                                               
 
+                <tr>
+                  <td align="center">&nbsp;</td>
+                  <td align="right">&nbsp;</td>
+                  <td align="center">&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                </tbody>
+              </table>              </td>
+            </tr>
+          </tbody>
+      </table>
+      
+      <p>&nbsp;</p>
 <table width="75%" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -159,5 +225,5 @@
       </table></td>
       </tr>
   </table>
-
+  
 </html:form>
