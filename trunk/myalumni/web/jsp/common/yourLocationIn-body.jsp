@@ -39,7 +39,9 @@ window.onload = function()
               <tr class="portlet-section-body">
                 <td width="30%" valign="top"><span class="fieldlabel"><bean:message key="label.address"/>:</span></td>
                 <td width="70%">
-                <html:textarea property="address" cols="40" rows="5" onkeydown="Counter(this,'200','Address');" onkeyup="Counter(this,'200','Address');" titleKey="label.address"/><br>
+                <%--<html:textarea property="address" cols="40" rows="5" onkeydown="Counter(this,'200','Address');" onkeyup="Counter(this,'200','Address');" titleKey="label.address"/>--%>
+                <html:text property="address" size="40" maxlength="40" titleKey="label.address"/>
+                <br>
                 <html:checkbox property="hideAddress" value="Y" titleKey="label.makethisprivate"/><font class="graysmall"> <bean:message key="label.makethisprivate"/></font>
                 </td>
               </tr>

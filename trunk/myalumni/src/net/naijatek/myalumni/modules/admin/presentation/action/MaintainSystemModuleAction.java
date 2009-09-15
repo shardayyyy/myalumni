@@ -59,6 +59,7 @@ import net.naijatek.myalumni.modules.common.domain.ClassNewsVO;
 import net.naijatek.myalumni.modules.common.domain.EmailExceptionVO;
 import net.naijatek.myalumni.modules.common.domain.ErrorLogVO;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
+import net.naijatek.myalumni.modules.common.domain.MessengerVO;
 import net.naijatek.myalumni.modules.common.domain.ReminisceVO;
 import net.naijatek.myalumni.modules.common.domain.ScrollVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
@@ -72,6 +73,8 @@ import net.naijatek.myalumni.modules.common.presentation.form.SystemForm;
 import net.naijatek.myalumni.modules.common.service.IClassNewsService;
 import net.naijatek.myalumni.modules.common.service.IErrorLogService;
 import net.naijatek.myalumni.modules.common.service.IMemberService;
+import net.naijatek.myalumni.modules.common.service.IMessageFolderService;
+import net.naijatek.myalumni.modules.common.service.IMessengerService;
 import net.naijatek.myalumni.modules.common.service.IReminisceService;
 import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
 import net.naijatek.myalumni.modules.common.service.ISystemTaskService;
@@ -79,7 +82,9 @@ import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.FileHelper;
 import net.naijatek.myalumni.util.SystemConfigConstants;
 import net.naijatek.myalumni.util.encryption.base64.Base64Coder;
+import net.naijatek.myalumni.util.mail.SendMailUtil;
 import net.naijatek.myalumni.util.utilities.FileUtil;
+import net.naijatek.myalumni.util.utilities.StringUtil;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
@@ -107,6 +112,9 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	private IReminisceService reminisceService;
 	private IMemberService memberService;
 	
+	private IMessengerService messengerService;
+	private IMessageFolderService mfService;
+	
 	
 
 	/**
@@ -118,7 +126,9 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 			IClassNewsService classNewsService,
 			ISystemTaskService sysService,
 			IReminisceService reminisceService,
-			IMemberService memberService) {
+			IMemberService memberService,
+			IMessengerService messengerService,
+			IMessageFolderService mfService) {
 		super();
 		this.logService = logService;
 		this.systemConfigService = systemConfigService;
@@ -126,6 +136,9 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		this.sysService = sysService;
 		this.reminisceService = reminisceService;
 		this.memberService = memberService;
+		this.messengerService = messengerService;
+		this.mfService = mfService;
+		
 	}
 
 	// ----------------------------------
@@ -1313,8 +1326,42 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	        memberVO.setYearOut(year);
 	        memberVO.setLastModifiedBy("system");
 	        
-	        
+	        // create admin
 	        memberService.createAdminMember(memberVO, request);
+	        
+	        final String memberId = memberVO.getMemberId();
+	        String[] s = new String[0];
+	        memberVO.setLstSelectedIMs(s);
+	        
+	        // Messengers
+	        List<MessengerVO> messengers = new ArrayList<MessengerVO>();
+	        MessengerVO mesgerVO = null;
+	        for(String str : memberVO.getLstSelectedIMs()){
+	        	mesgerVO = new MessengerVO();
+	        	mesgerVO.setLastModifiedBy(memberVO.getMemberUserName());
+	        	mesgerVO.setMemberId(memberId);
+	        	mesgerVO.setLookupCodeId(str);
+	        	messengers.add(mesgerVO);
+	        }
+	        messengerService.saveAll(messengers, memberId);
+	        
+	        // Message Folders
+	        mfService.createMemberMessageFolders(memberId, SystemConfigConstants.MESSAGE_FOLDERS, memberVO.getMemberUserName());        
+	        
+	        StringBuffer message = new StringBuffer();
+	        message.append("Thank you " + StringUtil.capitalize(memberVO.getFirstName()) + " " + StringUtil.capitalize(memberVO.getLastName())  + " for setting up MyAlumni and Welcome to " + systemConfigVO.getOrganizationName()  + "'s owns space in cyberspace.");
+	        
+	        setSessionObject(request, BaseConstants.MESSAGE,  message.toString());
+
+	        // send email to registrant
+	        try {
+	        	SendMailUtil.sendWelcomeNotice(memberVO.getEmail(), memberVO.getMemberUserName(),systemConfigVO);
+	        }
+	        catch (Exception ex) {
+	          logger.error(ex.getMessage());
+	          msgs.add(BaseConstants.FATAL_KEY, new ActionMessage("error.mailserver"));
+	          saveMessages(request, msgs);	  
+	        }	        
 
 			
 			// Scroll

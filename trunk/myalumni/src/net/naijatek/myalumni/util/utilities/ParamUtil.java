@@ -49,15 +49,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 
-/**
- *
- * <p>Title: Federal government College System (FeGoCoId System)</p>
- * <p>Description: FeGoCoId System</p>
- * <p>Copyright: Copyright (c) 2004</p>
- * <p>Company: Naijatek Solutions</p>
-* @author Folashade Adeyosoye (shardayyy@@naijatek.com)
-* @version 1.0
- */
+
 public final class ParamUtil {
     private static Log logger = LogFactory.getLog(ParamUtil.class);
 

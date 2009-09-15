@@ -260,6 +260,44 @@ public class MaintainPrivateMessageAction  extends MyAlumniDispatchAction{
     }    
     
     
+    
+    public ActionForward prepareComposePrivateMessage(ActionMapping mapping, ActionForm form, 
+            HttpServletRequest request, 
+            HttpServletResponse response) throws Exception {
+
+		MemberVO token = getCurrentLoggedInUser(request);
+        ActionMessages errors = new ActionMessages();
+		
+		
+		// check to see if the user logged on is a member
+		if (!memberSecurityCheck(request, token)) {
+			return mapping.findForward(BaseConstants.FWD_LOGIN);
+		}
+		
+		
+	    PrivateMessageForm pmForm = (PrivateMessageForm) form;
+
+	    pmForm.setMessageToUserId(pmForm.getMessageToUserName());
+	    pmForm.setMessageFromUserId(token.getMemberId());
+	    MemberVO memberVO = memService.getMemberProfileByMemberId(pmForm.getMessageToUserId());
+	    
+	    if (memberVO != null){
+	    	pmForm.setToMemberFirstName(memberVO.getFirstName());
+	    	pmForm.setToMemberLastName(memberVO.getLastName());
+	    }
+	    else{
+	        errors.add(BaseConstants.WARN_KEY, new ActionMessage("message.membernotfound"));
+	        saveMessages(request, errors);	   
+	        return mapping.getInputForward();	        
+	    }
+	    
+	    pmForm.setSubject(token.getFirstName() + " " + token.getLastName() + " " + BaseConstants.CONTACT_SUBJECT);  
+		
+		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+
+}    
+
+    
     public ActionForward prepareReplyMessage(ActionMapping mapping, ActionForm form, 
                                        HttpServletRequest request, 
                                        HttpServletResponse response) throws Exception {

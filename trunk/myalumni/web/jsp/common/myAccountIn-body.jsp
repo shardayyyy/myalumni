@@ -103,24 +103,25 @@ function disableSubmitBtn() {
                 <td><span class="fieldlabel"><bean:message key="label.retypepassword"/>:<font color="#cc0000">* </font></span></td>
                 <td><html:password property="memberPasswordConfirm" size="25" maxlength="25" titleKey="label.passwordconfirm"/></td>
               </tr>
+                                              
               
-              <tr class="portlet-section-body">
+       		<tr class="portlet-section-body">
                 <td>
 	                <span class="fieldlabel"><jcaptcha:question/>:</span><font color="#cc0000">*</font>
-	      	       <%-- Add the image--%>
-	               <br><html:img page="/action/jcaptcha" align="absmiddle"/>
+	      	       <!-- Add the image-->
+	               <br><html:img page="/action/jcaptcha" align="absmiddle" border="1"/>
 	               <br>
                
                 </td>
                 <td>
-                       <%-- Add the input tag--%>
+                       <!-- Add the input tag-->
 		               <input type="text"  name="jcaptcha_response" />
 						<br>
-		                <%-- Add the message tag--%>
+		                <!-- Add the message tag-->
 		               <font color="#cc0000"><strong><jcaptcha:message/></strong></font><br>
                 </td>
               </tr>
-              
+             
               
               <tr class="portlet-section-body">
                 <td colspan="2" class="bg0"><div align="center">IP: Logged <strong><%=request.getRemoteAddr()%>&nbsp; (<%=request.getRemoteHost()%>)</strong></div></td>

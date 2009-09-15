@@ -58,7 +58,7 @@
 		</c:when>
 	</c:choose>
 
-    	<br><%-- 
+    	<br> 
         <span class="fieldlabel"><bean:message key="label.location"/>:</span> 
         	
        			<c:if test="${profile.address ne null && profile.address != ''}">
@@ -76,7 +76,7 @@
         <span class="fieldlabel"><bean:message key="label.birthday"/>:</span>
         	<span class="blacksmall"><fmt:formatDate value="${profile.dob}" pattern="MMM d"/></span><br>
         	
-        --%>
+       
         	
         <span class="fieldlabel"><bean:message key="label.email"/>:</span>&nbsp;
 	

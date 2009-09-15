@@ -46,8 +46,6 @@ import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
-import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
-import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
 import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.SystemConfigConstants;
 import net.naijatek.myalumni.util.utilities.AppProp;
@@ -55,8 +53,6 @@ import net.naijatek.myalumni.util.utilities.SystemProp;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
 
 public class BuildImageTag extends BodyTagSupport {
@@ -104,6 +100,7 @@ public class BuildImageTag extends BodyTagSupport {
 
 		String width_avatar = app.getValue("avatar.image.width");
 		String height_avatar = app.getValue("avatar.image.height");
+		String name_of_avatar = app.getValue("avatar.image.name");
 
 		String rootContext = request.getContextPath();
 
@@ -120,7 +117,7 @@ public class BuildImageTag extends BodyTagSupport {
 								+ seperator
 								+ "images"
 								+ seperator
-								+ "no_picture.gif"
+								+ "" + name_of_avatar + ""
 								+ "\" border=\"0\" width=\"150\" height=\"150\" align=\"ABSMIDDLE\">");
 			}
 			// logger.debug("Advertisement url = " + sb.toString());
@@ -134,7 +131,7 @@ public class BuildImageTag extends BodyTagSupport {
 						+ "\" align=\"absmiddle\">");
 			} else {
 				sb.append("<img src=\"" + rootContext.trim() + seperator
-						+ "images" + seperator + "no_picture.gif"
+						+ "images" + seperator + "" + name_of_avatar + ""
 						+ "\" border=\"0\" width=\"150\" height=\"150\" align=\"absmiddle\">");
 				
 			}
@@ -165,7 +162,7 @@ public class BuildImageTag extends BodyTagSupport {
 						+ "\" align=\"absmiddle\">");
 			} else {
 				sb.append("<img src=\"" + rootContext.trim() + seperator
-						+ "images" + seperator + "no_picture.gif"
+						+ "images" + seperator + "" + name_of_avatar + ""
 						+ "\" border=\"0\" width=\"150\" height=\"150\" align=\"absmiddle\">");
 				
 			}

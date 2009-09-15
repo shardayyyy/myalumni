@@ -87,6 +87,7 @@ public interface BaseConstants {
   public final static String MARRIED_NAME = "marriageName";
   public final static String MAIDEN_NAME = "maidenName";
   public final static String NICK_NAME = "nickName";
+  public final static String FULL_NAME = "fullName";
   public final static String AVATAR = "avatar";
   public final static String USERNAME = "memberUserName";
   public final static String EMAIL = "email";
@@ -298,5 +299,7 @@ public interface BaseConstants {
 	
 	// AJAX pages
     public static final String FWD_AJAX_JSP = "/jsp/common/resultList.jsp";
-   
+    public static final String FWD_AJAX_JSP_OBJECT = "/jsp/common/resultListObjects.jsp";
+    public static final String AJAX_FORMAT_STRING = "str";
+    public static final String AJAX_FORMAT_OBJECT = "obj";
 }
