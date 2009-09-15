@@ -60,23 +60,6 @@ import org.joda.time.DateTime;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-/**
- * <p>
- * Title: Federal government College System (FeGoCoId System)
- * </p>
- * <p>
- * Description: FeGoCoId System
- * </p>
- * <p>
- * Copyright: Copyright (c) 2004
- * </p>
- * <p>
- * Company: Naijatek Solutions
- * </p>
- * 
- * @author Folashade Adeyosoye (shardayyy@naijatek.com)
- * @version 1.0
- */
 public class BirthdayListTag extends BodyTagSupport {
 
 	private static Log logger = LogFactory.getLog(BirthdayListTag.class);

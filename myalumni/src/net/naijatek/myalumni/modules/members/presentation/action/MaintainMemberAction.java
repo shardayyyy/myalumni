@@ -85,6 +85,7 @@ import org.apache.struts.action.ActionMessages;
 import org.apache.struts.upload.FormFile;
 
 
+
 public class MaintainMemberAction extends MyAlumniDispatchAction{
 
     private IMemberService memService;
@@ -126,6 +127,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
         MemberForm memForm = (MemberForm)form;
         String searchCriteria = memForm.getSearchCriteria();
         String searchWord = ""; 
+        String ajaxFormat = memForm.getAjaxFormat();
 
         
     	if(memForm.getApproach() != null){
@@ -141,13 +143,23 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
     		} 
     		else if (searchCriteria.equals(BaseConstants.NICK_NAME)){
     			searchWord = memForm.getNickName();
-    		}     		
+    		}   
+    		else if (searchCriteria.equals(BaseConstants.FULL_NAME)){
+    			searchWord = memForm.getMessageToUserName();
+    		}      		
+    		
+    		if (ajaxFormat.equals(BaseConstants.AJAX_FORMAT_STRING)){
+    			List<String> result = memService.genericAjaxSearch(searchWord, searchCriteria);
+    			request.setAttribute("result", result);
+    			request.getRequestDispatcher(BaseConstants.FWD_AJAX_JSP).forward(request, response);
+    		}
+    		else if (ajaxFormat.equals(BaseConstants.AJAX_FORMAT_OBJECT)){
+    			List<MemberVO> result = memService.genericAjaxSearchObjects(searchWord, searchCriteria);
+    			request.setAttribute("result", result);
+    			request.getRequestDispatcher(BaseConstants.FWD_AJAX_JSP_OBJECT).forward(request, response);
+    		}
     		
     		
-    		List<String> result = memService.genericAjaxSearch(searchWord, searchCriteria);
-    		request.setAttribute("result", result);
-    		
-    		request.getRequestDispatcher(BaseConstants.FWD_AJAX_JSP).forward(request, response);
     		return null;
        	}
 
@@ -225,7 +237,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
       ActionMessages errors = new ActionMessages();
       SystemConfigVO sysConfigVO = sysConfigSerivce.getSystemConfig();
       
-      try{
+      try{    	     	  
         MemberForm memberForm = (MemberForm) form;
         MemberVO memberVO = new MemberVO();
         BeanUtils.copyProperties(memberVO, memberForm);

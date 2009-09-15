@@ -10,7 +10,8 @@
 <html:form action="/admin/setupIntialization">
         <html:hidden property="action" value="setupIntialization"/>
 
-      <table width="75%" border="0" cellpadding="0" cellspacing="0" align="center">
+
+      <table border="0" cellpadding="0" cellspacing="0" align="center">
         <tbody>
           <tr>
             <td colspan="2" class="adminTableTrim"><html:img page="/images/spacer.gif" height="1" width="1"/></td>
@@ -77,7 +78,7 @@
       </table>
       
       <p>&nbsp;</p>
-<table width="75%" border="0" cellspacing="0" cellpadding="0" align="center">
+<table border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>

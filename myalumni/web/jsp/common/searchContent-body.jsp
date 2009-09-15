@@ -6,26 +6,28 @@
 
 <c:url var="prototype" value="/js/prototype/prototype.js" scope="page"/>
 <c:url var="scriptaculous" value="/js/prototype/scriptaculous.js" scope="page"/>
+<c:url var="autocomplete" value="/js/prototype/AutoComplete.js" scope="page"/>
 
 <script type="text/javascript" src='<c:out value="${prototype}"/>'></script>
 <script type="text/javascript" src='<c:out value="${scriptaculous}"/>'></script>
+<script type="text/javascript" src='<c:out value="${autocomplete}"/>'></script>
 
 <script type="text/javascript">
 window.onload = function(){
 		
-		displayOptions(document.memberForm.searchCategory);
+	displayOptions(document.memberForm.searchCategory);
 		
 	var firstNameCompleter = new Ajax.Autocompleter('firstName', 'suggestionBoxFirst',"/myalumni/action/member/genericAjaxSearch?", {	
-				indicator: 'indicator',	parameters: "action=genericAjaxSearch&approach=ajax&searchCriteria=firstName"})
+				indicator: 'indicator',	parameters: "action=genericAjaxSearch&ajaxFormat=str&approach=ajax&searchCriteria=firstName"})
 				
   	var lastNameCompleter = new Ajax.Autocompleter('lastName', 'suggestionBoxLast',"/myalumni/action/member/genericAjaxSearch?", {	
-				indicator: 'indicator',	parameters: "action=genericAjaxSearch&approach=ajax&searchCriteria=lastName"})
+				indicator: 'indicator',	parameters: "action=genericAjaxSearch&ajaxFormat=str&approach=ajax&searchCriteria=lastName"})
 
   	var maidenNameCompleter = new Ajax.Autocompleter('maidenName', 'suggestionBoxMaiden',"/myalumni/action/member/genericAjaxSearch?", {	
-				indicator: 'indicator',	parameters: "action=genericAjaxSearch&approach=ajax&searchCriteria=maidenName"})
+				indicator: 'indicator',	parameters: "action=genericAjaxSearch&ajaxFormat=str&approach=ajax&searchCriteria=maidenName"})
 				
   	var nickNameCompleter = new Ajax.Autocompleter('nickName', 'suggestionBoxNick',"/myalumni/action/member/genericAjaxSearch?", {	
-				indicator: 'indicator',	parameters: "action=genericAjaxSearch&approach=ajax&searchCriteria=nickName"})		
+				indicator: 'indicator',	parameters: "action=genericAjaxSearch&ajaxFormat=str&approach=ajax&searchCriteria=nickName"})		
 						
 	}	
 </script>
@@ -102,16 +104,16 @@ window.onload = function()
       <td align="right" class="fieldlabel"><bean:message key="label.firstname"/>:</td>
       <td>
             <html:text property="firstName" styleId="firstName" size="30" maxlength="30" titleKey="label.firstname"/>                                   
-            <div id="suggestionBoxFirst" style="display:none;border:1px solid black;background-color:white;"></div> 
-            <span id="indicator" style="display: none"><html:img page="/images/flower.gif" altKey="label.admin.member.working"/></span>                
+            <div class="autocomplete" id="suggestionBoxFirst" style="display:none;border:1px solid black;background-color:white;"></div> 
+            <span class="autocomplete" id="indicator" style="display: none"><html:img page="/images/flower.gif" altKey="label.admin.member.working"/></span>                
       </td>
     </tr>
     <tr class="portlet-section-body">
       <td align="right" class="fieldlabel"><bean:message key="label.lastname"/>:</td>
       <td>
                 <html:text property="lastName" styleId="lastName"  size="30" maxlength="30" titleKey="label.lastname"/>
-                <div id="suggestionBoxLast" style="display:none;border:1px solid black;background-color:white;"></div>   
-               <span id="indicator" style="display: none"><html:img page="/images/flower.gif" altKey="label.admin.member.working"/></span>    
+                <div class="autocomplete" id="suggestionBoxLast" style="display:none;border:1px solid black;background-color:white;"></div>   
+               <span class="autocomplete" id="indicator" style="display: none"><html:img page="/images/flower.gif" altKey="label.admin.member.working"/></span>    
                 
       </td>
     </tr>
@@ -119,16 +121,16 @@ window.onload = function()
       <td align="right" class="fieldlabel"><bean:message key="label.maidenname"/>:</td>
       <td>
                 <html:text property="maidenName" styleId="maidenName" size="30" maxlength="30" titleKey="label.maidenname"/>
-                <div id="suggestionBoxMaiden" style="display:none;border:1px solid black;background-color:white;"></div>   
-               <span id="indicator" style="display: none"><html:img page="/images/flower.gif" altKey="label.admin.member.working"/></span>    
+                <div class="autocomplete" id="suggestionBoxMaiden" style="display:none;border:1px solid black;background-color:white;"></div>   
+               <span class="autocomplete" id="indicator" style="display: none"><html:img page="/images/flower.gif" altKey="label.admin.member.working"/></span>    
       </td>
     </tr>
     <tr class="portlet-section-body">
       <td align="right" class="fieldlabel"><bean:message key="label.nickname"/>:</td>
       <td>
                 <html:text property="nickName" styleId="nickName" size="30" maxlength="30" titleKey="label.nickname"/>
-                <div id="suggestionBoxNick" style="display:none;border:1px solid black;background-color:white;"></div>       
-               <span id="indicator" style="display: none"><html:img page="/images/flower.gif" altKey="label.admin.member.working"/></span>    
+                <div class="autocomplete" id="suggestionBoxNick" style="display:none;border:1px solid black;background-color:white;"></div>       
+               <span class="autocomplete" id="indicator" style="display: none"><html:img page="/images/flower.gif" altKey="label.admin.member.working"/></span>    
                 
       </td>
     </tr>

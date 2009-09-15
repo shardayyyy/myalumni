@@ -284,6 +284,13 @@
       <forward name="failure" path="/admin/sysError.jsp" />
     </action>
 
+    <action input="/jsp/myalumni/mailbox.jsp" name="privateMessageForm" path="/member/prepareComposePrivateMessage" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/myalumni/contactMember.jsp" />
+      <forward name="failure" path="/jsp/sysError.jsp" />
+    </action>
+
+
 
     <!-- start JCAPTCHA for EMAIL WEBMASTER -->
       <action input="/jsp/emailWebmaster.jsp" path="/member/emailWebmaster" name="privateMessageForm" parameter="action" scope="request"

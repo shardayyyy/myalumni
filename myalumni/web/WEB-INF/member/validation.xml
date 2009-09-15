@@ -370,7 +370,13 @@
                 </field>
         </form>
         
-
+<!-- ==========  prepare Compose Message ===================== -->
+        <form name="/member/prepareComposePrivateMessage">
+                <field property="messageToUserName" depends="required">
+                        <arg0 key="label.membername"/>
+                </field>
+        </form>
+        
 
 <!-- ========== EMAIL WEBMASTER ===================== -->
         <form name="/member/jcaptchaEmailWebmaster"> <!-- emailWebmaster-->

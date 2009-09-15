@@ -54,6 +54,7 @@ public class MemberForm extends MyAlumniBaseForm{
 	
 	private String memberId;
 	private String memberUserName;
+	private String messageToUserName;
 	private String memberTempUserName;
 	private String memberStatus;
 	private String oldMemberPassword;
@@ -110,6 +111,7 @@ public class MemberForm extends MyAlumniBaseForm{
 	private String partialNameSearch = BaseConstants.BOOLEAN_NO;
 	private String searchCategory;
 	private String searchCriteria;
+	private String ajaxFormat;
 	private FormFile avatarUpload;
 	private String avatarUploadOverwrite;
 	private String adminAction;
@@ -508,6 +510,18 @@ public class MemberForm extends MyAlumniBaseForm{
 	}
 	public void setSearchCriteria(String searchCriteria) {
 		this.searchCriteria = searchCriteria;
+	}
+	public String getMessageToUserName() {
+		return messageToUserName;
+	}
+	public void setMessageToUserName(String messageToUserName) {
+		this.messageToUserName = messageToUserName;
+	}
+	public String getAjaxFormat() {
+		return ajaxFormat;
+	}
+	public void setAjaxFormat(String ajaxFormat) {
+		this.ajaxFormat = ajaxFormat;
 	}
 
 }

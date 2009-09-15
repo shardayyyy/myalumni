@@ -219,39 +219,6 @@ public class MemberServiceImpl implements IMemberService {
     		throw new DuplicateMemberException("myalumni.errorcode.00001");  //User Already exists
     	}
     	
-    	
-    	/*
-        final String memberId = memberVO.getMemberId();
-        // Messengers
-        List<MessengerVO> messengers = new ArrayList<MessengerVO>();
-        MessengerVO mesgerVO = null;
-        for(String str : memberVO.getLstSelectedIMs()){
-        	mesgerVO = new MessengerVO();
-        	mesgerVO.setLastModifiedBy(memberVO.getMemberUserName());
-        	mesgerVO.setMemberId(memberId);
-        	mesgerVO.setLookupCodeId(str);
-        	messengers.add(mesgerVO);
-        }
-        messengerService.saveAll(messengers, memberId);
-        
-        // Message Folders
-        mfService.createMemberMessageFolders(memberId, SystemConfigConstants.MESSAGE_FOLDERS, memberVO.getMemberUserName());        
-        
-        StringBuffer message = new StringBuffer();
-        message.append("Thank you " + StringUtil.capitalize(memberVO.getFirstName()) + " " + StringUtil.capitalize(memberVO.getLastName())  + " for registering and Welcome to " + sysConfigVO.getOrganizationName()  + "'s owns space in cyberspace.");
-        message.append("Your account should be active within the next 24 hours. So please try logging into the system as soon as you get your activation confirmation email.");
-        setSessionObject(request, BaseConstants.MESSAGE,  message.toString());
-
-        // send email to registrant
-        try {
-        	SendMailUtil.sendWelcomeNotice(memberVO.getEmail(), memberVO.getMemberUserName(),sysConfigVO);
-        }
-        catch (Exception ex) {
-          logger.error(ex.getMessage());
-          errors.add(BaseConstants.FATAL_KEY, new ActionMessage("error.mailserver"));
-          saveMessages(request, errors);
-          return mapping.findForward(BaseConstants.FWD_SUCCESS);
-        }*/
             	
     }
     
@@ -698,6 +665,10 @@ public class MemberServiceImpl implements IMemberService {
     public List<String> genericAjaxSearch(String searchWord, String searchCriteria){
     	return memberDao.genericAjaxSearch(searchWord, searchCriteria);    	
     }
+    
+    public List<MemberVO> genericAjaxSearchObjects(String searchWord, String searchCriteria){
+    	return memberDao.genericAjaxSearchObjects(searchWord, searchCriteria);    	
+    }    
 
     //******************************************
     // IPHONE MEMBER SERVICE

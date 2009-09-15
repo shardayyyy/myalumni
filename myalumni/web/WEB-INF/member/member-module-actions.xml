@@ -327,6 +327,14 @@
         <constructor-arg index="2" ref="systemConfigService"/>
     </bean>
 
+    <bean name="/member/prepareComposePrivateMessage" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainPrivateMessageAction">
+        <constructor-arg index="0" ref="memberService"/>
+        <constructor-arg index="1" ref="pmService"/>
+        <constructor-arg index="2" ref="systemConfigService"/>
+    </bean>
+    
+    
+    
     <bean name="/member/emailWebmaster" class="com.octo.captcha.module.struts.VerifyCaptchaChallengeAction"/>
     
  

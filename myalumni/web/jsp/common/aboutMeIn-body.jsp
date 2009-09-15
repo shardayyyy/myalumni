@@ -54,7 +54,7 @@
               <td>
                 <%--     GENDER    --%>
                 <html:select property="gender" titleKey="label.gender">
-                        <option value="" selected>-Gender-</option>
+                        <option value="" selected>--<bean:message key="label.gender"/>--</option>
                         <html:options collection="luGender" property="value" labelProperty="label"/>
                 </html:select>
               </td>

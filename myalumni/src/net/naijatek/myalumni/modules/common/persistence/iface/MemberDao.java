@@ -49,16 +49,6 @@ import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
 
 
-
-/**
- * <p>Title: Federal government College System (FeGoCoId System)</p>
- * <p>Description: FeGoCoId System</p>
- * <p>Copyright: Copyright (c) 2004</p>
- * <p>Company: Naijatek Solutions</p>
- * @author Folashade Adeyosoye (shardayyy@naijatek.com)
- * @version 1.0
- */
-
 public interface MemberDao  extends BaseCrudDao<MemberVO, String>{
 
 
@@ -186,6 +176,9 @@ public interface MemberDao  extends BaseCrudDao<MemberVO, String>{
   public List<MemberVO> getEmailStartingWith(String alpha, String isAdmin);
   
   public List<String> genericAjaxSearch(String searchWord, String searchCriteria);
+  
+  public List<MemberVO> genericAjaxSearchObjects(String searchWord, String searchCriteria);
+  
   
   
   //******************************************

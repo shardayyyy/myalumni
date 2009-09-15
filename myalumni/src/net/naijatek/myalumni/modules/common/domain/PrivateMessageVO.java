@@ -67,6 +67,7 @@ public class PrivateMessageVO  extends MyAlumniBaseVO{
 	private String messageStatus;
 	private String copyMe ;
 	private String toWebmaster;
+	private String messageToUserName;
 	
 	// Non Database Support Attributes
 	private String privMsgsAction;
@@ -295,6 +296,16 @@ public String getToWebmaster() {
 
 public void setToWebmaster(String toWebmaster) {
 	this.toWebmaster = toWebmaster;
+}
+
+
+public String getMessageToUserName() {
+	return messageToUserName;
+}
+
+
+public void setMessageToUserName(String messageToUserName) {
+	this.messageToUserName = messageToUserName;
 }
  
   

@@ -60,6 +60,8 @@ public class PrivateMessageForm  extends MyAlumniBaseForm{
 	private String messageFromUserId;
 	private String messageToUserId;
 	
+	private String messageToUserName;
+	
 	// Non Database Support Attributes
 	private String privMsgsAction;
 	private String privAdminDelete;
@@ -232,6 +234,12 @@ public class PrivateMessageForm  extends MyAlumniBaseForm{
 	}
 	public void setMessageToUserId(String messageToUserId) {
 		this.messageToUserId = messageToUserId;
+	}
+	public String getMessageToUserName() {
+		return messageToUserName;
+	}
+	public void setMessageToUserName(String messageToUserName) {
+		this.messageToUserName = messageToUserName;
 	}
 	
 	

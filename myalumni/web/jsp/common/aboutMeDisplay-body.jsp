@@ -63,7 +63,8 @@
            <tr class="portlet-section-body">
              <td class="fieldlabel"><bean:message key="label.birthday"/>:</td>
              <td>
-	             <fmt:formatDate value="${profile.dob}" type="date" dateStyle="long"/>
+	             <%--<fmt:formatDate value="${profile.dob}" type="date" dateStyle="long"/>--%>
+	             <fmt:formatDate value="${profile.dob}" pattern="MMM d"/>
 			</td>
            </tr>
            <tr class="portlet-section-body">

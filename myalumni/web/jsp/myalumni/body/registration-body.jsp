@@ -14,16 +14,16 @@
           <td width="50%" valign="top">
                       <%--  About Me   --%>
                       <tiles:insert name="/jsp/common/aboutMeIn-body.jsp"/>
+
+	    	          <%--  Your Location  --%>
+    	    	      <tiles:insert name="/jsp/common/yourLocationIn-body.jsp"/>                      
                       <p>&nbsp;</p>
           </td>
           <td width="50%" valign="top">
                   <%--  Instant Messengers  --%>
                 <tiles:insert name="/jsp/common/instantMessengersIn-body.jsp"/>
 
-                <%--  Your Location  --%>
-                <tiles:insert name="/jsp/common/yourLocationIn-body.jsp"/>
-
-                <%--  My FeGoCoId Account  --%>
+                <%--  My Account  --%>
                 <tiles:insert name="/jsp/common/myAccountIn-body.jsp"/>
                 
                 <%--  Register button  --%>
