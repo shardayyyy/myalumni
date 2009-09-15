@@ -41,19 +41,49 @@ body {
 }
 */
 
+html,
+body {
+	height: 100%;
+}
+
+body,
+td,
+textarea,
+input,
 select {
-        font-size: 12px;
+	font-family: "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif;
+	font-size: 13px;
+}
+
+body,
+textarea {
+	line-height: 1.4em;
+}
+
+input,
+select {
+	line-height: 1em;
+}
+
+p {
+	margin: 1em 0;
+}
+
+
+
+select {
+        /*font-size: 12px;*/
         border-width: 2px;
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        /*font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;*/
 }
 
 input {
-        font-size: 12px;
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        /*font-size: 12px;*/
+        /*font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;*/
 }
 
 input[type=submit] {
-    font-family: 'Verdana', 'Geneva', sans-serif;
+    /*font-family: 'Verdana', 'Geneva', sans-serif;*/
     background-image:  url("../../images/button/green_button_bg.gif");
     background-repeat: repeat-x;
     background-position: left top;
@@ -61,16 +91,17 @@ input[type=submit] {
     border-bottom:1px solid #5C5D61;
     border-top:none;
     border-left:none;
-    font-size: 80%;
+/*    font-size: 80%;*/
+    font-size: 13px;
     color:#FFFFFF;
-    padding:1px 3px 1px 3px;
+    padding:7px 3px 7px 3px;
     cursor:pointer;
     font-weight:bold;
     display:inline;
 }
 
 input[type=reset] {
-    font-family: 'Verdana', 'Geneva', sans-serif;
+    /*font-family: 'Verdana', 'Geneva', sans-serif;*/
     background-image:  url("../../images/button/green_button_bg.gif");
     background-repeat: repeat-x;
     background-position: left top;
@@ -78,16 +109,17 @@ input[type=reset] {
     border-bottom:1px solid #5C5D61;
     border-top:none;
     border-left:none;
-    font-size: 80%;
+/*    font-size: 80%;*/
+    font-size: 13px;
     color:#FFFFFF;
-    padding:1px 3px 1px 3px;
+    padding:7px 3px 7px 3px;
     cursor:pointer;
     font-weight:bold;
     display:inline;
 }
 
 input[type=cancel] {
-    font-family: 'Verdana', 'Geneva', sans-serif;
+    /*font-family: 'Verdana', 'Geneva', sans-serif;*/
     background-image:  url("../../images/button/green_button_bg.gif");
     background-repeat: repeat-x;
     background-position: left top;
@@ -95,16 +127,17 @@ input[type=cancel] {
     border-bottom:1px solid #5C5D61;
     border-top:none;
     border-left:none;
-    font-size: 80%;
+/*    font-size: 80%;*/
+    font-size: 13px;
     color:#FFFFFF;
-    padding:1px 3px 1px 3px;
+    padding:7px 3px 7px 3px;
     cursor:pointer;
     font-weight:bold;
     display:inline;
 }
 
 input[type=button] {
-    font-family: 'Verdana', 'Geneva', sans-serif;
+    /*font-family: 'Verdana', 'Geneva', sans-serif;*/
     background-image:  url("../../images/button/green_button_bg.gif");
     background-repeat: repeat-x;
     background-position: left top;
@@ -112,24 +145,25 @@ input[type=button] {
     border-bottom:1px solid #5C5D61;
     border-top:none;
     border-left:none;
-    font-size: 80%;
+/*    font-size: 80%;*/
+    font-size: 13px;
     color:#FFFFFF;
-    padding:1px 3px 1px 3px;
+    padding:7px 3px 7px 3px;
     cursor:pointer;
     font-weight:bold;
     display:inline;
 }
 
 textarea {
-        font-size: 12px;
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        /*font-size: 12px;*/
+        /*font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;*/
 }
 
 P,TABLE,blockquote {
         /*color: #000000;*/
         text-decoration: none;
-        font-size: 12px;
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        /*font-size: 12px;*/
+        /*font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;*/
 }
 
 A {
@@ -237,8 +271,8 @@ A:hover {
 }
 
 .fieldlabel {
-        font-size: 11px;
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        /*font-size: 11px;
+        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;*/
         font-weight: bold;
 }
 
@@ -247,16 +281,16 @@ A:hover {
         font-style: normal;
         font-weight: bold;
         color: #000000;
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        /*font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;*/
 }
 
 .redhighlight {
-        font-size: 11px;
+        /*font-size: 11px;*/
         font-style: normal;
         font-weight: bold;
         padding-left:5px;
         color: #CC0000;
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        /*font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;*/
 }
 
 .redhighlightBig {
@@ -265,70 +299,71 @@ A:hover {
         font-weight: bold;
         padding-left:5px;
         color: #CC0000;
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        /*font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;*/
 }
 .graysmall {
         font-style: normal;
         font-size: 10px;
         color: #999999;
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        /*font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;*/
 }
 
 .blacksmall {
         font-style: normal;
         font-size: 10px;
         color: #000000;
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        /*font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;*/
 }
 
 .redsmall {
         font-style: normal;
-        font-size: 11px;
+        /*font-size: 11px;*/
         color: #FF0000;
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        /*font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;*/
 }
 .greensmall {
         font-style: normal;
-        font-size: 11px;
+        /*font-size: 11px;*/
         color: #00CC00;
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        /*font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;*/
 }
 
 .memberUnregistered {
-        font-size: 10px;
+        /*font-size: 10px;*/
         font-style: normal;
         color: #000000;
         background-color: red;
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        /*font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;*/
 }
 
 .memberInactive {
-        font-size: 10px;
+        /*font-size: 10px;*/
         font-style: normal;
         color: #000000;
         background-color: yellow;
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        /*font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;*/
 }
 
 .memberRegistered {
-        font-size: 10px;
+       /* font-size: 10px;*/
         font-style: normal;
         color: #000000;
         background-color: green;
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        /*font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;*/
 }
 
 .nickname {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 10px;
+        /*font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 10px;*/
         font-style: italic;
         color: #FF0000;
         text-decoration: none
 }
 
 .maiden {
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
-        font-size: 10px; font-style: italic;
+        /*font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        font-size: 10px;*/
+        font-style: italic;
         color: #FF00FF;
         text-decoration: none
 }
@@ -337,40 +372,40 @@ A:hover {
         font-size: 11px;
         font-style: normal;
         color: #000000;
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        /*font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;*/
 }
 
 .greenTitle{
         color: #228B22;
-        font-family: Tahoma;
+        /*font-family: Tahoma;*/
         font-weight: bold;
         font-size: 18px;
 }
 
 .redTitle{
         color: #FF0000;
-        font-family: Tahoma;
+        /*font-family: Tahoma;*/
         font-weight: bold;
         font-size: 18px;
 }
 
 .greyTitle{
         color: #999999;
-        font-family: Tahoma;
+        /*font-family: Tahoma;*/
         font-weight: bold;
         font-size: 18px;
 }
 
 .goldTitle {
         color: #D1A449;
-        font-family: "lucida grande", tahoma, verdana, arial, sans-serif; 
+        /*font-family: "lucida grande", tahoma, verdana, arial, sans-serif; */
         font-weight: bold;
         font-size: 14px;
 }
 
 td.quote {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    /*font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;*/
     color: #444444;
     line-height: 125%;
     background-color: #EEE;
@@ -385,8 +420,8 @@ td.quote {
 }
 
 .album_fieldlabel {
-        font-size: 12px;
-        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;
+        /*font-size: 12px;
+        font-family: Tahoma, Verdana, Helvetica, Arial, Sans-serif;*/
 }
 .pager {
     color: #000000;
@@ -406,8 +441,8 @@ td.quote {
 }
 .rnav {
     padding: 0;
-    font-family: Verdana, Arial, Helvetica, Sans-serif;
-    font-size: 12px;
+    /*font-family: Verdana, Arial, Helvetica, Sans-serif;
+    font-size: 12px;*/
     color:#333;
     background-color:#fff;
     font-weight:bold;
@@ -453,21 +488,21 @@ background: #FFFFFF;
 
 .systemMessages
 {
-font-family: Verdana; /* Font Face */
-font-size: 9pt; /* Font Size */
-color: rgb(0,132,0); /* Font Color */
-font-weight: Bold; /* Font Style */
-font-style: normal; /* FontStyle */
-text-decoration: none; /* Font Style */
-background-color: #FFFFFF; /* Background color */
-text-align: Center; /* Align Text */
+		/*font-family: Verdana; /* Font Face */
+		/*font-size: 9pt; /* Font Size */
+		color: rgb(0,132,0); /* Font Color */
+		font-weight: Bold; /* Font Style */
+		font-style: normal; /* FontStyle */
+		text-decoration: none; /* Font Style */
+		background-color: #FFFFFF; /* Background color */
+		text-align: Center; /* Align Text */
 }
 
 
 /* --  START -- ERROR MEESAGE COLOR CODES -- */
 .infoMessage {
-        font-family: Verdana; /* Font Face */
-        font-size: 9pt; /* Font Size */
+        /*font-family: Verdana; /* Font Face */
+        /*font-size: 9pt; /* Font Size */
         color: rgb(0, 153, 0); /* Font Color */
         font-weight: Bold; /* Font Style */
         font-style: normal; /* FontStyle */
@@ -476,8 +511,8 @@ text-align: Center; /* Align Text */
 }
 
 .warnMessage {
-        font-family: Verdana; /* Font Face */
-        font-size: 9pt; /* Font Size */
+        /*font-family: Verdana; /* Font Face */
+        /*font-size: 9pt; /* Font Size */
         color: rgb(255, 153, 0); /* Font Color */
         font-weight: Bold; /* Font Style */
         font-style: normal; /* FontStyle */
@@ -486,8 +521,8 @@ text-align: Center; /* Align Text */
 }
 
 .errorMessage {
-        font-family: Verdana; /* Font Face */
-        font-size: 9pt; /* Font Size */
+        /*font-family: Verdana; /*  Font Face */
+        /*font-size: 9pt; /* Font Size */
         color: #C90D4F; /* Font Color */
         font-weight: Bold; /* Font Style */
         font-style: normal; /* FontStyle */
@@ -496,8 +531,8 @@ text-align: Center; /* Align Text */
 }
 
 .fatalMessage {
-        font-family: Verdana; /* Font Face */
-        font-size: 9pt; /* Font Size */
+        /*font-family: Verdana; /* Font Face */
+        /*font-size: 9pt; /* Font Size */
         color: #ff0000; /* Font Color */
         font-weight: Bold; /* Font Style */
         font-style: normal; /* FontStyle */
@@ -510,31 +545,31 @@ text-align: Center; /* Align Text */
 
 .Bold {
         font-weight: bold;
-        font-size: 9pt;
-        font-family: Verdana, Geneva, Arial, san-serif;
+        /*font-size: 9pt;
+        font-family: Verdana, Geneva, Arial, san-serif;*/
 }
 
 .Smallbold {
-        font-size: 8pt;
+        /*font-size: 8pt;*/
         font-style: normal;
-        font-family: "lucida grande", tahoma, verdana, arial, sans-serif; 
+        /*font-family: "lucida grande", tahoma, verdana, arial, sans-serif; */
         font-weight: bold;
 }
 
 .activeStatus {
-        font-size: 11px;
+        /*font-size: 11px;*/
         font-style: normal;
         font-weight: bold;
         color: #228B22;
-        font-family: "lucida grande", tahoma, verdana, arial, sans-serif; 
+        /*font-family: "lucida grande", tahoma, verdana, arial, sans-serif; */
 }
 
 .inactiveStatus {
-        font-size: 11px;
+        /*font-size: 11px;*/
         font-style: normal;
         font-weight: bold;
         color: #f00;
-        font-family: "lucida grande", tahoma, verdana, arial, sans-serif; 
+        /*font-family: "lucida grande", tahoma, verdana, arial, sans-serif; */
 }
 /* ------------------------- ADMIN TAB yellow------------------------------ */
         /* admin page bar */
@@ -561,3 +596,32 @@ text-align: Center; /* Align Text */
 /* -------------------------------- AJAX Suggestion ----------------------- */
 .selected { background-color: #f1f1f1; }
 #suggestionBox { display:none; border: 1px solid black; }
+
+
+
+div.autocomplete {
+  position:absolute;
+  width:250px;
+  background-color:white;
+  border:1px solid #888;
+  margin:0;
+  padding:0;
+}
+div.autocomplete ul {
+  list-style-type:none;
+  margin:0;
+  padding:0;
+}
+div.autocomplete ul li.selected { background-color: #ffb;}
+div.autocomplete ul li {
+  list-style-type:none;
+  display:block;
+  margin:0;
+  padding:2px;
+  height:32px;
+  cursor:pointer;
+}
+
+
+
+
