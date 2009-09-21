@@ -7,10 +7,14 @@
 <c:url var="prototype" value="/js/prototype/prototype.js" scope="page"/>
 <c:url var="scriptaculous" value="/js/prototype/scriptaculous.js" scope="page"/>
 <c:url var="autocomplete" value="/js/prototype/AutoComplete.js" scope="page"/>
+<c:url var="effects" value="/js/prototype/effects.js" scope="page"/>
+<c:url var="controls" value="/js/prototype/controls.js" scope="page"/>
 
 <script type="text/javascript" src='<c:out value="${prototype}"/>'></script>
 <script type="text/javascript" src='<c:out value="${scriptaculous}"/>'></script>
 <script type="text/javascript" src='<c:out value="${autocomplete}"/>'></script>
+<script type="text/javascript" src='<c:out value="${effects}"/>'></script>
+<script type="text/javascript" src='<c:out value="${controls}"/>'></script>
 
 <script type="text/javascript">
 window.onload = function(){
