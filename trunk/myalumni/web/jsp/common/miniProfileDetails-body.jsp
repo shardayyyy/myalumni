@@ -37,6 +37,12 @@
   <tr class="portlet-section-body">
     <td width="26%" align="center" valign="top">
     		<myalumni:buildImageTag imageType="avatar"><c:out value="${profile.avatar}"/></myalumni:buildImageTag>
+    		<br><br>
+<form name="form1" method="post" action="">
+  <div align="center">
+    <input class="button" class="button" name="Submit" type="submit" onClick="window.close();" value="Close Window">
+  </div>
+</form>    		
     </td>
     <td width="74%" valign="top"> <p><span class="fieldlabel"><bean:message key="label.name"/>:</span>
     	<span class="blacksmall"><c:out value="${profile.firstName}"/> <c:out value="${profile.lastName}"/></span>
@@ -181,8 +187,4 @@
   </tr>
 
 </table>
-<form name="form1" method="post" action="">
-  <div align="center">
-    <input class="button" class="button" name="Submit" type="submit" onClick="window.close();" value="Close Window">
-  </div>
-</form>
+

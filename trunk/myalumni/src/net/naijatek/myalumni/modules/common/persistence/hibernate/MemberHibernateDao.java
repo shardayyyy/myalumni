@@ -1063,22 +1063,22 @@ public class MemberHibernateDao extends BaseHibernateDao implements MemberDao {
 		StringBuffer strBuffer = new StringBuffer();
 		
 		if (searchCriteria.equals(BaseConstants.FIRST_NAME)){
-			strBuffer.append("select l.firstName from MemberVO l where lower(l.firstName) like lower('%").append(searchWord).append("%')");
+			strBuffer.append("select distinct l.firstName from MemberVO l where lower(l.firstName) like lower('%").append(searchWord).append("%')");
 		}
 		else if (searchCriteria.equals(BaseConstants.LAST_NAME)){
-			strBuffer.append("select l.lastName from MemberVO l where lower(l.lastName) like lower('%").append(searchWord).append("%')");
+			strBuffer.append("select distinct l.lastName from MemberVO l where lower(l.lastName) like lower('%").append(searchWord).append("%')");
 		} 
 		else if (searchCriteria.equals(BaseConstants.MAIDEN_NAME)){
-			strBuffer.append("select l.maidenName from MemberVO l where lower(l.maidenName) like lower('%").append(searchWord).append("%')");
+			strBuffer.append("select distinct l.maidenName from MemberVO l where lower(l.maidenName) like lower('%").append(searchWord).append("%')");
 		} 
 		else if (searchCriteria.equals(BaseConstants.NICK_NAME)){
-			strBuffer.append("select l.nickName from MemberVO l where lower(l.nickName) like lower('%").append(searchWord).append("%')");
+			strBuffer.append("select distinct l.nickName from MemberVO l where lower(l.nickName) like lower('%").append(searchWord).append("%')");
 		}
 		else if (searchCriteria.equals(BaseConstants.FULL_NAME)){
 			//strBuffer.append(" select l.nickname as name from MemberVO l where lower(l.nickName) like lower('%").append(searchWord).append("%')");
-			strBuffer.append(" select l.firstname as name from MemberVO l where lower(l.firstname) like lower('%").append(searchWord).append("%')");
-			strBuffer.append(" UNION select l.lastname as name from MemberVO l where lower(l.lastName) like lower('%").append(searchWord).append("%')");
-			strBuffer.append(" UNION select l.maidenname as name from MemberVO l where lower(l.maidenName) like lower('%").append(searchWord).append("%')");			
+			strBuffer.append(" select distinct l.firstname as name from MemberVO l where lower(l.firstname) like lower('%").append(searchWord).append("%')");
+			strBuffer.append(" UNION select distinct l.lastname as name from MemberVO l where lower(l.lastName) like lower('%").append(searchWord).append("%')");
+			strBuffer.append(" UNION select distinct l.maidenname as name from MemberVO l where lower(l.maidenName) like lower('%").append(searchWord).append("%')");			
 		} 			
 		
 		result = getSession().createQuery(strBuffer.toString()).setMaxResults(20).list();						
