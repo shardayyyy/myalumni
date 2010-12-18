@@ -42,11 +42,11 @@
                       <td align="right" class="Smallbold"><bean:message key="label.reminisce.reminisceyears"/>:</td>
                       <td align="center"><html:img page="/images/dot.gif" width="9" height="9"/></td>
                       <td>
-                      	<myalumni:dropdown type="luSpecific" group="CLASSYEAR" fieldName="fromYear" titleKey="label.reminisce.reminisceyears"><bean:write name="reminisceForm" property="fromYear"/></myalumni:dropdown>
+                      	<myalumni:dropdown type="luSpecific" group="CLASSYEAR" property="fromYear" titleKey="label.reminisce.reminisceyears"/>
                       	&nbsp;
                       	To 
                       	&nbsp;
-                      	<myalumni:dropdown type="luSpecific" group="CLASSYEAR" fieldName="toYear" titleKey="label.reminisce.reminisceyears"><bean:write name="reminisceForm" property="toYear"/></myalumni:dropdown>
+                      	<myalumni:dropdown type="luSpecific" group="CLASSYEAR" property="toYear" titleKey="label.reminisce.reminisceyears"/>
                       </td>
                 </tr> 
                 <tr>

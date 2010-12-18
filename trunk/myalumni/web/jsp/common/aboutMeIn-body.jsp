@@ -21,7 +21,7 @@
               <td width="22%" class="fieldlabel"><bean:message key="label.title"/>:<font color="#cc0000">*</font></td>
               <td width="78%">
               <%--     TITLE --%>
-                <myalumni:dropdown type="luGeneric" group="TIT" fieldName="titleId" titleKey="label.title"><bean:write name="memberForm" property="titleId"/></myalumni:dropdown>
+                <myalumni:dropdown type="luGeneric" group="TIT" property="titleId" titleKey="label.title"/>
 
               </td>
             </tr>
@@ -108,11 +108,11 @@
               <td class="fieldlabel"><bean:message key="label.yearsatschool"/>:<font color="#cc0000">*</font></td>
               <td>
                 <%--     YEARS IN    --%>
-      				<myalumni:dropdown type="luSpecific" group="YEARIN" fieldName="yearIn" titleKey="label.yearin"><bean:write name="memberForm" property="yearIn"/></myalumni:dropdown>
+      				<myalumni:dropdown type="luSpecific" group="YEARIN" property="yearIn" titleKey="label.yearin"/>
 
       TO
                 <%--     YEARS OUT    --%>
-      				<myalumni:dropdown type="luSpecific" group="YEAROUT" fieldName="yearOut" titleKey="label.yearout"><bean:write name="memberForm" property="yearOut"/></myalumni:dropdown>
+      				<myalumni:dropdown type="luSpecific" group="YEAROUT" property="yearOut" titleKey="label.yearout"/>
 
                 </td>
             </tr>
@@ -121,7 +121,7 @@
             <tr class="portlet-section-body">
               <td class="fieldlabel"><bean:message key="label.dormitory"/>:<font color="#cc0000">*</font> </td>
               <td>    
-				<myalumni:dropdown type="luGeneric" group="DOM" fieldName="dormitoryId" titleKey="label.dormitory"><bean:write name="memberForm" property="dormitoryId"/></myalumni:dropdown>
+				<myalumni:dropdown type="luGeneric" group="DOM" property="dormitoryId" titleKey="label.dormitory"/>
 
               </td>
             </tr>
@@ -131,7 +131,7 @@
               <td>
 
               <%--     CAREER --%>
-                <myalumni:dropdown type="luGeneric" group="CAR" fieldName="careerId" titleKey="label.career"><bean:write name="memberForm" property="careerId"/></myalumni:dropdown>
+                <myalumni:dropdown type="luGeneric" group="CAR" property="careerId" titleKey="label.career"/>
 
               </td>
             </tr>

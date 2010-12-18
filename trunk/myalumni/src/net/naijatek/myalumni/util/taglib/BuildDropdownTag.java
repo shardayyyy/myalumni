@@ -45,10 +45,9 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.BodyContent;
-import javax.servlet.jsp.tagext.BodyTagSupport;
 
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
+import net.naijatek.myalumni.modules.common.domain.ValueLabelItem;
 import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
 import net.naijatek.myalumni.modules.common.service.IMemberService;
 import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
@@ -58,7 +57,8 @@ import net.naijatek.myalumni.util.utilities.AppProp;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
+import org.apache.struts.taglib.TagUtils;
+import org.apache.struts.taglib.html.BaseInputTag;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -66,14 +66,17 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  
 
 
-public class BuildDropdownTag extends BodyTagSupport {
-    private String fieldName = null;
+@SuppressWarnings("serial")
+public class BuildDropdownTag extends BaseInputTag {
     private String group = null;
-    private String objectValue = null;
-    private String onChange = null;
     private String type = null;
+    private boolean multiple = false;
+    private String isRequired = null;
+    private String data = null;
+    private String size = null;
     private String firstOptionBlank = null;
-    private String titleKey = null;
+    
+    
     private IXlatService xlatService;
     private IMemberService memberService;
     private ISystemConfigService systemConfigService;
@@ -91,23 +94,6 @@ public class BuildDropdownTag extends BodyTagSupport {
 //--------------------------------------------------------------------------
 
     /**
-     * Set the required tag attribute <b>fieldName</b>.
-     *
-     * @param str
-     *     list
-     */
-    public final void setFieldName(String str){
-      fieldName = str;
-    }
-    /**
-     * @return String
-     */
-    public final String getFieldName(){
-      return fieldName;
-    }
-
-
-    /**
      * doStartTag
      *
      * @exception JspException
@@ -123,16 +109,19 @@ public class BuildDropdownTag extends BodyTagSupport {
         return EVAL_BODY_BUFFERED;
     }
 
-    /**
+
+
+	/**
      * Save the associated label from the body content.
      *
      * @exception JspException if a JSP exception has occurred
      * @return int
      */
     public int doAfterBody() throws JspException {
-        BodyContent bc = getBodyContent();
-        setObjectValue(bc.getString());
-      return (SKIP_BODY);
+        //BodyContent bc = getBodyContent();
+        //setObjectValue(bc.getString());
+      //return (SKIP_BODY);
+		return (SKIP_BODY);
     }
 
     /**
@@ -203,15 +192,69 @@ public class BuildDropdownTag extends BodyTagSupport {
         return sb.toString();
      }
 
+ 	@SuppressWarnings("unchecked")
+	private String renderOptions(List list) {
 
+		StringBuffer sb = new StringBuffer();
+		boolean isString = true;
+		if(list == null || list.size() == 0  || (list.size() == 1 && list.get(0) == null)) {
+			return null;
+		} else {
+			Object o = list.get(0);
+			if(o instanceof String) {
+				isString = true;
+			} else if(o instanceof ValueLabelItem) {
+				isString = false;
+			} 
+			else {
+				throw new ClassCastException("Invalid list type passed to BuildDropdownTag.renderOptions; Must be List<String> or List<ValueLabelItem>");
+			}
+		}
+		
+		
+		for (int i = 0; i < list.size(); i++) {
+			String value = null;
+			String label = null;
+
+			Object o = list.get(i);
+			if(isString) {
+				String s = (String) o;
+				if(s != null) {
+					value = s.trim();
+					label = s.trim();
+				}
+			} else {
+				ValueLabelItem item = (ValueLabelItem) o;
+				if(item != null) {
+					if(item.getItemValue() != null) {
+						value = item.getItemValue().trim();
+					}
+					if(item.getItemLabel() != null) {
+						label = item.getItemLabel().trim();
+					}
+				}
+			}
+
+			sb.append("<option value=\"");
+			sb.append(value);
+			sb.append("\"");
+			if (getData() != null && !getData().equals("") && getData().trim().equalsIgnoreCase(value)) {
+				sb.append(" selected");
+			}
+			sb.append(">");
+			sb.append(label);
+			sb.append("</option>");
+		}
+		return sb.toString();		
+	}
+ 	
     /**
      * Creates the drop down for a generic drop down
      * @return
      */
     protected String renderGenericDropDown(){
-        StringBuffer sb = new StringBuffer();
-        List luList = xlatService.getActiveGroupDetails(group);
-        XlatDetailVO detail = new XlatDetailVO();
+        return renderOptions(xlatService.getActiveGroupDetails(group));
+        /*XlatDetailVO detail = new XlatDetailVO();
 
         if (getFirstOptionBlank() != null && getFirstOptionBlank().equalsIgnoreCase(BaseConstants.BOOLEAN_YES)){
         	sb.append("<option value=\"\">-- Select --</option>");
@@ -229,9 +272,18 @@ public class BuildDropdownTag extends BodyTagSupport {
             sb.append(detail.getLabel().trim());
             sb.append("</option>");
         }
-        return sb.toString();
+        return sb.toString();*/
     }
 
+    
+	/**
+	 * Creates an empty drop down with no values
+	 * Group: luEmptyDropDown
+	 * @return
+	 */
+	protected String renderEmptyDropDown() {
+		return renderOptions(null);
+	}
     
 
 
@@ -248,7 +300,7 @@ public class BuildDropdownTag extends BodyTagSupport {
             sb.append("<option value=\"");
             sb.append(String.valueOf(i));
             sb.append("\"");
-            if (getObjectValue()!= null && getObjectValue().trim().length()>0 && getObjectValue().equals(String.valueOf(i))) {
+            if (getData()!= null && getData().trim().length()>0 && getData().equals(String.valueOf(i))) {
                sb.append(" selected");
             }
             sb.append(">");
@@ -272,7 +324,7 @@ public class BuildDropdownTag extends BodyTagSupport {
             sb.append("<option value=\"");
             sb.append(String.valueOf(i));
             sb.append("\"");
-            if (getObjectValue()!= null && getObjectValue().trim().length()>0 && getObjectValue().equals(String.valueOf(i))) {
+            if (getData()!= null && getData().trim().length()>0 && getData().equals(String.valueOf(i))) {
                sb.append(" selected");
             }
             sb.append(">");
@@ -295,7 +347,7 @@ public class BuildDropdownTag extends BodyTagSupport {
             sb.append("<option value=\"");
             sb.append(String.valueOf(i));
             sb.append("\"");
-            if (getObjectValue()!= null && getObjectValue().trim().length()>0 && getObjectValue().equals(String.valueOf(i))) {
+            if (getData()!= null && getData().trim().length()>0 && getData().equals(String.valueOf(i))) {
                sb.append(" selected");
             }
             sb.append(">");
@@ -307,9 +359,8 @@ public class BuildDropdownTag extends BodyTagSupport {
     
     
     protected String renderMemberDropDown(){
-        StringBuffer sb = new StringBuffer();
-        List luList = memberService.findAll();
-        MemberVO member = new MemberVO();
+        return renderOptions(memberService.findAll());
+        /*MemberVO member = new MemberVO();
 
 
         sb.append("<option value=\"\">-- Select --</option>");
@@ -326,45 +377,110 @@ public class BuildDropdownTag extends BodyTagSupport {
             sb.append(member.getFirstName().trim() + " - " + member.getLastName().trim());
             sb.append("</option>");
         }
-        return sb.toString();
+        return sb.toString();*/
     }
+    
+	
+	/**
+	 * Assigns any data value associated with the property name of this object to the "data" property.
+	 * @throws JspException
+	 */
+	private void lookupData() throws JspException {
+		if(this.getProperty() != null && !this.getProperty().equals(BaseConstants.NO_PROPERTY)) {
+			data = this.getValue();
+			if(data == null) {
+				data = this.lookupProperty(this.getName(), this.getProperty());
+			}
+			data = (data == null) ? "" : TagUtils.getInstance().filter(data);
+		}
+	}
+	
 
-    /**
-     * Create an appropriate select start element based on our parameters.
-     *
-     * @exception JspException
-     * @return String
-     */
-    private String renderSelectStartElement() throws JspException {
-      StringBuffer results = new StringBuffer("<select");
-      String title = null;
+	/**
+	 * Create an appropriate select start element based on our parameters.
+	 * 
+	 * @exception JspException
+	 * @return String
+	 */
+	private String renderSelectStartElement() throws JspException {
+		StringBuffer results = new StringBuffer("");
+		
+		if((getIsRequired() != null) && (getIsRequired().equalsIgnoreCase(BaseConstants.BOOLEAN_YES))){  
+			results.append("<select class=\"ddrequired\" ");		
+		}
+		else{
+			results.append("<select");
+		}
+						
+		String title = null;
+		
+		lookupData();
 
-      if (titleKey == null || titleKey.length() == 0){
-        title = titleKey;
-      }
-      else{
-    	  title = apProp.getValue(titleKey);
-      }
+		if (getTitleKey() == null || getTitleKey().length() == 0) {
+			title = getTitleKey();
+		} else {
+			title = apProp.getValue(getTitleKey());
+		}
 
-      results.append(" name=\"");
-      results.append(fieldName);
-      results.append("\"");
+		results.append(" name=\"");
+		results.append(getProperty());
+		results.append("\"");
 
-      results.append(" title=\"");
-      results.append(title);
-      results.append("\"");
+		results.append(" title=\"");
+		results.append(title);
+		results.append("\"");
 
-      if (onChange != null && onChange.length() > 0){
-          results.append(" onChange=\"");
-          results.append(onChange);
-          results.append("\"");
-      }
+		if (getOnchange() != null && getOnchange().length() > 0) {
+			results.append(" onChange=\"");
+			results.append(getOnchange());
+			results.append("\"");
+		}
+		
+		if (getStyleClass() != null && getStyleClass().length() > 0) {
+			results.append(" class=\"");
+			results.append(getStyleClass());
+			results.append("\"");
+		}
 
-      results.append(">");
+		if (getStyleId() != null && getStyleId().length() > 0) {
+			results.append(" id=\"");
+			results.append(getStyleId());
+			results.append("\"");
+		}
+		
+		if (getOnblur() != null && getOnblur().length() > 0) {
+			results.append(" onblur=\"");
+			results.append(getOnblur());
+			results.append("\"");
+		}
 
-      logger.debug("in renderSelectStartElement(), select - " + results.toString());
-      return results.toString();
-    }
+		if (this.getDisabled()) {
+			results.append(" disabled=\"disabled\"");
+		}
+
+		if (this.isMultiple()) {
+			results.append(" multiple=\"multiple\"");
+			if (size != null && size.length() > 0) {
+				int theSize = 0;
+				try {
+					theSize = Integer.parseInt(size);
+				} catch(NumberFormatException ex) {
+				}
+				if(theSize > 0) {
+					results.append(" size=\"");
+					results.append(theSize);
+					results.append("\"");
+				}
+			}
+		}		
+		
+		results.append(">");
+		
+		logger.debug("in renderSelectStartElement(), select - "
+				+ results.toString());
+		return results.toString();
+	}
+
 
 
     /**
@@ -372,12 +488,10 @@ public class BuildDropdownTag extends BodyTagSupport {
      */
     public void release() {
       super.release();
-      fieldName = null;
       group = null;
-      onChange = null;
       type = null;
-      titleKey = null;
       firstOptionBlank = null;
+	  isRequired = null;
     }
 
 
@@ -388,23 +502,7 @@ public class BuildDropdownTag extends BodyTagSupport {
     public String getGroup() {
         return group;
     }
-
-    public void setObjectValue(String objectValue) {
-        this.objectValue = objectValue;
-    }
-
-    public String getObjectValue() {
-        return objectValue;
-    }
-
-    public final void setOnChange(String onChange) {
-        this.onChange = onChange;
-    }
-
-    public final String getOnChange() {
-        return onChange;
-    }
-
+    
     public final void setType(String type) {
         this.type = type;
     }
@@ -412,18 +510,45 @@ public class BuildDropdownTag extends BodyTagSupport {
     public final String getType() {
         return type;
     }
+    
 	public final String getFirstOptionBlank() {
 		return firstOptionBlank;
 	}
+	
 	public final void setFirstOptionBlank(String firstOptionBlank) {
 		this.firstOptionBlank = firstOptionBlank;
 	}
-	public final String getTitleKey() {
-		return titleKey;
-	}
-	public final void setTitleKey(String titleKey) {
-		this.titleKey = titleKey;
-	}
 	
+    public boolean isMultiple() {
+		return multiple;
+	}
+
+	public void setMultiple(boolean multiple) {
+		this.multiple = multiple;
+	}
+
+	public String getIsRequired() {
+		return isRequired;
+	}
+
+	public void setIsRequired(String isRequired) {
+		this.isRequired = isRequired;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}	
 	
 }

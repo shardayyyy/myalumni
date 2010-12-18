@@ -47,7 +47,17 @@ import java.util.List;
 import net.naijatek.myalumni.util.utilities.StringUtil;
 
 
-public class MemberVO  extends MyAlumniBaseVO {
+public class MemberVO  extends MyAlumniBaseVO implements ValueLabelItem {
+
+	@Override
+	public String getItemLabel() {
+		return getFirstName() + " " + getLastName();
+	}
+
+	@Override
+	public String getItemValue() {
+		return getMemberId();
+	}
 
 	private String memberId;
 	private String memberUserName;
