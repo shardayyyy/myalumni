@@ -23,7 +23,7 @@
                     <td><div style="padding-bottom: 5px; padding-top: 5px;"> <html:img page="/images/spacer.gif" border="0" height="3" width="10"/> <span class="Bold"><bean:message key="label.reminisce.listremiinisce"/></span></div></td>
                     <td align="right">  
                     	                               
-             ubmit styleClass="button"><bean:message key="button.addreminisce"/></html:submit>                                   
+             <html:submit styleClass="button"><bean:message key="button.addreminisce"/></html:submit>                                   
     					&nbsp;
                     </td>
                   </tr>

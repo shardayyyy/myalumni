@@ -262,6 +262,7 @@ public interface BaseConstants {
 	public static final String DROPDOWN_YEARIN = "YEARIN";
 	public static final String DROPDOWN_YEAROUT = "YEAROUT";
 	public static final String DROPDOWN_CLASSYEAR = "CLASSYEAR";
+	public static final String NO_PROPERTY = "none";
 	
 	
 	// Date Time Format

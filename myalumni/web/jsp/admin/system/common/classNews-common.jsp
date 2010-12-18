@@ -58,11 +58,12 @@
                       <td align="right" class="Smallbold"><bean:message key="label.admin.system.classyears"/>:</td>
                       <td align="center"><html:img page="/images/dot.gif" width="9" height="9"/></td>
                       <td>
-                      	<myalumni:dropdown type="luSpecific" group="CLASSYEAR" fieldName="fromClassYear" titleKey="label.admin.system.classyears"><bean:write name="classNewsForm" property="fromClassYear"/></myalumni:dropdown>
+                      	<%--<myalumni:dropdown property="fromClassYear" type="luSpecific" group="CLASSYEAR" fieldName="fromClassYear" titleKey="label.admin.system.classyears"><bean:write name="classNewsForm" property="fromClassYear"/></myalumni:dropdown>--%>
+                      	<myalumni:dropdown property="fromClassYear" type="luSpecific" group="CLASSYEAR" titleKey="label.admin.system.classyears"/>
                       	&nbsp;
                       	To 
                       	&nbsp;
-                      	<myalumni:dropdown type="luSpecific" group="CLASSYEAR" fieldName="toClassYear" titleKey="label.admin.system.classyears"><bean:write name="classNewsForm" property="toClassYear"/></myalumni:dropdown>
+                      	<myalumni:dropdown type="luSpecific" group="CLASSYEAR" property="toClassYear" titleKey="label.admin.system.classyears"/>
                       </td>
                 </tr> 
                 <tr>

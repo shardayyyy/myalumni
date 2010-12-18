@@ -69,6 +69,15 @@ p {
 	margin: 1em 0;
 }
 
+.required{
+	background-color: #EEB4B4;
+	border: 1px solid #ff0000;
+}
+
+.ddrequired{
+	background-color: #EEB4B4;
+	border: 1px solid #ff0000;
+}
 
 
 select {

@@ -144,7 +144,7 @@ window.onload = function()
 		    <tr class="portlet-section-body">
 		      <td align="right" class="fieldlabel"><bean:message key="label.dormitory"/>:</td>
 		      <td>
-						<myalumni:dropdown type="luGeneric" group="DOM" fieldName="dormitoryId" firstOptionBlank="Y" titleKey="label.dormitory"><bean:write name="memberForm" property="dormitoryId"/></myalumni:dropdown>	
+						<myalumni:dropdown type="luGeneric" group="DOM" property="dormitoryId" firstOptionBlank="Y" titleKey="label.dormitory"/>	
 		      </td>
 		    </tr>
 		</c:if>
@@ -164,7 +164,7 @@ window.onload = function()
       <td align="right" class="fieldlabel"><bean:message key="label.yearin"/>:</td>
       <td>
       <%--     YEARS IN --%>
-      <myalumni:dropdown type="luSpecific" group="YEARIN" fieldName="yearIn" titleKey="label.yearin"><bean:write name="memberForm" property="yearIn"/></myalumni:dropdown>
+      <myalumni:dropdown type="luSpecific" group="YEARIN" property="yearIn" titleKey="label.yearin"/>
 
       </td>
     </tr>
@@ -172,7 +172,7 @@ window.onload = function()
       <td align="right" class="fieldlabel"><bean:message key="label.yearout"/>:</td>
       <td>
         <%--     YEARS OUT --%>
-        <myalumni:dropdown type="luSpecific" group="YEAROUT" fieldName="yearOut" titleKey="label.yearout">><bean:write name="memberForm" property="yearOut"/></myalumni:dropdown>
+        <myalumni:dropdown type="luSpecific" group="YEAROUT" property="yearOut" titleKey="label.yearout"/>
       </td>
     </tr>
 

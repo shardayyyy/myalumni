@@ -39,7 +39,17 @@
 package net.naijatek.myalumni.modules.common.domain;
 
 
-public class XlatDetailVO  extends MyAlumniBaseVO{
+public class XlatDetailVO  extends MyAlumniBaseVO implements ValueLabelItem{
+
+	@Override
+	public String getItemLabel() {
+		return getLabel();
+	}
+
+	@Override
+	public String getItemValue() {
+		return getLookupCodeId();
+	}
 
 	private String lookupCodeId;
 

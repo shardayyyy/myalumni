@@ -2,6 +2,9 @@
 <!DOCTYPE struts-config PUBLIC 
 	"-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" 
 	"http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+	<!--<!DOCTYPE struts-config PUBLIC
+       "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+       "FILE:///c:/MYALUMNI_HOME/dtds/struts-config_1_2.dtd"> -->
 
 <!--
   Default configuration file for examples application.

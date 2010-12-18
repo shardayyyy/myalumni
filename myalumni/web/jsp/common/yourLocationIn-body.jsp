@@ -49,7 +49,7 @@ window.onload = function()
                 <td><span class="fieldlabel"><bean:message key="label.country"/>:<font color="#cc0000">*</font></span></td>
                 <td>
                 <%--     COUNTRY    --%>
-                <myalumni:dropdown type="luGeneric" group="COU" fieldName="countryId" titleKey="label.country"><bean:write name="memberForm" property="countryId"/></myalumni:dropdown>
+                <myalumni:dropdown type="luGeneric" group="COU" property="countryId" titleKey="label.country"/>
                	
 
                </td>

@@ -38,54 +38,9 @@
  */
 package net.naijatek.myalumni.modules.common.domain;
 
-public class ScrollVO extends MyAlumniBaseVO implements ValueLabelItem{
-
-	private String scrollId;
-
-	private String scrollText;
-
-	private String priority;
-
-	public ScrollVO() {
-		super();
-	}
+public interface ValueLabelItem {
 	
-	@Override
-	public String getItemLabel() {
-		return getScrollText();
-	}
-
-	@Override
-	public String getItemValue() {
-		return getScrollId();
-	}
-
-	public ScrollVO(String id) {
-		this.scrollId = id;
-	}
-
-	public String getPriority() {
-		return priority;
-	}
-
-	public void setPriority(String priority) {
-		this.priority = priority;
-	}
-
-	public String getScrollId() {
-		return scrollId;
-	}
-
-	public void setScrollId(String scrollId) {
-		this.scrollId = scrollId;
-	}
-
-	public String getScrollText() {
-		return scrollText;
-	}
-
-	public void setScrollText(String scrollText) {
-		this.scrollText = scrollText;
-	}
+	public abstract String getItemValue();
+	public abstract String getItemLabel();
 
 }
