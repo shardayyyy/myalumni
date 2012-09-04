@@ -37,10 +37,10 @@
 			<include name="*.jar"/>
 		</fileset>
 		
-		<!-- Include ivy downloaded files -->
+		<!-- Include ivy downloaded files
 		<fileset dir="${user.home}/.ivy/cache">
 			<include name="**/*.jar"/>
-		</fileset>
+		</fileset> -->
 
 	</path>
 	
@@ -194,15 +194,10 @@
             <echo message="copying jars to web root..."/>
         	<mkdir dir="${dist.path}/${app.name}/WEB-INF/lib"/>
             <copy todir="${dist.path}/${app.name}/WEB-INF/lib">
-                    <fileset dir="${user.home}">
-                            <include name="**/*.jar"/>    			
-                            <exclude name="servlet-api.jar"/>
-                            <exclude name="junit.jar"/>    			
-                    </fileset>
 					<fileset dir="${base.dir}/${lib.dir}">
 							<include name="*.jar"/>
-	                        <exclude name="servlet-api.jar"/>
-	                        <exclude name="junit.jar"/>  						
+	                        <!-- exclude name="servlet-*.jar"/ -->
+	                        <exclude name="junit-3.8.1.jar"/>
 					</fileset>
             </copy>
             
@@ -260,7 +255,8 @@
 	<!-- - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - 
                               target: all                     
          - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - -->
-        <target name="all" depends="ivy-resolve,war" description="--> resolves dependency and packages project"/>        
+        <target name="all" depends="war" description="--> resolves dependency and packages project"/>
+       <!-- <target name="all" depends="ivy-resolve,war" description=" resolves dependency and packages project"/> -->
         
 	<!-- - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - 
                               target: db.sync                     
