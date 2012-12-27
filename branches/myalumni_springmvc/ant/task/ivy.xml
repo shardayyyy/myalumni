@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="http://www.jayasoft.fr/org/ivyrep/ivy-doc.xsl"?>
+<ivy-module version="1.3"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+    <info 
+        organisation="naijatek"
+        module="myalumni"
+        status="integration">        
+	</info>
+	
+	<configurations>
+		<conf name="default"/>
+		<conf name="standalone" extends="default"/>
+		<conf name="test" extends="default"/>
+	</configurations>
+		
+<dependencies>
+		
+		
+		
+		<!-- hibernate dependencies -->
+		<dependency org="dom4j" name="dom4j" rev="1.6.1" conf="default"/>
+		<dependency org="apache" name="commons-collections" rev="3.1" conf="default"/>
+		<dependency org="apache" name="commons-logging" rev="1.0.4" conf="default"/>
+		<dependency org="antlr" name="antlr" rev="2.7.2" conf="default"/>
+		<dependency org="cglib" name="cglib" rev="2.1_3" conf="default"/>
+		<dependency org="org.apache.geronimo.specs" name="geronimo-jta_1.0.1B_spec" rev="1.0" conf="standalone->default"/>
+		<dependency org="c3p0" name="c3p0" rev="0.9.0" conf="default"/>
+		<dependency org="opensymphony" name="oscache" rev="2.1" conf="default"/>
+		<dependency org="org.hibernate" name="hibernate" rev="3.2.1.ga" conf="default"/>		
+		<dependency org="asm" name="asm" rev="1.5.3" conf="default"/>
+		<dependency org="asm" name="asm-attrs" rev="1.5.3" conf="default"/>
+				
+		<!-- hibernate annotations -->
+		<dependency org="javax.persistence" name="persistence-api" rev="1.0" conf="default"/>
+		<dependency org="org.hibernate" name="hibernate-annotations" rev="3.2.0.ga" conf="default"/>
+		
+		<!-- log4j -->
+		<dependency org="log4j" name="log4j" rev="1.2.11" conf="default"/>
+		
+		<!-- junit -->
+		<dependency org="junit" name="junit" rev="3.8.1" conf="test->default"/>
+
+		
+		<!-- struts, try 1.2.9 -->
+		<dependency org="apache" name="commons-beanutils" rev="1.7.0" conf="default"/>
+		<dependency org="apache" name="commons-digester" rev="1.6" conf="default"/>
+		<dependency org="apache" name="commons-fileupload" rev="1.0" conf="default"/>
+		<dependency org="apache" name="commons-validator" rev="1.1.4" conf="default"/>
+		<dependency org="apache" name="commons-lang" rev="2.1" conf="default"/>
+		<dependency org="oro" name="oro" rev="2.0.7" conf="default"/>
+		<dependency org="apache" name="struts" rev="1.2.9" conf="default" />
+		
+		
+		<!-- spring, try 1.2.6 -->
+		<dependency org="org.springframework" name="spring" rev="1.2.8" conf="default"/>
+		<dependency org="org.springframework" name="spring-hibernate" rev="1.2.6" conf="default"/>
+		
+		<!-- servlet -->
+		<dependency org="javax.servlet" name="servlet-api" rev="2.2" conf="default"/>
+		
+		<!-- joda time -->
+		<dependency org="joda-time" name="joda-time" rev="1.3" conf="default"/>
+		
+		<!-- freemarker -->
+		<dependency org="freemarker" name="freemarker" rev="2.3.8" conf="default"/>
+		
+		<!-- jstl -->
+		<dependency org="javax.servlet" name="jstl" rev="1.1.1" conf="default"/>
+		<dependency org="taglibs" name="standard" rev="1.1.2" conf="default"/>
+		<dependency org="taglibs" name="string" rev="1.1.0" conf="default"/>
+		
+		<!-- JDBC DRIVERS -->
+		<dependency org="mysql" name="mysql-connector-java" rev="5.0.4" conf="default"/> 
+		<!--<dependency org="postgresql" name="postgresql" rev="8.1-407.jdbc3" conf="default"/>
+		<dependency org="hsqldb" name="hsqldb" rev="1.8.0.7" conf="default"/> -->
+				
+		<!-- Display Tags -->
+        <dependency org="itext" name="itext" rev="1.3.1" conf="default"/>
+        <dependency org="org.apache.poi" name="poi" rev="3.2-FINAL" conf="default"/>   
+        <dependency org="org.apache.poi" name="poi-scratchpad" rev="3.2-FINAL" conf="default"/>   
+        <dependency org="org.apache.poi" name="poi-contrib" rev="3.2-FINAL" conf="default"/>   
+              				
+		<!-- RSS & XML -->
+		<dependency org="jdom" name="jdom" rev="1.0" conf="default"/>
+		<dependency org="rome" name="rome" rev="0.9" conf="default"/>
+		<dependency org="jboss" name="jnet" rev="3.2.1" conf="default"/>
+		<dependency org="saxpath" name="saxpath" rev="1.0-FCS" conf="default"/>
+		
+		<!-- Others -->
+		<dependency org="ehcache" name="ehcache" rev="1.0" conf="default"/>
+		<dependency org="opensymphony" name="quartz" rev="1.6.0" conf="default"/>
+		<dependency org="com.octo.captcha" name="jcaptcha-all" rev="1.0-RC6" conf="default"/>
+
+	</dependencies>
+</ivy-module>

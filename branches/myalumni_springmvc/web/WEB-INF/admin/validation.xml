@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
+<form-validation>
+   <formset>
+
+<!-- ========== MEMBER SEARCH ===================== -->
+        <form name="/admin/memberSearch">
+                <field property="searchCategory" depends="required, searchCategory">
+                        <arg key="label.searchcategory"/>
+                </field>
+        </form>
+
+
+<!-- ==========  ADMINISTER MEMBER ===================== -->
+        <form name="/admin/adminMaintainMember">
+                <field property="adminAction" depends="required">
+                        <arg key="label.adminAction"/>
+                </field>
+        </form>
+
+<!-- ==========  ADMIN UPDATE MEMBER ===================== -->
+        <form name="/admin/adminUpdateMemberProfile">
+                <field property="titleId" depends="required">
+                        <arg key="label.title"/>
+                </field>
+                <field property="lastName" depends="required">
+                        <arg key="label.lastname"/>
+                </field>
+                <field property="maidenName">
+                        <arg key="label.maidenname"/>
+                </field>
+                <field property="gender" depends="required">
+                        <arg key="label.gender"/>
+                </field>
+                <field property="dob" depends="required">
+                        <arg key="label.birthday"/>
+                </field>
+               <!-- <field property="address" depends="required">
+                        <arg key="label.address"/>
+                </field>
+                 <field property="dormitoryId" depends="hasDomitory">
+                        <arg key="label.dormitory"/>
+                </field> -->
+                <field property="careerId" depends="required">
+                        <arg key="label.career"/>
+                </field>                
+                <field property="countryId" depends="required">
+                        <arg key="label.country"/>
+                </field>
+                <field property="comments" depends="required, memberComments">
+                        <arg key="label.comments"/>
+                </field>
+                <field property="adminComments" depends="required, adminComments">
+                        <arg key="label.admincomments"/>
+                </field>
+                <field property="website" depends="validateUrlHomePage">
+                        <arg key="prompt.homepageurl"/>
+                </field>                             
+        </form>
+        <!-- ========== ADMIN LOGIN FORM ===================== -->
+        <form name="/admin/login">
+                  <field property="memberUserName" depends="required,minlength,maxlength">
+                          <arg0 key="label.username" resource="true"/>
+                          <arg1 key="${var:minlength}" name="minlength" resource="false"/>
+                          <arg2 key="${var:maxlength}" name="maxlength" resource="false"/>
+                          <var>
+                                  <var-name>maxlength</var-name>
+                                  <var-value>16</var-value>
+                          </var>
+                          <var>
+                                  <var-name>minlength</var-name>
+                                  <var-value>3</var-value>
+                          </var>
+                  </field>
+                  <!-- ========== PASSWORD ===================== -->
+                  <field property="memberPassword" depends="required,minlength,maxlength">
+                          <arg0 key="label.password" resource="true"/>
+                          <arg1 key="${var:minlength}" name="minlength" resource="false"/>
+                          <arg2 key="${var:maxlength}" name="maxlength" resource="false"/>
+                          <var>
+                                  <var-name>maxlength</var-name>
+                                  <var-value>16</var-value>
+                          </var>
+                          <var>
+                                  <var-name>minlength</var-name>
+                                  <var-value>6</var-value>
+                          </var>
+                  </field>
+            </form>
+
+
+<!-- ========== Admin REPLY ===================== -->
+        <form name="/admin/adminReplyMail">
+                <field property="subject" depends="required">
+                        <arg key="label.subject"/>
+                </field>
+                <field property="messageText" depends="required">
+                        <arg key="label.message"/>
+                </field>
+	</form>
+
+<!-- ========== ADD SCROLL ===================== -->
+        <form name="/admin/maintainScroll">
+                <field property="scrollText" depends="adminMaintainScroll">
+                        <arg key="label.scrollText"/>
+                </field>
+                <field property="type" depends="required">
+                        <arg key="label.scrollType"/>
+                </field>
+	</form>
+<!-- ========== ADMIN PRIVATE MESSAGE ===================== -->
+        <form name="/admin/adminContactMail">
+                <field property="messageText" depends="required">
+                        <arg key="label.message"/>
+                </field>
+	</form>
+
+<!-- ========== ADMIN EMAIL MESSAGE ===================== -->
+        <form name="/admin/emailMember">
+                <field property="messageText" depends="required">
+                        <arg key="label.message"/>
+                </field>
+                <field property="guestEmail" depends="required,email">
+                        <arg key="label.email"/>
+                </field>
+                <field property="subject" depends="required">
+                        <arg key="label.subject"/>
+                </field>
+	</form>
+<!-- ========== Add ClassNews ===================== -->
+        <form name="/admin/addClassNews">
+                <field property="fromClassYear" depends="required, compareClassNewsYear">
+                        <arg key="label.admin.system.fromclassyear"/>
+                </field>
+                <field property="toClassYear" depends="required">
+                        <arg key="label.admin.system.toclassyear"/>
+                </field>                
+                <field property="subject" depends="required">
+                        <arg key="label.admin.system.subject"/>
+                </field>
+                <field property="news" depends="required">
+                        <arg key="label.admin.system.news"/>
+                </field>
+                <field property="status" depends="required">
+                        <arg key="label.admin.status"/>
+                </field>
+	</form>
+	
+<!-- ========== Add REminisce ===================== -->
+        <form name="/admin/addReminisce">
+                <field property="fromYear" depends="required">
+                        <arg key="label.reminisce.fromyear"/>
+                </field>
+                <field property="toYear" depends="required,compareReminisceYear">
+                        <arg key="label.reminisce.toyear"/>
+                </field> 
+                <field property="slang" depends="required">
+                        <arg key="label.reminisce.slang"/>
+                </field>
+                <field property="pronounce" depends="required">
+                        <arg key="label.reminisce.pronounciation"/>
+                </field>
+                <field property="meaning" depends="required">
+                        <arg key="label.reminisce.meaning"/>
+                </field>  
+                <field property="status" depends="required">
+                        <arg key="label.admin.status"/>
+                </field>                              
+	</form>	
+
+<!-- ========== Add FrontPage Link ===================== -->
+        <form name="/admin/addFrontPageLinks">
+                <field property="label" depends="required">
+                        <arg key="label.frontpage.label"/>
+                </field>
+                <field property="linkurl" depends="required,validateFrontPageUrl">
+                        <arg key="label.frontpage.linkurl"/>
+                </field> 
+                <field property="status" depends="required">
+                        <arg key="label.admin.status"/>
+                </field>                              
+	</form>	
+	
+	<!-- ========== Update FrontPage Link ===================== -->
+        <form name="/admin/updateFrontPageLinks">
+                <field property="label" depends="required">
+                        <arg key="label.frontpage.label"/>
+                </field>
+                <field property="linkurl" depends="required,validateFrontPageUrl">
+                        <arg key="label.frontpage.linkurl"/>
+                </field> 
+                <field property="status" depends="required">
+                        <arg key="label.admin.status"/>
+                </field>                              
+	</form>	
+<!-- ========== Update Org Info ===================== -->
+        <form name="/admin/updateOrgInfo">              
+                <field property="organizationName" depends="required">
+                        <arg key="label.admin.org.name"/>
+                </field>                
+                <field property="orgEmail" depends="required,email">
+                        <arg key="label.admin.org.email"/>
+                </field>
+                <field property="orgFirstYear" depends="required,integer,orgFirstYear">
+                          <arg0 key="label.admin.org.year" resource="true"/>
+                  </field>                
+	</form>
+	
+<!-- ========== Update Rss ===================== -->
+        <form name="/admin/updateRssFeed">
+                <field property="rssHeader" depends="required">
+                        <arg key="label.admin.rss.rssheader"/>
+                </field>                
+                <field property="rssUrl" depends="required">
+                        <arg key="label.admin.rss.rssurl"/>
+                </field>
+	</form>
+
+<!-- ========== Update Dormitory ===================== -->
+    <form name="/admin/updateDormitory">
+                <field property="hasDormitory" depends="required">
+                        <arg key="label.admin.dormitory"/>
+                </field>                
+	</form>
+	
+<!-- ========== Add Lookup Code ===================== -->
+    <form name="/admin/addLookupCode">
+                <field property="label" depends="required">
+                        <arg key="label.admin.general.desc"/>
+                </field>                
+	</form>
+
+<!-- ========== Update Lookup Code ===================== -->
+    <form name="/admin/updateLookupCode">
+                <field property="label" depends="required">
+                        <arg key="label.admin.general.desc"/>
+                </field>                
+	</form>	
+		
+	
+<!-- ========== Update Birthday Notification ===================== -->
+    <form name="/admin/updateBirthdayNotification">
+                <field property="birthdayNotification" depends="required">
+                        <arg key="label.admin.birthdaynotification"/>
+                </field>                
+	</form>	
+	
+	<!-- ========== Update ClassNews ===================== -->
+        <form name="/admin/updateClassNews">
+                <field property="fromClassYear" depends="required">
+                        <arg key="label.admin.system.fromclassyear"/>
+                </field>
+                <field property="toClassYear" depends="required,compareClassNewsYear">
+                        <arg key="label.admin.system.toclassyear"/>
+                </field> 
+                <field property="subject" depends="required">
+                        <arg key="label.admin.system.subject"/>
+                </field>
+                <field property="news" depends="required">
+                        <arg key="label.admin.system.news"/>
+                </field>
+                <field property="status" depends="required">
+                        <arg key="label.admin.status"/>
+                </field>
+	</form>
+	
+	<!-- ========== Update Reminisce ===================== -->
+        <form name="/admin/updateReminisce">
+                <field property="fromYear" depends="required">
+                        <arg key="label.reminisce.fromyear"/>
+                </field>
+                <field property="toYear" depends="required,compareReminisceYear">
+                        <arg key="label.reminisce.toyear"/>
+                </field> 
+                <field property="slang" depends="required">
+                        <arg key="label.reminisce.slang"/>
+                </field>
+                <field property="pronounce" depends="required">
+                        <arg key="label.reminisce.pronounciation"/>
+                </field>
+                <field property="meaning" depends="required">
+                        <arg key="label.reminisce.meaning"/>
+                </field>  
+                <field property="status" depends="required">
+                        <arg key="label.admin.status"/>
+                </field>  
+	</form>	
+	
+<!-- ========== Update Server Url ===================== -->
+        <form name="/admin/updateServerUrl">
+                <field property="serverUrl" depends="required">
+                        <arg key="label.admin.serverurl"/>
+                </field>                
+	</form>
+	
+<!-- ========== Update twitter cred ===================== -->
+        <form name="/admin/updateTwitterCred">
+                <field property="twitteruser" depends="required">
+                        <arg key="label.admin.twitteruser"/>
+                </field>   
+                <field property="twitterpswd" depends="required">
+                        <arg key="label.admin.twitterpswd"/>
+                </field>                              
+	</form>
+		
+	
+<!-- ========== Update Forum URL ===================== -->
+        <form name="/admin/updateForumUrl">
+                <field property="forumUrl" depends="required">
+                        <arg key="label.admin.forumurl"/>
+                </field>                
+	</form>
+	
+<!-- ========== Update Album Url ===================== -->
+        <form name="/admin/updateAlbumUrl">
+                <field property="albumUrl" depends="required">
+                        <arg key="label.admin.albumurl"/>
+                </field>                
+	</form>
+	
+	
+<!-- =========== SETUP =================== -->	
+        <form name="/admin/setupIntialization">
+                <field property="memberFirstName" depends="required">
+                        <arg key="label.firstname"/>
+                </field>  
+                <field property="memberLastName" depends="required">
+                        <arg key="label.lastname"/>
+                </field>  
+                <field property="memberUserName" depends="required">
+                        <arg key="label.username"/>
+                </field>  
+                <field property="memberPassword" depends="required">
+                        <arg key="label.password"/>
+                </field>  
+                <field property="memberEmail" depends="required, email">
+                        <arg key="label.email"/>
+                </field>  
+                                                                                        
+                <field property="orgFirstYear" depends="required,integer,orgFirstYear">
+                          <arg0 key="label.admin.org.year" resource="true"/>
+                  </field>          
+                <field property="organizationName" depends="required">
+                        <arg key="label.admin.org.name"/>
+                </field>       
+                <field property="organizationShortName" depends="required">
+                        <arg key="label.admin.org.shortname"/>
+                </field>                          
+                <field property="orgEmail" depends="required,email">
+                        <arg key="label.admin.org.email"/>
+                </field>
+                <field property="hasDormitory" depends="required">
+                        <arg key="label.admin.dormitory"/>
+                </field>           
+                <field property="serverUrl" depends="required">
+                        <arg key="label.admin.serverurl"/>
+                </field>             
+                <field property="sessionTimeout" depends="required">
+                        <arg key="label.admin.sessiontimeout"/>
+                </field>                 
+<!--                 <field property="rssUrl" depends="required">
+                        <arg key="label.admin.rss.rssurl"/>
+                </field> -->
+                <field property="birthdayNotification" depends="required">
+                        <arg key="label.admin.birthdaynotification"/>
+                </field>                                                                           
+	</form>
+
+				
+   </formset>
+</form-validation>
