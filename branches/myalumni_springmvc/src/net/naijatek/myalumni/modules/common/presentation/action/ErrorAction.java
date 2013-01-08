@@ -54,7 +54,7 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 
-
+@Controller
 public class ErrorAction extends MyAlumniBaseController {
     
 	private IErrorLogService logService;

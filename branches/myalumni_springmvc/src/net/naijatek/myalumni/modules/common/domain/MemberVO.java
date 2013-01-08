@@ -49,12 +49,12 @@ import net.naijatek.myalumni.util.utilities.StringUtil;
 
 public class MemberVO  extends MyAlumniBaseVO implements ValueLabelItem {
 
-	@Override
+	//@Override
 	public String getItemLabel() {
 		return getFirstName() + " " + getLastName();
 	}
 
-	@Override
+	//@Override
 	public String getItemValue() {
 		return getMemberId();
 	}

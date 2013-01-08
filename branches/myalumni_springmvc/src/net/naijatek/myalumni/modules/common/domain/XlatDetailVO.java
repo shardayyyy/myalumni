@@ -41,12 +41,12 @@ package net.naijatek.myalumni.modules.common.domain;
 
 public class XlatDetailVO  extends MyAlumniBaseVO implements ValueLabelItem{
 
-	@Override
+	//@Override
 	public String getItemLabel() {
 		return getLabel();
 	}
 
-	@Override
+	//@Override
 	public String getItemValue() {
 		return getLookupCodeId();
 	}

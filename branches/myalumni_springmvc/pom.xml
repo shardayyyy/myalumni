@@ -13,13 +13,7 @@
   		<groupId>asm</groupId>
   		<artifactId>asm</artifactId>
   		<version>3.3.1</version>
-  	</dependency>
-  	<!-- <dependency>
-  		<groupId>activation</groupId>
-  		<artifactId>activation</artifactId>
-  		<version>1.0.2</version>
-  	</dependency> -->
-  	
+  	</dependency>           
   	<dependency>
   		<groupId>asm</groupId>
   		<artifactId>asm-attrs</artifactId>
@@ -34,7 +28,7 @@
   		<groupId>cglib</groupId>
   		<artifactId>cglib</artifactId>
   		<version>2.2.2</version>
-  	</dependency>
+  	</dependency>  	
   	<dependency>
   		<groupId>commons-beanutils</groupId>
   		<artifactId>commons-beanutils</artifactId>
@@ -65,12 +59,13 @@
   		<artifactId>commons-lang</artifactId>
   		<version>2.6</version>
   	</dependency>
+  	
   	<dependency>
   		<groupId>commons-logging</groupId>
   		<artifactId>commons-logging</artifactId>
   		<version>1.1</version>
   	</dependency>
-  	<dependency>
+  		<dependency>
   		<groupId>commons-validator</groupId>
   		<artifactId>commons-validator</artifactId>
   		<version>1.4.0</version>
@@ -96,7 +91,7 @@
   		<version>1.6.1</version>
   	</dependency>
   	<dependency>
-  		<groupId>ehcache</groupId>
+  		<groupId>net.sf.ehcache</groupId>
   		<artifactId>ehcache</artifactId>
   		<version>1.2.3</version>
   	</dependency>
@@ -105,30 +100,20 @@
   		<artifactId>freemarker</artifactId>
   		<version>2.3.6</version>
   	</dependency>
-  	<!-- <dependency>
+  	<dependency>
   		<groupId>org.apache.geronimo.specs</groupId>
   		<artifactId>geronimo-jta_1.1_spec</artifactId>
   		<version>1.1.1</version>
-  	</dependency> -->
+  	</dependency>
   	<dependency>
   		<groupId>org.hibernate</groupId>
   		<artifactId>hibernate-annotations</artifactId>
   		<version>3.5.6-Final</version>
-  	</dependency>
-<dependency>
-	<groupId>org.hibernate</groupId>
-	<artifactId>hibernate</artifactId>
-	<version>3.2.1.ga</version>
-</dependency>  	
+  	</dependency>	
 <dependency>
 	<groupId>hsqldb</groupId>
 	<artifactId>hsqldb</artifactId>
 	<version>1.8.0.10</version>
-</dependency>
-<dependency>
-	<groupId>com.sun.mail</groupId>
-	<artifactId>imap</artifactId>
-	<version>1.4.6-rc1</version>
 </dependency>
 <dependency>
 	<groupId>com.lowagie</groupId>
@@ -146,11 +131,6 @@
 	<version>1.0-RC6</version>
 </dependency>
 <dependency>
-	<groupId>jdom</groupId>
-	<artifactId>jdom</artifactId>
-	<version>1.1</version>
-</dependency>
-<dependency>
 	<groupId>jboss</groupId>
 	<artifactId>jnet</artifactId>
 	<version>3.2.1</version>
@@ -165,22 +145,8 @@
 	<artifactId>junit</artifactId>
 	<version>4.11</version>
 </dependency>
-<dependency>
-	<groupId>com.sun.mail</groupId>
-	<artifactId>mailapi</artifactId>
-	<version>1.4.6-rc1</version>
-</dependency>
-<dependency>
-	<groupId>com.sun.mail</groupId>
-	<artifactId>pop3</artifactId>
-	<version>1.4.6-rc1</version>
-</dependency>
-<dependency>
-	<groupId>com.sun.mail</groupId>
-	<artifactId>javax.mail</artifactId>
-	<version>1.4.6-rc1</version>
-</dependency>
-<dependency>
+
+  <dependency>
 	<groupId>mysql</groupId>
 	<artifactId>mysql-connector-java</artifactId>
 	<version>5.1.22</version>
@@ -189,11 +155,6 @@
 	<groupId>oro</groupId>
 	<artifactId>oro</artifactId>
 	<version>2.0.8</version>
-</dependency>
-<dependency>
-	<groupId>opensymphony</groupId>
-	<artifactId>oscache</artifactId>
-	<version>2.4.1</version>
 </dependency>
 <dependency>
 	<groupId>javax.persistence</groupId>
@@ -221,11 +182,6 @@
 	<version>9.1-901-1.jdbc4</version>
 </dependency>
 <dependency>
-	<groupId>opensymphony</groupId>
-	<artifactId>quartz</artifactId>
-	<version>1.6.3</version>
-</dependency>
-<dependency>
 	<groupId>rome</groupId>
 	<artifactId>rome</artifactId>
 	<version>1.0</version>
@@ -244,11 +200,6 @@
 	<groupId>geronimo-spec</groupId>
 	<artifactId>geronimo-spec-servlet</artifactId>
 	<version>2.4-rc4</version>
-</dependency>
-<dependency>
-	<groupId>com.sun.mail</groupId>
-	<artifactId>smtp</artifactId>
-	<version>1.4.6-rc1</version>
 </dependency>
 <dependency>
 	<groupId>org.springframework</groupId>
@@ -285,7 +236,57 @@
 <dependency>
 	<groupId>log4j</groupId>
 	<artifactId>log4j</artifactId>
-	<version>1.2.15</version>
+	<version>1.2.16</version>
+</dependency>
+<dependency>
+	<groupId>quartz</groupId>
+	<artifactId>quartz</artifactId>
+	<version>1.5.2</version>
+</dependency>
+<dependency>
+	<groupId>org.jdom</groupId>
+	<artifactId>jdom</artifactId>
+	<version>1.1</version>
+</dependency>
+<dependency>
+	<groupId>org.hibernate</groupId>
+	<artifactId>hibernate-core</artifactId>
+	<version>4.1.9.Final</version>
+</dependency>
+<dependency>
+	<groupId>javax.activation</groupId>
+	<artifactId>activation</artifactId>
+	<version>1.1.1</version>
+</dependency>
+<dependency>
+	<groupId>com.sun.mail</groupId>
+	<artifactId>imap</artifactId>
+	<version>1.4.6-rc1</version>
+</dependency>
+<dependency>
+	<groupId>com.sun.mail</groupId>
+	<artifactId>smtp</artifactId>
+	<version>1.4.6-rc1</version>
+</dependency>
+<dependency>
+	<groupId>com.sun.mail</groupId>
+	<artifactId>mailapi</artifactId>
+	<version>1.4.6-rc1</version>
+</dependency>
+<dependency>
+	<groupId>com.sun.mail</groupId>
+	<artifactId>pop3</artifactId>
+	<version>1.4.6-rc1</version>
+</dependency>
+<dependency>
+	<groupId>com.sun.mail</groupId>
+	<artifactId>javax.mail</artifactId>
+	<version>1.4.6-rc1</version>
+</dependency>
+<dependency>
+	<groupId>opensymphony</groupId>
+	<artifactId>oscache</artifactId>
+	<version>2.1</version>
 </dependency>
   </dependencies>
 </project>
