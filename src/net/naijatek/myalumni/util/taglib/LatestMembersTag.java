@@ -123,7 +123,7 @@ public class LatestMembersTag extends BodyTagSupport {
 				sb
 						.append("<td><div class=\"blacksmall\"> <a href=\"/"
 								+ rootContextName
-								+ "/action/member/displayMiniProfile?action=displayMiniProfile&memberUserName="
+								+ "/controllers/member/displayMiniProfile?controllers=displayMiniProfile&memberUserName="
 								+ user.getMemberUserName()
 								+ "\" + onclick=\"newPopup(this.href,'name');return false\" title=\"View "
 								+ user.getFirstName() + " "

@@ -47,8 +47,8 @@ import javax.servlet.http.HttpSession;
 
 import net.naijatek.myalumni.framework.exceptions.NotLoginException;
 import net.naijatek.myalumni.framework.exceptions.UserAccountException;
-import net.naijatek.myalumni.framework.struts.MyAlumniDispatchAction;
-import net.naijatek.myalumni.framework.struts.MyAlumniUserContainer;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseController;
+import net.naijatek.myalumni.framework.extensions.MyAlumniUserContainer;
 import net.naijatek.myalumni.modules.common.domain.LoginHistoryVO;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.helper.OnlineUserManager;
@@ -72,7 +72,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 	
-	public class SecurityAction extends MyAlumniDispatchAction {
+	public class SecurityAction extends MyAlumniBaseController {
 	
 	    private IUserAccountService securityService;
 	    private ISystemConfigService sysConfigService;

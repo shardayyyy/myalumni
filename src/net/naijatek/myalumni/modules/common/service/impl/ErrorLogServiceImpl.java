@@ -46,17 +46,20 @@ import net.naijatek.myalumni.modules.common.domain.LoginHistoryVO;
 import net.naijatek.myalumni.modules.common.domain.ErrorLogVO;
 import net.naijatek.myalumni.modules.common.persistence.iface.ErrorLogDao;
 import net.naijatek.myalumni.modules.common.service.IErrorLogService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ErrorLogServiceImpl implements IErrorLogService {
 
-
+    @Autowired
     private ErrorLogDao errorLogDao;
     //private static Log logger = LogFactory.getLog(ErrorLogServiceImpl.class);
 
-    public ErrorLogServiceImpl(ErrorLogDao errorLogDao) {
+/*    public ErrorLogServiceImpl(ErrorLogDao errorLogDao) {
         super();
         this.errorLogDao = errorLogDao;
-    }
+    }*/
     
     public List<ErrorLogVO> getAllErrorLogs() {
         

@@ -62,7 +62,7 @@ public interface SystemConfigConstants {
 	public static final int LOGO_WIDTH = 0;
 
 	// Messages
-	public static final String UNAUTHORIZED_MSG = "Insufficient Privilege. User needs to be authorized to perform this action.";
+	public static final String UNAUTHORIZED_MSG = "Insufficient Privilege. User needs to be authorized to perform this controllers.";
 
 	public static final String EXPIRED_SESSION_MSG = "Your Session have expired.";
 

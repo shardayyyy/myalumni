@@ -38,7 +38,7 @@
  */
 package net.naijatek.myalumni.framework.exceptions;
 
-import net.naijatek.myalumni.framework.struts.MyAlumniBaseException;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseException;
 
 
 public class DuplicateEmailException extends MyAlumniBaseException {

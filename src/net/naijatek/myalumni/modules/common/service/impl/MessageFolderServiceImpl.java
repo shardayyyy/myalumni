@@ -46,15 +46,18 @@ import net.naijatek.myalumni.framework.exceptions.MyAlumniException;
 import net.naijatek.myalumni.modules.common.domain.MessageFolderVO;
 import net.naijatek.myalumni.modules.common.persistence.iface.MessageFolderDao;
 import net.naijatek.myalumni.modules.common.service.IMessageFolderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class MessageFolderServiceImpl implements IMessageFolderService {
 
-    private MessageFolderDao mfDao;
-
-    public MessageFolderServiceImpl(MessageFolderDao mfDao) {
+/*    public MessageFolderServiceImpl(MessageFolderDao mfDao) {
         this.mfDao = mfDao;
-    }
+    }*/
+
+    @Autowired
+    private MessageFolderDao mfDao;
 
     
     

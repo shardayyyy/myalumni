@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
-<!--<!DOCTYPE struts-config PUBLIC
+<!--<!DOCTYPE extensions-config PUBLIC
        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
-       "FILE:///c:/MYALUMNI_HOME/dtds/struts-config_1_2.dtd"> -->
+       "FILE:///c:/MYALUMNI_HOME/dtds/extensions-config_1_2.dtd"> -->
 <!--
   Default configuration file for examples application.
-  Each module also has its own struts-config under: /WEB-INF/$MODULE/
+  Each module also has its own extensions-config under: /WEB-INF/$MODULE/
   @version $Revision: 1.9 $ $Date: 2006-12-03 11:32:52 -0600 (Sun, 03 Dec 2006) $
 -->      
 <struts-config>
@@ -26,11 +26,11 @@
   
   <!-- =========================================  Global Exceptions  ================================================ -->
    <global-exceptions>
-  		<exception handler="net.naijatek.myalumni.framework.struts.MyAlumniExceptionHandler" key="errors.technical.difficulty" path="/jsp/sysError.jsp" scope="request" type="java.lang.Exception" />
+  		<exception handler="net.naijatek.myalumni.framework.extensions.MyAlumniExceptionHandler" key="errors.technical.difficulty" path="/jsp/sysError.jsp" scope="request" type="java.lang.Exception" />
   </global-exceptions> 
 <!--
   <global-exceptions>
-    <exception handler="net.naijatek.myalumni.modules.common.presentation.action.ErrorAction" key="errors.technical.difficulty" path="/errorTracker?action=errorTracker" scope="request" type="java.lang.Exception" />
+    <exception handler="net.naijatek.myalumni.modules.common.presentation.controllers.ErrorAction" key="errors.technical.difficulty" path="/errorTracker?controllers=errorTracker" scope="request" type="java.lang.Exception" />
   </global-exceptions> 
 --> 
 
@@ -67,7 +67,7 @@
   <!-- =========================================  Controller  ================================================ -->
            
   <controller nocache="true" contentType="text/html;charset=UTF-8" locale="true"
-  processorClass="net.naijatek.myalumni.framework.struts.MyAlumniExtendedTilesRequestProcessor"/>
+  processorClass="net.naijatek.myalumni.framework.extensions.MyAlumniExtendedTilesRequestProcessor"/>
   
       <!-- This is where you set the maximum file size for your file uploads.
 		-1 is an unlimited size. If you don't specify this here, it defaults to -1. 

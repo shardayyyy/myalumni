@@ -43,7 +43,7 @@ import java.util.List;
 
 import org.apache.struts.upload.FormFile;
 
-import net.naijatek.myalumni.framework.struts.MyAlumniBaseForm;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseForm;
 import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
 import net.naijatek.myalumni.util.BaseConstants;
 

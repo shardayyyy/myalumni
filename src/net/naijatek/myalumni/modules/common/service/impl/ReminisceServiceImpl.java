@@ -45,14 +45,18 @@ import net.naijatek.myalumni.modules.common.domain.ReminisceVO;
 import net.naijatek.myalumni.modules.common.persistence.iface.ReminisceDao;
 import net.naijatek.myalumni.modules.common.service.IReminisceService;
 import net.naijatek.myalumni.util.BaseConstants;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ReminisceServiceImpl implements IReminisceService {
 
+    @Autowired
     private ReminisceDao reminisceDao;
 
-    public ReminisceServiceImpl(ReminisceDao reminisceDao) {
+/*    public ReminisceServiceImpl(ReminisceDao reminisceDao) {
         this.reminisceDao = reminisceDao;
-    }
+    }*/
     
 	public List<ReminisceVO> findAll() {
 		return reminisceDao.findAll();

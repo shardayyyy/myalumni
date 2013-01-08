@@ -40,7 +40,7 @@ package net.naijatek.myalumni.modules.common.presentation.form;
 
 import java.util.List;
 
-import net.naijatek.myalumni.framework.struts.MyAlumniBaseForm;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseForm;
 
 
 

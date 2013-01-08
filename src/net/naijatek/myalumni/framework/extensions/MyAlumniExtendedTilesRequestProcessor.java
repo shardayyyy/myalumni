@@ -36,7 +36,7 @@
  * @author Folashade Adeyosoye (shardayyy@naijatek.com)
  * @version 1.0
  */
-package net.naijatek.myalumni.framework.struts;
+package net.naijatek.myalumni.framework.extensions;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -47,7 +47,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
-import net.naijatek.myalumni.modules.common.presentation.action.ErrorAction;
 import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.SystemConfigConstants;
 
@@ -206,7 +205,7 @@ public class MyAlumniExtendedTilesRequestProcessor extends
 															// info.
 
 			// At this point, we make sure user is allowed to perform the
-			// action.
+			// controllers.
 
 			boolean userIsAuthorized = isUserActionAllowed(requestPathInfo, token.getIsAdmin());
 			if (!userIsAuthorized) {
@@ -227,7 +226,7 @@ public class MyAlumniExtendedTilesRequestProcessor extends
 	}
 
 	/**
-	 * Confirms if user action can be allowed based on the permissions granted
+	 * Confirms if user controllers can be allowed based on the permissions granted
 	 * to the user.
 	 * 
 	 * @param requestedPath

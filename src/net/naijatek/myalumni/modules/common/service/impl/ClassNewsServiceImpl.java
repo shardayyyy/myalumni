@@ -45,14 +45,18 @@ import net.naijatek.myalumni.modules.common.domain.ClassNewsVO;
 import net.naijatek.myalumni.modules.common.persistence.iface.ClassNewsDao;
 import net.naijatek.myalumni.modules.common.service.IClassNewsService;
 import net.naijatek.myalumni.util.BaseConstants;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ClassNewsServiceImpl implements IClassNewsService {
 
+    @Autowired
     private ClassNewsDao classNewsDao;
 
-    public ClassNewsServiceImpl(ClassNewsDao classNewsDao) {
+/*    public ClassNewsServiceImpl(ClassNewsDao classNewsDao) {
         this.classNewsDao = classNewsDao;
-    }
+    }*/
     
 	public List<ClassNewsVO> findAll() {
 		return classNewsDao.findAll();

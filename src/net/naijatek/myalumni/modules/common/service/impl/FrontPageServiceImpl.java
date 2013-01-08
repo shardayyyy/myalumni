@@ -44,14 +44,18 @@ import net.naijatek.myalumni.framework.exceptions.MyAlumniException;
 import net.naijatek.myalumni.modules.common.domain.FrontPageVO;
 import net.naijatek.myalumni.modules.common.persistence.iface.FrontPageDao;
 import net.naijatek.myalumni.modules.common.service.IFrontPageService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class FrontPageServiceImpl implements IFrontPageService {
 
+    @Autowired
     private FrontPageDao FrontPageDao;
 
-    public FrontPageServiceImpl(FrontPageDao FrontPageDao) {
+/*    public FrontPageServiceImpl(FrontPageDao FrontPageDao) {
         this.FrontPageDao = FrontPageDao;
-    }
+    }*/
     
 	public List<FrontPageVO> findAll() {
 		return FrontPageDao.findAll();

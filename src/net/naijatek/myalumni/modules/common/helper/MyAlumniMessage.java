@@ -31,7 +31,7 @@ package net.naijatek.myalumni.modules.common.helper;
    * @version $Rev: 54929 $ $Date: 2004-10-16 09:38:42 -0700 (Sat, 16 Oct 2004) $
    * @since Struts 1.1
    */
-  public class POMMessage implements Serializable {
+  public class MyAlumniMessage implements Serializable {
   
   
       // ----------------------------------------------------------- Constructors
@@ -42,7 +42,7 @@ package net.naijatek.myalumni.modules.common.helper;
        *
        * @param key Message key for this message
        */
-      public POMMessage(String key) {
+      public MyAlumniMessage(String key) {
           this(key, null);
       }
   
@@ -53,7 +53,7 @@ package net.naijatek.myalumni.modules.common.helper;
        * @param key Message key for this message
        * @param value0 First replacement value
        */
-      public POMMessage(String key, Object value0) {
+      public MyAlumniMessage(String key, Object value0) {
           this(key, new Object[] { value0 });
       }
   
@@ -65,7 +65,7 @@ package net.naijatek.myalumni.modules.common.helper;
        * @param value0 First replacement value
        * @param value1 Second replacement value
        */
-      public POMMessage(String key, Object value0, Object value1) {
+      public MyAlumniMessage(String key, Object value0, Object value1) {
           this(key, new Object[] { value0, value1 });
       }
   
@@ -78,7 +78,7 @@ package net.naijatek.myalumni.modules.common.helper;
        * @param value1 Second replacement value
        * @param value2 Third replacement value
        */
-      public POMMessage(String key, Object value0, Object value1,
+      public MyAlumniMessage(String key, Object value0, Object value1,
                          Object value2) {
   
           this(key, new Object[] { value0, value1, value2 });
@@ -94,7 +94,7 @@ package net.naijatek.myalumni.modules.common.helper;
        * @param value2 Third replacement value
        * @param value3 Fourth replacement value
        */
-      public POMMessage(String key, Object value0, Object value1,
+      public MyAlumniMessage(String key, Object value0, Object value1,
                          Object value2, Object value3) {
           
           this(key, new Object[] { value0, value1, value2, value3 });
@@ -107,7 +107,7 @@ package net.naijatek.myalumni.modules.common.helper;
       * @param key Message key for this message
       * @param values Array of replacement values
       */
-     public POMMessage(String key, Object[] values) {
+     public MyAlumniMessage(String key, Object[] values) {
  
          this.key = key;
          this.values = values;

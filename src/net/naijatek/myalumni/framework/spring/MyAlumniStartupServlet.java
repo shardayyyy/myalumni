@@ -41,6 +41,7 @@ package net.naijatek.myalumni.framework.spring;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 
 import net.naijatek.myalumni.modules.common.domain.ScrollVO;
@@ -56,11 +57,13 @@ import net.naijatek.myalumni.util.utilities.AppProp;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.util.LabelValueBean;
+import org.springframework.beans.BeansException;
 import org.springframework.web.context.ContextLoaderServlet;
+import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-public class MyAlumniStartupServlet extends ContextLoaderServlet {
+public class MyAlumniStartupServlet extends DispatcherServlet {
 
 	private static Log logger = LogFactory.getLog(MyAlumniStartupServlet.class);
 
@@ -68,11 +71,33 @@ public class MyAlumniStartupServlet extends ContextLoaderServlet {
 
 	private MyJobScheduler sched = null;
 
-	public void init() throws ServletException {
-		logger.info("MyAlumniStartupServlet init()...");
-		super.init();
-		initSystem();
-	}
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        logger.info("MyAlumniStartupServlet init()...");
+        super.init(config);
+        initSystem();
+    }
+
+    @Override
+    protected WebApplicationContext initWebApplicationContext()
+            throws BeansException {
+        // TODO Auto-generated method stub
+        logger.info("In dispatcher servlet WebApplicationContext method");
+
+        WebApplicationContext wac = super.initWebApplicationContext();
+        if(null!=wac){
+            logger.info("WAC Display Name " + wac.getDisplayName());
+            String[] beanNames = wac.getBeanDefinitionNames();
+            for(String bean:beanNames){
+                logger.info(" bean names " + bean) ;
+            }
+        }else{
+
+            logger.info("Web Application context is null ") ;
+        }
+        return wac;
+    }
 
 	protected void initSystem() throws ServletException {
 		// Initialize the persistence service
@@ -92,6 +117,7 @@ public class MyAlumniStartupServlet extends ContextLoaderServlet {
 			throw new ServletException(e.toString());
 		}
 	}
+
 
 
 	private void setupCache() throws Exception {

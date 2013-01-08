@@ -40,7 +40,7 @@ package net.naijatek.myalumni.modules.admin.presentation.form;
 
 import org.apache.struts.upload.FormFile;
 
-import net.naijatek.myalumni.framework.struts.MyAlumniBaseForm;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseForm;
 
 public class SystemConfigForm extends MyAlumniBaseForm{
 

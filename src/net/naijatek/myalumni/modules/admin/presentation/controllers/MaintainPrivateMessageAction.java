@@ -36,15 +36,15 @@
  * @author Folashade Adeyosoye (shardayyy@naijatek.com)
  * @version 1.0
  */
-package net.naijatek.myalumni.modules.admin.presentation.action;
+package net.naijatek.myalumni.modules.admin.presentation.controllers;
 
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import net.naijatek.myalumni.framework.struts.MyAlumniDispatchAction;
-import net.naijatek.myalumni.framework.struts.MyAlumniUserContainer;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseController;
+import net.naijatek.myalumni.framework.extensions.MyAlumniUserContainer;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.domain.PrivateMessageVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
@@ -59,39 +59,44 @@ import net.naijatek.myalumni.util.utilities.DateFormatUtil;
 import net.naijatek.myalumni.util.utilities.StringUtil;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.portlet.bind.annotation.ActionMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-public class MaintainPrivateMessageAction  extends MyAlumniDispatchAction{
+@Controller
+@RequestMapping("/admin/message")
+public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
 
-    private IPrivateMessageService pmService; 
-    private IMemberService memService; 
+    @Autowired
+    private IPrivateMessageService pmService;
+
+    @Autowired
+    private IMemberService memService;
+
+    @Autowired
     private ISystemConfigService sysConfigSerivce;
     
     //private static Log logger = LogFactory.getLog(MaintainPrivateMessageAction.class);
 
-    public MaintainPrivateMessageAction(final IMemberService memService, final IPrivateMessageService pmService, ISystemConfigService sysConfigSerivce) {
+/*    public MaintainPrivateMessageAction(final IMemberService memService, final IPrivateMessageService pmService, ISystemConfigService sysConfigSerivce) {
         this.pmService = pmService;
         this.memService = memService;
         this.sysConfigSerivce = sysConfigSerivce;
-    }
+    }*/
     
-	public ActionForward emailMember( ActionMapping mapping,
-		            ActionForm form,
-		            HttpServletRequest request,
+	public ModelAndView emailMember(HttpServletRequest request,
 		            HttpServletResponse response )
 		throws Exception {
 		
 		// check to see if the user logged on is a member
 		if (!adminSecurityCheck(request)){
-		return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+		return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}
 		
 		if (isCancelled(request)) {
-			return mapping.findForward(BaseConstants.FWD_CANCEL);
+			return new ModelAndView(BaseConstants.FWD_CANCEL);
 		}
 		
 		PrivateMessageForm pmForm = (PrivateMessageForm)form;
@@ -104,15 +109,13 @@ public class MaintainPrivateMessageAction  extends MyAlumniDispatchAction{
         ActionMessages errors = new ActionMessages();
         errors.add(BaseConstants.INFO_KEY, new ActionMessage("message.emailsent"));
         saveMessages(request, errors);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}    
 
     
     
     
-    public ActionForward displayMailFolder(ActionMapping mapping,
-                                       ActionForm form,
-                                       HttpServletRequest request,
+    public ModelAndView displayMailFolder(HttpServletRequest request,
                                        HttpServletResponse response) throws
         Exception {
 
@@ -120,7 +123,7 @@ public class MaintainPrivateMessageAction  extends MyAlumniDispatchAction{
 
       // check to see if the user logged on is a member
       if (!adminSecurityCheck(request)) {
-        return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+        return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
       }
 
       String adminUserId = BaseConstants.ADMIN_USERNAME_ID;
@@ -142,21 +145,19 @@ public class MaintainPrivateMessageAction  extends MyAlumniDispatchAction{
           ActionMessages errors = new ActionMessages();
           errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.folderdoesnotexist"));
           saveMessages(request, errors);
-          return mapping.findForward(BaseConstants.FWD_SUCCESS);
+          return new ModelAndView(BaseConstants.FWD_SUCCESS);
         }
-      return mapping.findForward(BaseConstants.FWD_SUCCESS);
+      return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }    
     
     
-    public ActionForward prepareReplyMail( ActionMapping mapping,
-                                  ActionForm form,
-                                  HttpServletRequest request,
+    public ModelAndView prepareReplyMail( HttpServletRequest request,
                                   HttpServletResponse response )
       throws Exception {
 
 	    // check to see if the user logged on is a member
 	    if (!adminSecurityCheck(request)){
-	      return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+	      return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 	    }
 	
 	    PrivateMessageForm pmForm = (PrivateMessageForm)form;
@@ -186,13 +187,11 @@ public class MaintainPrivateMessageAction  extends MyAlumniDispatchAction{
 	    }
 
 	      
-	    return mapping.findForward(BaseConstants.FWD_SUCCESS);
+	    return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }    
     
     
-    public ActionForward prepareContactMessage( ActionMapping mapping,
-                                  ActionForm form,
-                                  HttpServletRequest request,
+    public ModelAndView prepareContactMessage( HttpServletRequest request,
                                   HttpServletResponse response )
       throws Exception {
 
@@ -201,7 +200,7 @@ public class MaintainPrivateMessageAction  extends MyAlumniDispatchAction{
 	
 	    // check to see if the user logged on is a member
 	    if (!adminSecurityCheck(request)){
-	      return mapping.findForward(BaseConstants.FWD_LOGIN);
+	      return new ModelAndView(BaseConstants.FWD_LOGIN);
 	    }
 	
 	    PrivateMessageForm pmForm = (PrivateMessageForm) form;
@@ -225,19 +224,18 @@ public class MaintainPrivateMessageAction  extends MyAlumniDispatchAction{
 	    //dynaForm.setFromEmail(StringUtil.safeString(dynaForm.getGuestEmail()));   //set already
 	    pmForm.setSubject(userVO.getFirstName() + " " + userVO.getLastName() + " [WebAdmin] " + BaseConstants.CONTACT_SUBJECT); 
 	
-	    return mapping.findForward(BaseConstants.FWD_SUCCESS);
+	    return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }    
     
     
-    public ActionForward readOneMail(ActionMapping mapping, ActionForm form,
-                                       HttpServletRequest request,
+    public ModelAndView readOneMail(HttpServletRequest request,
                                        HttpServletResponse response) throws Exception {
 
         PrivateMessageForm pmForm = (PrivateMessageForm)form;
 
         // check to see if the user logged on is a member
         if (!adminSecurityCheck(request)) {
-            return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+            return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
         }
         
         String mailId = pmForm.getMessageId();
@@ -251,19 +249,17 @@ public class MaintainPrivateMessageAction  extends MyAlumniDispatchAction{
         PrivateMessageHelper pmHelper = pmService.getAdminMessageCenter(BaseConstants.ADMIN_USERNAME_ID, BaseConstants.FOLDER_INBOX, container );
         setSessionObject(request, BaseConstants.MESSAGE_CENTER , pmHelper);
 
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     } 
     
-    public ActionForward contactAndReplyMail( ActionMapping mapping,
-                                  ActionForm form,
-                                  HttpServletRequest request,
+    public ModelAndView contactAndReplyMail(HttpServletRequest request,
                                   HttpServletResponse response )
       throws Exception {
 
 
 	    // check to see if the user logged on is a member
 	    if (!adminSecurityCheck(request)){
-	      return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+	      return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 	    }
 
       PrivateMessageForm dynaForm = (PrivateMessageForm) form;
@@ -311,26 +307,24 @@ public class MaintainPrivateMessageAction  extends MyAlumniDispatchAction{
     PrivateMessageHelper pmHelper = pmService.getAdminMessageCenter(BaseConstants.ADMIN_USERNAME_ID, BaseConstants.FOLDER_INBOX, container );
     setSessionObject(request, BaseConstants.MESSAGE_CENTER , pmHelper);
 
-    return mapping.findForward(BaseConstants.FWD_SUCCESS);
+    return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
     }  
     
-    public ActionForward deleteMail(ActionMapping mapping,
-            ActionForm form,
-            HttpServletRequest request,
+    public ModelAndView deleteMail(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
 
     	ActionMessages errors = new ActionMessages();
     	
 		if (isCancelled(request)) {
-			return mapping.findForward(BaseConstants.FWD_CANCEL);
+			return new ModelAndView(BaseConstants.FWD_CANCEL);
 		}
 		
 		MemberVO token = getCurrentLoggedInUser(request);  
 		
 		// check to see if the user logged on is a member
 		if (!memberSecurityCheck(request, token)) {
-			return mapping.findForward(BaseConstants.FWD_LOGIN);
+			return new ModelAndView(BaseConstants.FWD_LOGIN);
 		}
 
 		
@@ -348,7 +342,7 @@ public class MaintainPrivateMessageAction  extends MyAlumniDispatchAction{
 		//if ( privAdminDelete.equalsIgnoreCase("yes") || privAdminMove.equalsIgnoreCase("yes")){
 			// check to see if the user logged on is a member
 			if (!adminSecurityCheck(request, token)) {
-				return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+				return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 			}       
 				
 			memberId = BaseConstants.ADMIN_USERNAME_ID;
@@ -393,7 +387,7 @@ public class MaintainPrivateMessageAction  extends MyAlumniDispatchAction{
 				return mapping.getInputForward();
 			}
 		
-			return mapping.findForward(BaseConstants.FWD_SUCCESS);
+			return new ModelAndView(BaseConstants.FWD_SUCCESS);
 		}
 		
 		

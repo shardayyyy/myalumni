@@ -45,15 +45,18 @@ import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
 import net.naijatek.myalumni.modules.common.domain.TwitterVO;
 import net.naijatek.myalumni.modules.common.persistence.iface.SystemConfigDao;
 import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class SystemConfigServiceImpl implements ISystemConfigService {
 
+    @Autowired
     private SystemConfigDao systemConfigDao;
 
-    public SystemConfigServiceImpl(SystemConfigDao systemConfigDao) {
+/*    public SystemConfigServiceImpl(SystemConfigDao systemConfigDao) {
         this.systemConfigDao = systemConfigDao;
-    }
+    }*/
     
 	// Org Info
 	public void updateOrgInfo(SystemConfigVO systemConfigVO){

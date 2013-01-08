@@ -154,7 +154,7 @@ public class BirthdayListTag extends BodyTagSupport {
 				sb.append("<a href=\"/");
 				sb.append(rootContextName);
 				sb
-						.append("/action/member/displayMiniProfile?action=displayMiniProfile&memberUserName="
+						.append("/controllers/member/displayMiniProfile?controllers=displayMiniProfile&memberUserName="
 								+ user.getMemberUserName()
 								+ "\" + onclick=\"newPopup(this.href,'name');return false\" title=\"View "
 								+ user.getFirstName()

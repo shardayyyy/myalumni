@@ -43,12 +43,15 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.List;
 
-import net.naijatek.myalumni.framework.struts.MyAlumniBaseException;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseException;
 import net.naijatek.myalumni.modules.common.domain.EmailExceptionVO;
 import net.naijatek.myalumni.modules.common.persistence.BaseHibernateDao;
 import net.naijatek.myalumni.modules.common.persistence.iface.SystemTasksDao;
 import net.naijatek.myalumni.util.DBHelper;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class SystemTasksHibernateDao extends BaseHibernateDao implements
 		SystemTasksDao {
 

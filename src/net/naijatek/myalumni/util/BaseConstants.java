@@ -74,7 +74,7 @@ public interface BaseConstants {
   public final static String HAS_DORMITORY = "hasDorm";
 
 
-  // variables used both in the JSP's and the action classes
+  // variables used both in the JSP's and the controllers classes
   public final static String FULL_SEARCH = "fullSearch";
   public final static String FIRST_NAME = "firstName";
   public final static String LAST_NAME = "lastName";

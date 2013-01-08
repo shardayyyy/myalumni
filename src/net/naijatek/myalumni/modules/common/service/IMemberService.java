@@ -45,7 +45,7 @@ import javax.servlet.http.HttpServletRequest;
 import net.naijatek.myalumni.framework.exceptions.DuplicateEmailException;
 import net.naijatek.myalumni.framework.exceptions.DuplicateMemberException;
 import net.naijatek.myalumni.framework.exceptions.MyAlumniException;
-import net.naijatek.myalumni.framework.struts.MyAlumniBaseException;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseException;
 import net.naijatek.myalumni.modules.common.domain.LoginHistoryVO;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.domain.StatisticsVO;

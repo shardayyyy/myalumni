@@ -49,8 +49,10 @@ import net.naijatek.myalumni.modules.common.domain.PrivateMessageVO;
 import net.naijatek.myalumni.modules.common.persistence.BaseHibernateDao;
 import net.naijatek.myalumni.modules.common.persistence.iface.PrivateMessageDao;
 import net.naijatek.myalumni.util.BaseConstants;
+import org.springframework.stereotype.Component;
 
 
+@Component
 public class PrivateMessageHibernateDao extends BaseHibernateDao implements PrivateMessageDao {
 
     public void init(PrivateMessageVO pm){

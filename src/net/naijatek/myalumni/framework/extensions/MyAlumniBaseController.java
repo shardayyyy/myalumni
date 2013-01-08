@@ -36,7 +36,7 @@
  * @author Folashade Adeyosoye (shardayyy@naijatek.com)
  * @version 1.0
  */
-package net.naijatek.myalumni.framework.struts;
+package net.naijatek.myalumni.framework.extensions;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -46,19 +46,21 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 import java.util.StringTokenizer;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.naijatek.myalumni.framework.exceptions.BadInputException;
 import net.naijatek.myalumni.modules.common.domain.ClassNewsVO;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
+import net.naijatek.myalumni.modules.common.helper.MyAlumniMessage;
+import net.naijatek.myalumni.modules.common.helper.MyAlumniMessages;
 import net.naijatek.myalumni.modules.common.helper.PrivateMessageHelper;
 import net.naijatek.myalumni.modules.common.presentation.form.MemberForm;
 import net.naijatek.myalumni.modules.common.service.IClassNewsService;
@@ -73,22 +75,31 @@ import net.naijatek.myalumni.util.utilities.SystemProp;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.Globals;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
-import org.apache.struts.upload.FormFile;
-import org.apache.struts.util.MessageResources;
-import org.springframework.web.struts.DispatchActionSupport;
+import org.springframework.context.MessageSource;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.AbstractController;
 
-public abstract class MyAlumniDispatchAction extends DispatchActionSupport {
+public abstract class MyAlumniBaseController extends AbstractController {
 
-	private static Log logger = LogFactory.getLog(MyAlumniDispatchAction.class);
+	private static Log logger = LogFactory.getLog(MyAlumniBaseController.class);
 
-	private static MessageResources defaultResource;
+	//private static MessageResources defaultResource;
+    private static MessageSource defaultResource;
 
 	private static AppProp ap = AppProp.getInstance();
 
 	private static SystemProp sysProp = SystemProp.getInstance();
+
+
+    public ModelAndView handleRequestInternal(
+            HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+
+        ModelAndView mav = new ModelAndView("hello");
+        mav.addObject("message", "Hello World!");
+        return mav;
+    }
 
 	/*
 	 * //================================================ PUBLIC UTILITY METHODS
@@ -102,14 +113,19 @@ public abstract class MyAlumniDispatchAction extends DispatchActionSupport {
 	 * 
 	 * @return MessageResources
 	 */
-	protected MessageResources getDefaultResource(HttpServletRequest request) {
+    //ResourceBundleMessageSource
+/*
+	protected MessageSource getDefaultResource(HttpServletRequest request) {
 		try {
+            //defaultResource = getMessageSourceAccessor();
+            defaultResource = (MessageSource)getServletContext().get
 			defaultResource = getResources(request);
 		} catch (Exception ex) {
 			logger.error("in getDefaultResource, exception is thrown - " + ex);
 		}
 		return defaultResource;
 	}
+*/
 
 
 	// --------------------------------------------------------------------------------------
@@ -149,13 +165,12 @@ public abstract class MyAlumniDispatchAction extends DispatchActionSupport {
 	 *            HttpServletRequest
 	 * @return boolean
 	 */
-	protected boolean memberSecurityCheck(HttpServletRequest request,
-			final MemberVO token) {
-		ActionMessages errors = new ActionMessages();
+	protected boolean memberSecurityCheck(HttpServletRequest request, final MemberVO token) {
+        MyAlumniMessages errors = new MyAlumniMessages();
 		boolean status = true;
 
 		if (token == null) {
-			errors.add(BaseConstants.WARN_KEY, new ActionMessage(
+			errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage(
 					"error.pleaselogin"));
 			saveMessages(request, errors);
 			status = false;
@@ -166,7 +181,7 @@ public abstract class MyAlumniDispatchAction extends DispatchActionSupport {
 					|| (!token.getIsAdmin().equalsIgnoreCase(
 							BaseConstants.BOOLEAN_YES) && !token.getIsAdmin()
 							.equalsIgnoreCase(BaseConstants.BOOLEAN_NO))) {
-				errors.add(BaseConstants.WARN_KEY, new ActionMessage(
+				errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage(
 						"error.pleaselogin"));
 				saveMessages(request, errors);
 				status = false;
@@ -211,11 +226,11 @@ public abstract class MyAlumniDispatchAction extends DispatchActionSupport {
 	 */
 	protected boolean adminSecurityCheck(HttpServletRequest request,
 			final MemberVO token) {
-		ActionMessages errors = new ActionMessages();
+		MyAlumniMessages errors = new MyAlumniMessages();
 		boolean status = true;
 
 		if (token == null) {
-			errors.add(BaseConstants.WARN_KEY, new ActionMessage(
+			errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage(
 					"error.pleaselogin"));
 			saveMessages(request, errors);
 			status = false;
@@ -223,7 +238,7 @@ public abstract class MyAlumniDispatchAction extends DispatchActionSupport {
 
 		if (status) {
 			if (!token.getIsAdmin().equals(BaseConstants.BOOLEAN_YES)) {
-				errors.add(BaseConstants.WARN_KEY, new ActionMessage(
+				errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage(
 						"error.pleaselogin"));
 				saveMessages(request, errors);
 				status = false;
@@ -243,7 +258,7 @@ public abstract class MyAlumniDispatchAction extends DispatchActionSupport {
 	 * @throws Exception
 	 * @return String
 	 */
-	protected boolean uploadFromLocalDrive(FormFile importFile, String importFileName, String destDir)
+	protected boolean uploadFromLocalDrive(CommonsMultipartFile importFile, String importFileName, String destDir)
 			throws Exception {
 		boolean valid = true;
 		//String importFileName = importFile.getFileName();
@@ -606,15 +621,15 @@ public abstract class MyAlumniDispatchAction extends DispatchActionSupport {
 	 * @param request
 	 *            HttpServletRequest
 	 * @param actionMessages
-	 *            ActionMessages
+	 *            MyAlumniMessages
 	 */
 	protected void saveMessages(HttpServletRequest request,
-			ActionMessages actionMessages) {
+			MyAlumniMessages actionMessages) {
 
-		ActionMessages existingActionMessages = (ActionMessages) request
+		MyAlumniMessages existingMyAlumniMessages = (MyAlumniMessages) request
 				.getAttribute(Globals.MESSAGE_KEY);
 
-		if (existingActionMessages != null && !existingActionMessages.isEmpty()) {
+		if (existingMyAlumniMessages != null && !existingMyAlumniMessages.isEmpty()) {
 
 			Iterator aeprops = actionMessages.properties();
 			while (aeprops.hasNext()) {
@@ -622,11 +637,11 @@ public abstract class MyAlumniDispatchAction extends DispatchActionSupport {
 
 				Iterator msgs = actionMessages.get(prop);
 				while (msgs.hasNext()) {
-					ActionMessage am = (ActionMessage) msgs.next();
-					existingActionMessages.add(prop, am);
+					MyAlumniMessage am = (MyAlumniMessage) msgs.next();
+					existingMyAlumniMessages.add(prop, am);
 				}
 			}
-			super.saveMessages(request, existingActionMessages);
+			super.saveMessages(request, existingMyAlumniMessages);
 		} else {
 			super.saveMessages(request, actionMessages);
 		}
@@ -666,29 +681,29 @@ public abstract class MyAlumniDispatchAction extends DispatchActionSupport {
 	// --
 	// --------------------------------------------------------------------------
 
-	protected ActionMessages validateUploadFile(HttpServletRequest request,
-			FormFile uploadedFile, String fileAllowedTypes, int maxFileSize, 
+	protected MyAlumniMessages validateUploadFile(HttpServletRequest request,
+                                                CommonsMultipartFile uploadedFile, String fileAllowedTypes, int maxFileSize,
 			boolean validateHeight, int maxHeight, boolean validateWidth, int maxWidth) {
 		
-		ActionMessages msgs = new ActionMessages();
+		MyAlumniMessages msgs = new MyAlumniMessages();
 		
-		String fileName = uploadedFile.getFileName();
-		int fileSize = uploadedFile.getFileSize();
+		String fileName = uploadedFile.getOriginalFilename();
+		long fileSize = uploadedFile.getSize();
 
 
 		if (fileName == null || fileName.length() == 0) {
-			msgs.add(BaseConstants.WARN_KEY, new ActionMessage("error.notreadable"));
+			msgs.add(BaseConstants.WARN_KEY, new MyAlumniMessage("error.notreadable"));
 		}
 		else{
 			// Check for space in file name
 			if (fileName.indexOf(" ") > -1) {
-				msgs.add(BaseConstants.WARN_KEY, new ActionMessage(
+				msgs.add(BaseConstants.WARN_KEY, new MyAlumniMessage(
 						"error.filename", fileName));
 			}
 	
 			// check for file size
 			if (fileSize > maxFileSize) {
-				msgs.add(BaseConstants.WARN_KEY, new ActionMessage(
+				msgs.add(BaseConstants.WARN_KEY, new MyAlumniMessage(
 						"error.filetoobig", String.valueOf(fileSize), String
 								.valueOf(maxFileSize)));
 			}
@@ -702,7 +717,7 @@ public abstract class MyAlumniDispatchAction extends DispatchActionSupport {
 			}
 	
 			if (!validExtension) {
-				msgs.add(BaseConstants.WARN_KEY, new ActionMessage("error.imageext", SystemConfigConstants.CONTENT_TYPE));
+				msgs.add(BaseConstants.WARN_KEY, new MyAlumniMessage("error.imageext", SystemConfigConstants.CONTENT_TYPE));
 			}
 			else{						
 				      logger.debug(fileName + " ext = " + getFileExtensionForImageReader(fileName));
@@ -714,21 +729,21 @@ public abstract class MyAlumniDispatchAction extends DispatchActionSupport {
 				          reader.setInput(iis, true);
 				          int width = reader.getWidth(0);
 				          int height = reader.getHeight(0);
-				          logger.debug(uploadedFile.getFileName() + ": width=" + width + ", height=" + height);
+				          logger.debug(uploadedFile.getOriginalFilename() + ": width=" + width + ", height=" + height);
 				          
 							if (validateHeight){
 						          if (height >  maxHeight){
-						        	  msgs.add(BaseConstants.WARN_KEY,new ActionMessage("error.heightdimensions", height, maxHeight ));        	  
+						        	  msgs.add(BaseConstants.WARN_KEY,new MyAlumniMessage("error.heightdimensions", height, maxHeight ));        	  
 						          }						
 							}
 							
 							if (validateWidth){
 						          if (width > maxWidth || height >  maxHeight){
-						        	  msgs.add(BaseConstants.WARN_KEY,new ActionMessage("error.widthdimensions", width, maxWidth ));        	  
+						        	  msgs.add(BaseConstants.WARN_KEY,new MyAlumniMessage("error.widthdimensions", width, maxWidth ));        	  
 						          }						
 							}					
 				      } catch (IOException e) {
-				          msgs.add(BaseConstants.FATAL_KEY,new ActionMessage("error.notreadable"));
+				          msgs.add(BaseConstants.FATAL_KEY,new MyAlumniMessage("error.notreadable"));
 				      }
 			}
 		}

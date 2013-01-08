@@ -5,10 +5,10 @@
 
    This file contains the default Struts Validator pluggable validator
    definitions.  It should be placed somewhere under /WEB-INF and
-   referenced in the struts-config.xml under the plug-in element
+   referenced in the extensions-config.xml under the plug-in element
    for the ValidatorPlugIn.
 
-      <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+      <plug-in className="org.apache.extensions.validator.ValidatorPlugIn">
         <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,
                                                   /WEB-INF/validation.xml"/>
       </plug-in>
@@ -50,7 +50,7 @@
 
 <!-- ========================= adminMaintainScroll ===================== -->
           <validator name="adminMaintainScroll"
-                      classname="net.naijatek.myalumni.framework.struts.MyAlumniValidator"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
                       method="adminMaintainScroll"
                       methodParams="java.lang.Object,
                                  org.apache.commons.validator.ValidatorAction,
@@ -62,7 +62,7 @@
 
 <!-- ========================= adminMaintainScroll ===================== -->
           <validator name="orgFirstYear"
-                      classname="net.naijatek.myalumni.framework.struts.MyAlumniValidator"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
                       method="orgFirstYear"
                       methodParams="java.lang.Object,
                                  org.apache.commons.validator.ValidatorAction,
@@ -73,7 +73,7 @@
           </validator>
 <!-- ========================= validateFrontPageUrl ===================== -->
           <validator name="validateFrontPageUrl"
-                      classname="net.naijatek.myalumni.framework.struts.MyAlumniValidator"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
                       method="validateFrontPageUrl"
                       methodParams="java.lang.Object,
                                  org.apache.commons.validator.ValidatorAction,

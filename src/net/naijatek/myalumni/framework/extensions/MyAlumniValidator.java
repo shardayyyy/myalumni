@@ -36,7 +36,7 @@
  * @author Folashade Adeyosoye (shardayyy@naijatek.com)
  * @version 1.0
  */
-package net.naijatek.myalumni.framework.struts;
+package net.naijatek.myalumni.framework.extensions;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -68,7 +68,7 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.validator.Resources;
 
-public class MyAlumniValidator extends MyAlumniDispatchAction implements
+public class MyAlumniValidator extends MyAlumniBaseController implements
 		Serializable {
 
 	private static Log logger = LogFactory.getLog(MyAlumniValidator.class);

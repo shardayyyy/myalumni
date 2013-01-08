@@ -45,7 +45,9 @@ import net.naijatek.myalumni.modules.common.domain.LoginHistoryVO;
 import net.naijatek.myalumni.modules.common.domain.ErrorLogVO;
 import net.naijatek.myalumni.modules.common.persistence.BaseHibernateDao;
 import net.naijatek.myalumni.modules.common.persistence.iface.ErrorLogDao;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ErrorLogHibernateDao extends BaseHibernateDao implements ErrorLogDao {
 
 

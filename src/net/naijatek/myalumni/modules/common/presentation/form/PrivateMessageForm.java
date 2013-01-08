@@ -40,7 +40,7 @@ package net.naijatek.myalumni.modules.common.presentation.form;
 
 
 
-import net.naijatek.myalumni.framework.struts.MyAlumniBaseForm;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseForm;
 import net.naijatek.myalumni.util.BaseConstants;
 
 public class PrivateMessageForm  extends MyAlumniBaseForm{

@@ -36,7 +36,7 @@
  * @author Folashade Adeyosoye (shardayyy@naijatek.com)
  * @version 1.0
  */
-package net.naijatek.myalumni.framework.struts;
+package net.naijatek.myalumni.framework.extensions;
 
 
 import java.util.Date;
@@ -61,7 +61,6 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.action.ExceptionHandler;
 import org.apache.struts.config.ExceptionConfig;
-import org.apache.struts.util.ModuleException;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -84,9 +83,9 @@ public final class MyAlumniExceptionHandler extends ExceptionHandler {
 	 * forward to_email the input.
 	 * 
 	 * @see org.apache.struts.action.ExceptionHandler#execute()
-	 *      java.lang.Exception, org.apache.struts.config.ExceptionConfig,
-	 *      org.apache.struts.action.ActionMapping,
-	 *      org.apache.struts.action.ActionForm,
+	 *      java.lang.Exception, org.apache.extensions.config.ExceptionConfig,
+	 *      org.apache.extensions.controllers.ActionMapping,
+	 *      org.apache.extensions.controllers.ActionForm,
 	 *      javax.servlet.http.HttpServletRequest,
 	 *      javax.servlet.http.HttpServletResponse )
 	 * 

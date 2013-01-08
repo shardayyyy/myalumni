@@ -49,10 +49,9 @@ import javax.servlet.http.HttpServletRequest;
 import net.naijatek.myalumni.framework.exceptions.DuplicateEmailException;
 import net.naijatek.myalumni.framework.exceptions.DuplicateMemberException;
 import net.naijatek.myalumni.framework.exceptions.MyAlumniException;
-import net.naijatek.myalumni.framework.struts.MyAlumniBaseException;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseException;
 import net.naijatek.myalumni.modules.common.domain.LoginHistoryVO;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
-import net.naijatek.myalumni.modules.common.domain.MessengerVO;
 import net.naijatek.myalumni.modules.common.domain.StatisticsVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
 import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
@@ -60,7 +59,6 @@ import net.naijatek.myalumni.modules.common.persistence.iface.MemberDao;
 import net.naijatek.myalumni.modules.common.persistence.iface.SystemConfigDao;
 import net.naijatek.myalumni.modules.common.service.IMemberService;
 import net.naijatek.myalumni.util.BaseConstants;
-import net.naijatek.myalumni.util.SystemConfigConstants;
 import net.naijatek.myalumni.util.encryption.Encoder;
 import net.naijatek.myalumni.util.encryption.PasswordGenerator;
 import net.naijatek.myalumni.util.mail.SendMailUtil;
@@ -68,23 +66,25 @@ import net.naijatek.myalumni.util.utilities.StringUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionMessage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-
-
+@Component
 public class MemberServiceImpl implements IMemberService {
 	
-	
+	@Autowired
     private MemberDao memberDao;
+
+    @Autowired
     private SystemConfigDao sysConfigDao;
     
     
     private static Log logger = LogFactory.getLog(MemberServiceImpl.class);
 
-    public MemberServiceImpl(MemberDao memberDao, SystemConfigDao sysConfigDao) {
+/*    public MemberServiceImpl(MemberDao memberDao, SystemConfigDao sysConfigDao) {
         this.memberDao = memberDao;
         this.sysConfigDao = sysConfigDao;
-    }
+    }*/
     
     // ----------------------------------------------------------------------------------
     

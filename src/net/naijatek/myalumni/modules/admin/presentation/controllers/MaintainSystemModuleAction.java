@@ -36,7 +36,7 @@
  * @author Folashade Adeyosoye (shardayyy@naijatek.com)
  * @version 1.0
  */
-package net.naijatek.myalumni.modules.admin.presentation.action;
+package net.naijatek.myalumni.modules.admin.presentation.controllers;
 
 
 import java.io.File;
@@ -51,8 +51,8 @@ import javax.servlet.http.HttpServletResponse;
 import net.naijatek.myalumni.framework.exceptions.CreateException;
 import net.naijatek.myalumni.framework.exceptions.DuplicateEmailException;
 import net.naijatek.myalumni.framework.exceptions.DuplicateMemberException;
-import net.naijatek.myalumni.framework.struts.MyAlumniBaseException;
-import net.naijatek.myalumni.framework.struts.MyAlumniDispatchAction;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseController;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseException;
 import net.naijatek.myalumni.modules.admin.presentation.form.ErrorLogForm;
 import net.naijatek.myalumni.modules.admin.presentation.form.SystemConfigForm;
 import net.naijatek.myalumni.modules.common.domain.ClassNewsVO;
@@ -89,31 +89,44 @@ import net.naijatek.myalumni.util.utilities.StringUtil;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
-import org.apache.struts.upload.FormFile;
+
 import org.apache.struts.util.LabelValueBean;
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 
-
-
-public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
+@Controller
+@RequestMapping("/admin/system")
+public class MaintainSystemModuleAction extends MyAlumniBaseController {
 
 	private Log logger = LogFactory.getLog(this.getClass());
 
+    @Autowired
 	private IErrorLogService logService;
-	private ISystemConfigService systemConfigService;
-	private IClassNewsService classNewsService;
-	private ISystemTaskService sysService;
-	private IReminisceService reminisceService;
-	private IMemberService memberService;
-	
-	private IMessengerService messengerService;
-	private IMessageFolderService mfService;
+
+    @Autowired
+    private ISystemConfigService systemConfigService;
+
+    @Autowired
+    private IClassNewsService classNewsService;
+
+    @Autowired
+    private ISystemTaskService sysService;
+
+    @Autowired
+    private IReminisceService reminisceService;
+
+    @Autowired
+    private IMemberService memberService;
+
+    @Autowired
+    private IMessengerService messengerService;
+
+    @Autowired
+    private IMessageFolderService mfService;
 	
 	
 
@@ -121,7 +134,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	 * Instantiates the service classes
 	 * @param configService
 	 */
-	public MaintainSystemModuleAction(IErrorLogService logService,
+/*	public MaintainSystemModuleAction(IErrorLogService logService,
 			ISystemConfigService systemConfigService,
 			IClassNewsService classNewsService,
 			ISystemTaskService sysService,
@@ -139,57 +152,52 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		this.messengerService = messengerService;
 		this.mfService = mfService;
 		
-	}
+	}*/
 
 	// ----------------------------------
 	// ERROR LOG
 	//-----------------------------------  
-	public ActionForward listErrorLogs(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView listErrorLogs(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		logger.debug("in listErrorLogs...");
 		listErrorLogsHelper(request);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
-	public ActionForward viewErrorLog(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView viewErrorLog(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		logger.debug("in viewErrorLog...");
 
 		ErrorLogForm logForm = (ErrorLogForm) form;
 		ErrorLogVO logVO = logService.getErrorLog(logForm.getErrorLogId());
 		setRequestObject(request, BaseConstants.OBJECT_VO, logVO);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
-	public ActionForward purgeLogHistory(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView purgeLogHistory(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in purgeLogHistory...");
 		logService.deleteAllErrorLogs();
 		listErrorLogsHelper(request);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
-	public ActionForward batchErrorLog(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView batchErrorLog(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in batchErrorLog...");
 		
 		listErrorLogsHelper(request);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 	
 	
-	public ActionForward deleteErrorLog(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView deleteErrorLog(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		logger.debug("in deleteErrorLog...");
 		ErrorLogForm logForm = (ErrorLogForm) form;
 		logService.deleteErrorLog(logForm.getErrorLogId());
 		listErrorLogsHelper(request);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
 	private void listErrorLogsHelper(HttpServletRequest request)
@@ -204,23 +212,21 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	//******************  Org ABOUT US  ********************************
 	//**********************************************************************   
 
-	public ActionForward prepareUpdateOrgAboutUs(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView prepareUpdateOrgAboutUs(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in prepareUpdateOrgAboutUs...");
 		saveToken(request);
 		SystemConfigForm orgInfoForm = (SystemConfigForm) form;
 		SystemConfigVO orgInfoVO = systemConfigService.getOrgInfo();
 		BeanUtils.copyProperties(orgInfoForm, orgInfoVO);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
-	public ActionForward updateOrgAboutUs(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView updateOrgAboutUs(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		logger.debug("in updateOrgAboutUs...");
 		if (!isTokenValid(request)) {
-			return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+			return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
 		}
 		ActionMessages msgs = new ActionMessages();
 		SystemConfigForm orgInfoForm = (SystemConfigForm) form;
@@ -233,7 +239,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.record.updated"));
 		saveMessages(request, msgs);
 		resetToken(request);	
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
 	
@@ -242,23 +248,21 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	//******************  Org Intro  ********************************
 	//**********************************************************************   
 
-	public ActionForward prepareUpdateOrgIntro(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView prepareUpdateOrgIntro(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in prepareUpdateOrgIntro...");
 		saveToken(request);
 		SystemConfigForm orgInfoForm = (SystemConfigForm) form;
 		SystemConfigVO orgInfoVO = systemConfigService.getOrgInfo();
 		BeanUtils.copyProperties(orgInfoForm, orgInfoVO);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
-	public ActionForward updateOrgIntro(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView updateOrgIntro(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		logger.debug("in updateOrgIntro...");
 		if (!isTokenValid(request)) {
-			return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+			return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
 		}
 		ActionMessages msgs = new ActionMessages();
 		SystemConfigForm orgInfoForm = (SystemConfigForm) form;
@@ -271,7 +275,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.record.updated"));
 		saveMessages(request, msgs);
 		resetToken(request);	
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
 	
@@ -281,23 +285,21 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	//******************  Org Info  ********************************
 	//**********************************************************************   
 
-	public ActionForward prepareUpdateOrgInfo(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView prepareUpdateOrgInfo(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in prepareUpdateOrgInfo...");
 		saveToken(request);
 		SystemConfigForm orgInfoForm = (SystemConfigForm) form;
 		SystemConfigVO orgInfoVO = systemConfigService.getOrgInfo();
 		BeanUtils.copyProperties(orgInfoForm, orgInfoVO);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
-	public ActionForward updateOrgInfo(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView updateOrgInfo(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		logger.debug("in updateOrgInfo...");
 		if (!isTokenValid(request)) {
-			return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+			return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
 		}
 		ActionMessages msgs = new ActionMessages();
 		SystemConfigForm orgInfoForm = (SystemConfigForm) form;
@@ -314,7 +316,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	    sCtx.setAttribute(BaseConstants.ORGANIZATION_NAME, orgInfoVO.getOrganizationName());	
 	    sCtx.setAttribute(BaseConstants.ORGANIZATION_SHORT_NAME, orgInfoVO.getOrganizationShortName());	
 	    sCtx.setAttribute(BaseConstants.ORG_EMAIL, orgInfoVO.getOrgEmail());	
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
 	
@@ -323,23 +325,21 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	//******************  RSS Feed  ********************************
 	//**********************************************************************   
 
-	public ActionForward prepareUpdateRssFeed(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView prepareUpdateRssFeed(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in prepareUpdateRssFeed...");
 		saveToken(request);
 		SystemConfigForm rssForm = (SystemConfigForm) form;
 		SystemConfigVO rssVO = systemConfigService.getRssFeedSource();
 		BeanUtils.copyProperties(rssForm, rssVO);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
-	public ActionForward updateRssFeed(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView updateRssFeed(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		logger.debug("in updateRssFeed...");
 		if (!isTokenValid(request)) {
-			return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+			return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
 		}
 		ActionMessages msgs = new ActionMessages();
 		SystemConfigForm rssForm = (SystemConfigForm) form;
@@ -348,30 +348,28 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 				"message.record.updated"));
 		saveMessages(request, msgs);
 		resetToken(request);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
 	//**********************************************************************
 	//******************  SERVER URL  ********************************
 	//**********************************************************************   
 
-	public ActionForward prepareUpdateServerUrl(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView prepareUpdateServerUrl(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in prepareUpdateServerUrl...");
 		saveToken(request);
 		SystemConfigForm rssForm = (SystemConfigForm) form;
 		SystemConfigVO systemSetup = systemConfigService.getSystemConfig();
 		BeanUtils.copyProperties(rssForm, systemSetup);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
-	public ActionForward updateServerUrl(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView updateServerUrl(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in updateServerUrl...");
 		if (!isTokenValid(request)) {
-			return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+			return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
 		}
 		ActionMessages msgs = new ActionMessages();
 		SystemConfigForm rssForm = (SystemConfigForm) form;
@@ -382,7 +380,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.record.updated"));
 		saveMessages(request, msgs);
 		resetToken(request);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
 	
@@ -390,23 +388,22 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	//******************  Twitter Credential  ********************************
 	//**********************************************************************   
 
-	public ActionForward prepareUpdateTwitterCred(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView prepareUpdateTwitterCred(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in prepareUpdateTwitterCred...");
 		saveToken(request);
 		SystemConfigForm configForm = (SystemConfigForm) form;
 		SystemConfigVO systemSetup = systemConfigService.getSystemConfig();
 		BeanUtils.copyProperties(configForm, systemSetup);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
-	public ActionForward updateTwitterCred(ActionMapping mapping,
+	public ModelAndView updateTwitterCred(ActionMapping mapping,
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in updateTwitterCred...");
 		if (!isTokenValid(request)) {
-			return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+			return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
 		}
 		ActionMessages msgs = new ActionMessages();
 		SystemConfigForm configForm = (SystemConfigForm) form;
@@ -421,7 +418,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.record.updated"));
 		saveMessages(request, msgs);
 		resetToken(request);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 	
 	
@@ -429,26 +426,24 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	//******************  ALBUM URL  ********************************
 	//**********************************************************************   
 
-	public ActionForward prepareUpdateAlbumUrl(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView prepareUpdateAlbumUrl(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in prepareAlbumUrl...");
 		saveToken(request);
 		SystemConfigForm rssForm = (SystemConfigForm) form;
 		SystemConfigVO systemSetup = systemConfigService.getSystemConfig();
 		BeanUtils.copyProperties(rssForm, systemSetup);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
-	public ActionForward updateAlbumUrl(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView updateAlbumUrl(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in updateAlbumUrl...");
 		
 		ServletContext sCtx = request.getSession().getServletContext();
 		
 		if (!isTokenValid(request)) {
-			return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+			return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
 		}
 		ActionMessages msgs = new ActionMessages();
 		SystemConfigForm rssForm = (SystemConfigForm) form;
@@ -458,33 +453,31 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.record.updated"));
 		saveMessages(request, msgs);
 		resetToken(request);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 	
 	//**********************************************************************
 	//******************  FORUM URL  ********************************
 	//**********************************************************************   
 
-	public ActionForward prepareUpdateForumUrl(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView prepareUpdateForumUrl(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in prepareUpdateForumUrl...");
 		saveToken(request);
 		SystemConfigForm rssForm = (SystemConfigForm) form;
 		SystemConfigVO systemSetup = systemConfigService.getSystemConfig();
 		BeanUtils.copyProperties(rssForm, systemSetup);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
-	public ActionForward updateForumUrl(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView updateForumUrl(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in updateForumUrl...");
 		
 		ServletContext sCtx = request.getSession().getServletContext();
 		
 		if (!isTokenValid(request)) {
-			return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+			return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
 		}
 		ActionMessages msgs = new ActionMessages();
 		SystemConfigForm rssForm = (SystemConfigForm) form;
@@ -494,15 +487,14 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.record.updated"));
 		saveMessages(request, msgs);
 		resetToken(request);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}	
 	
 	//**********************************************************************
 	//******************  DORMITORY  ********************************
 	//**********************************************************************   
 
-	public ActionForward prepareUpdateDormitory(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView prepareUpdateDormitory(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
 		logger.debug("in prepareUpdateDormitory...");
@@ -510,16 +502,15 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		SystemConfigForm sysForm = (SystemConfigForm) form;
 		String hasDormitory = systemConfigService.getDormitory();
 		sysForm.setHasDormitory(hasDormitory);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
-	public ActionForward updateDormitory(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView updateDormitory(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in updateDormitory...");
 		
 		if (!isTokenValid(request)) {
-			return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+			return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
 		}
 		
 		ActionMessages msgs = new ActionMessages();
@@ -540,7 +531,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	     
 	     setServletContextObject(request, BaseConstants.LIST_OF_ADMIN_SEARCH_OPTIONS, adminSearchCategory);
 	     setServletContextObject(request, BaseConstants.LIST_OF_MEMBER_SEARCH_OPTIONS,searchCategory);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
 	
@@ -548,8 +539,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	//******************  BIRTHDAY NOTIFICATION  ********************************
 	//**********************************************************************   
 
-	public ActionForward prepareUpdateBirthdayNotification(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView prepareUpdateBirthdayNotification(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
 		logger.debug("in prepareUpdateBirthdayNotification...");
@@ -557,16 +547,15 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		SystemConfigForm sysForm = (SystemConfigForm) form;
 		String birthdayNotification = systemConfigService.getBirthdayNotification();
 		sysForm.setBirthdayNotification(birthdayNotification);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
-	public ActionForward updateBirthdayNotification(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView updateBirthdayNotification(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in updateBirthdayNotification...");
 		
 		if (!isTokenValid(request)) {
-			return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+			return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
 		}
 		
 		ActionMessages msgs = new ActionMessages();
@@ -578,30 +567,29 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.record.updated"));
 		saveMessages(request, msgs);
 		resetToken(request);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
 
 	//**********************************************************************
 	//******************  Session Timeout  ********************************
 	//**********************************************************************   
-	public ActionForward prepareUpdateSessionTimeOut(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView prepareUpdateSessionTimeOut(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in prepareUpdateSessionTimeOut...");
 		saveToken(request);
 		SystemConfigForm systemForm = (SystemConfigForm) form;
 		int timeout = systemConfigService.getSessionTimeOut();
 		systemForm.setSessionTimeout(String.valueOf(timeout));
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
-	public ActionForward updateSessionTimeOut(ActionMapping mapping,
+	public ModelAndView updateSessionTimeOut(ActionMapping mapping,
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		logger.debug("in updateSessionTimeOut...");
 		if (!isTokenValid(request)) {
-			return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+			return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
 		}
 		ActionMessages msgs = new ActionMessages();
 		SystemConfigForm systemForm = (SystemConfigForm) form;
@@ -610,7 +598,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.record.updated"));
 		saveMessages(request, msgs);
 		resetToken(request);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
 	//**********************************************************************
@@ -626,28 +614,27 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	 * @return
 	 * @throws Exception
 	 */
-	public ActionForward prepareValidateSystemConfig(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView prepareValidateSystemConfig(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
         logger.debug("in prepareValidateSystemConfig...");  
         saveToken(request);
 		
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
 	
-	   public ActionForward validateSystemConfig(ActionMapping mapping,
+	   public ModelAndView validateSystemConfig(ActionMapping mapping,
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
 	        logger.debug("in validateSystemConfig...");
 	        if ( !isTokenValid(request) ) {
-	            return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+	            return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
 	        }  
 	        
 	        if (!adminSecurityCheck(request)) {
-	        	return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+	        	return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 	        }
 	        
 	        ActionMessages errors = new ActionMessages();
@@ -659,7 +646,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 			
 
 
-			return mapping.findForward(BaseConstants.FWD_SUCCESS);
+			return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}       	
 	
 	
@@ -676,12 +663,11 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	 * @return
 	 * @throws Exception
 	 */
-	public ActionForward listDatabaseBackup(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView listDatabaseBackup(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
 		if (!adminSecurityCheck(request)) {
-			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+			return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}
 
 		ActionMessages errors = new ActionMessages();
@@ -695,7 +681,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		}
 		
 		listDatabaseBackupHelper(request);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
 	/**
@@ -707,12 +693,11 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	 * @return
 	 * @throws Exception
 	 */
-	public ActionForward databaseBackup(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView databaseBackup(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
 		if (!adminSecurityCheck(request)) {
-			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+			return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}
 		ActionMessages msgs = new ActionMessages();
 		DateTime dtime = new DateTime(new Date());
@@ -731,7 +716,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
         saveMessages(request, msgs);
 
         listDatabaseBackupHelper(request);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 	
 	/**
@@ -743,12 +728,11 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	 * @return
 	 * @throws Exception
 	 */
-	public ActionForward deleteDatabaseBackup(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView deleteDatabaseBackup(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
 		if (!adminSecurityCheck(request)) {
-			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+			return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}
 		ActionMessages msgs = new ActionMessages();
 		SystemForm sysForm = (SystemForm)form;
@@ -766,7 +750,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		}
 
 		listDatabaseBackupHelper(request);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 	
 	
@@ -779,12 +763,11 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	 * @return
 	 * @throws Exception
 	 */
-	public ActionForward viewDatabaseBackup(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView viewDatabaseBackup(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
 		if (!adminSecurityCheck(request)) {
-			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+			return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}
 		
 		SystemForm sysForm = (SystemForm)form;
@@ -803,7 +786,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 //		}
 //		
 		setSessionObject(request, BaseConstants.LOG_CONTENT, contentLog);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 	
 
@@ -824,12 +807,11 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	//**********************************************************************
 	//******************  EMAIL EXCEPTIONS  ********************************
 	//**********************************************************************   
-	public ActionForward maintainEmail(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView maintainEmail(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
 		if (!adminSecurityCheck(request)) {
-			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+			return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}
 
 		String task = request.getParameter("task");
@@ -853,7 +835,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 
 		}
 
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
 	
@@ -861,12 +843,11 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	//******************  VIEW LOG 4 J SYSTEM LOG  ********************************
 	//**********************************************************************  
 	
-	public ActionForward listSystemLogs(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView listSystemLogs(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
 		if (!adminSecurityCheck(request)) {
-			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+			return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}
 
 		ActionMessages errors = new ActionMessages();
@@ -880,16 +861,15 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		}
 		
 		listSystemLogHelper(request);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
 	
-	public ActionForward deleteSystemLog(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView deleteSystemLog(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
 		if (!adminSecurityCheck(request)) {
-			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+			return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}
 		ActionMessages msgs = new ActionMessages();
 		SystemForm sysForm = (SystemForm)form;
@@ -907,16 +887,15 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		}
 
 		listSystemLogHelper(request);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 	
 
-	public ActionForward viewSystemLogs(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+	public ModelAndView viewSystemLogs(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
 		if (!adminSecurityCheck(request)) {
-			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+			return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}
 		
 		SystemForm sysForm = (SystemForm)form;
@@ -946,11 +925,11 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		sysForm.setLogFileHumanSize(humanSize);
 		
 		setSessionObject(request, BaseConstants.LOG_CONTENT, contentLog);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 	
 	
-/*	public ActionForward viewLog2(ActionMapping mapping, ActionForm form,
+/*	public ModelAndView viewLog2(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
@@ -958,7 +937,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		String defaultFileName = "myalumni.log";
 
 		if (!adminSecurityCheck(request)) {
-			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+			return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}
 
 		SystemForm sysForm = (SystemForm)form;
@@ -1028,7 +1007,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 			return mapping.getInputForward();
 		}
 
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}*/
 
 	
@@ -1068,7 +1047,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	//******************  MAINTAIN SCROLL  ********************************
 	//********************************************************************** 	
 	
-    public ActionForward maintainScroll(ActionMapping mapping, ActionForm form, HttpServletRequest request, 
+    public ModelAndView maintainScroll(HttpServletRequest request,
     		HttpServletResponse response) throws Exception {
 
         ServletContext sCtx = request.getSession().getServletContext();
@@ -1078,7 +1057,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 
 		// check to see if the user logged on is a member
 		if (!adminSecurityCheck(request)) {
-			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+			return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}
 
 		ScrollForm scrollForm = (ScrollForm) form;
@@ -1103,38 +1082,38 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 			setSessionObject(request, BaseConstants.LIST_OF_SCROLLS, allScrolls);
 
 		}
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
    
 	//**********************************************************************
 	//******************  CLASS NEWS       ********************************
 	//********************************************************************** 	   
-    public ActionForward prepareAddClassNews(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView prepareAddClassNews(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in prepareAddClassNews...");  
         saveToken(request);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
     
-    public ActionForward listClassNews(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView listClassNews(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in listClassNews...");       
         getClassNewsHelper(request);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }    
 
-    public ActionForward viewClassNews(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView viewClassNews(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in viewClassNews...");       
         ClassNewsForm classNewsForm = (ClassNewsForm) form;
         ClassNewsVO classNewsVO = new ClassNewsVO();
         classNewsVO = classNewsService.findById(classNewsForm.getClassNewsId());
         BeanUtils.copyProperties(classNewsForm, classNewsVO );
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }    
  
-    public ActionForward updateClassNews(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView updateClassNews(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in updateClassNews...");
         if ( !isTokenValid(request) ) {
-            return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+            return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
         }          
         ClassNewsForm classNewsForm = (ClassNewsForm) form;
         ClassNewsVO classNewsVO = new ClassNewsVO();
@@ -1143,17 +1122,17 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
         classNewsService.merge(classNewsVO);
         getClassNewsHelper(request);
         resetToken(request);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
 
 
-    public ActionForward addClassNews(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView addClassNews(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in addClassNews...");
         if ( !isTokenValid(request) ) {
-            return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+            return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
         }          
 		if (!adminSecurityCheck(request)) {
-			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+			return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}        
         ClassNewsForm classNewsForm = (ClassNewsForm) form;
         ClassNewsVO classNewsVO = new ClassNewsVO();
@@ -1163,31 +1142,31 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
         classNewsService.save(classNewsVO);
         getClassNewsHelper(request);
         resetToken(request);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
     
-    public ActionForward prepareUpdateClassNews(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView prepareUpdateClassNews(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in prepareUpdateClassNews...");    
         saveToken(request);
         ClassNewsForm classNewsForm = (ClassNewsForm) form;
         ClassNewsVO classNewsVO = classNewsService.findById(classNewsForm.getClassNewsId());
         BeanUtils.copyProperties(classNewsForm, classNewsVO);
         getClassNewsHelper(request);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
 
 
-    public ActionForward deleteClassNews(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView deleteClassNews(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in deleteClassNews...");  
 		if (!adminSecurityCheck(request)) {
-			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+			return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}        
         ClassNewsForm classNewsForm = (ClassNewsForm) form;
         classNewsService.softDelete(classNewsForm.getClassNewsId(), getLastModifiedBy(request));
         getClassNewsHelper(request);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
 
     private void getClassNewsHelper(HttpServletRequest request){
@@ -1198,32 +1177,32 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	//**********************************************************************
 	//******************  REMINISCE       ********************************
 	//********************************************************************** 	   
-    public ActionForward prepareAddReminisce(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView prepareAddReminisce(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in prepareAddReminisce...");  
         saveToken(request);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
     
-    public ActionForward listReminisce(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView listReminisce(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in listReminisce...");       
         getReminisceHelper(request);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }    
 
-    public ActionForward viewReminisce(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView viewReminisce(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in viewReminisce...");       
         ReminisceForm classNewsForm = (ReminisceForm) form;
         ReminisceVO classNewsVO = new ReminisceVO();
         classNewsVO = reminisceService.findById(classNewsForm.getReminisceId());
         BeanUtils.copyProperties(classNewsForm, classNewsVO );
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }    
  
-    public ActionForward updateReminisce(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView updateReminisce(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in updateReminisce...");
         if ( !isTokenValid(request) ) {
-            return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+            return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
         }          
         
         ReminisceForm classNewsForm = (ReminisceForm) form;
@@ -1233,17 +1212,17 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
         reminisceService.merge(classNewsVO);
         getReminisceHelper(request);
         resetToken(request);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
 
 
-    public ActionForward addReminisce(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView addReminisce(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in addReminisce...");
         if ( !isTokenValid(request) ) {
-            return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+            return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
         }          
 		if (!adminSecurityCheck(request)) {
-			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+			return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}        
         ReminisceForm classNewsForm = (ReminisceForm) form;
         ReminisceVO classNewsVO = new ReminisceVO();
@@ -1253,31 +1232,31 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
         reminisceService.save(classNewsVO);
         getReminisceHelper(request);
         resetToken(request);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
     
-    public ActionForward prepareUpdateReminisce(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView prepareUpdateReminisce(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in prepareUpdateReminisce...");    
         saveToken(request);
         ReminisceForm classNewsForm = (ReminisceForm) form;
         ReminisceVO classNewsVO = reminisceService.findById(classNewsForm.getReminisceId());
         BeanUtils.copyProperties(classNewsForm, classNewsVO);
         getReminisceHelper(request);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
 
 
-    public ActionForward deleteReminisce(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView deleteReminisce(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in deleteReminisce...");        
 		if (!adminSecurityCheck(request)) {
-			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+			return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}        
         ReminisceForm classNewsForm = (ReminisceForm) form;
         reminisceService.softDelete(classNewsForm.getReminisceId(), getLastModifiedBy(request));
         getReminisceHelper(request);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
 
     private void getReminisceHelper(HttpServletRequest request){
@@ -1286,13 +1265,12 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
     }
     
     
-	public ActionForward setupIntialization(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView setupIntialization(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		logger.debug("in setupIntialization...");
 		
 		//if (!isTokenValid(request)) {
-		//	return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+		//	return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
 		//}
 		ServletContext sCtx = request.getSession().getServletContext();
 		ActionMessages msgs = new ActionMessages();
@@ -1409,15 +1387,14 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 	         logger.fatal("SYSTEM ERROR - " + ex.getMessage());
 	         return mapping.getInputForward();
 	    }				
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}    
 	
 	//**********************************************************************
 	//******************  LOGO       ********************************
 	//********************************************************************** 	
 	
-	public ActionForward prepareUploadLogo(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView prepareUploadLogo(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		logger.debug("in prepareUploadLogo...");
 		//ActionMessages msgs = new ActionMessages();
@@ -1426,17 +1403,16 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		systemConfigVO = systemConfigService.getSystemConfig();
 		BeanUtils.copyProperties(systemConfigForm, systemConfigVO);		
 		
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}  	
 	
 	
-	public ActionForward uploadLogo(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView uploadLogo(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		logger.debug("in uploadLogo...");
 
 		if (!adminSecurityCheck(request)) {
-			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+			return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}		
 		SystemConfigForm systemConfigForm = (SystemConfigForm) form;
 		String fileAllowedTypes = SystemConfigConstants.CONTENT_TYPE;
@@ -1465,15 +1441,14 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		}
 		
 		saveMessages(request, msgs);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}  		
 	
-	public ActionForward removeLogo(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView removeLogo(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		logger.debug("in removeLogo...");
 		if (!adminSecurityCheck(request)) {
-			return mapping.findForward(BaseConstants.FWD_ADMIN_LOGIN);
+			return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}
 		
 		
@@ -1493,7 +1468,7 @@ public class MaintainSystemModuleAction extends MyAlumniDispatchAction {
 		
 		ServletContext sCtx = request.getSession().getServletContext();
 		sCtx.setAttribute(BaseConstants.LOGO_NAME, null);		
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}  	
 		
 }

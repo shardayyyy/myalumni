@@ -46,14 +46,18 @@ import net.naijatek.myalumni.modules.common.domain.MessengerVO;
 import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
 import net.naijatek.myalumni.modules.common.persistence.iface.MessengerDao;
 import net.naijatek.myalumni.modules.common.service.IMessengerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MessengerServiceImpl  implements IMessengerService{
 
+    @Autowired
     private MessengerDao messengerDao;
 
-    public MessengerServiceImpl(MessengerDao messengerDao) {
+/*    public MessengerServiceImpl(MessengerDao messengerDao) {
         this.messengerDao = messengerDao;
-    }
+    }*/
 
     
 	public void saveAll(List<MessengerVO> list, String memberId) throws MyAlumniException{
