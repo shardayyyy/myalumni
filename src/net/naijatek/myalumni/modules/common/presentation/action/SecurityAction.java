@@ -71,7 +71,7 @@ import org.apache.struts.action.ActionMessages;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-	
+@Controller	
 	public class SecurityAction extends MyAlumniBaseController {
 	
 	    private IUserAccountService securityService;

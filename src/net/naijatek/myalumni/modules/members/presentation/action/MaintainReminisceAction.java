@@ -60,70 +60,68 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MaintainReminisceAction extends MyAlumniBaseController {
 
-    @Autowired
-    private IReminisceService reminisceService;
+	@Autowired
+	private IReminisceService reminisceService;
 
-    private static Log logger = LogFactory.getLog(MaintainReminisceAction.class);
-    
-    
-/*    public MaintainReminisceAction(final IReminisceService reminisceService) {
-        this.reminisceService = reminisceService;
-    }*/
-    
-    public ModeAndView listReminisce(HttpServletRequest request,
-            HttpServletResponse response) throws
-			Exception {
-    	logger.debug("in listReminisce");
-        
-        List<ReminisceVO> list = reminisceService.findAllByStatus(BaseConstants.ACTIVE);       
-    	setRequestObject(request, BaseConstants.LIST_OF_REMINISCE, list);
-    	return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    }
-    
-    public ModelAndView prepareAddReminisce(HttpServletRequest request,
-            HttpServletResponse response) throws
-			Exception {
-    	logger.debug("in prepareAddReminisce");
-    	
-    	MemberVO token = getCurrentLoggedInUser(request);
-    	
-        // check to see if the user logged on is a member
-        if (!memberSecurityCheck(request, token)) {
-          return new ModelAndView(BaseConstants.FWD_LOGIN);
-        }
-        
-        ReminisceForm cnForm =  (ReminisceForm)form;
-    	
-    	cnForm.setFromYear(String.valueOf(token.getYearIn()));
-    	cnForm.setToYear(String.valueOf(token.getYearOut()));
-    	
-    	return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    }
-    
-    
-    public ModelAndView addReminisce(HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
+	private static Log logger = LogFactory
+			.getLog(MaintainReminisceAction.class);
 
-    	logger.debug("in prepareAddReminisce");
-    	
-      if (isCancelled(request)){
-        return new ModelAndView(BaseConstants.FWD_CANCEL);
-      }
-      
-      ReminisceForm cnForm =  (ReminisceForm)form;
-      ReminisceVO cnVO = new ReminisceVO();   
+	/*
+	 * public MaintainReminisceAction(final IReminisceService reminisceService)
+	 * { this.reminisceService = reminisceService; }
+	 */
 
-      BeanUtils.copyProperties(cnVO, cnForm);
-      cnVO.setLastModifiedBy(getLastModifiedBy(request));
-      cnVO.setAuthorId(getCurrentUserId(request));
-      reminisceService.save(cnVO);
-      ActionMessages errors = new ActionMessages();
-      errors.add(BaseConstants.INFO_KEY, new ActionMessage("message.reminiscesubmitted"));
-      saveMessages(request, errors);      
-      return new ModelAndView(BaseConstants.FWD_SUCCESS);
+	public ModeAndView listReminisce(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		logger.debug("in listReminisce");
 
-    }    
-        
-    
+		List<ReminisceVO> list = reminisceService
+				.findAllByStatus(BaseConstants.ACTIVE);
+		setRequestObject(request, BaseConstants.LIST_OF_REMINISCE, list);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
+	}
+
+	public ModelAndView prepareAddReminisce(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		logger.debug("in prepareAddReminisce");
+
+		MemberVO token = getCurrentLoggedInUser(request);
+
+		// check to see if the user logged on is a member
+		if (!memberSecurityCheck(request, token)) {
+			return new ModelAndView(BaseConstants.FWD_LOGIN);
+		}
+
+		ReminisceForm cnForm = (ReminisceForm) form;
+
+		cnForm.setFromYear(String.valueOf(token.getYearIn()));
+		cnForm.setToYear(String.valueOf(token.getYearOut()));
+
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
+	}
+
+	public ModelAndView addReminisce(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		logger.debug("in prepareAddReminisce");
+
+		if (isCancelled(request)) {
+			return new ModelAndView(BaseConstants.FWD_CANCEL);
+		}
+
+		ReminisceForm cnForm = (ReminisceForm) form;
+		ReminisceVO cnVO = new ReminisceVO();
+
+		BeanUtils.copyProperties(cnVO, cnForm);
+		cnVO.setLastModifiedBy(getLastModifiedBy(request));
+		cnVO.setAuthorId(getCurrentUserId(request));
+		reminisceService.save(cnVO);
+		ActionMessages errors = new ActionMessages();
+		errors.add(BaseConstants.INFO_KEY, new ActionMessage(
+				"message.reminiscesubmitted"));
+		saveMessages(request, errors);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
+
+	}
+
 }

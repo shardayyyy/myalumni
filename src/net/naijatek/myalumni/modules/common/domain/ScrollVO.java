@@ -50,12 +50,12 @@ public class ScrollVO extends MyAlumniBaseVO implements ValueLabelItem{
 		super();
 	}
 	
-	@Override
+	//@Override
 	public String getItemLabel() {
 		return getScrollText();
 	}
 
-	@Override
+	//@Override
 	public String getItemValue() {
 		return getScrollId();
 	}
