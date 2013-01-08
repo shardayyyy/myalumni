@@ -44,11 +44,13 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
 
-import net.naijatek.myalumni.framework.struts.MyAlumniBaseException;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseException;
 import net.naijatek.myalumni.modules.common.domain.EmailExceptionVO;
 import net.naijatek.myalumni.modules.common.persistence.iface.SystemTasksDao;
 import net.naijatek.myalumni.modules.common.service.ISystemTaskService;
 import net.naijatek.myalumni.util.DBHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -56,17 +58,19 @@ import net.naijatek.myalumni.util.DBHelper;
   * @author Folashade Adeyosoye
   * @version 1.0
   */
+@Component
 public class SystemTaskServiceImpl implements ISystemTaskService {
 
+    @Autowired
     private SystemTasksDao systemTasksDao;
 
     /**
      * Dao Injection
      * @param systemTasksDao
      */
-    public SystemTaskServiceImpl(SystemTasksDao systemTasksDao) {
+/*    public SystemTaskServiceImpl(SystemTasksDao systemTasksDao) {
         this.systemTasksDao = systemTasksDao;
-    }
+    }*/
 
     public void logEmailException(EmailExceptionVO email) {
         systemTasksDao.logEmailException(email);

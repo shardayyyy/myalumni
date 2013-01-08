@@ -48,15 +48,16 @@ import org.apache.commons.lang.StringUtils;
 
 
 import net.naijatek.myalumni.framework.exceptions.MyAlumniException;
-import net.naijatek.myalumni.framework.struts.MyAlumniBaseException;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseException;
 import net.naijatek.myalumni.modules.common.domain.LoginHistoryVO;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
 import net.naijatek.myalumni.modules.common.persistence.BaseHibernateDao;
 import net.naijatek.myalumni.modules.common.persistence.iface.MemberDao;
 import net.naijatek.myalumni.util.BaseConstants;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class MemberHibernateDao extends BaseHibernateDao implements MemberDao {
 
 

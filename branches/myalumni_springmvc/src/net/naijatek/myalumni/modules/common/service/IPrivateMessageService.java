@@ -40,7 +40,7 @@ package net.naijatek.myalumni.modules.common.service;
 
 import java.util.List;
 
-import net.naijatek.myalumni.framework.struts.MyAlumniUserContainer;
+import net.naijatek.myalumni.framework.extensions.MyAlumniUserContainer;
 import net.naijatek.myalumni.modules.common.domain.PrivateMessageVO;
 import net.naijatek.myalumni.modules.common.helper.PrivateMessageHelper;
 

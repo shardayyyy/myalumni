@@ -36,7 +36,7 @@
  * @author Folashade Adeyosoye (shardayyy@naijatek.com)
  * @version 1.0
  */
-package net.naijatek.myalumni.framework.struts;
+package net.naijatek.myalumni.framework.extensions;
 
 /**
  * A runtime exception thrown by all methods of the management classes to

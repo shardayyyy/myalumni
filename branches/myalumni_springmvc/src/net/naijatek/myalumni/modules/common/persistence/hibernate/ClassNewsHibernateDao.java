@@ -48,7 +48,9 @@ import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.persistence.BaseHibernateDao;
 import net.naijatek.myalumni.modules.common.persistence.iface.ClassNewsDao;
 import net.naijatek.myalumni.util.BaseConstants;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ClassNewsHibernateDao extends BaseHibernateDao implements ClassNewsDao {
 
 

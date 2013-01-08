@@ -43,7 +43,7 @@ import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.naijatek.myalumni.framework.struts.MyAlumniDispatchAction;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseController;
 import net.naijatek.myalumni.modules.common.domain.ErrorLogVO;
 import net.naijatek.myalumni.modules.common.service.IErrorLogService;
 import net.naijatek.myalumni.util.BaseConstants;
@@ -55,7 +55,7 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 
 
-public class ErrorAction extends MyAlumniDispatchAction {
+public class ErrorAction extends MyAlumniBaseController {
     
 	private IErrorLogService logService;
 	//private static Log logger = LogFactory.getLog(ErrorAction.class);

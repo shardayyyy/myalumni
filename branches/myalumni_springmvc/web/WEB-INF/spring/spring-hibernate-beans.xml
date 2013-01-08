@@ -306,7 +306,7 @@
 		======================================================================-->
 	<!-- User Container-->
 	<bean id="userContainer" singleton="false"
-		class="net.naijatek.myalumni.framework.struts.MyAlumniUserContainer">
+		class="net.naijatek.myalumni.framework.extensions.MyAlumniUserContainer">
 		<constructor-arg index="0" ref="userAccountService" />
 	</bean>
 

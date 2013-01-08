@@ -44,7 +44,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.naijatek.myalumni.framework.struts.MyAlumniDispatchAction;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseController;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
 import net.naijatek.myalumni.modules.common.presentation.form.MemberForm;
@@ -53,26 +53,29 @@ import net.naijatek.myalumni.util.BaseConstants;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.ModelAndView;
 
-public class MaintainIphoneAction extends MyAlumniDispatchAction{
+@Controller
+public class MaintainIphoneAction extends MyAlumniBaseController {
 
+    @Autowired
 	private IMemberService memService;
-	private static Log logger = LogFactory.getLog(MaintainIphoneAction.class);
+
+
+    private static Log logger = LogFactory.getLog(MaintainIphoneAction.class);
 	private static String FIRST_NAME = "firstName";
 	private static String LAST_NAME = "lastName";
 	private static String SORT_TYPE = "sortType";
 	
 	
-    public MaintainIphoneAction(final IMemberService memService) {
+/*    public MaintainIphoneAction(final IMemberService memService) {
         this.memService = memService;      
-    }	
+    }*/
    
     
-    public ActionForward filterfn(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+    public ModelAndView filterfn(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
     	logger.info("***iPhone***: in Filter First Name...");
@@ -85,13 +88,12 @@ public class MaintainIphoneAction extends MyAlumniDispatchAction{
 			
 		setRequestObject(request, BaseConstants.LIST_OF_IPHONE_MEMBERS, lstMemberVO);
 		setRequestObject(request, SORT_TYPE, FIRST_NAME);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
     }    
     
     
-    public ActionForward filterln(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+    public ModelAndView filterln(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
     	logger.info("***iPhone***: in Filter Last Name...");
@@ -104,12 +106,11 @@ public class MaintainIphoneAction extends MyAlumniDispatchAction{
 				
 		setRequestObject(request, BaseConstants.LIST_OF_IPHONE_MEMBERS, lstMemberVO);
 		setRequestObject(request, SORT_TYPE, LAST_NAME);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }        
     
     
-    public ActionForward viewMember(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+    public ModelAndView viewMember(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
 		MemberForm memberForm = (MemberForm) form;	
@@ -120,14 +121,13 @@ public class MaintainIphoneAction extends MyAlumniDispatchAction{
 		}
 				
 		setRequestObject(request, BaseConstants.IPHONE_MEMBER_PROFILE, memberVO);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }    
     
     
     
     
-    public ActionForward getDorms(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+    public ModelAndView getDorms(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
 		List<XlatDetailVO> lstXlatVO = memService.getAllActiveDormitory();
@@ -137,14 +137,13 @@ public class MaintainIphoneAction extends MyAlumniDispatchAction{
 				
 		setRequestObject(request, BaseConstants.LIST_OF_IPHONE_DORMS, lstXlatVO);
 		setRequestObject(request, SORT_TYPE, FIRST_NAME);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
     } 
     
     
     
     
-    public ActionForward filterDorms(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+    public ModelAndView filterDorms(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
     	logger.info("***iPhone***: in Filter Dorms...");
@@ -157,12 +156,11 @@ public class MaintainIphoneAction extends MyAlumniDispatchAction{
 			
 		setRequestObject(request, BaseConstants.LIST_OF_IPHONE_MEMBERS, lstMemberVO);
 		setRequestObject(request, SORT_TYPE, FIRST_NAME);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
     } 
     
    
-    public ActionForward filterGender(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+    public ModelAndView filterGender(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
     	logger.info("***iPhone***: in Filter Gender...");
@@ -175,7 +173,7 @@ public class MaintainIphoneAction extends MyAlumniDispatchAction{
 			
 		setRequestObject(request, BaseConstants.LIST_OF_IPHONE_MEMBERS, lstMemberVO);
 		setRequestObject(request, SORT_TYPE, FIRST_NAME);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
     } 
        
     

@@ -36,7 +36,7 @@
  * @author Folashade Adeyosoye (shardayyy@naijatek.com)
  * @version 1.0
  */
-package net.naijatek.myalumni.framework.struts;
+package net.naijatek.myalumni.framework.extensions;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,10 +54,10 @@ import org.apache.struts.action.ActionMapping;
  * Struts can be derived from_email. It takes into consideration some
  * general architecture that would most likely be needed in a real
  * application. For the purpose of this article, those methods that
- * are not directly related to_email the struts framework will be black-boxed
+ * are not directly related to_email the extensions framework will be black-boxed
  * and commented so that you can use this as a skeleton and fill in those
  * methods as you see fit while you are doing development.
- * All action classes need to_email be derived from_email org.apache.struts.action.Action
+ * All controllers classes need to_email be derived from_email org.apache.extensions.controllers.Action
  * @see org.apache.struts.action.Action
  * @author Folashade Adeyosoye Naijatek Solutions www.naijatek.com
  */
@@ -80,7 +80,7 @@ abstract public class MyAlumniBaseAction extends Action {
    * @param form ActionForm
    * @param request HttpServletRequest
    * @param response HttpServletResponse
-   * @return org.apache.struts.action.ActionForward
+   * @return org.apache.extensions.controllers.ActionForward
    * @throws Exception
    */
   public ActionForward execute(ActionMapping mapping, ActionForm form,
@@ -97,3 +97,5 @@ abstract public class MyAlumniBaseAction extends Action {
 
 
 }
+
+//@TODO Delte this class

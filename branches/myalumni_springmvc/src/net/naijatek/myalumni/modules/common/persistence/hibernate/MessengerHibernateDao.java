@@ -48,7 +48,10 @@ import net.naijatek.myalumni.modules.common.domain.MessengerVO;
 import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
 import net.naijatek.myalumni.modules.common.persistence.BaseHibernateDao;
 import net.naijatek.myalumni.modules.common.persistence.iface.MessengerDao;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class MessengerHibernateDao extends BaseHibernateDao implements MessengerDao {
 
     private void init(MessengerVO msg){

@@ -46,7 +46,10 @@ import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.domain.MessageFolderVO;
 import net.naijatek.myalumni.modules.common.persistence.BaseHibernateDao;
 import net.naijatek.myalumni.modules.common.persistence.iface.MessageFolderDao;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class MessageFolderHibernateDao extends BaseHibernateDao implements MessageFolderDao {
 
 	

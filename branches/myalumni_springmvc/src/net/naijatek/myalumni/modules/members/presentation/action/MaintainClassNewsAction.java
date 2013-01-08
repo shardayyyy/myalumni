@@ -43,7 +43,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.naijatek.myalumni.framework.struts.MyAlumniDispatchAction;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseController;
 import net.naijatek.myalumni.modules.common.domain.ClassNewsVO;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.presentation.form.ClassNewsForm;
@@ -53,53 +53,58 @@ import net.naijatek.myalumni.util.BaseConstants;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.ModelAndView;
 
-public class MaintainClassNewsAction extends MyAlumniDispatchAction{
+@Controller
+public class MaintainClassNewsAction extends MyAlumniBaseController {
 
+    @Autowired
     private IClassNewsService classNewsService;
     private static Log logger = LogFactory.getLog(MaintainClassNewsAction.class);
     
     
-    public MaintainClassNewsAction(final IClassNewsService classNewsService) {
+/*    public MaintainClassNewsAction(final IClassNewsService classNewsService) {
         this.classNewsService = classNewsService;
-    }
+    }*/
     
-    public ActionForward listClassNews(ActionMapping mapping,
-            ActionForm form,
-            HttpServletRequest request,
+    public ModelAndView listClassNews(HttpServletRequest request,
             HttpServletResponse response) throws
 			Exception {
     	logger.debug("in listClassNews");
     	
     	MemberVO token = getCurrentLoggedInUser(request);
+        ModelAndView model = new ModelAndView();
     	
         // check to see if the user logged on is a member
         if (!memberSecurityCheck(request, token)) {
-          return mapping.findForward(BaseConstants.FWD_LOGIN);
+          //return new ModelAndView(BaseConstants.FWD_LOGIN);
+            model.setViewName(BaseConstants.FWD_LOGIN);
+            return model;
         }
-        
-        List<ClassNewsVO> list = classNewsService.findAllByYearOut(token.getYearOut());       
-    	setRequestObject(request, BaseConstants.LIST_OF_CLASSNEWS, list);
-    	return mapping.findForward(BaseConstants.FWD_SUCCESS);
+
+        List<ClassNewsVO> list = classNewsService.findAllByYearOut(token.getYearOut());
+        model.addObject(BaseConstants.LIST_OF_CLASSNEWS, list);
+        model.setViewName(BaseConstants.FWD_SUCCESS);
+        return model;
+        //setRequestObject(request, BaseConstants.LIST_OF_CLASSNEWS, list);
+        //return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
-    
-    public ActionForward prepareAddClassNews(ActionMapping mapping,
-            ActionForm form,
-            HttpServletRequest request,
+
+
+    public ModelAndView prepareAddClassNews(HttpServletRequest request,
             HttpServletResponse response) throws
 			Exception {
     	logger.debug("in prepareAddClassNews");
-    	
+        ModelAndView model = new ModelAndView();
     	MemberVO token = getCurrentLoggedInUser(request);
     	
         // check to see if the user logged on is a member
         if (!memberSecurityCheck(request, token)) {
-          return mapping.findForward(BaseConstants.FWD_LOGIN);
+          //return new ModelAndView(BaseConstants.FWD_LOGIN);
+            model.setViewName(BaseConstants.FWD_LOGIN);
+            return model;
         }
         
         ClassNewsForm cnForm =  (ClassNewsForm)form;
@@ -107,20 +112,18 @@ public class MaintainClassNewsAction extends MyAlumniDispatchAction{
     	cnForm.setFromClassYear(String.valueOf(token.getYearIn()));
     	cnForm.setToClassYear(String.valueOf(token.getYearOut()));
     	
-    	return mapping.findForward(BaseConstants.FWD_SUCCESS);
+    	return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
     
-    public ActionForward addClassNews(ActionMapping mapping,
-                                       ActionForm form,
-                                       HttpServletRequest request,
+    public ModelAndView addClassNews(HttpServletRequest request,
                                        HttpServletResponse response) throws
         Exception {
 
     	logger.debug("in prepareAddClassNews");
     	
       if (isCancelled(request)){
-        return mapping.findForward(BaseConstants.FWD_CANCEL);
+        return new ModelAndView(BaseConstants.FWD_CANCEL);
       }
       
       ClassNewsForm cnForm =  (ClassNewsForm)form;
@@ -133,15 +136,13 @@ public class MaintainClassNewsAction extends MyAlumniDispatchAction{
       ActionMessages errors = new ActionMessages();
       errors.add(BaseConstants.INFO_KEY, new ActionMessage("message.classnewssubmitted"));
       saveMessages(request, errors);      
-      return mapping.findForward(BaseConstants.FWD_SUCCESS);
+      return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
     }    
     
 
     
-    public ActionForward viewClassNews(ActionMapping mapping,
-                                       ActionForm form,
-                                       HttpServletRequest request,
+    public ModelAndView viewClassNews(HttpServletRequest request,
                                        HttpServletResponse response) throws
         Exception {
 
@@ -151,7 +152,7 @@ public class MaintainClassNewsAction extends MyAlumniDispatchAction{
       
       cnVO = classNewsService.findById(cnForm.getClassNewsId());
       BeanUtils.copyProperties(cnForm, cnVO);
-      return mapping.findForward(BaseConstants.FWD_SUCCESS);
+      return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }       
     
 }

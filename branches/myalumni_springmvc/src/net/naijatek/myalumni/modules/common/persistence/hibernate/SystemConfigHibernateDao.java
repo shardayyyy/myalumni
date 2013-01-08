@@ -49,10 +49,9 @@ import net.naijatek.myalumni.modules.common.persistence.iface.SystemConfigDao;
 import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.SystemConfigConstants;
 import net.naijatek.myalumni.util.encryption.base64.Base64Coder;
+import org.springframework.stereotype.Component;
 
-
-
-
+@Component
 public class SystemConfigHibernateDao extends BaseHibernateDao implements SystemConfigDao {
 
 	

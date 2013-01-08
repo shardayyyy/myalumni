@@ -39,7 +39,9 @@
 package net.naijatek.myalumni.modules.common.domain;
 
 
+import org.hibernate.annotations.Entity;
 
+@Entity
 public class ClassNewsVO extends MyAlumniBaseVO{
 
 	private String classNewsId;

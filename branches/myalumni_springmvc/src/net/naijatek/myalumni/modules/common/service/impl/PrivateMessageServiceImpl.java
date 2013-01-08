@@ -42,7 +42,7 @@ import java.util.Date;
 import java.util.List;
 
 import net.naijatek.myalumni.framework.exceptions.MyAlumniException;
-import net.naijatek.myalumni.framework.struts.MyAlumniUserContainer;
+import net.naijatek.myalumni.framework.extensions.MyAlumniUserContainer;
 import net.naijatek.myalumni.modules.common.domain.PrivateMessageVO;
 import net.naijatek.myalumni.modules.common.helper.PrivateMessageHelper;
 import net.naijatek.myalumni.modules.common.persistence.iface.MessageFolderDao;
@@ -50,20 +50,24 @@ import net.naijatek.myalumni.modules.common.persistence.iface.PrivateMessageDao;
 import net.naijatek.myalumni.modules.common.service.IPrivateMessageService;
 import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.SystemConfigConstants;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-
-
+@Component
 public class PrivateMessageServiceImpl implements IPrivateMessageService {
-    
+
+    @Autowired
 	private PrivateMessageDao pmDao;
+
+    @Autowired
     private MessageFolderDao messageFolderDao;
     
     //private static Log logger = LogFactory.getLog(PrivateMessageServiceImpl.class);
 
-    public PrivateMessageServiceImpl(PrivateMessageDao pmDao, MessageFolderDao messageFolderDao) {
+/*    public PrivateMessageServiceImpl(PrivateMessageDao pmDao, MessageFolderDao messageFolderDao) {
         this.pmDao = pmDao;
         this.messageFolderDao = messageFolderDao;
-    }
+    }*/
 
     public void saveAll(List<PrivateMessageVO> o ){
     	pmDao.saveAll(o);

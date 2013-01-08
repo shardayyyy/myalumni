@@ -36,7 +36,7 @@
  * @author Folashade Adeyosoye (shardayyy@naijatek.com)
  * @version 1.0
  */
-package net.naijatek.myalumni.framework.struts;
+package net.naijatek.myalumni.framework.extensions;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

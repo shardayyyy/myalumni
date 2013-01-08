@@ -41,14 +41,18 @@ package net.naijatek.myalumni.modules.common.service.impl;
 import net.naijatek.myalumni.modules.common.domain.TwitterVO;
 import net.naijatek.myalumni.modules.common.persistence.hibernate.SystemConfigHibernateDao;
 import net.naijatek.myalumni.modules.common.service.ITwitterService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TwitterServiceImpl implements ITwitterService {
 
+    @Autowired
     private SystemConfigHibernateDao SysConfigDao;
 
-    public TwitterServiceImpl(SystemConfigHibernateDao SysConfigDao) {
+/*    public TwitterServiceImpl(SystemConfigHibernateDao SysConfigDao) {
         this.SysConfigDao = SysConfigDao;
-    }
+    }*/
     
 	public TwitterVO getTwitterCredentials() {
 		return SysConfigDao.getTwitterCredentials();

@@ -39,7 +39,7 @@
 package net.naijatek.myalumni.modules.admin.presentation.form;
 
 
-import net.naijatek.myalumni.framework.struts.MyAlumniBaseForm;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseForm;
 
 public class ErrorLogForm extends MyAlumniBaseForm{
 

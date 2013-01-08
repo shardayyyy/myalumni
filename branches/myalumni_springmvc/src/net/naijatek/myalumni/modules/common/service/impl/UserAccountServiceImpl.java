@@ -55,9 +55,8 @@ import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.encryption.Encoder;
 import net.naijatek.myalumni.util.encryption.PasswordGenerator;
 import net.naijatek.myalumni.util.mail.SendMailUtil;
-
-
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -66,17 +65,21 @@ import net.naijatek.myalumni.util.mail.SendMailUtil;
   * @author Folashade Adeyosoye.
   * @version 1.0.
   */
+@Component
 public class UserAccountServiceImpl implements IUserAccountService {    
 
+    @Autowired
     private UserAccountDao userAccountDao;  
+
+    @Autowired
     private SystemConfigDao sysConfigDao;
 
     
-    public UserAccountServiceImpl(UserAccountDao userAccountDao, SystemConfigDao sysConfigDao) {
+/*    public UserAccountServiceImpl(UserAccountDao userAccountDao, SystemConfigDao sysConfigDao) {
         super();
         this.userAccountDao = userAccountDao;
         this.sysConfigDao = sysConfigDao;
-    }
+    }*/
     
     /**
     * This business method logs the user out of the system.

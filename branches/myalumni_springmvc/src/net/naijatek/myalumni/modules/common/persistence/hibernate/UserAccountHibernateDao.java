@@ -46,7 +46,7 @@ import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.persistence.BaseHibernateDao;
 import net.naijatek.myalumni.modules.common.persistence.iface.UserAccountDao;
 import net.naijatek.myalumni.util.BaseConstants;
-
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -56,6 +56,8 @@ import net.naijatek.myalumni.util.BaseConstants;
  * @author Folashade Adeyosoye
  * @version 1.0.
  */
+
+@Component
 public class UserAccountHibernateDao extends BaseHibernateDao implements UserAccountDao {
     
 	    

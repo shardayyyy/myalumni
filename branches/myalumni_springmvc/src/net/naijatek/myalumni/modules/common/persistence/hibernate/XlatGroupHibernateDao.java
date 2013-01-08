@@ -48,8 +48,10 @@ import net.naijatek.myalumni.modules.common.domain.XlatGroupVO;
 import net.naijatek.myalumni.modules.common.persistence.BaseHibernateDao;
 import net.naijatek.myalumni.modules.common.persistence.iface.XlatGroupDao;
 import net.naijatek.myalumni.util.BaseConstants;
+import org.springframework.stereotype.Component;
 
 
+@Component
 public class XlatGroupHibernateDao extends BaseHibernateDao implements XlatGroupDao {
 	
 	public void save(XlatGroupVO o) {

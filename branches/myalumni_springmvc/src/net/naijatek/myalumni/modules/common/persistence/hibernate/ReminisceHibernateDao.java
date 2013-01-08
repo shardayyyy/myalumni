@@ -47,7 +47,9 @@ import net.naijatek.myalumni.modules.common.domain.ReminisceVO;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.persistence.BaseHibernateDao;
 import net.naijatek.myalumni.modules.common.persistence.iface.ReminisceDao;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ReminisceHibernateDao  extends BaseHibernateDao implements ReminisceDao{
 
 

@@ -36,7 +36,7 @@
  * @author Folashade Adeyosoye (shardayyy@naijatek.com)
  * @version 1.0
  */
-package net.naijatek.myalumni.modules.admin.presentation.action;
+package net.naijatek.myalumni.modules.admin.presentation.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +47,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.naijatek.myalumni.framework.exceptions.DuplicateEmailException;
 import net.naijatek.myalumni.framework.exceptions.DuplicateMemberException;
 import net.naijatek.myalumni.framework.exceptions.MailServerException;
-import net.naijatek.myalumni.framework.struts.MyAlumniDispatchAction;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseController;
 import net.naijatek.myalumni.modules.common.domain.LoginHistoryVO;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
@@ -62,18 +62,28 @@ import net.naijatek.myalumni.util.mail.SendMailUtil;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.EscapedErrors;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-public class MaintainSecurityModuleAction extends MyAlumniDispatchAction{
+@Controller
+@RequestMapping("/admin/security")
+public class MaintainSecurityModuleAction extends MyAlumniBaseController {
 
     private Log logger = LogFactory.getLog(this.getClass());
-    
+
+    @Autowired
     private IMemberService memberService;
+
+    @Autowired
     private IErrorLogService logService;
+
+    @Autowired
     private ISystemConfigService sysConfigSerivce;
 
 
@@ -82,28 +92,28 @@ public class MaintainSecurityModuleAction extends MyAlumniDispatchAction{
      * @param memberService
      * @param logService
      */
-    public MaintainSecurityModuleAction(IMemberService memberService, IErrorLogService logService,ISystemConfigService sysConfigSerivce  ) {
+    /*public MaintainSecurityModuleAction(IMemberService memberService, IErrorLogService logService,ISystemConfigService sysConfigSerivce  ) {
         super();
         this.memberService = memberService;
         this.logService = logService;
         this.sysConfigSerivce = sysConfigSerivce;
-    }
+    }*/
 
     
     //**********************************************************************
     //******************      ACCESS HISTORY       ************************
     //**********************************************************************  
-    public ActionForward listAccessHistory(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView listAccessHistory(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in listAccessHistory...");
         listAccessHistoryHelper(request);       
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
-    public ActionForward purgeAllAccessLogs(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView purgeAllAccessLogs(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in purgeAllAccessLogs...");
         logService.deleteAllAccessLogs();
         listAccessHistoryHelper(request);       
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }    
     
     public void listAccessHistoryHelper(HttpServletRequest request) throws Exception {
@@ -119,41 +129,44 @@ public class MaintainSecurityModuleAction extends MyAlumniDispatchAction{
     // ----------------------------------
     //    MANAGE USER 
     //-----------------------------------
-    public ActionForward filterUsersByAlphabelt(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView filterUsersByAlphabelt(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in filterUsersByAlphabelt..."); 
         listUserHelper(request, form);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
-    public ActionForward resetMemberPassword(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView resetMemberPassword(BindingResult result, HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in resetMemberPassword..."); 
-        ActionMessages message = new ActionMessages(); 
+        ActionMessages message = new ActionMessages();
+        result.
+        result.addError();
+
         MemberForm userForm = (MemberForm)form;
         memberService.resetPassword(userForm.getMemberId(), getLastModifiedBy(request));
         message.add(BaseConstants.INFO_KEY, new ActionMessage("message.resetpassword"));
         saveMessages(request, message);          
         listUserHelper(request, form);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
 
-    public ActionForward listUsers(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView listUsers(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in listUsers...");        
         listUserHelper(request, form);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
-    public ActionForward prepareAddUser(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView prepareAddUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in prepareAddUser...");
         saveToken(request);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
-    public ActionForward addUser(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView addUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in addUser...");  
         ActionMessages messages = new ActionMessages();
         
         if ( !isTokenValid(request) ) {
-            return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+            return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
         }
         MemberForm userForm = (MemberForm)form;
         MemberVO memberVO = new MemberVO();
@@ -180,22 +193,22 @@ public class MaintainSecurityModuleAction extends MyAlumniDispatchAction{
           
         listUserHelper(request, form);      
         resetToken(request);  
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
-    public ActionForward prepareUpdateUser(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView prepareUpdateUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in prepareUpdateUser...");
         saveToken(request);
         MemberForm memberForm = (MemberForm)form;
         MemberVO memberVO = memberService.getUser(memberForm.getMemberId());
         BeanUtils.copyProperties(memberForm, memberVO);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
-    public ActionForward updateUser(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView updateUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in updateUser...");        
         if ( !isTokenValid(request) ) {
-            return mapping.findForward(BaseConstants.FWD_INVALID_TOKEN);
+            return new ModelAndView(BaseConstants.FWD_INVALID_TOKEN);
         }
         
         ActionMessages messages = new ActionMessages();
@@ -238,10 +251,10 @@ public class MaintainSecurityModuleAction extends MyAlumniDispatchAction{
          
         listUserHelper(request, form);
         resetToken(request);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }    
            
-    public ActionForward viewUser(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView viewUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in viewUser...");
         MemberForm memberForm = (MemberForm)form;
         MemberVO memberVO = memberService.getUser(memberForm.getMemberId());
@@ -251,7 +264,7 @@ public class MaintainSecurityModuleAction extends MyAlumniDispatchAction{
         List<LoginHistoryVO> loginAccess = memberService.getAccessTrailsByUserName(memberForm.getMemberId());
         setRequestObject(request, BaseConstants.LIST_OF_USERS_LOGIN_HISTORY, loginAccess);
         
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
     
@@ -281,7 +294,7 @@ public class MaintainSecurityModuleAction extends MyAlumniDispatchAction{
      // ----------------------------------
      //    ASSIGN ROLE TO USER ACCESS HISTORY 
      //-----------------------------------
-     public ActionForward displayAssignRoleToUser(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+     public ModelAndView displayAssignRoleToUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
          logger.debug("in displayAssignRoleToUser...");        
          
          removeSessionObject(request, BaseConstants.ASSIGN_ROLE_AVAILABLE_USERS);
@@ -293,15 +306,15 @@ public class MaintainSecurityModuleAction extends MyAlumniDispatchAction{
          setSessionObject(request, BaseConstants.ASSIGN_ROLE_AVAILABLE_USERS, availableUsers);
          setSessionObject(request, BaseConstants.ASSIGN_ROLE_SELECTED_USERS, selectedUsers);
          
-         return mapping.findForward(BaseConstants.FWD_SUCCESS);
+         return new ModelAndView(BaseConstants.FWD_SUCCESS);
      }
              
         
-    public ActionForward displayUsersByRole(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView displayUsersByRole(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in displayUsersByRole...");        
         MemberForm memberForm = (MemberForm)form;   
         displayUsersByRoleHelper(memberForm.getIsAdmin(), request);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
     
@@ -342,7 +355,7 @@ public class MaintainSecurityModuleAction extends MyAlumniDispatchAction{
         return trimmedAvailableList;
     }
     
-    public ActionForward assignRoleToUsers(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView assignRoleToUsers(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in assignRoleToUsers...");        
         ActionMessages message = new ActionMessages(); 
         MemberForm memberForm = (MemberForm)form;        
@@ -350,7 +363,7 @@ public class MaintainSecurityModuleAction extends MyAlumniDispatchAction{
         message.add(BaseConstants.INFO_KEY, new ActionMessage("message.rolesupdated"));
         displayUsersByRoleHelper(memberForm.getIsAdmin(), request);
         saveMessages(request, message);  
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }    
     
 }

@@ -44,8 +44,10 @@ import net.naijatek.myalumni.framework.exceptions.MyAlumniException;
 import net.naijatek.myalumni.modules.common.domain.FrontPageVO;
 import net.naijatek.myalumni.modules.common.persistence.BaseHibernateDao;
 import net.naijatek.myalumni.modules.common.persistence.iface.FrontPageDao;
+import org.springframework.stereotype.Component;
 
 
+@Component
 public class FrontPageHibernateDao extends BaseHibernateDao implements FrontPageDao {
 
 

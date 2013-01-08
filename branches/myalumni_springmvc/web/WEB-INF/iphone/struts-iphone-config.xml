@@ -5,7 +5,7 @@
 
 <!--
   Default configuration file for examples application.
-  Each module also has its own struts-config under: /WEB-INF/$MODULE/
+  Each module also has its own extensions-config under: /WEB-INF/$MODULE/
   @version $Revision: 1.9 $ $Date: 2006-12-03 11:32:52 -0600 (Sun, 03 Dec 2006) $
 -->
    

@@ -43,7 +43,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.naijatek.myalumni.framework.struts.MyAlumniDispatchAction;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseController;
 import net.naijatek.myalumni.modules.common.domain.ReminisceVO;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.presentation.form.ReminisceForm;
@@ -53,37 +53,34 @@ import net.naijatek.myalumni.util.BaseConstants;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.ModelAndView;
 
-public class MaintainReminisceAction extends MyAlumniDispatchAction{
+@Controller
+public class MaintainReminisceAction extends MyAlumniBaseController {
 
+    @Autowired
     private IReminisceService reminisceService;
+
     private static Log logger = LogFactory.getLog(MaintainReminisceAction.class);
     
     
-    public MaintainReminisceAction(final IReminisceService reminisceService) {
+/*    public MaintainReminisceAction(final IReminisceService reminisceService) {
         this.reminisceService = reminisceService;
-    }
+    }*/
     
-    public ActionForward listReminisce(ActionMapping mapping,
-            ActionForm form,
-            HttpServletRequest request,
+    public ModeAndView listReminisce(HttpServletRequest request,
             HttpServletResponse response) throws
 			Exception {
     	logger.debug("in listReminisce");
         
         List<ReminisceVO> list = reminisceService.findAllByStatus(BaseConstants.ACTIVE);       
     	setRequestObject(request, BaseConstants.LIST_OF_REMINISCE, list);
-    	return mapping.findForward(BaseConstants.FWD_SUCCESS);
+    	return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
-    public ActionForward prepareAddReminisce(ActionMapping mapping,
-            ActionForm form,
-            HttpServletRequest request,
+    public ModelAndView prepareAddReminisce(HttpServletRequest request,
             HttpServletResponse response) throws
 			Exception {
     	logger.debug("in prepareAddReminisce");
@@ -92,7 +89,7 @@ public class MaintainReminisceAction extends MyAlumniDispatchAction{
     	
         // check to see if the user logged on is a member
         if (!memberSecurityCheck(request, token)) {
-          return mapping.findForward(BaseConstants.FWD_LOGIN);
+          return new ModelAndView(BaseConstants.FWD_LOGIN);
         }
         
         ReminisceForm cnForm =  (ReminisceForm)form;
@@ -100,20 +97,18 @@ public class MaintainReminisceAction extends MyAlumniDispatchAction{
     	cnForm.setFromYear(String.valueOf(token.getYearIn()));
     	cnForm.setToYear(String.valueOf(token.getYearOut()));
     	
-    	return mapping.findForward(BaseConstants.FWD_SUCCESS);
+    	return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
     
-    public ActionForward addReminisce(ActionMapping mapping,
-                                       ActionForm form,
-                                       HttpServletRequest request,
+    public ModelAndView addReminisce(HttpServletRequest request,
                                        HttpServletResponse response) throws
         Exception {
 
     	logger.debug("in prepareAddReminisce");
     	
       if (isCancelled(request)){
-        return mapping.findForward(BaseConstants.FWD_CANCEL);
+        return new ModelAndView(BaseConstants.FWD_CANCEL);
       }
       
       ReminisceForm cnForm =  (ReminisceForm)form;
@@ -126,7 +121,7 @@ public class MaintainReminisceAction extends MyAlumniDispatchAction{
       ActionMessages errors = new ActionMessages();
       errors.add(BaseConstants.INFO_KEY, new ActionMessage("message.reminiscesubmitted"));
       saveMessages(request, errors);      
-      return mapping.findForward(BaseConstants.FWD_SUCCESS);
+      return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
     }    
         

@@ -49,16 +49,12 @@ import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 
-import net.naijatek.myalumni.framework.struts.MyAlumniUserContainer;
+import net.naijatek.myalumni.framework.extensions.MyAlumniUserContainer;
 import net.naijatek.myalumni.modules.common.domain.ClassNewsVO;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
-import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
 import net.naijatek.myalumni.modules.common.service.IClassNewsService;
 import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.utilities.AppProp;
-
-
-import java.net.URL;
 
 
 import org.apache.commons.logging.Log;

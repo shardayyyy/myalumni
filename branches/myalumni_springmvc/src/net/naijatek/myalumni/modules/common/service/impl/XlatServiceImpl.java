@@ -44,17 +44,21 @@ import net.naijatek.myalumni.framework.exceptions.MyAlumniException;
 import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
 import net.naijatek.myalumni.modules.common.persistence.iface.XlatDao;
 import net.naijatek.myalumni.modules.common.service.IXlatService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class XlatServiceImpl implements IXlatService {
 
-
+    @Autowired
     private XlatDao xlatDao;
     //private static Log logger = LogFactory.getLog(XlatServiceImpl.class);
     
 
-    public XlatServiceImpl(XlatDao xlatDao) {
+/*    public XlatServiceImpl(XlatDao xlatDao) {
         this.xlatDao = xlatDao;
-    }
+    }*/
+
     public XlatDetailVO getDetail(String groupId, String detailId){
         return xlatDao.getDetail(groupId, detailId);
     }

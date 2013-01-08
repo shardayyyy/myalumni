@@ -47,16 +47,21 @@ import net.naijatek.myalumni.framework.exceptions.MyAlumniException;
 import net.naijatek.myalumni.modules.common.domain.XlatGroupVO;
 import net.naijatek.myalumni.modules.common.persistence.iface.XlatGroupDao;
 import net.naijatek.myalumni.modules.common.service.IXlatGroupService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class XlatGroupServiceImpl implements IXlatGroupService {
 
+    @Autowired
 	private XlatGroupDao xlatGroupDao;
+
     private static Log logger = LogFactory.getLog(XlatGroupServiceImpl.class);
     
 
-    public XlatGroupServiceImpl(XlatGroupDao systemGroupDao) {
+/*    public XlatGroupServiceImpl(XlatGroupDao systemGroupDao) {
         this.xlatGroupDao = systemGroupDao;
-    }
+    }*/
 
 	public void save(XlatGroupVO entity){
 		xlatGroupDao.save(entity);

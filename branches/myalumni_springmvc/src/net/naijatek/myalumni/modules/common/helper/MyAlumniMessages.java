@@ -15,8 +15,8 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  
-  
+
+package net.naijatek.myalumni.modules.common.helper;
   
   import java.io.Serializable;
   import java.util.ArrayList;
@@ -44,9 +44,9 @@
    * @since Struts 1.1
    */
   
-package net.naijatek.myalumni.modules.common.helper;
+
   
-  public class POMMessages implements Serializable {
+  public class MyAlumniMessages implements Serializable {
   
   
       /**
@@ -105,7 +105,7 @@ package net.naijatek.myalumni.modules.common.helper;
      /**
       * <p>Create an empty <code>ActionMessages</code> object.</p>
       */
-     public POMMessages() {
+     public MyAlumniMessages() {
  
          super();
  
@@ -120,7 +120,7 @@ package net.naijatek.myalumni.modules.common.helper;
       * This parameter can be <code>null</code>.
       * @since Struts 1.1
       */
-     public POMMessages(POMMessages messages) {
+     public MyAlumniMessages(MyAlumniMessages messages) {
          super();
          this.add(messages);
      }
@@ -134,7 +134,7 @@ package net.naijatek.myalumni.modules.common.helper;
       * @param property  Property name (or ActionMessages.GLOBAL_MESSAGE)
       * @param message   The message to be added
       */
-     public void add(String property, POMMessage message) {
+     public void add(String property, MyAlumniMessage message) {
  
          ActionMessageItem item = (ActionMessageItem) messages.get(property);
          List list = null;
@@ -165,7 +165,7 @@ package net.naijatek.myalumni.modules.common.helper;
       * This parameter can be <code>null</code>.
       * @since Struts 1.1
       */
-     public void add(POMMessages messages) {
+     public void add(MyAlumniMessages messages) {
  
          if (messages == null) {
              return;
@@ -179,7 +179,7 @@ package net.naijatek.myalumni.modules.common.helper;
              // loop over messages for each property
              Iterator msgs = messages.get(property);
              while (msgs.hasNext()) {
-            	 POMMessage msg = (POMMessage) msgs.next();
+                 MyAlumniMessage msg = (MyAlumniMessage) msgs.next();
                  this.add(property, msg);
              }
          }

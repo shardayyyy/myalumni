@@ -55,8 +55,8 @@ import net.naijatek.myalumni.framework.exceptions.BadInputException;
 import net.naijatek.myalumni.framework.exceptions.CreateException;
 import net.naijatek.myalumni.framework.exceptions.DuplicateEmailException;
 import net.naijatek.myalumni.framework.exceptions.DuplicateMemberException;
-import net.naijatek.myalumni.framework.struts.MyAlumniDispatchAction;
-import net.naijatek.myalumni.framework.struts.MyAlumniUserContainer;
+import net.naijatek.myalumni.framework.extensions.MyAlumniBaseController;
+import net.naijatek.myalumni.framework.extensions.MyAlumniUserContainer;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.domain.MessengerVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
@@ -77,28 +77,37 @@ import net.naijatek.myalumni.util.utilities.StringUtil;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
 import org.apache.struts.upload.FormFile;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.ModelAndView;
 
 
+@Controller
+public class MaintainMemberAction extends MyAlumniBaseController {
 
-public class MaintainMemberAction extends MyAlumniDispatchAction{
-
+    @Autowired
     private IMemberService memService;
-    private IPrivateMessageService pmService; 
-    private IMessageFolderService mfService ; 
+
+    @Autowired
+    private IPrivateMessageService pmService;
+
+    @Autowired
+    private IMessageFolderService mfService ;
+
+    @Autowired
     private IXlatService xlatService;
+
+    @Autowired
     private ISystemConfigService sysConfigSerivce;
+
+    @Autowired
     private IMessengerService messengerService;
     
     private static Log logger = LogFactory.getLog(MaintainMemberAction.class);
 
     
-    public MaintainMemberAction(final IMemberService memService,
+/*    public MaintainMemberAction(final IMemberService memService,
     		final IPrivateMessageService pmService, final IMessageFolderService mfService, IXlatService xlatService,
     		final ISystemConfigService sysConfigSerivce, IMessengerService messengerService) {
         this.memService = memService;      
@@ -107,7 +116,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
         this.xlatService = xlatService;
         this.sysConfigSerivce = sysConfigSerivce;
         this.messengerService = messengerService;
-    }
+    }*/
     
 
 
@@ -122,7 +131,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
      * @return
      * @throws Exception
      */
-    public ActionForward genericAjaxSearch(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView genericAjaxSearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
         logger.debug("in genericAjaxSearch...");
         MemberForm memForm = (MemberForm)form;
         String searchCriteria = memForm.getSearchCriteria();
@@ -163,15 +172,13 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
     		return null;
        	}
 
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
 
     
     
     
-    public ActionForward displayMiniProfile(ActionMapping mapping,
-                                       ActionForm form,
-                                       HttpServletRequest request,
+    public ModelAndView displayMiniProfile(HttpServletRequest request,
                                        HttpServletResponse response) throws
         Exception {
     
@@ -179,16 +186,14 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
       String memberUserName = memberForm.getMemberUserName();
       MemberVO memberVO = memService.getMemberProfileByUserName(memberUserName);
       setRequestObject(request, "profile", memberVO);
-      return mapping.findForward(BaseConstants.FWD_SUCCESS);
+      return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
     }
     
     
     
     
-    public ActionForward prepareUpdateMemberProfile(ActionMapping mapping,
-                                       ActionForm form,
-                                       HttpServletRequest request,
+    public ModelAndView prepareUpdateMemberProfile(HttpServletRequest request,
                                        HttpServletResponse response) throws
         Exception {
 
@@ -196,7 +201,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
     	
         // check to see if the user logged on is a member
         if (!memberSecurityCheck(request, token)){
-        	return mapping.findForward(BaseConstants.FWD_LOGIN);
+        	return new ModelAndView(BaseConstants.FWD_LOGIN);
         }
 
 
@@ -222,15 +227,13 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
       }
       
 
-      return mapping.findForward(BaseConstants.FWD_SUCCESS);
+      return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
     }
     
 
     
-    public ActionForward addMember( ActionMapping mapping,
-                                  ActionForm form,
-                                  HttpServletRequest request,
+    public ModelAndView addMember(HttpServletRequest request,
                                   HttpServletResponse response )
       throws Exception {
         
@@ -276,7 +279,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
           logger.error(ex.getMessage());
           errors.add(BaseConstants.FATAL_KEY, new ActionMessage("error.mailserver"));
           saveMessages(request, errors);
-          return mapping.findForward(BaseConstants.FWD_SUCCESS);
+          return new ModelAndView(BaseConstants.FWD_SUCCESS);
         }
         
         // send email to administrator about new registrant
@@ -287,7 +290,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
           logger.error(ex.getMessage());
           errors.add(BaseConstants.FATAL_KEY, new ActionMessage("error.mailserver"));
           saveMessages(request, errors);
-          return mapping.findForward(BaseConstants.FWD_SUCCESS);
+          return new ModelAndView(BaseConstants.FWD_SUCCESS);
         }
         
       }
@@ -315,37 +318,34 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
            logger.fatal("SYSTEM ERROR - " + ex.getStackTrace());
            return mapping.getInputForward();
       }
-      return mapping.findForward(BaseConstants.FWD_SUCCESS);
+      return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }    
     
     
     
 
-    public ActionForward prepareDeleteMyMemberProfile(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+    public ModelAndView prepareDeleteMyMemberProfile(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
     	setSessionObject(request, "ipaddress", getCurrentIPAddress(request));
-    	return mapping.findForward(BaseConstants.FWD_SUCCESS);
+    	return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}    
     
 
-    public ActionForward deleteMyMemberProfile(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+    public ModelAndView deleteMyMemberProfile(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
            
         memService.softDelete(getCurrentUserId(request), getLastModifiedBy(request));
         ActionMessages errors = new ActionMessages();
         errors.add(BaseConstants.INFO_KEY, new ActionMessage("core.errorcode.00713"));
         saveMessages(request, errors);
-    	return mapping.findForward(BaseConstants.FWD_SUCCESS);
+    	return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}        
     
     
     
     
-    public ActionForward validateMemberUserName(ActionMapping mapping,
-			ActionForm form, HttpServletRequest request,
+    public ModelAndView validateMemberUserName(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
 		MemberForm memberForm = (MemberForm) form;
@@ -384,9 +384,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
 	}    
     
     
-    public ActionForward searchForMembers(ActionMapping mapping,
-                                      ActionForm form,
-                                      HttpServletRequest request,
+    public ModelAndView searchForMembers(HttpServletRequest request,
                                       HttpServletResponse response) throws
        Exception {
 
@@ -401,19 +399,17 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
 	
 	 setRequestObject(request, BaseConstants.LIST_OF_MEMBERS , membersArrayList);			      
 
-     return mapping.findForward(BaseConstants.FWD_SUCCESS);
+     return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
     }    
     
     
-    public ActionForward updateMemberProfile(ActionMapping mapping,
-                                       ActionForm form,
-                                       HttpServletRequest request,
+    public ModelAndView updateMemberProfile(HttpServletRequest request,
                                        HttpServletResponse response) throws
         Exception {
 
       if (isCancelled(request)){
-        return mapping.findForward(BaseConstants.FWD_CANCEL);
+        return new ModelAndView(BaseConstants.FWD_CANCEL);
       }
 
       ActionMessages msgs = new ActionMessages();
@@ -423,7 +419,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
 
       // check to see if the user logged on is a member
       if (!memberSecurityCheck(request, token)){
-        return mapping.findForward(BaseConstants.FWD_LOGIN);
+        return new ModelAndView(BaseConstants.FWD_LOGIN);
       }
 
       MemberForm memberForm = (MemberForm) form;
@@ -450,14 +446,12 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
       
       msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.memberupdated"));
       saveMessages(request, msgs);
-      return mapping.findForward(BaseConstants.FWD_SUCCESS);
+      return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
     }   
     
     
-    public ActionForward deleteAvatar(ActionMapping mapping,
-            ActionForm form,
-            HttpServletRequest request,
+    public ModelAndView deleteAvatar(HttpServletRequest request,
             HttpServletResponse response) throws
             	Exception {
 
@@ -465,7 +459,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
 
         // check to see if the user logged on is a member
         if (!memberSecurityCheck(request, token)){
-          return mapping.findForward(BaseConstants.FWD_LOGIN);
+          return new ModelAndView(BaseConstants.FWD_LOGIN);
         }
         
         
@@ -501,13 +495,11 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
 		
 		errors.add(BaseConstants.INFO_KEY, new ActionMessage("message.avatarremoved"));
 		saveMessages(request, errors);
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
     
     
-    public ActionForward updateMemberAvatar(ActionMapping mapping,
-                                       ActionForm form,
-                                       HttpServletRequest request,
+    public ModelAndView updateMemberAvatar(HttpServletRequest request,
                                        HttpServletResponse response) throws
         Exception {
 
@@ -523,14 +515,14 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
       String overwrite = "false";
 
       if (isCancelled(request)){
-        return mapping.findForward(BaseConstants.FWD_CANCEL);
+        return new ModelAndView(BaseConstants.FWD_CANCEL);
       }
 
       MemberVO token = getCurrentLoggedInUser(request);
       MemberForm memberForm = (MemberForm)form;
       
       if (!memberSecurityCheck(request, token)){
-        return mapping.findForward(BaseConstants.FWD_LOGIN);
+        return new ModelAndView(BaseConstants.FWD_LOGIN);
       }
    
       //  Set Max Size
@@ -659,25 +651,23 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
         continer.setAvatar(importFileName);
         MemberVO memberVO = memService.getMemberProfileByUserName(token.getMemberUserName());
         BeanUtils.copyProperties(memberForm, memberVO);
-        return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }    
     
     
-    public ActionForward updateMemberEmail(ActionMapping mapping,
-                                       ActionForm form,
-                                       HttpServletRequest request,
+    public ModelAndView updateMemberEmail(HttpServletRequest request,
                                        HttpServletResponse response) throws
         Exception {
 
       if (isCancelled(request)){
-        return mapping.findForward(BaseConstants.FWD_CANCEL);
+        return new ModelAndView(BaseConstants.FWD_CANCEL);
       }
 
 
       MemberVO token = getCurrentLoggedInUser(request);
       // check to see if the user logged on is a member
       if (!memberSecurityCheck(request, token)){
-        return mapping.findForward(BaseConstants.FWD_LOGIN);
+        return new ModelAndView(BaseConstants.FWD_LOGIN);
       }
 
       MemberForm memberForm = (MemberForm) form;
@@ -697,26 +687,24 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
       BeanUtils.copyProperties(memberForm, memberVO);
       MyAlumniUserContainer continer = getUserContainer(request);
       continer.updateTokenEmail(email);
-      return mapping.findForward(BaseConstants.FWD_SUCCESS);
+      return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
     }    
     
     
-    public ActionForward updateMemberPassword(ActionMapping mapping,
-                                       ActionForm form,
-                                       HttpServletRequest request,
+    public ModelAndView updateMemberPassword(HttpServletRequest request,
                                        HttpServletResponse response) throws
         Exception {
 
 
       if (isCancelled(request)){
-        return mapping.findForward(BaseConstants.FWD_CANCEL);
+        return new ModelAndView(BaseConstants.FWD_CANCEL);
       }
 
       MemberVO token = getCurrentLoggedInUser(request);
       // check to see if the user logged on is a member
       if (!memberSecurityCheck(request, token)){
-        return mapping.findForward(BaseConstants.FWD_LOGIN);
+        return new ModelAndView(BaseConstants.FWD_LOGIN);
       }
 
 
@@ -738,26 +726,24 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
       // get the member profile
       MemberVO memberVO = memService.getMemberProfileByUserName(token.getMemberUserName());
       BeanUtils.copyProperties(memberForm, memberVO);
-      return mapping.findForward(BaseConstants.FWD_SUCCESS);
+      return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
     }    
     
     
-    public ActionForward updateMemberSignature(ActionMapping mapping,
-                                       ActionForm form,
-                                       HttpServletRequest request,
+    public ModelAndView updateMemberSignature(HttpServletRequest request,
                                        HttpServletResponse response) throws
         Exception {
 
       if (isCancelled(request)){
-        return mapping.findForward(BaseConstants.FWD_CANCEL);
+        return new ModelAndView(BaseConstants.FWD_CANCEL);
       }
 
       MemberVO token = getCurrentLoggedInUser(request);
 
       // check to see if the user logged on is a member
       if (!memberSecurityCheck(request, token)){
-        return mapping.findForward(BaseConstants.FWD_LOGIN);
+        return new ModelAndView(BaseConstants.FWD_LOGIN);
       }
 
       MemberForm memberForm = (MemberForm) form;
@@ -771,14 +757,12 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
       MemberVO memberVO = memService.getMemberProfileByUserName(token.getMemberUserName());
        BeanUtils.copyProperties(memberForm, memberVO);
 
-      return mapping.findForward(BaseConstants.FWD_SUCCESS);
+      return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
     }    
     
     
-    public ActionForward displayMyDesktop ( ActionMapping mapping,
-                                  ActionForm form,
-                                  HttpServletRequest request,
+    public ModelAndView displayMyDesktop (HttpServletRequest request,
                                   HttpServletResponse response )
       throws Exception {
 
@@ -787,18 +771,16 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
 
 	    // check to see if the user logged on is a member
 	    if (!memberSecurityCheck(request, token)){
-	      return mapping.findForward(BaseConstants.FWD_LOGIN);
+	      return new ModelAndView(BaseConstants.FWD_LOGIN);
 	    }
 
     	MyAlumniUserContainer container = getUserContainer(request);
     	container.setNewMailCount(pmService.getMailCountByUserName(token.getMemberId(), BaseConstants.PM_STATUS_NEW));
-    	return mapping.findForward(BaseConstants.FWD_SUCCESS);
+    	return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }    
     
     
-    public ActionForward viewMemberProfile(ActionMapping mapping,
-                                       ActionForm form,
-                                       HttpServletRequest request,
+    public ModelAndView viewMemberProfile(HttpServletRequest request,
                                        HttpServletResponse response) throws
         Exception {
 
@@ -806,7 +788,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
 
       // check to see if the user logged on is a member
       if (!memberSecurityCheck(request, token)){
-        return mapping.findForward(BaseConstants.FWD_LOGIN);
+        return new ModelAndView(BaseConstants.FWD_LOGIN);
       }
 
 
@@ -820,13 +802,11 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
 	  
 	  setRequestObject(request, BaseConstants.MEMBER_PROFILE, memberVO);    // to display date using fmt
       
-      return mapping.findForward(BaseConstants.FWD_SUCCESS);
+      return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }    
     
     
-    public ActionForward prepareRegistration(ActionMapping mapping,
-            ActionForm form,
-            HttpServletRequest request,
+    public ModelAndView prepareRegistration(HttpServletRequest request,
             HttpServletResponse response) throws
 		Exception {
       
@@ -836,7 +816,7 @@ public class MaintainMemberAction extends MyAlumniDispatchAction{
         setSessionObject(request, BaseConstants.LU_AVAILABLE_IMS, luAvailableIMs);
         setSessionObject(request, BaseConstants.LU_SELECTED_IMS, luSelectedIMs);
         
-		return mapping.findForward(BaseConstants.FWD_SUCCESS);
+		return new ModelAndView(BaseConstants.FWD_SUCCESS);
     } 
     
     
