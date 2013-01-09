@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE struts-config PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" 
+	"http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+	<!--<!DOCTYPE extensions-config PUBLIC
+       "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+       "FILE:///c:/MYALUMNI_HOME/dtds/extensions-config_1_2.dtd"> -->
+
+<!--
+  Default configuration file for examples application.
+  Each module also has its own extensions-config under: /WEB-INF/$MODULE/
+  @version $Revision: 1.9 $ $Date: 2006-12-03 11:32:52 -0600 (Sun, 03 Dec 2006) $
+-->
+   
+<struts-config>
+	<!-- =========================================  Form Beans  ================================================ -->
+  	<form-beans/>
+  
+    <!-- =========================================  Global Exceptions  ================================================ -->
+  	<global-exceptions/>
+  
+  
+    <!-- =========================================  Global Forward  ================================================ -->
+  	<global-forwards/>
+  
+  
+
+  <action-mappings>
+    <!-- ******************************************************************* -->
+    <!-- ***********                 SECURITY                  ************* -->
+    <!-- ******************************************************************* -->
+      
+    <action input="/jsp/login.jsp" name="loginForm" path="/member/login" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/myalumni/cpanel.jsp" />
+      <forward name="activate_account" path="/jsp/myalumni/requestAccess.jsp" />
+      <forward name="promptChange" path="/jsp/updateExpiredPasswd.jsp" />
+    </action>
+    
+    <!-- Update Expired Password -->
+    <action input="/jsp/updateExpiredPasswd.jsp" name="loginForm" path="/updateExpiredPassword" parameter="action" scope="request" 
+    type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+        <forward name="success" path="/jsp/index.jsp" />
+    </action> 
+    
+    <!-- forget Password -->
+    <action input="/jsp/forgotPassword.jsp" name="loginForm" path="/forgotPassword" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/forgotPassword.jsp" />
+    </action>
+    
+    <!-- Forgot Username -->
+    <action input="/jsp/forgotUserName.jsp" name="loginForm" path="/forgotUserName" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/forgotUserName.jsp" />
+    </action>
+
+    <!-- Reset Password MIGHT BE DELETED-->
+    <action input="/jsp/myalumni/resetpassword.jsp" name="loginForm" path="/resetpassword" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/thanks.jsp" />
+      <forward name="input" path="/jsp/myalumni/resetpassword.jsp" />
+      <forward name="activate_account" path="/jsp/myalumni/requestAccess.jsp" />
+    </action>
+   
+       <action input="/jsp/myalumni/requestAccess.jsp" name="memberForm" path="/getActivationInstructions" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+            <set-property property="cancellable" value="true"/>
+      <forward name="success" path="/jsp/thanks.jsp" />
+      <forward name="cancel" path="/jsp/myalumni/activate.jsp" />
+      <forward name="input" path="/jsp/myalumni/requestAccess.jsp" />
+    </action>
+    
+    <action input="/jsp/myalumni/activationProcess.jsp" name="memberForm" path="/memberActivateAccount" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/myalumni/changeUserName.jsp" />
+      <forward name="failure" path="/jsp/sysError.jsp" />
+    </action>
+    
+    <action input="/jsp/myalumni/changeUserName.jsp" name="memberForm" path="/finalizeAccountActivation" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/thanks.jsp" />
+      <forward name="input" path="/jsp/myalumni/changeUserName.jsp" />
+    </action>
+   
+    
+    <!-- ******************************************************************* -->
+    <!-- ***********                  M E M B E R S            ************* -->
+    <!-- ******************************************************************* -->
+        
+    <action input="/jsp/index.jsp" path="/member/logout" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy">
+      <forward name="success" path="/jsp/index.jsp" />
+    </action>
+    
+    <action input="/jsp/reminisce/index.jsp" name="memberForm" path="/member/viewReminisce" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="no">
+      <forward name="success" path="/jsp/reminisce/index.jsp" />
+    </action>
+           
+    <action input="/jsp/myalumni/search.jsp" name="memberForm" path="/member/memberSearch" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+            <set-property property="cancellable" value="true"/>
+      <forward name="success" path="/jsp/myalumni/listMembers.jsp" />
+      <forward name="cancel" path="/jsp/myalumni/cpanel.jsp" redirect="false" />
+    </action>
+          
+    <!-- Prepare Registation Page -->
+    <action input="/jsp/myalumni/activate.jsp" name="memberForm" path="/member/prepareRegistration" parameter="action" scope="request" 
+    type="org.springframework.web.struts.DelegatingActionProxy" validate="no">
+        <forward name="success" path="/jsp/myalumni/registration.jsp" />
+    </action> 
+    
+    <action input="/jsp/myalumni/mailbox.jsp" name="privateMessageForm" path="/member/listMailBox" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/myalumni/mailbox.jsp" />
+    </action>
+
+    <action input="/jsp/myalumni/viewProfile.jsp" name="memberForm" path="/member/viewProfile" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+            <set-property property="cancellable" value="true" />
+      <forward name="success" path="/jsp/myalumni/viewProfile.jsp" />
+    </action>
+    
+    <action input="/jsp/myalumni/cpanel.jsp" name="memberForm" path="/member/viewMyDesktop" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="no">
+      <forward name="success" path="/jsp/myalumni/cpanel.jsp" />
+    </action>
+    
+    <action input="/jsp/myalumni/cpanel.jsp" name="memberForm" path="/member/prepareUpdateMemberProfile" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="no">
+      <forward name="success" path="/jsp/myalumni/editProfile.jsp" />
+    </action>
+    
+    <action input="/jsp/myalumni/editProfile.jsp" name="memberForm" path="/member/updateMemberProfile" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+            <set-property property="cancellable" value="true" />
+      <forward name="success" path="/jsp/myalumni/cpanel.jsp" />
+      <forward name="cancel" path="/jsp/myalumni/cpanel.jsp" redirect="false" />
+    </action>
+    
+    <action input="/jsp/myalumni/changeEmail.jsp" name="memberForm" path="/member/updateEmail" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+            <set-property property="cancellable" value="true"/>
+      <forward name="success" path="/jsp/myalumni/viewProfile.jsp" />
+      <forward name="input" path="/jsp/myalumni/changeEmail.jsp" />
+      <forward name="cancel" path="/action/member/viewProfile?action=viewMemberProfile" redirect="false" />
+    </action>
+    
+    <action input="/jsp/myalumni/changePassword.jsp" name="memberForm" path="/member/updatePassword" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+            <set-property property="cancellable" value="true"/>
+      <forward name="success" path="/jsp/myalumni/viewProfile.jsp" />
+      <forward name="input" path="/jsp/myalumni/changePassword.jsp" />
+      <forward name="cancel" path="/action/member/viewProfile?action=viewMemberProfile" />
+    </action>
+  
+    <action input="/jsp/myalumni/changeSignature.jsp" name="memberForm" path="/member/updateSignature" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+            <set-property property="cancellable" value="true"/>
+      <forward name="success" path="/jsp/myalumni/viewProfile.jsp" />
+      <forward name="input" path="/jsp/myalumni/changeSignature.jsp" />
+      <forward name="cancel" path="/action/member/viewProfile?action=viewMemberProfile" />
+    </action>
+    
+    <action input="/jsp/myalumni/changeAvatar.jsp" name="memberForm" path="/member/updateAvatar" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+            <set-property property="cancellable" value="true"/>
+      <forward name="success" path="/action/member/viewProfile?action=viewMemberProfile" />
+      <forward name="cancel" path="/action/member/viewProfile?action=viewMemberProfile" />
+      <forward name="input" path="/jsp/myalumni/changeAvatar.jsp" />
+    </action>
+    
+    <action input="/jsp/myalumni/changeAvatar.jsp" name="memberForm" path="/member/deleteAvatar" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+            <set-property property="cancellable" value="true"/>
+      <forward name="success" path="/action/member/viewProfile?action=viewMemberProfile" />
+    </action>
+    
+    <action input="/jsp/myalumni/miniProfileDetails.jsp" name="memberForm" path="/member/displayMiniProfile" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/myalumni/miniProfileDetails.jsp" />
+    </action>
+    
+    <action input="/jsp/myalumni/registration.jsp" name="memberForm" path="/member/validateMemberUserName" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+    </action>
+        
+    
+      <!-- start JCAPTCHA for ADD MEMBER -->
+      <action input="/jsp/myalumni/registration.jsp" path="/member/addMember" name="memberForm" parameter="action" scope="request"
+              type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
+          <forward name="success" path="/action/member/jcaptchaAddMember?action=addMember"/>
+          <forward name="failure" path="/jsp/myalumni/registration.jsp"/>
+          <forward name="error" path="/jsp/myalumni/registration.jsp"/>
+      </action>
+      
+        <!-- Add the real controllers -->
+        <action input="/jsp/myalumni/registration.jsp" path="/member/jcaptchaAddMember" name="memberForm" parameter="action" scope="request"
+              type="org.springframework.web.struts.DelegatingActionProxy">
+             <forward name="success" path="/jsp/thanks.jsp" />
+        </action>
+
+    <!-- end JCAPTCHA for ADD MEMBER  -->
+    
+      <!-- start JCAPTCHA for DELETE MY MEMBER PROFILE -->
+    <action input="/jsp/myalumni/cpanel.jsp" name="memberForm" path="/member/prepareDeleteMyMemberProfile" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="no">
+               <set-property property="cancellable" value="true"/>
+      <forward name="cancel" path="/action/member/viewMyDesktop?action=displayMyDesktop" redirect="false" />
+      <forward name="success" path="/jsp/myalumni/deleteMemberProfile.jsp" />
+    </action>
+          
+      <action input="/jsp/myalumni/cpanel.jsp" path="/member/deleteMyMemberProfile" name="memberForm" parameter="action" scope="request"
+              type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
+          <forward name="success" path="/action/member/jcaptchaDeleteMyMemberProfile?action=deleteMyMemberProfile"/>
+          <forward name="failure" path="/jsp/myalumni/deleteMemberProfile.jsp"/>
+          <forward name="error" path="/jsp/myalumni/deleteMemberProfile.jsp"/>
+      </action>
+      
+        <!-- Add the real controllers -->
+        <action input="/jsp/myalumni/cpanel.jsp" path="/member/jcaptchaDeleteMyMemberProfile" name="memberForm" parameter="action" scope="request"
+              type="org.springframework.web.struts.DelegatingActionProxy">
+             <forward name="success" path="/action/member/logout?action=logout" />
+        </action>
+
+    <!-- end JCAPTCHA for  DELETE MY MEMBER PROFILE  -->    
+    
+                 
+    <action input="/jsp/common/resultList.jsp" name="memberForm" path="/member/genericAjaxSearch" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+    </action>        
+            
+
+    <!-- ******************************************************************* -->
+    <!-- ***********                  PRIVATE MESSAGE            ************* -->
+    <!-- ******************************************************************* -->
+    <action input="/jsp/myalumni/mailbox.jsp" name="privateMessageForm" path="/member/viewFolderMail" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/myalumni/mailbox.jsp" />
+    </action>
+
+    <action input="/jsp/myalumni/mailbox.jsp" name="privateMessageForm" path="/member/deleteMail" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+            <set-property property="cancellable" value="true"/>
+      <forward name="success" path="/jsp/myalumni/mailbox.jsp" />
+      <forward name="input" path="/jsp/myalumni/mailbox.jsp" />
+      <forward name="cancel" path="/jsp/myalumni/cpanel.jsp" redirect="false" />
+      <forward name="failure" path="/jsp/sysError.jsp" />
+    </action>
+    
+    <action input="/jsp/myalumni/readMessage.jsp" name="privateMessageForm" path="/member/readOneMailByUserName" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/myalumni/readMessage.jsp" />
+    </action>
+    
+    <action input="/jsp/myalumni/replyMail.jsp" name="privateMessageForm" path="/member/prepareReply" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/myalumni/replyMail.jsp" />
+    </action>
+    
+    <action input="/jsp/myalumni/replyMail.jsp" name="privateMessageForm" path="/member/replyMail" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes" >
+      <set-property property="cancellable" value="true"/>
+      <forward name="success" path="/jsp/myalumni/mailbox.jsp" />
+      <forward name="cancel" path="/action/member/viewMyDesktop?action=displayMyDesktop" redirect="false" />
+      <forward name="failure" path="/jsp/sysError.jsp" />
+    </action>
+    
+    <action input="/jsp/myalumni/contactMember.jsp" name="privateMessageForm" path="/member/contactMail" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+            <set-property property="cancellable" value="true"/>
+      <!-- <forward name="success" path="/jsp/myalumni/listMembers.jsp" />-->
+      <forward name="success" path="/action/member/viewMyDesktop?action=displayMyDesktop" />
+      <forward name="cancel" path="/action/member/viewMyDesktop?action=displayMyDesktop" redirect="false" />
+      <forward name="failure" path="/jsp/sysError.jsp" />
+    </action>
+    
+    <action input="/jsp/myalumni/listMembers.jsp" name="privateMessageForm" path="/member/prepareContact" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/myalumni/contactMember.jsp" />
+    </action>
+    
+    <action input="/jsp/emailWebmaster.jsp" name="privateMessageForm" path="/member/prepareEmailWebmaster" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="no">
+      <forward name="success" path="/jsp/emailWebmaster.jsp" />
+      <forward name="failure" path="/admin/sysError.jsp" />
+    </action>
+
+    <action input="/jsp/myalumni/mailbox.jsp" name="privateMessageForm" path="/member/prepareComposePrivateMessage" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/myalumni/contactMember.jsp" />
+      <forward name="failure" path="/jsp/sysError.jsp" />
+    </action>
+
+
+
+    <!-- start JCAPTCHA for EMAIL WEBMASTER -->
+      <action input="/jsp/emailWebmaster.jsp" path="/member/emailWebmaster" name="privateMessageForm" parameter="action" scope="request"
+              type="org.springframework.web.struts.DelegatingActionProxy" validate="false">
+          <forward name="success" path="/action/member/jcaptchaEmailWebmaster?action=emailWebmaster"/>
+          <forward name="failure" path="/jsp/emailWebmaster.jsp"/>
+          <forward name="error" path="/jsp/emailWebmaster.jsp"/>
+      </action>
+
+
+        <!-- Add the real controllers -->
+        <action input="/jsp/emailWebmaster.jsp" path="/member/jcaptchaEmailWebmaster" name="privateMessageForm" parameter="action" scope="request"
+              type="org.springframework.web.struts.DelegatingActionProxy"  validate="true">
+             <forward name="success" path="/jsp/thanks.jsp" />
+        </action>
+
+    <!-- end JCAPTCHA for EMAIL WEBMASTER  -->
+    
+        <!-- add the render controllers-->
+        <action path="/jcaptcha" type="com.octo.captcha.module.struts.image.RenderImageCaptchaAction"/>
+        
+
+
+    
+    
+    
+    <!-- ******************************************************************* -->
+    <!-- ***********                  CLASS NEWS            ************* -->
+    <!-- ******************************************************************* -->   
+    <action input="/jsp/myalumni/cpanel.jsp" name="classNewsForm" path="/member/prepareAddClassNews" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/myalumni/addClassNews.jsp" />
+    </action>
+    
+    <action input="/jsp/myalumni/addClassNews.jsp" name="classNewsForm" path="/member/addClassNews" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/myalumni/cpanel.jsp" />
+    </action>
+    
+    <action input="/jsp/myalumni/cpanel.jsp" name="classNewsForm" path="/member/viewClassNews" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+            <set-property property="cancellable" value="true"/>
+      <forward name="success" path="/jsp/myalumni/viewClassNews.jsp" />
+    </action>
+
+    <action input="/jsp/myalumni/cpanel.jsp" name="classNewsForm" path="/member/listClassNews" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+            <set-property property="cancellable" value="true"/>
+      <forward name="success" path="/jsp/myalumni/cpanel.jsp" />
+    </action>
+
+
+    
+    <!-- ******************************************************************* -->
+    <!-- ***********                  REMINISCE            ************* -->
+    <!-- ******************************************************************* -->    
+    <action input="/jsp/myalumni/cpanel.jsp" name="reminisceForm" path="/member/prepareAddReminisce" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/myalumni/addReminisce.jsp" />
+    </action>
+    
+    <action input="/jsp/myalumni/addReminisce.jsp" name="reminisceForm" path="/member/addReminisce" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+      <forward name="success" path="/jsp/myalumni/cpanel.jsp" />
+    </action>
+
+    <action input="/jsp/index.jsp" name="reminisceForm" path="/member/listReminisce" parameter="action" scope="request"
+            type="org.springframework.web.struts.DelegatingActionProxy" validate="yes">
+            <set-property property="cancellable" value="true"/>
+      <forward name="success" path="/jsp/reminisce/index.jsp" />
+    </action>
+
+
+
+    <!-- Forwards  -->
+    <action name="memberForm" parameter="/jsp/myalumni/requestAccess.jsp" path="/member/fwdDisplayRequestAccessPage" scope="request" type="org.apache.struts.actions.ForwardAction" validate="false" />
+
+    
+  </action-mappings>
+
+  
+</struts-config>
