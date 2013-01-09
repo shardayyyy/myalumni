@@ -1,1 +1,0 @@
-MyAlumni: New member Registration Notification
