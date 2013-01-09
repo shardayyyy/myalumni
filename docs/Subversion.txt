@@ -1,4 +1,0 @@
-How to access SVN
-
-
-http://subversion.tigris.org/faq.html
