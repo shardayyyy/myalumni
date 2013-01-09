@@ -1,4 +1,0 @@
-${body}
-
-Website: ${serverName}
-${adminSignature}
