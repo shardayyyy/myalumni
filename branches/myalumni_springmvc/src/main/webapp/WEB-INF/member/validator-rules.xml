@@ -1,0 +1,271 @@
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_0.dtd">
+<!--
+
+   This file contains the default Struts Validator pluggable validator
+   definitions.  It should be placed somewhere under /WEB-INF and
+   referenced in the extensions-config.xml under the plug-in element
+   for the ValidatorPlugIn.
+
+      <plug-in className="org.apache.extensions.validator.ValidatorPlugIn">
+        <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,
+                                                  /WEB-INF/validation.xml"/>
+      </plug-in>
+
+   These are the default error messages associated with
+   each validator defined in this file.  They should be
+   added to your projects ApplicationResources.properties
+   file or you can associate new ones by modifying the
+   pluggable validators msg attributes in this file.
+
+   # Struts Validator Error Messages
+   errors.required={0} is required.
+   errors.minlength={0} can not be less than {1} characters.
+   errors.maxlength={0} can not be greater than {1} characters.
+   errors.invalid={0} is invalid.
+
+   errors.byte={0} must be a byte.
+   errors.short={0} must be a short.
+   errors.integer={0} must be an integer.
+   errors.long={0} must be a long.
+   errors.float={0} must be a float.
+   errors.double={0} must be a double.
+
+   errors.date={0} is not a date.
+   errors.range={0} is not in the range {1} through {2}.
+   errors.creditcard={0} is an invalid credit card number.
+   errors.email={0} is an invalid e-mail address.
+
+-->
+
+<form-validation>
+
+   <global>
+
+<!-- ===================================================================== -->
+<!--          S T A R T   O F   P R I V A T  E   V A L I D A T O R  S      -->
+<!-- ===================================================================== -->
+
+<!-- ========================= COMPARE EMAILS =============================== -->
+          <validator name="compareEmails"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="compareEmails"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="error.emailnotequal">
+          </validator>
+<!-- ========================= COMPARE PASSWORDS =============================== -->
+          <validator name="comparePassword"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="comparePassword"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="errors.password.notequal">
+          </validator>
+<!-- ========================= COMPARE YEAR IN AND YEAR OUT ======================== -->
+          <validator name="compareYear"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="compareYear"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="error.yearinyearout">
+          </validator>
+<!-- ========================= COMPARE CLASS YEAR FROM AND TO ======================== -->
+          <validator name="compareClassNewsYear"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="compareClassNewsYear"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="error.classyearinyearout">
+          </validator>        
+          
+<!-- ========================= COMPARE REMINISCE FROM AND TO ======================== -->
+          <validator name="compareReminisceYear"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="compareReminisceYear"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="error.reminisceyears">
+          </validator>        
+          
+                   
+            
+<!-- ========================= CHECK FOR A GOOD USER NAME =================== -->
+          <validator name="checkGoodName"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="checkGoodName"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="error.checkgoodname">
+          </validator>
+
+<!-- ========================= COOL LINK 2 =============================== -->
+          <validator name="validateUrlHomePage"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="validateUrlHomePage"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="error.homepageurl">
+          </validator>
+<!-- ========================= COOL LINK 1 =============================== -->
+          <validator name="validateUrlCoolLink1"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="validateUrlCoolLink1"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="error.coollink1url">
+          </validator>
+
+<!-- ========================= COOL LINK 2 =============================== -->
+          <validator name="validateUrlCoolLink2"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="validateUrlCoolLink2"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="error.coollink2url">
+          </validator>
+
+<!-- ========================= Gender Maiden =============================== -->
+          <validator name="genderMaiden"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="genderMaiden"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="error.gendermaiden">
+          </validator>
+   <!-- ========================= Compare Password Validation ===================== -->
+          <validator name="common_compareLoginPasswords"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="common_compareLoginPasswords"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages,
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="errors.password.notequal">
+          </validator> 
+          
+<!-- ========================= Compare Reset Passwords ===================== -->
+          <validator name="comparePasswordReset"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="comparePasswordReset"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="errors.password.notequal">
+          </validator>
+<!-- ========================= SEARCH       ===================== -->
+          <validator name="searchCategory"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="searchCategory"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="error.searchCategory">
+          </validator>
+
+<!-- ========================= Check the length of the Signature ===================== -->
+          <validator name="signature"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="signature"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="error.signaturelength">
+          </validator>
+<!-- ========================= Check the length of the Comments ===================== -->
+          <validator name="adminComments"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="adminComments"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="error.admincomments">
+          </validator>
+<!-- ========================= Check the length of the Comments ===================== -->
+          <validator name="memberComments"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="memberComments"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="error.comments">
+          </validator>
+<!-- ========================= Good Name Check ===================== -->
+          <validator name="goodNameCheck"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="goodNameCheck"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="error.goodNameCheck">
+          </validator>
+<!-- ========================= Email Webmaster Check for email ===================== -->
+          <validator name="emailWebmasterEmailCheck"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="emailWebmasterEmailCheck"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="errors.email">
+          </validator>
+<!-- ========================= adminMaintainScroll ===================== -->
+          <validator name="adminMaintainScroll"
+                      classname="net.naijatek.myalumni.framework.extensions.MyAlumniValidator"
+                      method="adminMaintainScroll"
+                      methodParams="java.lang.Object,
+                                 org.apache.commons.validator.ValidatorAction,
+                                 org.apache.commons.validator.Field,
+                                 org.apache.struts.action.ActionMessages, 
+                                 javax.servlet.http.HttpServletRequest"
+                            msg="error.checkpage">
+          </validator>
+
+   </global>
+
+</form-validation>

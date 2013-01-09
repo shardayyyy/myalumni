@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="net.naijatek.myalumni.modules.common.domain">
+	<class name="LoginHistoryVO" table="MYALUMNI_LOGINHISTORY_TBL">
+		<id name="loginHistoryId" column="loginhistory_id" length="40">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="requestTime" column="REQUEST_TIME" type="timestamp" not-null="true"/>
+		<property name="userName" column="USER_NAME" length="40" not-null="false"/>
+		<property name="sourceIP" column="SOURCE_IP" length="50" not-null="true"/>
+		<property name="loginStatus" column="LOGIN_STATUS" length="1" not-null="true"/>		
+		<property name="userAgent" column="USER_AGENT" length="15" not-null="true"/>
+		<property name="reasonCode" column="REASON_CODE" length="2" not-null="true"/>
+	</class>
+	
+		<!-- START: AccessHistoryVO -->
+	<query name="accesslog.byusername">
+		<![CDATA[ from LoginHistoryVO ah where ah.userName = :memberUsername order by ah.requestTime desc ]]>
+	</query>
+	
+</hibernate-mapping>
