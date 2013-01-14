@@ -47,12 +47,7 @@ import net.naijatek.myalumni.framework.extensions.MyAlumniBaseController;
 import net.naijatek.myalumni.modules.common.domain.ErrorLogVO;
 import net.naijatek.myalumni.modules.common.service.IErrorLogService;
 import net.naijatek.myalumni.util.BaseConstants;
-
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
+import org.springframework.stereotype.Controller;
 
 @Controller
 public class ErrorAction extends MyAlumniBaseController {
