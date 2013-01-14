@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+
+    <!--=====================================================================
+         =                                                                       =
+         =                       BEAN-DEPENDENT POJO                             =
+         =                                                                       =
+         ======================================================================-->
+    <!-- User Container-->
+    <bean id="userContainer" singleton="false"
+          class="net.naijatek.myalumni.framework.extensions.MyAlumniUserContainer">
+        <constructor-arg index="0" ref="userAccountService" />
+    </bean>
+
+
+    <!--=====================================================================
+         =                                                                       =
+         =             FREEMARKER  & MAILER                                      =
+         =                                                                       =
+         ======================================================================-->
+    <!-- freemarker config, tell freemarker to find its template files in /jsp/freemaker directory -->
+    <bean id="freemarkerConfig"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/templates/" />
+    </bean>
+
+
+    <bean id="freeMarkerTemplate"
+          class="net.naijatek.myalumni.util.mail.FreeMarkerTemplateMailerImpl">
+        <property name="mailSender" ref="mailSender" />
+        <property name="configuration" ref="freemarkerConfig" />
+    </bean>
+
+    <bean id="mailSender"
+          class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.smtp.host}" />
+        <property name="port" value="${mail.smtp.port}" />
+        <property name="username" value="${mail.smtp.username}" />
+        <property name="password" value="${mail.smtp.password}" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.socketFactory.fallback">
+                    false
+                </prop>
+                <prop key="mail.smtp.socketFactory.port">465</prop>
+                <prop key="mail.smtp.socketFactory.class">
+                    javax.net.ssl.SSLSocketFactory
+                </prop>
+                <prop key="mail.smtp.timeout">15000</prop><!-- milliseconds -->
+            </props>
+        </property>
+    </bean>
+
+
+    <bean id="sendMailUtil"
+          class="net.naijatek.myalumni.util.mail.SendMailUtil">
+        <property name="mailSender" ref="mailSender" />
+        <property name="freeMarker" ref="freemarkerConfig" />
+    </bean>
+
+
+
+
+</beans>
