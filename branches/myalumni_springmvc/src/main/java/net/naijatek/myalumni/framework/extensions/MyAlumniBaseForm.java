@@ -45,7 +45,6 @@ import net.naijatek.myalumni.util.date.DateConverter;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.validator.ValidatorActionForm;
 
 public class MyAlumniBaseForm extends ValidatorActionForm {
 

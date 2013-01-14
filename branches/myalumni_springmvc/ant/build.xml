@@ -14,14 +14,14 @@
                              image files), including the WEB-INF subdirectory
                              and its configuration file contents.
 -->
-<project name="myAlumni Build Integration" default="help" basedir="." xmlns:ivy="antlib:fr.jayasoft.ivy.ant">
+<project name="myAlumni Build Integration" default="help" basedir="task" xmlns:ivy="antlib:fr.jayasoft.ivy.ant">
 	<description>myAlumni Build Integration</description>
 	
 	<!-- - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - 
                               Property                      
          - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - -->
 	<property file="build.properties"/>
-    <property name="base.dir" value="../../"/>
+    <property name="base.dir" value="..//"/>
 	<property name="src.path" value="${base.dir}/${src.dir}"/>
 	<property name="build.path" value="${base.dir}/${build.dir}"/>
 	<property name="classes.path" value="${build.path}/${web.dir}/WEB-INF/classes"/>

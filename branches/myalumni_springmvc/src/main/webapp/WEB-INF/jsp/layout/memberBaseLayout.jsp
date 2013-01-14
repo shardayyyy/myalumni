@@ -48,7 +48,7 @@
 <script type="text/javascript" src="<c:out value="${lang}"/>"></script>
 <script type="text/javascript" src="<c:out value="${setup}"/>"></script>
 
-<c:url var="greybox" value="/html/greybox/"/>
+<c:url var="greybox" value="/html/greybox"/>
 
 <!--  GREY BOX AJAX -->
 <script type="text/javascript">
