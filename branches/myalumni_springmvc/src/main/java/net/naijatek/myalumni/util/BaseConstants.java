@@ -140,6 +140,7 @@ public interface BaseConstants {
   public final static String FWD_ALL_MEMBERS = "FWD_ALL_MEMBERS";
   public final static String FWD_ACTIVATE_ACCOUNT = "activate_account";
   public static final String FWD_SUCCESS = "success";
+    public static final String FWD_REDISPLAY = "input";
   public static final String FWD_INVALID_TOKEN = "token";    
   public static final String FWD_EXPIRED_PASSWORD = "promptChange";
   public static final String FWD_CANCEL = "cancel";

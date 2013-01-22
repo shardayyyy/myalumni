@@ -49,11 +49,13 @@ import net.naijatek.myalumni.framework.exceptions.NotLoginException;
 import net.naijatek.myalumni.framework.exceptions.UserAccountException;
 import net.naijatek.myalumni.framework.extensions.MyAlumniBaseController;
 import net.naijatek.myalumni.framework.extensions.MyAlumniUserContainer;
+import net.naijatek.myalumni.modules.common.domain.ErrorLogVO;
 import net.naijatek.myalumni.modules.common.domain.LoginHistoryVO;
+import net.naijatek.myalumni.modules.common.domain.LoginVO;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
+import net.naijatek.myalumni.modules.common.helper.MyAlumniMessages;
 import net.naijatek.myalumni.modules.common.helper.OnlineUserManager;
 import net.naijatek.myalumni.modules.common.helper.ReasonCodes;
-import net.naijatek.myalumni.modules.common.presentation.form.LoginForm;
 import net.naijatek.myalumni.modules.common.service.IClassNewsService;
 import net.naijatek.myalumni.modules.common.service.IMemberService;
 import net.naijatek.myalumni.modules.common.service.IPrivateMessageService;
@@ -63,15 +65,18 @@ import net.naijatek.myalumni.util.BaseConstants;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.springframework.web.servlet.ModelAndView;
 
-@Controller	
+@Controller
 	public class SecurityAction extends MyAlumniBaseController {
 	
 	    private IUserAccountService securityService;
@@ -90,24 +95,22 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 	        this.memService = memService;
 	        this.classNewsService = classNewsService;
 	    }
-	
-	
-	    public ActionForward login(ActionMapping mapping, ActionForm form, 
-	                               HttpServletRequest request, 
-	                               HttpServletResponse response) throws Exception {
-	
+
+    @RequestMapping(value="/login", method= RequestMethod.POST)
+    public ModelAndView login(@ModelAttribute("errorLog")LoginVO loginVO, BindingResult result, SessionStatus status,
+                                     HttpServletRequest request,
+                                     HttpServletResponse response, Errors errors) throws
+            Exception {
+
+            ModelAndView mv = new ModelAndView();
 	        HttpSession session = request.getSession(false);
 	        Integer counter = (Integer)session.getAttribute("loginCounter");
 	        int loginCounter = 0;
 	        String currentIP = request.getRemoteAddr();
-	        ActionMessages errors = new ActionMessages();
-	
-	
-	        LoginForm loginForm = (LoginForm)form;
 
 	        
-	        String username = loginForm.getMemberUserName();
-	        String password = loginForm.getMemberPassword();
+	        String username = loginVO.getMemberUserName();
+	        String password = loginVO.getMemberPassword();
 	        
 	        
 	        MemberVO token = null;
@@ -141,30 +144,33 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
     	        
     	        // Prompt user to change password
     	        if (token.getPromptChange().equals(BaseConstants.BOOLEAN_YES)){
-    	        	
-    	        	loginForm.setMemberUserName(token.getMemberUserName());
-    	        	loginForm.setMemberPassword("");
-    	        	loginForm.setMemberTempPassword("");
-    	        	loginForm.setMemberPasswordConfirm("");                
+
+                    loginVO.setMemberUserName(token.getMemberUserName());
+                    loginVO.setMemberPassword("");
+    	        	loginVO.setMemberTempPassword("");
+                    loginVO.setMemberPasswordConfirm("");
     	        	 
     	        	session.invalidate();
-                    errors.add(BaseConstants.INFO_KEY, new ActionMessage("errors.login.resetpassword"));
-                    saveMessages(request, errors);
+                    errors.rejectValue(BaseConstants.INFO_KEY, "errors.login.resetpassword");
+                    //saveMessages(request, errors);
                     accessHistory.setLoginStatus(BaseConstants.LOGIN_FAIL);
                     accessHistory.setReasonCode(ReasonCodes.CHANGE_PASSWORD);
         	        securityService.addAccessTrail(accessHistory);
-                    return mapping.findForward(BaseConstants.FWD_EXPIRED_PASSWORD);
+                    mv.setViewName(BaseConstants.FWD_EXPIRED_PASSWORD);
+                    return mv;
     	        }
     	        
     	        
     	        // Cant find roles
     	        if (token.getIsAdmin() == null || (!token.getIsAdmin().equals(BaseConstants.BOOLEAN_NO) & !token.getIsAdmin().equals(BaseConstants.BOOLEAN_YES))){
-    	            errors.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.login.role"));
-    	            saveMessages(request, errors);
+    	            errors.rejectValue(BaseConstants.ERROR_KEY, "errors.login.role");
+    	            //saveMessages(request, errors);
                     accessHistory.setLoginStatus(BaseConstants.LOGIN_FAIL);
                     accessHistory.setReasonCode(ReasonCodes.NO_ROLES_FOUND);
         	        securityService.addAccessTrail(accessHistory);
-    	            return mapping.getInputForward();
+    	            //return mapping.getInputForward();
+                    mv.setViewName(BaseConstants.FWD_REDISPLAY);
+                    return mv;
     	        }     
     	        
     	        
@@ -173,37 +179,40 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 	        	//token.setLoginSuccessfull(false);
 	            if (e.getExceptionReason() == NotLoginException.ACCOUNT_DEACTIVATED) {
 	                session.invalidate();
-	                errors.add(BaseConstants.WARN_KEY, new ActionMessage("errors.account.deactivated"));
-	                saveMessages(request, errors);
+	                errors.rejectValue(BaseConstants.WARN_KEY, "errors.account.deactivated");
+	                //saveMessages(request, errors);
 	                logger.info("ACCOUNT DEACTIVATED : " + username);
                     accessHistory.setLoginStatus(BaseConstants.LOGIN_FAIL);
                     accessHistory.setReasonCode(ReasonCodes.ACCOUNT_DEACTIVATED);
 	    	        securityService.addAccessTrail(accessHistory);
-	                return mapping.getInputForward();
+                    mv.setViewName(BaseConstants.FWD_REDISPLAY);
+                    return mv;
 	            } 	
 	            if (e.getExceptionReason() == NotLoginException.ACCOUNT_DELETED) {
 	                session.invalidate();
-	                errors.add(BaseConstants.WARN_KEY, new ActionMessage("errors.account.deleted"));
-	                saveMessages(request, errors);
+	                errors.rejectValue(BaseConstants.WARN_KEY, "errors.account.deleted");
+	                //saveMessages(request, errors);
                     accessHistory.setLoginStatus(BaseConstants.LOGIN_FAIL);
                     accessHistory.setReasonCode(ReasonCodes.ACCOUNT_DELETED);
 	    	        securityService.addAccessTrail(accessHistory);
-	                return mapping.getInputForward();
+                    mv.setViewName(BaseConstants.FWD_REDISPLAY);
+                    return mv;
 	            } 	            
 	            if (e.getExceptionReason() == NotLoginException.ACCOUNT_LOCKED) {
 	                session.invalidate();
-	                errors.add(BaseConstants.WARN_KEY, new ActionMessage("errors.account.locked"));
-	                saveMessages(request, errors);
+	                errors.rejectValue(BaseConstants.WARN_KEY, "errors.account.locked");
+	                //saveMessages(request, errors);
 	                logger.info("ACCOUNT LOCKED : " + username);
                     accessHistory.setLoginStatus(BaseConstants.LOGIN_FAIL);
                     accessHistory.setReasonCode(ReasonCodes.ACCOUNT_LOCKED);
 	    	        securityService.addAccessTrail(accessHistory);
-	                return mapping.getInputForward();
+                    mv.setViewName(BaseConstants.FWD_REDISPLAY);
+                    return mv;
 	            } 
 	            else if (e.getExceptionReason() == NotLoginException.WRONG_PASSWORD) {
 	                //session.invalidate();
-	                errors.add(BaseConstants.WARN_KEY, new ActionMessage("errors.password.mismatch", currentIP));
-	                saveMessages(request, errors);
+	                errors.rejectValue(BaseConstants.WARN_KEY, "errors.password.mismatch", currentIP);
+	                //saveMessages(request, errors);
 	                logger.info("INVALID PASSWORD : " + username);
                     accessHistory.setLoginStatus(BaseConstants.LOGIN_FAIL);
                     accessHistory.setReasonCode(ReasonCodes.INVALID_CREDENTIAL);
@@ -227,40 +236,44 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 	                    // deactivating user account
 	                    if (securityService.lockMemberAccount(username)) {
 	                        session.invalidate();
-	                        errors.add(BaseConstants.WARN_KEY, new ActionMessage("errors.account.locked"));
+	                        errors.rejectValue(BaseConstants.WARN_KEY, "errors.account.locked");
 	                        logger.info("ACCOUNT LOCKED :  IP: (" + currentIP + ") " + username);
 	                        accessHistory.setLoginStatus(BaseConstants.LOGIN_FAIL);
 	                        accessHistory.setReasonCode(ReasonCodes.ACCOUNT_LOCKED);
 	    	    	        securityService.addAccessTrail(accessHistory);
-	    	    	        return mapping.getInputForward();
+                            mv.setViewName(BaseConstants.FWD_REDISPLAY);
+                            return mv;
 	                    }
 	                } else {
 	                    session.setAttribute("loginCounter", new Integer(loginCounter));
 	                }
 	                
 	    	        securityService.addAccessTrail(accessHistory);
-	    	        return mapping.getInputForward();
+                    mv.setViewName(BaseConstants.FWD_REDISPLAY);
+                    return mv;
 	            }
 	            else if (e.getExceptionReason() == NotLoginException.WRONG_USERNAME) {
 	                logger.info("INVALID USERNAME: IP: (" + currentIP + ") " + username + " User login attempt has failed. Count = " + loginCounter);
                     accessHistory.setLoginStatus(BaseConstants.LOGIN_FAIL);
                     accessHistory.setReasonCode(ReasonCodes.ACCOUNT_INVALID);
-	                errors.add(BaseConstants.WARN_KEY, new ActionMessage("errors.password.mismatch"));
-	                saveMessages(request, errors);
+	                errors.rejectValue(BaseConstants.WARN_KEY, "errors.password.mismatch");
+	                //saveMessages(request, errors);
 	                logger.info("UNSUCCESSFULL FWD_LOGIN - Invalid login  IP: (" + currentIP + ") " + username);
                     accessHistory.setLoginStatus(BaseConstants.LOGIN_FAIL);
                     accessHistory.setReasonCode(ReasonCodes.INVALID_CREDENTIAL);
 	    	        securityService.addAccessTrail(accessHistory);
-	    	        return mapping.getInputForward();
+                    mv.setViewName(BaseConstants.FWD_REDISPLAY);
+                    return mv;
 	            } 
 	            else if (e.getExceptionReason() == NotLoginException.ACCOUNT_UNAPPROVED) {
-	                errors.add(BaseConstants.WARN_KEY, new ActionMessage("errors.account.notapproved"));
-	                saveMessages(request, errors);
+	                errors.rejectValue(BaseConstants.WARN_KEY, "errors.account.notapproved");
+	                //saveMessages(request, errors);
 	                logger.info("UNSUCCESSFULL FWD_LOGIN - Account not approved yet. :  IP: (" + currentIP + ") " + username);
                     accessHistory.setLoginStatus(BaseConstants.LOGIN_FAIL);
                     accessHistory.setReasonCode(ReasonCodes.ACCOUNT_UNAPPROVED);
 	                securityService.addAccessTrail(accessHistory);
-	    	        return mapping.getInputForward();
+                    mv.setViewName(BaseConstants.FWD_REDISPLAY);
+                    return mv;
 	            } 
 	            
 	        }
@@ -315,18 +328,21 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
                     accessHistory.setLoginStatus(BaseConstants.LOGIN_FAIL);
                     accessHistory.setReasonCode(ReasonCodes.ACCOUNT_UNAUTHORIZED);
 	                securityService.addAccessTrail(accessHistory);	
-                    errors.add(BaseConstants.WARN_KEY, new ActionMessage("errors.account.notenoughrights"));
-                    saveMessages(request, errors);
-                    logger.info("ACCOUNT UNAUTHORIZED :  IP: (" + currentIP + ") " + username);	                
-	                return mapping.getInputForward();
+                    errors.rejectValue(BaseConstants.WARN_KEY, "errors.account.notenoughrights");
+                    //saveMessages(request, errors);
+                    logger.info("ACCOUNT UNAUTHORIZED :  IP: (" + currentIP + ") " + username);
+                    mv.setViewName(BaseConstants.FWD_REDISPLAY);
+                    return mv;
 	            }
-	            
-	            return mapping.findForward(BaseConstants.FWD_SUCCESS);
+
+                mv.setViewName(BaseConstants.FWD_SUCCESS);
+                return mv;
 	            
 	        } else {
-	            errors.add(BaseConstants.FATAL_KEY, new ActionMessage("errors.technical.difficulty"));
-	            saveMessages(request, errors);
-	            return mapping.getInputForward();
+	            errors.rejectValue(BaseConstants.FATAL_KEY, "errors.technical.difficulty");
+	            //saveMessages(request, errors);
+                mv.setViewName(BaseConstants.FWD_REDISPLAY);
+                return mv;
 	        }
 	    }
 	
@@ -367,17 +383,14 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 	    /**
 	     * Performs the logging out of users
 	     *
-	     * @param mapping ActionMapping
-	     * @param form ActionForm
-	     * @param request HttpServletRequest
-	     * @param response HttpServletResponse
-	     * @throws Exception
-	     * @return ActionForward
 	     */
-	public ActionForward logout(ActionMapping mapping, ActionForm form, 
-	                             HttpServletRequest request, 
-	                             HttpServletResponse response) throws Exception {
-	
+        @RequestMapping(value="/logout", method= RequestMethod.POST)
+        public ModelAndView logout(@ModelAttribute("errorLog")LoginVO loginVO, BindingResult result, SessionStatus status,
+                                  HttpServletRequest request,
+                                  HttpServletResponse response, Errors errors) throws
+                Exception {
+
+       ModelAndView mv = new ModelAndView();
 	   HttpSession session = request.getSession(true);
 	
 	   int sessionTimeout = setupSessionTimeout(session);
@@ -394,196 +407,186 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 	       logger.info("User successfully logged out...");
 	       session.invalidate();
 	   }
-	   
-	   return (mapping.findForward(BaseConstants.FWD_SUCCESS));
+	   mv.setViewName(BaseConstants.FWD_SUCCESS);
+        return mv;
 	}
 	
 	
 	/**
 	* This methods updates the user password.
-	* 
-	* @param mapping
-	* @param form
-	* @param request
-	* @param response
-	* @return
+	*
 	* @throws Exception
 	*/
-	public ActionForward changePassword(ActionMapping mapping, ActionForm form, 
-	                             HttpServletRequest request, 
-	                             HttpServletResponse response) throws Exception {
-	                             
-	   ActionMessages messages = new ActionMessages();
-	   LoginForm loginForm = (LoginForm)form;     
-	   
+    @RequestMapping(value="/changePassword", method= RequestMethod.POST)
+    public ModelAndView changePassword(@ModelAttribute("errorLog")LoginVO loginVO, BindingResult result, SessionStatus status,
+                               HttpServletRequest request,
+                               HttpServletResponse response, Errors errors) throws
+            Exception {
+
+        ModelAndView mv = new ModelAndView();
 	   String username = getUserContainer(request).getToken().getMemberUserName();
-	   String currentPassword = loginForm.getMemberTempPassword();
-	   String newPassword = loginForm.getMemberPasswordConfirm();
+	   String currentPassword = loginVO.getMemberTempPassword();
+	   String newPassword = loginVO.getMemberPasswordConfirm();
 	   
 	   try{
 	       securityService.changePassword(username, currentPassword, newPassword);
 	   }
 	   catch(UserAccountException e){
 	       if (e.getErrorCode() == NotLoginException.WRONG_USERNAME) {
-	           messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.login.username"));
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.login.username");
 	       }
 	       else if (e.getErrorCode() == NotLoginException.WRONG_PASSWORD) {
-	           messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.login.password"));
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.login.password");
 	       }
 	       else if (e.getErrorCode() == NotLoginException.SAME_PASSWORD) {
-	           messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.login.samepassword"));
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.login.samepassword");
 	       } 
-	       saveMessages(request, messages); 
-	       return (mapping.getInputForward());                            
+	       //saveMessages(request, messages);
+	       //return (mapping.getInputForward());
+           mv.setViewName(BaseConstants.FWD_REDISPLAY);
+           return mv;
 	   }
-	
-	   messages.add(BaseConstants.INFO_KEY, new ActionMessage("message.password.updated"));
-	   saveMessages(request, messages);
-	   return mapping.getInputForward();
+
+        errors.rejectValue(BaseConstants.INFO_KEY, "message.password.updated");
+	   //saveMessages(request, messages);
+        mv.setViewName(BaseConstants.FWD_REDISPLAY);
+        return mv;
 	}
 	
 	
 	/**
 	* This methods sends an email to the user about the lost password.
-	* 
-	* @param mapping
-	* @param form
-	* @param request
-	* @param response
-	* @return
+	*
 	* @throws Exception
 	*/
-	public ActionForward forgotPassword(ActionMapping mapping, ActionForm form, 
-	                             HttpServletRequest request, 
-	                             HttpServletResponse response) throws Exception {
+    @RequestMapping(value="/forgotPassword", method= RequestMethod.POST)
+    public ModelAndView forgotPassword(@ModelAttribute("errorLog")LoginVO loginVO, BindingResult result, SessionStatus status,
+                                       HttpServletRequest request,
+                                       HttpServletResponse response, Errors errors) throws
+            Exception {
 	                             
-	   ActionMessages messages = new ActionMessages();
-	       
-	   LoginForm loginForm = (LoginForm)form;     
-	   String username = loginForm.getMemberUserName();
+       ModelAndView mv = new ModelAndView();
+	   String username = loginVO.getMemberUserName();
 	   
 	   try{
 	       securityService.notifyPassword(username, request);
-	       messages.add(BaseConstants.INFO_KEY, new ActionMessage("errors.account.resetinst"));
+           errors.rejectValue(BaseConstants.INFO_KEY, "errors.account.resetinst");
 	   }
 	   catch(UserAccountException e){
 	       if (e.getErrorCode() == NotLoginException.USER_NOT_FOUND){
-	       		messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.account.notfound"));
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.account.notfound");
 	       }
 	       else if (e.getErrorCode() == NotLoginException.ACCOUNT_UNAPPROVED){
-	       		messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.account.notapproved"));
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.account.notapproved");
 	       }
 	       else if (e.getErrorCode() == NotLoginException.ACCOUNT_DEACTIVATED){
-		       	messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.account.deactivated"));
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.account.deactivated");
 		   }
 	       else if (e.getErrorCode() == NotLoginException.ACCOUNT_LOCKED){
-	       		messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.account.locked"));
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.account.locked");
 	       }
 	       else {
-	       		messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.account.mailserver"));
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.account.mailserver");
 	       }
-	       saveMessages(request, messages);
-	       return (mapping.getInputForward());            
+	       //saveMessages(request, messages);
+           mv.setViewName(BaseConstants.FWD_REDISPLAY);
+	       return mv;
 	   }
-	   saveMessages(request, messages);
-	   return (mapping.findForward(BaseConstants.FWD_SUCCESS));
-	}
+	   //saveMessages(request, messages);
+        mv.setViewName(BaseConstants.FWD_SUCCESS);
+        return mv;
+    }
 	
 	
 	/**
 	* This methods sends an email to the user about the forgotten username.
-	* 
-	* @param mapping
-	* @param form
-	* @param request
-	* @param response
-	* @return
+	*
 	* @throws Exception
 	*/
-	public ActionForward forgotUserName(ActionMapping mapping, ActionForm form, 
-	                             HttpServletRequest request, 
-	                             HttpServletResponse response) throws Exception {
-	                             
-	   ActionMessages messages = new ActionMessages();
-	       
-	   LoginForm loginForm = (LoginForm)form;     
-	   String email = loginForm.getEmail();
+    @RequestMapping(value="/forgotUserName", method= RequestMethod.POST)
+    public ModelAndView forgotUserName(@ModelAttribute("errorLog")LoginVO loginVO, BindingResult result, SessionStatus status,
+                                       HttpServletRequest request,
+                                       HttpServletResponse response, Errors errors) throws
+            Exception {
+
+        ModelAndView mv = new ModelAndView();
+	   String email = loginVO.getEmail();
 	   
 	   try{
 	       securityService.notifyUserName(email, request);
-	       messages.add(BaseConstants.INFO_KEY, new ActionMessage("errors.account.resetinst"));
+           errors.rejectValue(BaseConstants.INFO_KEY, "errors.account.resetinst");
 	   }
 	   catch(UserAccountException e){
 	       if (e.getErrorCode() == NotLoginException.USER_NOT_FOUND){
-	       		messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.account.notfound"));
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.account.notfound");
 	       }
 	       else if (e.getErrorCode() == NotLoginException.ACCOUNT_UNAPPROVED){
-	       		messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.account.notapproved"));
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.account.notapproved");
 	       }
 	       else if (e.getErrorCode() == NotLoginException.ACCOUNT_DEACTIVATED){
-		       	messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.account.deactivated"));
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.account.deactivated");
 		   }
 	       else if (e.getErrorCode() == NotLoginException.ACCOUNT_LOCKED){
-	       		messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.account.locked"));
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.account.locked");
 	       }
 	       else {
-	       		messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.account.mailserver"));
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.account.mailserver");
 	       }
-	       saveMessages(request, messages);
-	       return (mapping.getInputForward());            
+	       //saveMessages(request, messages);
+           mv.setViewName(BaseConstants.FWD_REDISPLAY);
+           return mv;
 	   }
-	   saveMessages(request, messages);
-	   return (mapping.findForward(BaseConstants.FWD_SUCCESS));
+        //saveMessages(request, messages);
+        mv.setViewName(BaseConstants.FWD_SUCCESS);
+        return mv;
 	}
 	
 	
 	
 	/**
 	* Update Expired Password, this method is called when the user is forced to change password
-	* @param mapping
-	* @param form
-	* @param request
-	* @param response
-	* @return
 	* @throws Exception
 	*/
-	public ActionForward updateExpiredPassword(ActionMapping mapping, ActionForm form, 
-	                             HttpServletRequest request, 
-	                             HttpServletResponse response) throws Exception {
-	                             
-	   ActionMessages messages = new ActionMessages();
-	   LoginForm loginForm = (LoginForm)form;     
-	   String username = loginForm.getMemberUserName();
-	   String password = loginForm.getMemberPassword();
-	   String temppassword = loginForm.getMemberTempPassword();        
+    @RequestMapping(value="/updateExpiredPassword", method= RequestMethod.POST)
+    public ModelAndView updateExpiredPassword(@ModelAttribute("errorLog")LoginVO loginVO, BindingResult result, SessionStatus status,
+                                       HttpServletRequest request,
+                                       HttpServletResponse response, Errors errors) throws
+            Exception {
+
+        ModelAndView mv = new ModelAndView();
+
+	   String username = loginVO.getMemberUserName();
+	   String password = loginVO.getMemberPassword();
+	   String temppassword = loginVO.getMemberTempPassword();
 	   
 	   try{
 	       securityService.updateExpiredPassword(username, password, temppassword);
 	   }
 	   catch(UserAccountException e){
 	       if (e.getErrorCode() == NotLoginException.USER_NOT_FOUND){
-	           messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.account.notfound"));
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.account.notfound");
 	       }
 	       else if (e.getErrorCode() == NotLoginException.ACCOUNT_UNAPPROVED){
-	           messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.account.notapproved"));
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.account.notapproved");
 	       }
 	       else if (e.getErrorCode() == NotLoginException.ACCOUNT_LOCKED){
-	           messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.account.locked"));
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.account.locked");
 	       }
 	       else if (e.getErrorCode() == NotLoginException.WRONG_PASSWORD){
-	           messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.account.invalidcurrpswd"));
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.account.invalidcurrpswd");
 	       }  
 	       else if (e.getErrorCode() == NotLoginException.SAME_PASSWORD) {
-	           messages.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.login.samepassword"));
-	       } 
-	       saveMessages(request, messages);
-	       return mapping.getInputForward();
-	   }        
-	   
-	   
-	   messages.add(BaseConstants.INFO_KEY, new ActionMessage("message.password.updated"));;
+               errors.rejectValue(BaseConstants.ERROR_KEY, "errors.login.samepassword");
+	       }
+           mv.setViewName(BaseConstants.FWD_REDISPLAY);
+           return mv;
+       }
+
+
+        errors.rejectValue(BaseConstants.INFO_KEY, "message.password.updated");
 	   //saveMessages(request, messages);
-	   return mapping.findForward(BaseConstants.FWD_SUCCESS);
+        mv.setViewName(BaseConstants.FWD_SUCCESS);
+        return mv;
 	}
 	
 	
@@ -598,7 +601,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 	    private LoginHistoryVO createAccessHistory(HttpServletRequest req, String username){
 	        LoginHistoryVO accessHistory = new LoginHistoryVO();
 	        accessHistory.setUserName(username);
-	        accessHistory.setUserAgent(getLocale(req).getLanguage());
+	        accessHistory.setUserAgent(req.getLocale().getLanguage());
 	        accessHistory.setSourceIP(req.getRemoteAddr());
 	        accessHistory.setRequestTime(new Date()); 
 	        return accessHistory;
@@ -611,13 +614,13 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 	    //--               ACTIVATION  M E T H O D S
 	    //--
 	    //--------------------------------------------------------------------------
-	    
-	    public ActionForward activateMemberAccount(ActionMapping mapping,
-	                                       ActionForm form,
-	                                       HttpServletRequest request,
-	                                       HttpServletResponse response) throws
-	        Exception {
+        @RequestMapping(value="/activateMemberAccount", method= RequestMethod.POST)
+        public ModelAndView activateMemberAccount(@ModelAttribute("errorLog")LoginVO loginVO, BindingResult result, SessionStatus status,
+                                                  HttpServletRequest request,
+                                                  HttpServletResponse response, Errors errors) throws
+                Exception {
 
+            ModelAndView mv = new ModelAndView();
 //
 //	      MemberForm memberForm = (MemberForm) form;
 //	      String memberUserName = memberForm.getMemberUserName().trim();
@@ -635,21 +638,21 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 //	        saveMessages(request, errors);
 //	        return mapping.getInputForward();
 //	      }
-	    	
-	        ActionMessages errors = new ActionMessages();
-	        errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.invalidactivationcode"));
-	        saveMessages(request, errors);	    	
-	      return mapping.findForward(BaseConstants.FWD_SUCCESS);
-	    }    
-	    
-	    
-	    
-	    
-	    public ActionForward finalizeActivateAccount( ActionMapping mapping,
-	                                  ActionForm form,
-	                                  HttpServletRequest request,
-	                                  HttpServletResponse response )
-	      throws Exception {
+
+
+            errors.rejectValue(BaseConstants.WARN_KEY, "error.invalidactivationcode");
+            mv.setViewName(BaseConstants.FWD_SUCCESS);
+            return mv;
+	    }
+
+
+
+    @RequestMapping(value="/finalizeActivateAccount", method= RequestMethod.POST)
+    public ModelAndView finalizeActivateAccount(@ModelAttribute("errorLog")LoginVO loginVO, BindingResult result, SessionStatus status,
+                                              HttpServletRequest request,
+                                              HttpServletResponse response, Errors errors) throws
+            Exception {
+        ModelAndView mv = new ModelAndView();
 //	        MemberForm memForm = (MemberForm)form;
 //	        String memberTempUserName = memForm.getMemberTempUserName();
 //	        String memberUserName = memForm.getMemberUserName();
@@ -680,20 +683,21 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 //	        message.append("Your account is ready, login in the upper right hand corner.");
 //	        setRequestObject(request, BaseConstants.MESSAGE, message.toString());
 //	    
-	        ActionMessages errors = new ActionMessages();
-	        errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.invalidactivationcode"));
-	        saveMessages(request, errors);		    	
-	        return mapping.findForward(BaseConstants.FWD_SUCCESS);
-	    }    
-	    
-	    
-	    
-	    public ActionForward getActivationInstructions(ActionMapping mapping,
-	                                       ActionForm form,
-	                                       HttpServletRequest request,
-	                                       HttpServletResponse response) throws
-	        Exception {
-	        
+
+        errors.rejectValue(BaseConstants.WARN_KEY, "error.invalidactivationcode");
+        mv.setViewName(BaseConstants.FWD_SUCCESS);
+        return mv;
+	    }
+
+
+
+    @RequestMapping(value="/getActivationInstructions", method= RequestMethod.POST)
+    public ModelAndView getActivationInstructions(@ModelAttribute("errorLog")LoginVO loginVO, BindingResult result, SessionStatus status,
+                                                HttpServletRequest request,
+                                                HttpServletResponse response, Errors errors) throws
+            Exception {
+
+        ModelAndView mv = new ModelAndView();
 //	        ActionMessages errors = new ActionMessages();
 //	        
 //	        
@@ -733,10 +737,10 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 //	        }
 	    	
 	    	
-	        ActionMessages errors = new ActionMessages();
-	        errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.invalidactivationcode"));
-	        saveMessages(request, errors);		    	
-	    	return mapping.findForward(BaseConstants.FWD_SUCCESS);
+
+	        errors.rejectValue(BaseConstants.WARN_KEY, "error.invalidactivationcode");
+        mv.setViewName(BaseConstants.FWD_SUCCESS);
+        return mv;
 	    }  
 
 	    

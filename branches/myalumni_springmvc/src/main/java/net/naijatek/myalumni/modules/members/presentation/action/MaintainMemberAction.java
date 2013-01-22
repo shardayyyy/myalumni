@@ -38,19 +38,6 @@
  */
 package net.naijatek.myalumni.modules.members.presentation.action;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.StringTokenizer;
-
-import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
-import javax.imageio.stream.ImageInputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import net.naijatek.myalumni.framework.exceptions.BadInputException;
 import net.naijatek.myalumni.framework.exceptions.CreateException;
 import net.naijatek.myalumni.framework.exceptions.DuplicateEmailException;
@@ -61,26 +48,37 @@ import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.domain.MessengerVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
 import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
-import net.naijatek.myalumni.modules.common.presentation.form.MemberForm;
-import net.naijatek.myalumni.modules.common.service.IMemberService;
-import net.naijatek.myalumni.modules.common.service.IMessageFolderService;
-import net.naijatek.myalumni.modules.common.service.IMessengerService;
-import net.naijatek.myalumni.modules.common.service.IPrivateMessageService;
-import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
-import net.naijatek.myalumni.modules.common.service.IXlatService;
+import net.naijatek.myalumni.modules.common.helper.MyAlumniMessage;
+import net.naijatek.myalumni.modules.common.helper.MyAlumniMessages;
+import net.naijatek.myalumni.modules.common.service.*;
 import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.SystemConfigConstants;
 import net.naijatek.myalumni.util.encryption.Encoder;
 import net.naijatek.myalumni.util.mail.SendMailUtil;
 import net.naijatek.myalumni.util.utilities.StringUtil;
-
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.upload.FormFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.StringTokenizer;
 
 
 @Controller
@@ -93,7 +91,7 @@ public class MaintainMemberAction extends MyAlumniBaseController {
     private IPrivateMessageService pmService;
 
     @Autowired
-    private IMessageFolderService mfService ;
+    private IMessageFolderService mfService;
 
     @Autowired
     private IXlatService xlatService;
@@ -103,721 +101,682 @@ public class MaintainMemberAction extends MyAlumniBaseController {
 
     @Autowired
     private IMessengerService messengerService;
-    
+
     private static Log logger = LogFactory.getLog(MaintainMemberAction.class);
 
-    
+
 /*    public MaintainMemberAction(final IMemberService memService,
-    		final IPrivateMessageService pmService, final IMessageFolderService mfService, IXlatService xlatService,
-    		final ISystemConfigService sysConfigSerivce, IMessengerService messengerService) {
-        this.memService = memService;      
-        this.pmService = pmService;
-        this.mfService = mfService;
-        this.xlatService = xlatService;
-        this.sysConfigSerivce = sysConfigSerivce;
-        this.messengerService = messengerService;
-    }*/
-    
+        final IPrivateMessageService pmService, final IMessageFolderService mfService, IXlatService xlatService,
+        final ISystemConfigService sysConfigSerivce, IMessengerService messengerService) {
+    this.memService = memService;
+    this.pmService = pmService;
+    this.mfService = mfService;
+    this.xlatService = xlatService;
+    this.sysConfigSerivce = sysConfigSerivce;
+    this.messengerService = messengerService;
+}*/
 
 
-    
-    /**
-     * Searchs for member
-     *
-     * @param mapping
-     * @param form
-     * @param request
-     * @param response
-     * @return
-     * @throws Exception
-     */
-    public ModelAndView genericAjaxSearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @RequestMapping(value = "/genericAjaxSearch", method = RequestMethod.POST)
+    public ModelAndView genericAjaxSearch(@ModelAttribute("member") MemberVO memberVO, BindingResult result, SessionStatus status,
+                                          HttpServletRequest request,
+                                          HttpServletResponse response) throws Exception {
         logger.debug("in genericAjaxSearch...");
-        MemberForm memForm = (MemberForm)form;
-        String searchCriteria = memForm.getSearchCriteria();
-        String searchWord = ""; 
-        String ajaxFormat = memForm.getAjaxFormat();
 
-        
-    	if(memForm.getApproach() != null){
-    		
-    		if (searchCriteria.equals(BaseConstants.FIRST_NAME)){
-    			searchWord = memForm.getFirstName();
-    		}
-    		else if (searchCriteria.equals(BaseConstants.LAST_NAME)){
-    			searchWord = memForm.getLastName();
-    		} 
-    		else if (searchCriteria.equals(BaseConstants.MAIDEN_NAME)){
-    			searchWord = memForm.getMaidenName();
-    		} 
-    		else if (searchCriteria.equals(BaseConstants.NICK_NAME)){
-    			searchWord = memForm.getNickName();
-    		}   
-    		else if (searchCriteria.equals(BaseConstants.FULL_NAME)){
-    			searchWord = memForm.getMessageToUserName();
-    		}      		
-    		
-    		if (ajaxFormat.equals(BaseConstants.AJAX_FORMAT_STRING)){
-    			List<String> result = memService.genericAjaxSearch(searchWord, searchCriteria);
-    			request.setAttribute("result", result);
-    			request.getRequestDispatcher(BaseConstants.FWD_AJAX_JSP).forward(request, response);
-    		}
-    		else if (ajaxFormat.equals(BaseConstants.AJAX_FORMAT_OBJECT)){
-    			List<MemberVO> result = memService.genericAjaxSearchObjects(searchWord, searchCriteria);
-    			request.setAttribute("result", result);
-    			request.getRequestDispatcher(BaseConstants.FWD_AJAX_JSP_OBJECT).forward(request, response);
-    		}
-    		
-    		
-    		return null;
-       	}
+        String searchCriteria = memberVO.getSearchCriteria();
+        String searchWord = "";
+        String ajaxFormat = memberVO.getAjaxFormat();
+        ModelAndView mv = new ModelAndView(BaseConstants.FWD_SUCCESS);
+
+
+        if (memberVO.getApproach() != null) {
+
+            if (searchCriteria.equals(BaseConstants.FIRST_NAME)) {
+                searchWord = memberVO.getFirstName();
+            } else if (searchCriteria.equals(BaseConstants.LAST_NAME)) {
+                searchWord = memberVO.getLastName();
+            } else if (searchCriteria.equals(BaseConstants.MAIDEN_NAME)) {
+                searchWord = memberVO.getMaidenName();
+            } else if (searchCriteria.equals(BaseConstants.NICK_NAME)) {
+                searchWord = memberVO.getNickName();
+            } else if (searchCriteria.equals(BaseConstants.FULL_NAME)) {
+                searchWord = memberVO.getMessageToUserName();
+            }
+
+            if (ajaxFormat.equals(BaseConstants.AJAX_FORMAT_STRING)) {
+                List<String> _result = memService.genericAjaxSearch(searchWord, searchCriteria);
+                mv.addObject("result", _result);
+                request.getRequestDispatcher(BaseConstants.FWD_AJAX_JSP).forward(request, response);
+            } else if (ajaxFormat.equals(BaseConstants.AJAX_FORMAT_OBJECT)) {
+                List<MemberVO> _result = memService.genericAjaxSearchObjects(searchWord, searchCriteria);
+                mv.addObject("result", _result);
+                request.getRequestDispatcher(BaseConstants.FWD_AJAX_JSP_OBJECT).forward(request, response);
+            }
+
+
+            return null;
+        }
 
         return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
 
-    
-    
-    
-    public ModelAndView displayMiniProfile(HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
-    
-      MemberForm memberForm = (MemberForm)form;
-      String memberUserName = memberForm.getMemberUserName();
-      MemberVO memberVO = memService.getMemberProfileByUserName(memberUserName);
-      setRequestObject(request, "profile", memberVO);
-      return new ModelAndView(BaseConstants.FWD_SUCCESS);
+
+    @RequestMapping(value = "/displayMiniProfile", method = RequestMethod.POST)
+    public ModelAndView displayMiniProfile(@ModelAttribute("member") MemberVO memberVO, BindingResult result, SessionStatus status) throws
+            Exception {
+        ModelAndView mv = new ModelAndView(BaseConstants.FWD_SUCCESS);
+        String memberUserName = memberVO.getMemberUserName();
+        memberVO = memService.getMemberProfileByUserName(memberUserName);
+        mv.addObject("profile", memberVO);
+        return mv;
 
     }
-    
-    
-    
-    
-    public ModelAndView prepareUpdateMemberProfile(HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
 
-        MemberVO token =   getCurrentLoggedInUser(request);
-    	
+
+    @RequestMapping(value = "/prepareUpdateMemberProfile", method = RequestMethod.POST)
+    public ModelAndView prepareUpdateMemberProfile(@ModelAttribute("member") MemberVO memberVO, BindingResult result, SessionStatus status,
+                                                   HttpServletRequest request,
+                                                   HttpServletResponse response) throws
+            Exception {
+
+        ModelAndView mv = new ModelAndView();
+        MemberVO token = getCurrentLoggedInUser(request);
+
         // check to see if the user logged on is a member
-        if (!memberSecurityCheck(request, token)){
-        	return new ModelAndView(BaseConstants.FWD_LOGIN);
+        if (!memberSecurityCheck(request, token)) {
+            return new ModelAndView(BaseConstants.FWD_LOGIN);
+        }
+
+        memberVO = memService.getMemberProfileByUserName(token.getMemberUserName());
+
+        try {
+            // IM
+            List<XlatDetailVO> availableMessengers = xlatService.getActiveGroupDetails(BaseConstants.GROUP_INSTANT_MESSENGERS);
+            List<XlatDetailVO> selectedMessengers = messengerService.getActiveMemberMessengers(token.getMemberId());
+            List<XlatDetailVO> filteredAvailableIMs = filterMessengers(availableMessengers, selectedMessengers);
+
+            setSessionObject(request, BaseConstants.LU_AVAILABLE_IMS, filteredAvailableIMs);
+            setSessionObject(request, BaseConstants.LU_SELECTED_IMS, selectedMessengers);
+        } catch (Exception e) {
+            logger.debug(e.getMessage());
+            MyAlumniMessages errors = new MyAlumniMessages();
+            errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage("core.errorcode.00709"));
+            saveMessages(request, errors);
+            //return new ModelAndView(BaseConstants.FWD_REDISPLAY);
+            return mv;
         }
 
 
-      MemberForm memberForm = (MemberForm) form;
-      MemberVO memberVO = memService.getMemberProfileByUserName(token.getMemberUserName());
-      BeanUtils.copyProperties(memberForm, memberVO);
-      
-      try{
-      // IM
-    	  List<XlatDetailVO> availableMessengers = xlatService.getActiveGroupDetails(BaseConstants.GROUP_INSTANT_MESSENGERS);
-    	  List<XlatDetailVO> selectedMessengers = messengerService.getActiveMemberMessengers(token.getMemberId());
-    	  List<XlatDetailVO> filteredAvailableIMs = filterMessengers(availableMessengers, selectedMessengers) ;
-    	  
-          setSessionObject(request, BaseConstants.LU_AVAILABLE_IMS, filteredAvailableIMs);
-          setSessionObject(request, BaseConstants.LU_SELECTED_IMS, selectedMessengers);              	  
-      }
-      catch(Exception e){
-    	  logger.debug(e.getMessage());
-          ActionMessages errors = new ActionMessages();
-          errors.add(BaseConstants.WARN_KEY, new ActionMessage("core.errorcode.00709"));
-          saveMessages(request, errors);
-    	  return mapping.getInputForward();
-      }
-      
-
-      return new ModelAndView(BaseConstants.FWD_SUCCESS);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
     }
-    
 
-    
-    public ModelAndView addMember(HttpServletRequest request,
-                                  HttpServletResponse response )
-      throws Exception {
-        
-      ActionMessages errors = new ActionMessages();
-      SystemConfigVO sysConfigVO = sysConfigSerivce.getSystemConfig();
-      
-      try{    	     	  
-        MemberForm memberForm = (MemberForm) form;
-        MemberVO memberVO = new MemberVO();
-        BeanUtils.copyProperties(memberVO, memberForm);
-        
-        memberVO.setLastModifiedBy(memberVO.getMemberUserName());
-        
-        // Member
-        memService.createMember(memberVO, request);
-        ////////
-       final String memberId = memberVO.getMemberId();
-        // Messengers
-        List<MessengerVO> messengers = new ArrayList<MessengerVO>();
-        MessengerVO mesgerVO = null;
-        for(String str : memberVO.getLstSelectedIMs()){
-        	mesgerVO = new MessengerVO();
-        	mesgerVO.setLastModifiedBy(memberVO.getMemberUserName());
-        	mesgerVO.setMemberId(memberId);
-        	mesgerVO.setLookupCodeId(str);
-        	messengers.add(mesgerVO);
-        }
-        messengerService.saveAll(messengers, memberId);
-        
-        // Message Folders
-        mfService.createMemberMessageFolders(memberId, SystemConfigConstants.MESSAGE_FOLDERS, memberVO.getMemberUserName());        
-        
-        StringBuffer message = new StringBuffer();
-        message.append("Thank you " + StringUtil.capitalize(memberVO.getFirstName()) + " " + StringUtil.capitalize(memberVO.getLastName())  + " for registering and Welcome to " + sysConfigVO.getOrganizationName()  + "'s owns space in cyberspace.");
-        message.append("Your account should be active within the next 24 hours. So please try logging into the system as soon as you get your activation confirmation email.");
-        setSessionObject(request, BaseConstants.MESSAGE,  message.toString());
 
-        // send email to registrant
+    @RequestMapping(value = "/addMember", method = RequestMethod.POST)
+    public ModelAndView addMember(@ModelAttribute("member") MemberVO memberVO, BindingResult result, SessionStatus status,
+                                  HttpServletRequest request,
+                                  HttpServletResponse response) throws
+            Exception {
+
+        MyAlumniMessages errors = new MyAlumniMessages();
+        SystemConfigVO sysConfigVO = sysConfigSerivce.getSystemConfig();
+        ModelAndView mv = new ModelAndView();
+
         try {
-        	SendMailUtil.sendWelcomeNotice(memberVO.getEmail(), memberVO.getMemberUserName(),sysConfigVO);
-        }
-        catch (Exception ex) {
-          logger.error(ex.getMessage());
-          errors.add(BaseConstants.FATAL_KEY, new ActionMessage("error.mailserver"));
-          saveMessages(request, errors);
-          return new ModelAndView(BaseConstants.FWD_SUCCESS);
-        }
-        
-        // send email to administrator about new registrant
-        try {
-        	SendMailUtil.notifyAdminAboutNewMember(memberVO, sysConfigVO);
-        }
-        catch (Exception ex) {
-          logger.error(ex.getMessage());
-          errors.add(BaseConstants.FATAL_KEY, new ActionMessage("error.mailserver"));
-          saveMessages(request, errors);
-          return new ModelAndView(BaseConstants.FWD_SUCCESS);
-        }
-        
-      }
-      catch (DuplicateMemberException e) {
-        errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.duplicate.member"));
-        saveMessages(request, errors);
-        logger.info("DUPLICATE USER NAME - " + e.getMessage());
-        return mapping.getInputForward();
-      }
-      catch (DuplicateEmailException e) {
-        errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.duplicate.email"));
-        saveMessages(request, errors);
-        logger.info("DUPLICATE EMAIL - " + e.getMessage());
-        return mapping.getInputForward();
-      }
-      catch (CreateException e) {
-        errors.add(BaseConstants.WARN_KEY, new ActionMessage("errors.technical.difficulty"));
-        saveMessages(request, errors);
-        logger.fatal("SYSTEM ERROR - " + e.getMessage());
-        return mapping.getInputForward();
-      }
-      catch(Exception ex){
-           errors.add(BaseConstants.FATAL_KEY, new ActionMessage("errors.technical.difficulty"));
-           saveMessages(request, errors);
-           logger.fatal("SYSTEM ERROR - " + ex.getStackTrace());
-           return mapping.getInputForward();
-      }
-      return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    }    
-    
-    
-    
+            memberVO = new MemberVO();
 
-    public ModelAndView prepareDeleteMyMemberProfile(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+            memberVO.setLastModifiedBy(memberVO.getMemberUserName());
 
-    	setSessionObject(request, "ipaddress", getCurrentIPAddress(request));
-    	return new ModelAndView(BaseConstants.FWD_SUCCESS);
-	}    
-    
+            // Member
+            memService.createMember(memberVO, request);
+            ////////
+            final String memberId = memberVO.getMemberId();
+            // Messengers
+            List<MessengerVO> messengers = new ArrayList<MessengerVO>();
+            MessengerVO mesgerVO = null;
+            for (String str : memberVO.getLstSelectedIMs()) {
+                mesgerVO = new MessengerVO();
+                mesgerVO.setLastModifiedBy(memberVO.getMemberUserName());
+                mesgerVO.setMemberId(memberId);
+                mesgerVO.setLookupCodeId(str);
+                messengers.add(mesgerVO);
+            }
+            messengerService.saveAll(messengers, memberId);
 
-    public ModelAndView deleteMyMemberProfile(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-           
+            // Message Folders
+            mfService.createMemberMessageFolders(memberId, SystemConfigConstants.MESSAGE_FOLDERS, memberVO.getMemberUserName());
+
+            StringBuffer message = new StringBuffer();
+            message.append("Thank you " + StringUtil.capitalize(memberVO.getFirstName()) + " " + StringUtil.capitalize(memberVO.getLastName()) + " for registering and Welcome to " + sysConfigVO.getOrganizationName() + "'s owns space in cyberspace.");
+            message.append("Your account should be active within the next 24 hours. So please try logging into the system as soon as you get your activation confirmation email.");
+            setSessionObject(request, BaseConstants.MESSAGE, message.toString());
+
+            // send email to registrant
+            try {
+                SendMailUtil.sendWelcomeNotice(memberVO.getEmail(), memberVO.getMemberUserName(), sysConfigVO);
+            } catch (Exception ex) {
+                logger.error(ex.getMessage());
+                errors.add(BaseConstants.FATAL_KEY, new MyAlumniMessage("error.mailserver"));
+                saveMessages(request, errors);
+                return new ModelAndView(BaseConstants.FWD_SUCCESS);
+            }
+
+            // send email to administrator about new registrant
+            try {
+                SendMailUtil.notifyAdminAboutNewMember(memberVO, sysConfigVO);
+            } catch (Exception ex) {
+                logger.error(ex.getMessage());
+                errors.add(BaseConstants.FATAL_KEY, new MyAlumniMessage("error.mailserver"));
+                saveMessages(request, errors);
+                return new ModelAndView(BaseConstants.FWD_SUCCESS);
+            }
+
+        } catch (DuplicateMemberException e) {
+            errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage("error.duplicate.member"));
+            saveMessages(request, errors);
+            logger.info("DUPLICATE USER NAME - " + e.getMessage());
+            //return new ModelAndView(BaseConstants.FWD_REDISPLAY);
+            return mv;
+        } catch (DuplicateEmailException e) {
+            errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage("error.duplicate.email"));
+            saveMessages(request, errors);
+            logger.info("DUPLICATE EMAIL - " + e.getMessage());
+            //return new ModelAndView(BaseConstants.FWD_REDISPLAY);
+            return mv;
+        } catch (CreateException e) {
+            errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage("errors.technical.difficulty"));
+            saveMessages(request, errors);
+            logger.fatal("SYSTEM ERROR - " + e.getMessage());
+            //return new ModelAndView(BaseConstants.FWD_REDISPLAY);
+            return mv;
+        } catch (Exception ex) {
+            errors.add(BaseConstants.FATAL_KEY, new MyAlumniMessage("errors.technical.difficulty"));
+            saveMessages(request, errors);
+            logger.fatal("SYSTEM ERROR - " + ex.getStackTrace());
+            //return new ModelAndView(BaseConstants.FWD_REDISPLAY);
+            return mv;
+        }
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
+    }
+
+
+    @RequestMapping(value = "/prepareDeleteMyMemberProfile", method = RequestMethod.POST)
+    public ModelAndView prepareDeleteMyMemberProfile(@ModelAttribute("member") MemberVO memberVO, BindingResult result, SessionStatus status,
+                                                     HttpServletRequest request,
+                                                     HttpServletResponse response) throws
+            Exception {
+
+        setSessionObject(request, "ipaddress", getCurrentIPAddress(request));
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
+    }
+
+
+    @RequestMapping(value = "/deleteMyMemberProfile", method = RequestMethod.POST)
+    public ModelAndView deleteMyMemberProfile(@ModelAttribute("member") MemberVO memberVO, BindingResult result, SessionStatus status,
+                                              HttpServletRequest request,
+                                              HttpServletResponse response) throws
+            Exception {
+
         memService.softDelete(getCurrentUserId(request), getLastModifiedBy(request));
-        ActionMessages errors = new ActionMessages();
-        errors.add(BaseConstants.INFO_KEY, new ActionMessage("core.errorcode.00713"));
+        MyAlumniMessages errors = new MyAlumniMessages();
+        errors.add(BaseConstants.INFO_KEY, new MyAlumniMessage("core.errorcode.00713"));
         saveMessages(request, errors);
-    	return new ModelAndView(BaseConstants.FWD_SUCCESS);
-	}        
-    
-    
-    
-    
-    public ModelAndView validateMemberUserName(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-
-		MemberForm memberForm = (MemberForm) form;
-
-		if (memberForm.getApproach() != null) {
-			boolean available = memService.isMemberAvailableByUserName(memberForm.getMemberUserName());
-			boolean allowed = false;
-				
-			String memberUserName = memberForm.getMemberUserName();
-			try {
-				StringUtil.checkGoodName(memberUserName);
-				allowed = true;
-			} catch (BadInputException e) {
-				allowed = false;
-			}
-
-			String unActivatePattern = getSysProp().getValue("DEFAULT_USERNAME_PATTERN");
-			
-			StringTokenizer st = new StringTokenizer(unActivatePattern, ",");
-			while (st.hasMoreTokens()) {
-				if (memberUserName.startsWith(st.nextToken())) {
-					allowed = false;
-				}
-			}										
-			
-			response.setContentType("text/xml");
-			response.setHeader("Cache-Control", "no-cache");
-
-			if (available || !allowed) {
-				response.getWriter().write("<message>false</message>");
-			} else {
-				response.getWriter().write("<message>true</message>");
-			}
-		} 
-		return null;
-	}    
-    
-    
-    public ModelAndView searchForMembers(HttpServletRequest request,
-                                      HttpServletResponse response) throws
-       Exception {
-
-     List<MemberVO> membersArrayList = new ArrayList<MemberVO>();
-     int searchCount = 0 ;
-     
-     String isAdmin = BaseConstants.BOOLEAN_NO;
-
-     MemberForm memberForm = (MemberForm) form;
-            	
-	 membersArrayList = baseMemberSearch(memberForm, request, searchCount, memService, isAdmin);
-	
-	 setRequestObject(request, BaseConstants.LIST_OF_MEMBERS , membersArrayList);			      
-
-     return new ModelAndView(BaseConstants.FWD_SUCCESS);
-
-    }    
-    
-    
-    public ModelAndView updateMemberProfile(HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
-
-      if (isCancelled(request)){
-        return new ModelAndView(BaseConstants.FWD_CANCEL);
-      }
-
-      ActionMessages msgs = new ActionMessages();
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
+    }
 
 
-      MemberVO token = getCurrentLoggedInUser(request);
+    @RequestMapping(value = "/validateMemberUserName", method = RequestMethod.POST)
+    public ModelAndView validateMemberUserName(@ModelAttribute("member") MemberVO memberVO, BindingResult result, SessionStatus status, HttpServletResponse response) throws
+            Exception {
 
-      // check to see if the user logged on is a member
-      if (!memberSecurityCheck(request, token)){
-        return new ModelAndView(BaseConstants.FWD_LOGIN);
-      }
+        if (memberVO.getApproach() != null) {
+            boolean available = memService.isMemberAvailableByUserName(memberVO.getMemberUserName());
+            boolean allowed = false;
 
-      MemberForm memberForm = (MemberForm) form;
-      MemberVO memberVO = new MemberVO();
-      BeanUtils.copyProperties(memberVO, memberForm);
-      memberVO.setMemberUserName(token.getMemberUserName());
-      memberVO.setMemberId(token.getMemberId());
-      memService.updateMemberProfile(memberVO, getLastModifiedBy(request));
-      
-      // Messengers
-      final String memberId = memberVO.getMemberId();
- 
-      List<MessengerVO> messengers = new ArrayList<MessengerVO>();
-      MessengerVO mesgerVO = null;
-      for(String str : memberVO.getLstSelectedIMs()){
-      	mesgerVO = new MessengerVO();
-      	mesgerVO.setLastModifiedBy(getLastModifiedBy(request));
-      	mesgerVO.setMemberId(memberId);
-      	mesgerVO.setLookupCodeId(str);
-      	messengers.add(mesgerVO);
-      }
-      messengerService.saveAll(messengers, memberId);
-      
-      
-      msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.memberupdated"));
-      saveMessages(request, msgs);
-      return new ModelAndView(BaseConstants.FWD_SUCCESS);
+            String memberUserName = memberVO.getMemberUserName();
+            try {
+                StringUtil.checkGoodName(memberUserName);
+                allowed = true;
+            } catch (BadInputException e) {
+                allowed = false;
+            }
 
-    }   
-    
-    
-    public ModelAndView deleteAvatar(HttpServletRequest request,
-            HttpServletResponse response) throws
-            	Exception {
+            String unActivatePattern = getSysProp().getValue("DEFAULT_USERNAME_PATTERN");
+
+            StringTokenizer st = new StringTokenizer(unActivatePattern, ",");
+            while (st.hasMoreTokens()) {
+                if (memberUserName.startsWith(st.nextToken())) {
+                    allowed = false;
+                }
+            }
+
+            response.setContentType("text/xml");
+            response.setHeader("Cache-Control", "no-cache");
+
+            if (available || !allowed) {
+                response.getWriter().write("<message>false</message>");
+            } else {
+                response.getWriter().write("<message>true</message>");
+            }
+        }
+        return null;
+    }
+
+
+    @RequestMapping(value = "/searchForMembers", method = RequestMethod.POST)
+    public ModelAndView searchForMembers(@ModelAttribute("member") MemberVO memberVO, BindingResult result, SessionStatus status, HttpServletResponse response, HttpServletRequest request) throws
+            Exception {
+
+        List<MemberVO> membersArrayList = new ArrayList<MemberVO>();
+        int searchCount = 0;
+
+        String isAdmin = BaseConstants.BOOLEAN_NO;
+
+        membersArrayList = baseMemberSearch(memberVO, request, searchCount, memService, isAdmin);
+
+        setRequestObject(request, BaseConstants.LIST_OF_MEMBERS, membersArrayList);
+
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
+
+    }
+
+
+    @RequestMapping(value = "/updateMemberProfile", method = RequestMethod.POST)
+    public ModelAndView updateMemberProfile(@ModelAttribute("member") MemberVO memberVO, BindingResult result, SessionStatus status, HttpServletResponse response, HttpServletRequest request) throws
+            Exception {
+
+        //if (isCancelled(request)){
+        //  return new ModelAndView(BaseConstants.FWD_CANCEL);
+        //}
+
+        MyAlumniMessages msgs = new MyAlumniMessages();
+
 
         MemberVO token = getCurrentLoggedInUser(request);
 
         // check to see if the user logged on is a member
-        if (!memberSecurityCheck(request, token)){
-          return new ModelAndView(BaseConstants.FWD_LOGIN);
+        if (!memberSecurityCheck(request, token)) {
+            return new ModelAndView(BaseConstants.FWD_LOGIN);
         }
-        
-        
-		ActionMessages errors = new ActionMessages();
-		String avatarName = token.getAvatar();
-			
-		try{
-			//
-			// removed from database
-			//
-			memService.deleteMemberAvatar(token.getAvatar(), token.getMemberUserName(), getLastModifiedBy(request));
-			
-			//
-			//removed from file system
-			//
-			String avatarDir = getSysProp().getValue("AVATAR.FILEPATH");
-			File f = new File(avatarDir + File.separator + avatarName);
-			if (f.exists() && f.isFile())
-				f.delete();
-				
-			//
-			// remove from session
-			//
-			MyAlumniUserContainer container = getUserContainer(request);
-			container.setAvatar("");
-			
-		}
-		catch(Exception e){
-			errors.add(BaseConstants.FATAL_KEY, new ActionMessage("errors.technical.difficulty"));
-			saveMessages(request, errors);
-			return mapping.getInputForward();		
-		}
-		
-		errors.add(BaseConstants.INFO_KEY, new ActionMessage("message.avatarremoved"));
-		saveMessages(request, errors);
-		return new ModelAndView(BaseConstants.FWD_SUCCESS);
+
+
+        memberVO.setMemberUserName(token.getMemberUserName());
+        memberVO.setMemberId(token.getMemberId());
+        memService.updateMemberProfile(memberVO, getLastModifiedBy(request));
+
+        // Messengers
+        final String memberId = memberVO.getMemberId();
+
+        List<MessengerVO> messengers = new ArrayList<MessengerVO>();
+        MessengerVO mesgerVO = null;
+        for (String str : memberVO.getLstSelectedIMs()) {
+            mesgerVO = new MessengerVO();
+            mesgerVO.setLastModifiedBy(getLastModifiedBy(request));
+            mesgerVO.setMemberId(memberId);
+            mesgerVO.setLookupCodeId(str);
+            messengers.add(mesgerVO);
+        }
+        messengerService.saveAll(messengers, memberId);
+
+
+        msgs.add(BaseConstants.INFO_KEY, new MyAlumniMessage("message.memberupdated"));
+        saveMessages(request, msgs);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
+
     }
-    
-    
-    public ModelAndView updateMemberAvatar(HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
 
-      
-      ActionMessages errors = new ActionMessages();
-      String fileTypes =  SystemConfigConstants.CONTENT_TYPE ;
-      String avatarDir = getSysProp().getValue("AVATAR.FILEPATH");
-      MyAlumniUserContainer continer = getUserContainer(request);
 
-      int maxFileSize = 0;
-      int maxHeight = 0;
-      int maxWidth = 0;
-      String overwrite = "false";
+    @RequestMapping(value = "/deleteAvatar", method = RequestMethod.POST)
+    public ModelAndView deleteAvatar(@ModelAttribute("member") MemberVO memberVO, BindingResult result, SessionStatus status, HttpServletResponse response, HttpServletRequest request) throws
+            Exception {
 
-      if (isCancelled(request)){
-        return new ModelAndView(BaseConstants.FWD_CANCEL);
-      }
+        MemberVO token = getCurrentLoggedInUser(request);
 
-      MemberVO token = getCurrentLoggedInUser(request);
-      MemberForm memberForm = (MemberForm)form;
-      
-      if (!memberSecurityCheck(request, token)){
-        return new ModelAndView(BaseConstants.FWD_LOGIN);
-      }
-   
-      //  Set Max Size
-      try{
-    	  maxFileSize = Integer.parseInt(getAppProp().getValue("avatar.image.size").trim());
-      }
-      catch(Exception e){
-    	  maxFileSize = 120000;   // 120000 Bytes  = 120 KB
-      }
-      
-      // Set Max Height
-      try{
-    	  maxHeight = Integer.parseInt(getAppProp().getValue("avatar.image.height").trim());
-      }
-      catch(Exception e){
-    	  maxHeight = 200;   // 200 px 
-      }
-      
-      // Set Max Width
-      try{
-    	  maxWidth = Integer.parseInt(getAppProp().getValue("avatar.image.width").trim());
-      }
-      catch(Exception e){
-    	  maxWidth = 200;   // 200 px 
-      }
-      
-      
-      FormFile importFile = memberForm.getAvatarUpload();
-      overwrite = StringUtil.safeString(memberForm.getAvatarUploadOverwrite());
-      String importFileName = getCurrentLoggedInUser(request).getMemberUserName() + "." + getFileExtensionForImageReader(importFile.getFileName());
-      int size = importFile.getFileSize();
+        // check to see if the user logged on is a member
+        if (!memberSecurityCheck(request, token)) {
+            return new ModelAndView(BaseConstants.FWD_LOGIN);
+        }
 
-    //--------------------  VALIDATE THE IMAGE -----------------------------------------
-      // check width and heigh of image
-      logger.debug(importFileName + " ext = " + getFileExtensionForImageReader(importFileName));
-      Iterator readers = ImageIO.getImageReadersBySuffix(getFileExtensionForImageReader(importFileName));
-      ImageReader reader = (ImageReader) readers.next();
-   
-       try {
-          ImageInputStream iis = ImageIO.createImageInputStream(importFile.getInputStream());
-          reader.setInput(iis, true);
-          int width = reader.getWidth(0);
-          int height = reader.getHeight(0);
-          logger.debug(importFile.getFileName() + ": width=" + width + ", height=" + height);
-          if (width > maxWidth || height >  maxHeight){
-              errors.add(BaseConstants.WARN_KEY,new ActionMessage("error.dimensions", width, height, maxWidth, maxHeight ));
-              saveMessages(request, errors);
-              return mapping.getInputForward();        	  
-          }
-      } catch (IOException e) {
-          System.err.println(e.getMessage() + ": can't open");
-          errors.add(BaseConstants.FATAL_KEY,new ActionMessage("error.notreadable"));
-          saveMessages(request, errors);
-          return mapping.getInputForward();           
-      }
-          
-      
-      // check file name
-      if (importFileName.indexOf(" ") > -1) {
-        errors.add(BaseConstants.WARN_KEY,new ActionMessage("error.filename", importFileName));
+
+        MyAlumniMessages errors = new MyAlumniMessages();
+        String avatarName = token.getAvatar();
+
+        try {
+            //
+            // removed from database
+            //
+            memService.deleteMemberAvatar(token.getAvatar(), token.getMemberUserName(), getLastModifiedBy(request));
+
+            //
+            //removed from file system
+            //
+            String avatarDir = getSysProp().getValue("AVATAR.FILEPATH");
+            File f = new File(avatarDir + File.separator + avatarName);
+            if (f.exists() && f.isFile())
+                f.delete();
+
+            //
+            // remove from session
+            //
+            MyAlumniUserContainer container = getUserContainer(request);
+            container.setAvatar("");
+
+        } catch (Exception e) {
+            errors.add(BaseConstants.FATAL_KEY, new MyAlumniMessage("errors.technical.difficulty"));
+            saveMessages(request, errors);
+            return new ModelAndView(BaseConstants.FWD_REDISPLAY);
+        }
+
+        errors.add(BaseConstants.INFO_KEY, new MyAlumniMessage("message.avatarremoved"));
         saveMessages(request, errors);
-        return mapping.getInputForward();
-      }
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
+    }
 
-      //boolean validImageName = false;
+
+    @RequestMapping(value = "/updateMemberAvatar", method = RequestMethod.POST)
+    public ModelAndView updateMemberAvatar(@ModelAttribute("member") MemberVO memberVO, BindingResult result, SessionStatus status, HttpServletResponse response, HttpServletRequest request) throws
+            Exception {
+
+
+        MyAlumniMessages errors = new MyAlumniMessages();
+        String fileTypes = SystemConfigConstants.CONTENT_TYPE;
+        String avatarDir = getSysProp().getValue("AVATAR.FILEPATH");
+        MyAlumniUserContainer continer = getUserContainer(request);
+
+        int maxFileSize = 0;
+        int maxHeight = 0;
+        int maxWidth = 0;
+        String overwrite = "false";
+
+//      if (isCancelled(request)){
+//        return new ModelAndView(BaseConstants.FWD_CANCEL);
+//      }
+
+        MemberVO token = getCurrentLoggedInUser(request);
+
+        if (!memberSecurityCheck(request, token)) {
+            return new ModelAndView(BaseConstants.FWD_LOGIN);
+        }
+
+        //  Set Max Size
+        try {
+            maxFileSize = Integer.parseInt(getAppProp().getValue("avatar.image.size").trim());
+        } catch (Exception e) {
+            maxFileSize = 120000;   // 120000 Bytes  = 120 KB
+        }
+
+        // Set Max Height
+        try {
+            maxHeight = Integer.parseInt(getAppProp().getValue("avatar.image.height").trim());
+        } catch (Exception e) {
+            maxHeight = 200;   // 200 px
+        }
+
+        // Set Max Width
+        try {
+            maxWidth = Integer.parseInt(getAppProp().getValue("avatar.image.width").trim());
+        } catch (Exception e) {
+            maxWidth = 200;   // 200 px
+        }
+
+
+        CommonsMultipartFile importFile = memberVO.getAvatarUpload();
+        overwrite = StringUtil.safeString(memberVO.getAvatarUploadOverwrite());
+        String importFileName = getCurrentLoggedInUser(request).getMemberUserName() + "." + getFileExtensionForImageReader(importFile.getName());
+        long size = importFile.getSize();
+
+        //--------------------  VALIDATE THE IMAGE -----------------------------------------
+        // check width and heigh of image
+        logger.debug(importFileName + " ext = " + getFileExtensionForImageReader(importFileName));
+        Iterator readers = ImageIO.getImageReadersBySuffix(getFileExtensionForImageReader(importFileName));
+        ImageReader reader = (ImageReader) readers.next();
+
+        try {
+            ImageInputStream iis = ImageIO.createImageInputStream(importFile.getInputStream());
+            reader.setInput(iis, true);
+            int width = reader.getWidth(0);
+            int height = reader.getHeight(0);
+            logger.debug(importFile.getName() + ": width=" + width + ", height=" + height);
+            if (width > maxWidth || height > maxHeight) {
+                errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage("error.dimensions", width, height, maxWidth, maxHeight));
+                saveMessages(request, errors);
+                return new ModelAndView(BaseConstants.FWD_REDISPLAY);
+            }
+        } catch (IOException e) {
+            System.err.println(e.getMessage() + ": can't open");
+            errors.add(BaseConstants.FATAL_KEY, new MyAlumniMessage("error.notreadable"));
+            saveMessages(request, errors);
+            return new ModelAndView(BaseConstants.FWD_REDISPLAY);
+        }
+
+
+        // check file name
+        if (importFileName.indexOf(" ") > -1) {
+            errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage("error.filename", importFileName));
+            saveMessages(request, errors);
+            return new ModelAndView(BaseConstants.FWD_REDISPLAY);
+        }
+
+        //boolean validImageName = false;
 /*      StringTokenizer st0 = new StringTokenizer(importFileName, ".");
       if (st0.hasMoreTokens()) {
         if (token.getMemberUserName().equals(st0.nextToken())) {
           //validImageName = true;
         }
         else{
-          errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.fileusername", token.getMemberUserName(),importFileName ));
+          errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage("error.fileusername", token.getMemberUserName(),importFileName ));
           saveMessages(request, errors);
-          return mapping.getInputForward();
+          return new ModelAndView(BaseConstants.FWD_REDISPLAY);
         }
       }*/
 
 
-      File f = new File(avatarDir + importFileName);
-      if ( f.exists() && (overwrite.equalsIgnoreCase("false") || overwrite.equalsIgnoreCase(""))){
-        continer.setOverWriteAvatar(true);
-        errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.filename.exist"));
-        saveMessages(request, errors);
-        return mapping.getInputForward();
-      }
-
-      if ( size > maxFileSize){
-        errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.filetoobig", String.valueOf(size), String.valueOf(maxFileSize)));
-        saveMessages(request, errors);
-        return mapping.getInputForward();
-      }
-
-      boolean validImageExtension = false;
-      StringTokenizer st = new StringTokenizer(fileTypes, ",");
-
-      logger.debug("Current Type = " + importFile.getContentType());
-      while (st.hasMoreTokens()) {
-        if ( importFile.getContentType().equalsIgnoreCase(st.nextToken())){
-          validImageExtension = true;
+        File f = new File(avatarDir + importFileName);
+        if (f.exists() && (overwrite.equalsIgnoreCase("false") || overwrite.equalsIgnoreCase(""))) {
+            continer.setOverWriteAvatar(true);
+            errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage("error.filename.exist"));
+            saveMessages(request, errors);
+            return new ModelAndView(BaseConstants.FWD_REDISPLAY);
         }
-      }
 
-      // check file extension
-      if (!validImageExtension){
-        errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.imageext", String.valueOf(fileTypes)));
-        saveMessages(request, errors);
-        return mapping.getInputForward();
-      }
-      
-      // apend the file extension 
-      //avatar = avatar + "." + importFile.getContentType();
+        if (size > maxFileSize) {
+            errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage("error.filetoobig", String.valueOf(size), String.valueOf(maxFileSize)));
+            saveMessages(request, errors);
+            return new ModelAndView(BaseConstants.FWD_REDISPLAY);
+        }
+
+        boolean validImageExtension = false;
+        StringTokenizer st = new StringTokenizer(fileTypes, ",");
+
+        logger.debug("Current Type = " + importFile.getContentType());
+        while (st.hasMoreTokens()) {
+            if (importFile.getContentType().equalsIgnoreCase(st.nextToken())) {
+                validImageExtension = true;
+            }
+        }
+
+        // check file extension
+        if (!validImageExtension) {
+            errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage("error.imageext", String.valueOf(fileTypes)));
+            saveMessages(request, errors);
+            return new ModelAndView(BaseConstants.FWD_REDISPLAY);
+        }
+
+        // apend the file extension
+        //avatar = avatar + "." + importFile.getContentType();
 
 
+        //-------------------------------------------------------------
 
-    //-------------------------------------------------------------
-
-        if(!uploadFromLocalDrive(importFile, importFileName ,avatarDir)){
-          errors.add(BaseConstants.FATAL_KEY, new ActionMessage("errors.technical.difficulty"));
-          saveMessages(request, errors);
-          return mapping.getInputForward();
+        if (!uploadFromLocalDrive(importFile, importFileName, avatarDir)) {
+            errors.add(BaseConstants.FATAL_KEY, new MyAlumniMessage("errors.technical.difficulty"));
+            saveMessages(request, errors);
+            return new ModelAndView(BaseConstants.FWD_REDISPLAY);
         }
 
 
         memService.updateMemberAvatar(importFileName, token.getMemberUserName(), getLastModifiedBy(request));
         continer.setOverWriteAvatar(false);
         continer.setAvatar(importFileName);
-        MemberVO memberVO = memService.getMemberProfileByUserName(token.getMemberUserName());
-        BeanUtils.copyProperties(memberForm, memberVO);
+        memberVO = memService.getMemberProfileByUserName(token.getMemberUserName());
+        // BeanUtils.copyProperties(memberForm, memberVO);
         return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    }    
-    
-    
-    public ModelAndView updateMemberEmail(HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
-
-      if (isCancelled(request)){
-        return new ModelAndView(BaseConstants.FWD_CANCEL);
-      }
+    }
 
 
-      MemberVO token = getCurrentLoggedInUser(request);
-      // check to see if the user logged on is a member
-      if (!memberSecurityCheck(request, token)){
-        return new ModelAndView(BaseConstants.FWD_LOGIN);
-      }
+    @RequestMapping(value = "/updateMemberEmail", method = RequestMethod.POST)
+    public ModelAndView updateMemberEmail(@ModelAttribute("member") MemberVO memberVO, BindingResult result, SessionStatus status, HttpServletResponse response, HttpServletRequest request) throws
+            Exception {
 
-      MemberForm memberForm = (MemberForm) form;
-      String email = memberForm.getEmail().toLowerCase();
-
-      if (memService.isMemberAvailableByEmail(email, memberForm.getMemberId())) {
-        ActionMessages errors = new ActionMessages();
-        errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.duplicate.email"));
-        saveMessages(request, errors);
-           return mapping.getInputForward();
-      }
-
-      memService.updateMemberEmail(email, token.getMemberUserName(), getLastModifiedBy(request));
-
-      // get the member profile
-      MemberVO memberVO = memService.getMemberProfileByUserName(token.getMemberUserName());
-      BeanUtils.copyProperties(memberForm, memberVO);
-      MyAlumniUserContainer continer = getUserContainer(request);
-      continer.updateTokenEmail(email);
-      return new ModelAndView(BaseConstants.FWD_SUCCESS);
-
-    }    
-    
-    
-    public ModelAndView updateMemberPassword(HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
+//      if (isCancelled(request)){
+//        return new ModelAndView(BaseConstants.FWD_CANCEL);
+//      }
 
 
-      if (isCancelled(request)){
-        return new ModelAndView(BaseConstants.FWD_CANCEL);
-      }
+        MemberVO token = getCurrentLoggedInUser(request);
+        // check to see if the user logged on is a member
+        if (!memberSecurityCheck(request, token)) {
+            return new ModelAndView(BaseConstants.FWD_LOGIN);
+        }
 
-      MemberVO token = getCurrentLoggedInUser(request);
-      // check to see if the user logged on is a member
-      if (!memberSecurityCheck(request, token)){
-        return new ModelAndView(BaseConstants.FWD_LOGIN);
-      }
+        String email = memberVO.getEmail().toLowerCase();
 
+        if (memService.isMemberAvailableByEmail(email, memberVO.getMemberId())) {
+            MyAlumniMessages errors = new MyAlumniMessages();
+            errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage("error.duplicate.email"));
+            saveMessages(request, errors);
+            return new ModelAndView(BaseConstants.FWD_REDISPLAY);
+        }
 
-      MemberForm memberForm = (MemberForm) form;
-      String oldpassword =  memberForm.getOldMemberPassword();
-      String newpassword =  memberForm.getMemberPasswordConfirm();
+        memService.updateMemberEmail(email, token.getMemberUserName(), getLastModifiedBy(request));
 
-      String currentPassword = memService.getMemberPasswordByUserName(token.getMemberUserName());
+        // get the member profile
+        memberVO = memService.getMemberProfileByUserName(token.getMemberUserName());
+        MyAlumniUserContainer continer = getUserContainer(request);
+        continer.updateTokenEmail(email);
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
-      if (!currentPassword.equals(Encoder.getMD5_Base64(oldpassword))) {
-        ActionMessages errors = new ActionMessages();
-        errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.password.equal"));
-        saveMessages(request, errors);
-           return mapping.getInputForward();
-      }
-
-      memService.updateMemberPassword(token.getMemberUserName(), newpassword, getLastModifiedBy(request));
-
-      // get the member profile
-      MemberVO memberVO = memService.getMemberProfileByUserName(token.getMemberUserName());
-      BeanUtils.copyProperties(memberForm, memberVO);
-      return new ModelAndView(BaseConstants.FWD_SUCCESS);
-
-    }    
-    
-    
-    public ModelAndView updateMemberSignature(HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
-
-      if (isCancelled(request)){
-        return new ModelAndView(BaseConstants.FWD_CANCEL);
-      }
-
-      MemberVO token = getCurrentLoggedInUser(request);
-
-      // check to see if the user logged on is a member
-      if (!memberSecurityCheck(request, token)){
-        return new ModelAndView(BaseConstants.FWD_LOGIN);
-      }
-
-      MemberForm memberForm = (MemberForm) form;
-      String signature = memberForm.getSignature().toLowerCase();
-
-      memService.updateMemberSignature(signature, token.getMemberUserName(), getLastModifiedBy(request));
-
-      token.setSignature(signature);
-
-      // get the member profile
-      MemberVO memberVO = memService.getMemberProfileByUserName(token.getMemberUserName());
-       BeanUtils.copyProperties(memberForm, memberVO);
-
-      return new ModelAndView(BaseConstants.FWD_SUCCESS);
-
-    }    
-    
-    
-    public ModelAndView displayMyDesktop (HttpServletRequest request,
-                                  HttpServletResponse response )
-      throws Exception {
-
-    	MemberVO token = getCurrentLoggedInUser(request);
+    }
 
 
-	    // check to see if the user logged on is a member
-	    if (!memberSecurityCheck(request, token)){
-	      return new ModelAndView(BaseConstants.FWD_LOGIN);
-	    }
-
-    	MyAlumniUserContainer container = getUserContainer(request);
-    	container.setNewMailCount(pmService.getMailCountByUserName(token.getMemberId(), BaseConstants.PM_STATUS_NEW));
-    	return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    }    
-    
-    
-    public ModelAndView viewMemberProfile(HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
-
-      MemberVO token = getCurrentLoggedInUser(request);
-
-      // check to see if the user logged on is a member
-      if (!memberSecurityCheck(request, token)){
-        return new ModelAndView(BaseConstants.FWD_LOGIN);
-      }
+    @RequestMapping(value = "/updateMemberPassword", method = RequestMethod.POST)
+    public ModelAndView updateMemberPassword(@ModelAttribute("member") MemberVO memberVO, BindingResult result, SessionStatus status, HttpServletResponse response, HttpServletRequest request) throws
+            Exception {
 
 
-      MemberForm memberForm = (MemberForm) form;
+//      if (isCancelled(request)){
+//        return new ModelAndView(BaseConstants.FWD_CANCEL);
+//      }
 
-      MemberVO memberVO = memService.getMemberProfileByUserName(token.getMemberUserName());
-      BeanUtils.copyProperties(memberForm, memberVO);
-      
-	  List<XlatDetailVO> selectedMessengers = messengerService.getActiveMemberMessengers(token.getMemberId());
-	  memberForm.setMessengers(selectedMessengers);
-	  
-	  setRequestObject(request, BaseConstants.MEMBER_PROFILE, memberVO);    // to display date using fmt
-      
-      return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    }    
-    
-    
-    public ModelAndView prepareRegistration(HttpServletRequest request,
-            HttpServletResponse response) throws
-		Exception {
-      
-        
+        MemberVO token = getCurrentLoggedInUser(request);
+        // check to see if the user logged on is a member
+        if (!memberSecurityCheck(request, token)) {
+            return new ModelAndView(BaseConstants.FWD_LOGIN);
+        }
+
+        String oldpassword = memberVO.getOldMemberPassword();
+        String newpassword = memberVO.getMemberPasswordConfirm();
+
+        String currentPassword = memService.getMemberPasswordByUserName(token.getMemberUserName());
+
+        if (!currentPassword.equals(Encoder.getMD5_Base64(oldpassword))) {
+            MyAlumniMessages errors = new MyAlumniMessages();
+            errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage("error.password.equal"));
+            saveMessages(request, errors);
+            return new ModelAndView(BaseConstants.FWD_REDISPLAY);
+        }
+
+        memService.updateMemberPassword(token.getMemberUserName(), newpassword, getLastModifiedBy(request));
+
+        // get the member profile
+        memberVO = memService.getMemberProfileByUserName(token.getMemberUserName());
+
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
+
+    }
+
+
+    @RequestMapping(value = "/updateMemberSignature", method = RequestMethod.POST)
+    public ModelAndView updateMemberSignature(@ModelAttribute("member") MemberVO memberVO, BindingResult result, SessionStatus status, HttpServletResponse response, HttpServletRequest request) throws
+            Exception {
+
+//      if (isCancelled(request)){
+//        return new ModelAndView(BaseConstants.FWD_CANCEL);
+//      }
+
+        MemberVO token = getCurrentLoggedInUser(request);
+
+        // check to see if the user logged on is a member
+        if (!memberSecurityCheck(request, token)) {
+            return new ModelAndView(BaseConstants.FWD_LOGIN);
+        }
+
+        String signature = memberVO.getSignature().toLowerCase();
+
+        memService.updateMemberSignature(signature, token.getMemberUserName(), getLastModifiedBy(request));
+
+        token.setSignature(signature);
+
+        // get the member profile
+        memberVO = memService.getMemberProfileByUserName(token.getMemberUserName());
+
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
+
+    }
+
+
+    @RequestMapping(value = "/displayMyDesktop", method = RequestMethod.POST)
+    public ModelAndView displayMyDesktop(@ModelAttribute("member") MemberVO memberVO, BindingResult result, SessionStatus status, HttpServletResponse response, HttpServletRequest request) throws
+            Exception {
+
+        MemberVO token = getCurrentLoggedInUser(request);
+
+
+        // check to see if the user logged on is a member
+        if (!memberSecurityCheck(request, token)) {
+            return new ModelAndView(BaseConstants.FWD_LOGIN);
+        }
+
+        MyAlumniUserContainer container = getUserContainer(request);
+        container.setNewMailCount(pmService.getMailCountByUserName(token.getMemberId(), BaseConstants.PM_STATUS_NEW));
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
+    }
+
+
+    @RequestMapping(value = "/viewMemberProfile", method = RequestMethod.POST)
+    public ModelAndView viewMemberProfile(@ModelAttribute("member") MemberVO memberVO, BindingResult result, SessionStatus status, HttpServletResponse response, HttpServletRequest request) throws
+            Exception {
+
+        MemberVO token = getCurrentLoggedInUser(request);
+
+        // check to see if the user logged on is a member
+        if (!memberSecurityCheck(request, token)) {
+            return new ModelAndView(BaseConstants.FWD_LOGIN);
+        }
+
+        memberVO = memService.getMemberProfileByUserName(token.getMemberUserName());
+
+        List<XlatDetailVO> selectedMessengers = messengerService.getActiveMemberMessengers(token.getMemberId());
+        memberVO.setMessengers(selectedMessengers);
+
+        setRequestObject(request, BaseConstants.MEMBER_PROFILE, memberVO);    // to display date using fmt
+
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
+    }
+
+
+    @RequestMapping(value = "/prepareRegistration", method = RequestMethod.POST)
+    public ModelAndView prepareRegistration(@ModelAttribute("member") MemberVO memberVO, BindingResult result, SessionStatus status, HttpServletResponse response, HttpServletRequest request) throws
+            Exception {
+
+
         List<XlatDetailVO> luAvailableIMs = xlatService.getActiveGroupDetails(BaseConstants.GROUP_INSTANT_MESSENGERS);
         List<XlatDetailVO> luSelectedIMs = new ArrayList<XlatDetailVO>();
         setSessionObject(request, BaseConstants.LU_AVAILABLE_IMS, luAvailableIMs);
         setSessionObject(request, BaseConstants.LU_SELECTED_IMS, luSelectedIMs);
-        
-		return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    } 
-    
-    
+
+        return new ModelAndView(BaseConstants.FWD_SUCCESS);
+    }
+
+
 }

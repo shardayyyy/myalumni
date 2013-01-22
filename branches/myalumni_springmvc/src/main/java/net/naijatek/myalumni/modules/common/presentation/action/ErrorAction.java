@@ -45,29 +45,40 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.naijatek.myalumni.framework.extensions.MyAlumniBaseController;
 import net.naijatek.myalumni.modules.common.domain.ErrorLogVO;
+import net.naijatek.myalumni.modules.common.domain.MemberVO;
+import net.naijatek.myalumni.modules.common.helper.MyAlumniMessage;
+import net.naijatek.myalumni.modules.common.helper.MyAlumniMessages;
 import net.naijatek.myalumni.modules.common.service.IErrorLogService;
 import net.naijatek.myalumni.util.BaseConstants;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ErrorAction extends MyAlumniBaseController {
     
 	private IErrorLogService logService;
-	//private static Log logger = LogFactory.getLog(ErrorAction.class);
+	private static Log logger = LogFactory.getLog(ErrorAction.class);
     
     public ErrorAction(IErrorLogService logService) {        
         this.logService = logService;
     }
-   
-    
-    public ActionForward errorTracker (ActionMapping mapping, 
-                                  ActionForm form,
-                                  HttpServletRequest request,
-                                  HttpServletResponse response)
-        throws Exception {
+
+    @RequestMapping(value="/errorTracker", method= RequestMethod.POST)
+    public ModelAndView errorTracker(@ModelAttribute("errorLog")ErrorLogVO errorLogVO, BindingResult result, SessionStatus status,
+                                      HttpServletRequest request,
+                                      HttpServletResponse response) throws
+            Exception {
         
         String forwardKey = "error";
-        ActionMessages errors = new ActionMessages();
+        ModelAndView mv = new ModelAndView();
+        MyAlumniMessages errors = new MyAlumniMessages();
         Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
 		
         Throwable thr = (Throwable)request.getAttribute("javax.servlet.error.exception");
@@ -105,9 +116,7 @@ public class ErrorAction extends MyAlumniBaseController {
         errorLog.setLastModifiedBy(userName);
    
         logService.addErrorLog(errorLog);
-        
-        
-        
+
         // 700: Insufficient Priviledges
         // 701: Session Timed Out
         
@@ -118,20 +127,20 @@ public class ErrorAction extends MyAlumniBaseController {
             
             case 700:
                 forwardKey = BaseConstants.SC_INSURFICIENT_PRIV_700;
-                errors.add(BaseConstants.FATAL_KEY, new ActionMessage("core.errorcode.00707"));
+                errors.add(BaseConstants.FATAL_KEY, new MyAlumniMessage("core.errorcode.00707"));
                 break;
             
             case 701:
                 forwardKey = BaseConstants.SC_SESSION_EXPIRED_701;
-                errors.add(BaseConstants.FATAL_KEY, new ActionMessage("core.errorcode.00708"));
+                errors.add(BaseConstants.FATAL_KEY, new MyAlumniMessage("core.errorcode.00708"));
                 break;
             }            
         }
         
 		
 		saveMessages(request, errors);
-        
-        return mapping.findForward(forwardKey);
+        mv.setViewName(forwardKey);
+        return mv;
     }
     
     

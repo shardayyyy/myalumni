@@ -38,15 +38,19 @@
  */
 package net.naijatek.myalumni.modules.common.domain;
 
+import net.naijatek.myalumni.util.BaseConstants;
+
 public class ScrollVO extends MyAlumniBaseVO implements ValueLabelItem{
 
-	private String scrollId;
+    private String scrollId;
+    private  String scrollText;
+    private String priority = BaseConstants.BOOLEAN_NO;
 
-	private String scrollText;
+    // non database support attributes
+    private String type;
 
-	private String priority;
 
-	public ScrollVO() {
+    public ScrollVO() {
 		super();
 	}
 	

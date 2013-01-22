@@ -47,7 +47,6 @@ import javax.servlet.http.HttpServletResponse;
 import net.naijatek.myalumni.framework.extensions.MyAlumniBaseController;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
-import net.naijatek.myalumni.modules.common.presentation.form.MemberForm;
 import net.naijatek.myalumni.modules.common.service.IMemberService;
 import net.naijatek.myalumni.util.BaseConstants;
 
@@ -55,6 +54,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -73,15 +77,15 @@ public class MaintainIphoneAction extends MyAlumniBaseController {
 /*    public MaintainIphoneAction(final IMemberService memService) {
         this.memService = memService;      
     }*/
-   
-    
-    public ModelAndView filterfn(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+
+    @RequestMapping(value="/filterfn", method= RequestMethod.POST)
+    public ModelAndView filterfn(@ModelAttribute("privateMessage")MemberVO memberVO, BindingResult result, SessionStatus status,
+                                            HttpServletRequest request,
+                                            HttpServletResponse response) throws Exception{
 
     	logger.info("***iPhone***: in Filter First Name...");
-		MemberForm memberForm = (MemberForm) form;
 		
-		List<MemberVO> lstMemberVO = memService.getFirstNameStartingWith(memberForm.getAlpha(), BaseConstants.BOOLEAN_NO);
+		List<MemberVO> lstMemberVO = memService.getFirstNameStartingWith(memberVO.getAlpha(), BaseConstants.BOOLEAN_NO);
 		if (lstMemberVO == null){
 			lstMemberVO = new ArrayList<MemberVO>();
 		}
@@ -90,16 +94,16 @@ public class MaintainIphoneAction extends MyAlumniBaseController {
 		setRequestObject(request, SORT_TYPE, FIRST_NAME);
 		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
-    }    
-    
-    
-    public ModelAndView filterln(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+    }
+
+    @RequestMapping(value="/filterln", method= RequestMethod.POST)
+    public ModelAndView filterln(@ModelAttribute("privateMessage")MemberVO memberVO, BindingResult result, SessionStatus status,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response) throws Exception{
 
     	logger.info("***iPhone***: in Filter Last Name...");
-		MemberForm memberForm = (MemberForm) form;	
 		
-		List<MemberVO> lstMemberVO = memService.getLastNameStartingWith(memberForm.getAlpha(), BaseConstants.BOOLEAN_NO);
+		List<MemberVO> lstMemberVO = memService.getLastNameStartingWith(memberVO.getAlpha(), BaseConstants.BOOLEAN_NO);
 		if (lstMemberVO == null){
 			lstMemberVO = new ArrayList<MemberVO>();
 		}
@@ -107,28 +111,28 @@ public class MaintainIphoneAction extends MyAlumniBaseController {
 		setRequestObject(request, BaseConstants.LIST_OF_IPHONE_MEMBERS, lstMemberVO);
 		setRequestObject(request, SORT_TYPE, LAST_NAME);
 		return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    }        
-    
-    
-    public ModelAndView viewMember(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+    }
 
-		MemberForm memberForm = (MemberForm) form;	
+    @RequestMapping(value="/viewMember", method= RequestMethod.POST)
+    public ModelAndView viewMember(@ModelAttribute("privateMessage")MemberVO memberVO, BindingResult result, SessionStatus status,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response) throws Exception{
 		
-		MemberVO memberVO = memService.getMemberProfileByMemberId(memberForm.getMemberId());
+		memberVO = memService.getMemberProfileByMemberId(memberVO.getMemberId());
 		if (memberVO == null){
 			memberVO = new MemberVO();
 		}
 				
 		setRequestObject(request, BaseConstants.IPHONE_MEMBER_PROFILE, memberVO);
 		return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    }    
-    
-    
-    
-    
-    public ModelAndView getDorms(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+    }
+
+
+
+    @RequestMapping(value="/getDorms", method= RequestMethod.POST)
+    public ModelAndView getDorms(@ModelAttribute("privateMessage")MemberVO memberVO, BindingResult result, SessionStatus status,
+                                   HttpServletRequest request,
+                                   HttpServletResponse response) throws Exception{
 		
 		List<XlatDetailVO> lstXlatVO = memService.getAllActiveDormitory();
 		if (lstXlatVO == null){
@@ -138,18 +142,18 @@ public class MaintainIphoneAction extends MyAlumniBaseController {
 		setRequestObject(request, BaseConstants.LIST_OF_IPHONE_DORMS, lstXlatVO);
 		setRequestObject(request, SORT_TYPE, FIRST_NAME);
 		return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    } 
-    
-    
-    
-    
-    public ModelAndView filterDorms(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+    }
+
+
+
+    @RequestMapping(value="/filterDorms", method= RequestMethod.POST)
+    public ModelAndView filterDorms(@ModelAttribute("privateMessage")MemberVO memberVO, BindingResult result, SessionStatus status,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response) throws Exception{
 
     	logger.info("***iPhone***: in Filter Dorms...");
-		MemberForm memberForm = (MemberForm) form;	
 		
-		List<MemberVO> lstMemberVO = memService.getMembersInDorm(memberForm.getDormitoryId(), BaseConstants.BOOLEAN_NO);
+		List<MemberVO> lstMemberVO = memService.getMembersInDorm(memberVO.getDormitoryId(), BaseConstants.BOOLEAN_NO);
 		if (lstMemberVO == null){
 			lstMemberVO = new ArrayList<MemberVO>();
 		}
@@ -157,16 +161,17 @@ public class MaintainIphoneAction extends MyAlumniBaseController {
 		setRequestObject(request, BaseConstants.LIST_OF_IPHONE_MEMBERS, lstMemberVO);
 		setRequestObject(request, SORT_TYPE, FIRST_NAME);
 		return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    } 
-    
-   
-    public ModelAndView filterGender(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+    }
+
+
+    @RequestMapping(value="/filterGender", method= RequestMethod.POST)
+    public ModelAndView filterGender(@ModelAttribute("privateMessage")MemberVO memberVO, BindingResult result, SessionStatus status,
+                                    HttpServletRequest request,
+                                    HttpServletResponse response) throws Exception{
 
     	logger.info("***iPhone***: in Filter Gender...");
-		MemberForm memberForm = (MemberForm) form;	
 		
-		List<MemberVO> lstMemberVO = memService.getGenderBy(memberForm.getAlpha(), BaseConstants.BOOLEAN_NO);
+		List<MemberVO> lstMemberVO = memService.getGenderBy(memberVO.getAlpha(), BaseConstants.BOOLEAN_NO);
 		if (lstMemberVO == null){
 			lstMemberVO = new ArrayList<MemberVO>();
 		}

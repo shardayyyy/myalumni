@@ -52,7 +52,6 @@ import net.naijatek.myalumni.modules.common.domain.MessengerVO;
 import net.naijatek.myalumni.modules.common.domain.StatisticsVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
 import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
-import net.naijatek.myalumni.modules.common.presentation.form.MemberForm;
 import net.naijatek.myalumni.modules.common.service.IClassNewsService;
 import net.naijatek.myalumni.modules.common.service.IMemberService;
 import net.naijatek.myalumni.modules.common.service.IMessageFolderService;
@@ -67,14 +66,14 @@ import net.naijatek.myalumni.util.utilities.StringUtil;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -116,9 +115,12 @@ public class MaintainMemberAction  extends MyAlumniBaseController {
         this.messengerService = messengerService;
     }
     */
-    public ModelAndView displayStatistics(HttpServletRequest request,
-                                       HttpServletResponse response) throws
+@RequestMapping(value="/displayStatistics", method= RequestMethod.POST)
+public ModelAndView displayStatistics(@ModelAttribute("member")MemberVO memberVO, BindingResult result, SessionStatus status,
+                                  HttpServletRequest request,
+                                  HttpServletResponse response, Errors errors) throws
         Exception {
+
 
       StatisticsVO stats = new StatisticsVO();
 
@@ -130,30 +132,32 @@ public class MaintainMemberAction  extends MyAlumniBaseController {
 
       setRequestObject(request,"stats",stats);
       return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    }   
-    
-    
-    public ModelAndView listMembers(HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
+    }
 
-      
+
+
+    @RequestMapping(value="/listMembers", method= RequestMethod.POST)
+    public ModelAndView listMembers(@ModelAttribute("member")MemberVO memberVO, BindingResult result, SessionStatus status,
+                                          HttpServletRequest request,
+                                          HttpServletResponse response, Errors errors) throws
+            Exception {
+
+
+      ModelAndView mv = new ModelAndView();
       String action = null;
       List<MemberVO> membersList = new ArrayList<MemberVO>();
       int rowsToReturn = 0;
 
-      if (isCancelled(request)){
-        return new ModelAndView(BaseConstants.FWD_CANCEL);
-      }
+//      if (isCancelled(request)){
+//        return new ModelAndView(BaseConstants.FWD_CANCEL);
+//      }
 
       if (!adminSecurityCheck(request)){
         return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
       }
-
-      MemberForm memForm = (MemberForm)form;
         
-      String adminAction = memForm.getAdminAction();
-      String adminDisplay = memForm.getAdminDisplay();
+      String adminAction = memberVO.getAdminAction();
+      String adminDisplay = memberVO.getAdminDisplay();
       adminDisplay = StringUtil.safeString(adminDisplay);
       int offset = 0 ; 
 
@@ -166,7 +170,7 @@ public class MaintainMemberAction  extends MyAlumniBaseController {
           action = BaseConstants.FWD_SUCCESS;
         }
         else if(adminAction.equalsIgnoreCase(BaseConstants.ADMIN_LIST_ONE)){
-          membersList = memService.adminGetOneMembersByUserName(memForm.getMemberUserName());
+          membersList = memService.adminGetOneMembersByUserName(memberVO.getMemberUserName());
           action = BaseConstants.FWD_LIST_DETAILS;
         }
         else if(adminAction.equalsIgnoreCase(BaseConstants.FWD_ALL_MEMBERS) && adminDisplay.equalsIgnoreCase(BaseConstants.FWD_LIST_DETAILS)){
@@ -179,10 +183,11 @@ public class MaintainMemberAction  extends MyAlumniBaseController {
         }
       }
       else{
-        ActionMessages errors = new ActionMessages();
-        errors.add(BaseConstants.ERROR_KEY, new ActionMessage("errors.technical.difficulty"));
-        saveMessages(request, errors);
-        return mapping.getInputForward();
+
+       errors.rejectValue(BaseConstants.ERROR_KEY, "errors.technical.difficulty");
+        //saveMessages(request, errors);
+          mv.setViewName(BaseConstants.FWD_REDISPLAY);
+          return mv;
       }
 
 
@@ -192,30 +197,32 @@ public class MaintainMemberAction  extends MyAlumniBaseController {
       setRequestObject(request, BaseConstants.LIST_OF_MEMBERS,  membersList);
       return new ModelAndView(action);
 
-    }    
-    
-    public ModelAndView maintainMember(HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
+    }
+
+    @RequestMapping(value="/maintainMember", method= RequestMethod.POST)
+    public ModelAndView maintainMember(@ModelAttribute("member")MemberVO memberVO, BindingResult result, SessionStatus status,
+                                    HttpServletRequest request,
+                                    HttpServletResponse response, Errors errors) throws
+            Exception {
 
 
-      MemberVO memberVO = null;
+        ModelAndView mv = new ModelAndView();
+      //MemberVO memberVO = null;
       String action = null;
-      ActionMessages errors = new ActionMessages();
 
-      if (isCancelled(request)){
-        return new ModelAndView(BaseConstants.FWD_CANCEL);
-      }
+//      if (isCancelled(request)){
+//        return new ModelAndView(BaseConstants.FWD_CANCEL);
+//      }
 
       if (!adminSecurityCheck(request)){
         return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
       }
 
       SystemConfigVO sysConfigVO = sysConfigSerivce.getSystemConfig();
-      MemberForm memberForm = (MemberForm)form;
-      String adminAction = memberForm.getAdminAction();
-      String memberUserName = memberForm.getMemberUserName();
-      String deleteConfirm = memberForm.getDeleteConfirm();
+
+      String adminAction = memberVO.getAdminAction();
+      String memberUserName = memberVO.getMemberUserName();
+      String deleteConfirm = memberVO.getDeleteConfirm();
 
       if (adminAction != null && adminAction.length() > 0){
         if ( adminAction.equalsIgnoreCase(BaseConstants.ADMIN_ACTION_ACTIVATE)){
@@ -239,8 +246,8 @@ public class MaintainMemberAction  extends MyAlumniBaseController {
         else if(adminAction.equalsIgnoreCase(BaseConstants.ADMIN_ACTION_MODIFY)){
           logger.debug("FWD_MODIFY ACCOUNT - " + memberUserName);
           memberVO = memService.getMemberProfileByUserName(memberUserName);
-          BeanUtils.copyProperties(memberForm, memberVO);        
-          memberForm.setAdminAction("true");
+          //BeanUtils.copyProperties(memberForm, memberVO);
+          memberVO.setAdminAction("true");
           action = BaseConstants.FWD_MODIFY;
 
           // MESSENGER
@@ -255,9 +262,10 @@ public class MaintainMemberAction  extends MyAlumniBaseController {
               }
               catch(Exception e){
             	  logger.debug(e.getMessage());
-                  errors.add(BaseConstants.WARN_KEY, new ActionMessage("core.errorcode.00709"));
-                  saveMessages(request, errors);
-            	  return mapping.getInputForward();
+                 errors.rejectValue(BaseConstants.WARN_KEY, "core.errorcode.00709");
+                  //saveMessages(request, errors);
+            	  mv.setViewName(BaseConstants.FWD_REDISPLAY);
+                  return mv;
               }          
           
           
@@ -275,11 +283,12 @@ public class MaintainMemberAction  extends MyAlumniBaseController {
             setRequestObject(request, "confirm", "show");
             setupAdminDesktop(request, memService, classNewsService, pmService);
 
-            errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.confirdelete"));
-            saveMessages(request, errors);
+           errors.rejectValue(BaseConstants.WARN_KEY, "error.confirdelete");
+            //saveMessages(request, errors);
             memberVO = memService.getMemberProfileByUserName(memberUserName);
-            BeanUtils.copyProperties(memberForm, memberVO);  
-            return mapping.getInputForward();
+            //BeanUtils.copyProperties(memberForm, memberVO);
+              mv.setViewName(BaseConstants.FWD_REDISPLAY);
+              return mv;
           }else{
             String unActivatePattern = getSysProp().getValue("UNDELETEABLE_USERNAME_PATTERN");
 
@@ -299,13 +308,14 @@ public class MaintainMemberAction  extends MyAlumniBaseController {
             }
             else{
               memberVO = memService.getMemberProfileByUserName(memberUserName);
-              BeanUtils.copyProperties(memberForm, memberVO);            
-              memberForm.setAdminAction("true");
+              //BeanUtils.copyProperties(memberForm, memberVO);
+              memberVO.setAdminAction("true");
               memberVO = memService.getMemberProfileByUserName(memberUserName);
-              BeanUtils.copyProperties(memberForm, memberVO);  
-              errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.nondeletable", memberUserName));
-              saveMessages(request, errors);
-              return mapping.getInputForward();
+              //BeanUtils.copyProperties(memberForm, memberVO);
+             errors.rejectValue(BaseConstants.WARN_KEY, "error.nondeletable", memberUserName);
+              //saveMessages(request, errors);
+                mv.setViewName(BaseConstants.FWD_REDISPLAY);
+                return mv;
             }
             setupAdminDesktop(request, memService, classNewsService, pmService);
             action = BaseConstants.FWD_SUCCESS;
@@ -319,18 +329,21 @@ public class MaintainMemberAction  extends MyAlumniBaseController {
         }
       }
       else{
-        errors.add(BaseConstants.FATAL_KEY, new ActionMessage("errors.technical.difficulty"));
-        saveMessages(request, errors);
-        return mapping.getInputForward();
+       errors.rejectValue(BaseConstants.FATAL_KEY, "errors.technical.difficulty");
+        //saveMessages(request, errors);
+          mv.setViewName(BaseConstants.FWD_REDISPLAY);
+          return mv;
+
       }
 
       return new ModelAndView(action);
 
-    }  
-    
-    
-    public ModelAndView searchForMembers(HttpServletRequest request,
-                                      HttpServletResponse response) throws
+    }
+
+    @RequestMapping(value="/searchForMembers", method= RequestMethod.POST)
+    public ModelAndView searchForMembers(@ModelAttribute("member")MemberVO memberVO, BindingResult result, SessionStatus status,
+                                            HttpServletRequest request,
+                                            HttpServletResponse response, Errors errors) throws
        Exception {
      
      List<MemberVO> membersArrayList;// = new ArrayList();
@@ -341,34 +354,33 @@ public class MaintainMemberAction  extends MyAlumniBaseController {
      }
 
      String isAdmin = BaseConstants.BOOLEAN_YES;
-     MemberForm memberForm = (MemberForm) form;
 
-     membersArrayList = baseMemberSearch(memberForm, request, searchCount, memService, isAdmin);
+     membersArrayList = baseMemberSearch(memberVO, request, searchCount, memService, isAdmin);
      setRequestObject(request, BaseConstants.LIST_OF_MEMBERS, membersArrayList);
      return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
-    
-    
-    public ModelAndView updateMemberProfile(HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
 
-      if (isCancelled(request)){
-        return new ModelAndView(BaseConstants.FWD_CANCEL);
-      }
+
+    @RequestMapping(value="/updateMemberProfile", method= RequestMethod.POST)
+    public ModelAndView updateMemberProfile(@ModelAttribute("member")MemberVO memberVO, BindingResult result, SessionStatus status,
+                                       HttpServletRequest request,
+                                       HttpServletResponse response, Errors errors) throws
+            Exception {
+
+//      if (isCancelled(request)){
+//        return new ModelAndView(BaseConstants.FWD_CANCEL);
+//      }
 
       if (!adminSecurityCheck(request)){
         return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
       }
       
-      MemberForm memberForm = (MemberForm) form;
-      MemberVO memberVO = new MemberVO();
-      BeanUtils.copyProperties(memberVO, memberForm);
+
+      //BeanUtils.copyProperties(memberVO, memberForm);
 
       memService.updateMemberProfile(memberVO, getLastModifiedBy(request));
-      
-      ActionMessages msgs = new ActionMessages();
-      
+
+        ModelAndView mv = new ModelAndView();
       // Messengers
       String memberId = memberVO.getMemberId();
  
@@ -384,90 +396,98 @@ public class MaintainMemberAction  extends MyAlumniBaseController {
       messengerService.saveAll(messengers, memberId);
       
       
-      msgs.add(BaseConstants.INFO_KEY, new ActionMessage("message.memberupdated"));
-      saveMessages(request, msgs);
+      errors.rejectValue(BaseConstants.INFO_KEY, "message.memberupdated");
+      //saveMessages(request, msgs);
       
 
       setupAdminDesktop(request, memService, classNewsService, pmService);
-      return new ModelAndView(BaseConstants.FWD_SUCCESS);
+        mv.setViewName(BaseConstants.FWD_SUCCESS);
+        return mv;
 
-    }    
-    
-    
-    
-    public ModelAndView displayMiniProfile(HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
+    }
+    //-------------------------------------------------------------------------------------
+
+    @RequestMapping(value="/displayMiniProfile", method= RequestMethod.POST)
+    public ModelAndView displayMiniProfile(@ModelAttribute("member")MemberVO memberVO, BindingResult result, SessionStatus status,
+                                         HttpServletRequest request,
+                                         HttpServletResponse response, Errors errors) throws
+            Exception {
 
 
-      MemberVO memberVO = null;
+      //MemberVO memberVO = null;
+        ModelAndView mv = new ModelAndView();
 
       if (!adminSecurityCheck(request)){
         return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
       }
       
-      MemberForm memberForm = (MemberForm) form;
-      memberVO = memService.getMemberProfileByUserName(memberForm.getMemberUserName());
+      memberVO = memService.getMemberProfileByUserName(memberVO.getMemberUserName());
   
       if (memberVO == null){
     	  memberVO = new MemberVO();
       }
       setRequestObject(request, BaseConstants.MEMBER_PROFILE, memberVO);
-      return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    }  
-    
-    
-    
-    public ModelAndView viewMemberProfile(HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
+        mv.setViewName(BaseConstants.FWD_SUCCESS);
+        return mv;
+    }
 
 
-      MemberVO memberVO = null;
+    @RequestMapping(value="/viewMemberProfile", method= RequestMethod.POST)
+    public ModelAndView viewMemberProfile(@ModelAttribute("member")MemberVO memberVO, BindingResult result, SessionStatus status,
+                                           HttpServletRequest request,
+                                           HttpServletResponse response, Errors errors) throws
+            Exception {
 
-      if (!adminSecurityCheck(request)){
+      //MemberVO memberVO = null;
+      ModelAndView mv = new ModelAndView();
+
+        if (!adminSecurityCheck(request)){
         return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
       }
       
-      MemberForm memberForm = (MemberForm) form;
-      memberVO = memService.getMemberProfileByUserName(memberForm.getMemberUserName());
+      memberVO = memService.getMemberProfileByUserName(memberVO.getMemberUserName());
   
       if (memberVO == null){
     	  memberVO = new MemberVO();
       }
-      BeanUtils.copyProperties(memberForm, memberVO);
+      BeanUtils.copyProperties(memberVO, memberVO);
 	  List<XlatDetailVO> selectedMessengers = messengerService.getActiveMemberMessengers(memberVO.getMemberId());
-	  memberForm.setMessengers(selectedMessengers);
+      memberVO.setMessengers(selectedMessengers);
 	  setRequestObject(request, BaseConstants.MEMBER_PROFILE, memberVO);  // to display date using fmt
-      return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    }  
-    
-    
-    public ModelAndView unlockMemberAccount(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+        mv.setViewName(BaseConstants.FWD_SUCCESS);
+        return mv;
+    }
+
+    @RequestMapping(value="/unlockMemberAccount", method= RequestMethod.POST)
+    public ModelAndView unlockMemberAccount(@ModelAttribute("member")MemberVO memberVO, BindingResult result, SessionStatus status,
+                                          HttpServletRequest request,
+                                          HttpServletResponse response, Errors errors) throws
+            Exception {
+
+        ModelAndView mv = new ModelAndView();
 
 		if (!adminSecurityCheck(request)) {
 			return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
 		}
 
-		MemberForm memberForm = (MemberForm) form;
-		ActionMessages msgs = new ActionMessages();
-
-		if (!memService.unLockMemberAccount(memberForm.getMemberUserName(), getLastModifiedBy(request))) {
-			msgs.add(BaseConstants.FATAL_KEY, new ActionMessage("message.membernotfound"));
+		if (!memService.unLockMemberAccount(memberVO.getMemberUserName(), getLastModifiedBy(request))) {
+            errors.rejectValue(BaseConstants.FATAL_KEY, "message.membernotfound");
 		}
 
-		return new ModelAndView(BaseConstants.FWD_SUCCESS);
-	} 
-    
-    
-    public ModelAndView displayMyDesktop(HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
+        mv.setViewName(BaseConstants.FWD_SUCCESS);
+		return mv;
+	}
 
-      if (isCancelled(request)) {
-        return new ModelAndView(BaseConstants.FWD_CANCEL);
-      }
+    @RequestMapping(value="/displayMyDesktop", method= RequestMethod.POST)
+    public ModelAndView displayMyDesktop(@ModelAttribute("member")MemberVO memberVO, BindingResult result, SessionStatus status,
+                                            HttpServletRequest request,
+                                            HttpServletResponse response, Errors errors) throws
+            Exception {
+
+        ModelAndView mv = new ModelAndView();
+//      if (isCancelled(request)) {
+//        return new ModelAndView(BaseConstants.FWD_CANCEL);
+//      }
 
       if (!adminSecurityCheck(request)) {
         return new ModelAndView(BaseConstants.FWD_ADMIN_LOGIN);
@@ -494,46 +514,45 @@ public class MaintainMemberAction  extends MyAlumniBaseController {
       }
       else if (tab.equalsIgnoreCase(BaseConstants.FWD_SYSTEM_MODULE)){
 //    	perform any extra tasks to display page
-    	  ActionMessages errors = new ActionMessages();
     	  
     	  SystemConfigVO sysConfig = sysConfigSerivce.getSystemConfig();
     	  
     	  if (sysConfig.getHasDormitory() == null || sysConfig.getHasDormitory().length() == 0){
-    		  errors.add(BaseConstants.WARN_KEY, new ActionMessage("core.errorcode.00801"));
+    		  errors.rejectValue(BaseConstants.WARN_KEY, "core.errorcode.00801");
     	  }
     	  
     	  if (sysConfig.getOrganizationName() == null || sysConfig.getOrganizationName().length() == 0){
-    		  errors.add(BaseConstants.WARN_KEY, new ActionMessage("core.errorcode.00802"));
+    		 errors.rejectValue(BaseConstants.WARN_KEY, "core.errorcode.00802");
     	  }
     	  
     	  if (sysConfig.getOrgEmail() == null || sysConfig.getOrgEmail().length() == 0){
-    		  errors.add(BaseConstants.WARN_KEY, new ActionMessage("core.errorcode.00803"));
+    		 errors.rejectValue(BaseConstants.WARN_KEY, "core.errorcode.00803");
     	  }
     	  
     	  if (sysConfig.getOrgFirstYear() == null || sysConfig.getOrgFirstYear().length() == 0){
-    		  errors.add(BaseConstants.WARN_KEY, new ActionMessage("core.errorcode.00804"));
+    		 errors.rejectValue(BaseConstants.WARN_KEY, "core.errorcode.00804");
     	  }
     	  
     	  if (sysConfig.getRssUrl() == null || sysConfig.getRssUrl().length() == 0){
-    		  errors.add(BaseConstants.WARN_KEY, new ActionMessage("core.errorcode.00805"));
+    		 errors.rejectValue(BaseConstants.WARN_KEY, "core.errorcode.00805");
     	  }
     	  
     	  if (sysConfig.getServerUrl() == null || sysConfig.getServerUrl().length() == 0){
-    		  errors.add(BaseConstants.WARN_KEY, new ActionMessage("core.errorcode.00806"));
+    		 errors.rejectValue(BaseConstants.WARN_KEY, "core.errorcode.00806");
     	  }
     	  
     	  if (sysConfig.getSessionTimeout() == null || sysConfig.getSessionTimeout().length() == 0){
-    		  errors.add(BaseConstants.WARN_KEY, new ActionMessage("core.errorcode.00807"));
+    		 errors.rejectValue(BaseConstants.WARN_KEY, "core.errorcode.00807");
     	  }
     	  
     	  if (sysConfig.getOrgAboutUs() == null || sysConfig.getOrgAboutUs().length() == 0){
-    		  errors.add(BaseConstants.WARN_KEY, new ActionMessage("core.errorcode.00808"));
+    		 errors.rejectValue(BaseConstants.WARN_KEY, "core.errorcode.00808");
     	  }  
     	  
     	  if (sysConfig.getBirthdayNotification() == null || sysConfig.getBirthdayNotification().length() == 0){
-    		  errors.add(BaseConstants.WARN_KEY, new ActionMessage("core.errorcode.00809"));
+    		 errors.rejectValue(BaseConstants.WARN_KEY, "core.errorcode.00809");
     	  }  
-    	  saveMessages(request, errors);
+    	  //saveMessages(request, errors);
     	  
       }
       else if (tab.equalsIgnoreCase(BaseConstants.FWD_ADMIN_MODULE)){

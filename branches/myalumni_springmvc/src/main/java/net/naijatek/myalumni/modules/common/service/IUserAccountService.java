@@ -64,21 +64,20 @@ public interface IUserAccountService {
 	    * Emails the password for a specified user.  This method is invoked when the
 	    * user clicks on "Forgot Password" link.
 	    *
-	    * @param <b>userName</b> - userName of the user whose password has to be notified.
-	    * @param <b>langId</b> - Languague used by the user.
+	    * @param userName - userName of the user whose password has to be notified.
 	    *
-	    * @throws <b>UserAccountException</b> if the user cannot be notified.
+	    * @throws UserAccountException if the user cannot be notified.
 	    */
 	    public void notifyPassword(String userName,HttpServletRequest request) throws UserAccountException;
 
 	    /**
 	    * Changes the password for the user.
 	    *
-	    * @param <b>userName</b> - username specified by the user during login
-	    * @param <b>oldPassword</b> - old password value
-	    * @param <b>newPassword</b> - New password value
+	    * @param userName - username specified by the user during login
+	    * @param oldPassword - old password value
+	    * @param newPassword - New password value
 	    *
-	    * @throws <b>UserAccountException</b> if the password cannot be updated.
+	    * @throws UserAccountException if the password cannot be updated.
 	    */
 	    public void changePassword(String userName,
 	                               String oldPassword, String newPassword) throws UserAccountException;   
@@ -87,11 +86,11 @@ public interface IUserAccountService {
 	    /**
 	    * Changes the password for the user based on the temp apssword provided.
 	    *
-	    * @param <b>userName</b> - username specified by the user during login
-	    * @param <b>newPassword</b> - New password value
-	    * @param <b>tempPassword</b> - Temp password value
+	    * @param userName - username specified by the user during login
+	    * @param newPassword - New password value
+	    * @param tempPassword - Temp password value
 	    *
-	    * @throws <b>UserAccountException</b> if the password cannot be updated.
+	    * @throws UserAccountException if the password cannot be updated.
 	    */
 	    public void updateExpiredPassword(String userName, String newPassword, String tempPassword) throws UserAccountException;
 	    
@@ -99,7 +98,6 @@ public interface IUserAccountService {
 	     * Log the user out of the system.
 	     * 
 	     * @param username user id.
-	     * @param organizationId organization id.
 	     */
 	      public void logout(String username);
 
@@ -107,26 +105,25 @@ public interface IUserAccountService {
 	     * Authenticates the user's credentials and either returns a SecurityToken for the
 	     * user or throw a security exception.
 	     * 
-	     * @throws <b> UserAccountException </b> if user cannot be validated.
+	     * @throws  UserAccountException  if user cannot be validated.
 	     * 
-	     * @return <b> token </b> authentication object.
+	     * @return  token  authentication object.
 	     * 
-	     * @param <b> username </b> username .
-	     * @param <b> password </b> password.
+	     * @param  username  username .
+	     * @param  password  password.
 	     */
 	     public MemberVO login(String username, String password, String ipAddress) throws UserAccountException;
 
 	     /**
 	     * Logs the system access for the user.
 	     * 
-	     * @param <b> access </b> access history object.
+	     * @param  access  access history object.
 	     */
 	     public void addAccessTrail(LoginHistoryVO access);
 	     
 	     /**
 	     * Locks user account
-	     * 
-	     * @param <b> access </b> access history object.
+	     *
 	     */
 	     public boolean lockMemberAccount(String username);
 	     
@@ -136,10 +133,9 @@ public interface IUserAccountService {
 		    * Emails the username for a specified user.  This method is invoked when the
 		    * user clicks on "Forgot UserName" link.
 		    *
-		    * @param <b>email</b> - email of the user whose username has to be notified.
-		    * @param <b>langId</b> - Languague used by the user.
+		    * @param   email - email of the user whose username has to be notified.
 		    *
-		    * @throws <b>UserAccountException</b> if the user cannot be notified.
+		    * @throws UserAccountException if the user cannot be notified.
 		    */
 		    public void notifyUserName(String email,HttpServletRequest request) throws UserAccountException;	     
 
