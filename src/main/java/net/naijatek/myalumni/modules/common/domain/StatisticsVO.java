@@ -69,6 +69,8 @@ public class StatisticsVO extends MyAlumniBaseVO {
 	
 	private Map<String, Integer> emailMap = new HashMap<String, Integer>();
 
+
+
 	public StatisticsVO() {
 		super();
 	}

@@ -46,6 +46,7 @@ import javax.servlet.ServletException;
 
 import net.naijatek.myalumni.modules.common.domain.ScrollVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
+import net.naijatek.myalumni.modules.common.domain.ValueLabelItem;
 import net.naijatek.myalumni.modules.common.helper.DropDownCacheBuilder;
 import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
 import net.naijatek.myalumni.modules.common.service.ISystemTaskService;
@@ -56,7 +57,6 @@ import net.naijatek.myalumni.util.utilities.AppProp;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.util.LabelValueBean;
 import org.springframework.beans.BeansException;
 import org.springframework.web.context.ContextLoaderServlet;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -208,8 +208,8 @@ public class MyAlumniStartupServlet extends DispatcherServlet {
 		// --------------------------------------------------
 
 		// Gender
-		List<LabelValueBean> gender = new ArrayList<LabelValueBean>();
-		gender.add(new LabelValueBean(appProp.getValue("label.male"),
+		List<ValueLabelItem> gender = new ArrayList<ValueLabelItem>();
+		gender.add(new ValueLabelItem(appProp.getValue("label.male"),
 				BaseConstants.GENDER_MALE));
 		gender.add(new LabelValueBean(appProp.getValue("label.female"),
 				BaseConstants.GENDER_FEMALE));

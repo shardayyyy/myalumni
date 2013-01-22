@@ -24,6 +24,13 @@
 			<value>Messages</value>
 		</property>
 	</bean>
+
+    <!-- Configure the multipart resolver -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="500000"/>
+        <property name=""
+    </bean>
 	
 	<!--  If using JNDI
  	<jee:jndi-lookup id="dataSourceJNDI" jndi-name="java:comp/env/jdbc/datasource" resource-ref="true" />  -->
@@ -56,7 +63,12 @@
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
-
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="en_US" />
+        <!--Locale locale = RequestContextUtils.getLocale(request);-->
+        <!--String country = locale.getCountry();-->
+        <!--String language = locale.getLanguage();-->
+    </bean>
 <!--
     <tx:advice id="txAdvice">
         <tx:attributes>

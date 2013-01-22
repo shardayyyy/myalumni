@@ -39,275 +39,353 @@
 package net.naijatek.myalumni.modules.common.domain;
 
 
+import net.naijatek.myalumni.util.BaseConstants;
+
 import java.util.Date;
 
 /**
- *
  * <p>Title: MyAlumni</p>
  * <p>Description: </p>
  * <p>Copyright: Copyright (c) 2003</p>
  * <p>Company: Naijatek Solutions</p>
+ *
  * @author Folashade Adeyosoye
  * @version 1.0
  */
 
-public class PrivateMessageVO  extends MyAlumniBaseVO{
+public class PrivateMessageVO extends MyAlumniBaseVO {
+
+    private MemberVO messageToMember;
+    private MemberVO messageFromMember;
+
+    private String toWebmaster;
+
+    private String messageId;
+    private String memberUserName;
+    private String folderName;
+    private String priority = BaseConstants.PRIORITY_NORMAL;
+    private String subject;
+    private Date messageDate;  // Timestamp
+    private String ipAddress;
+    private String messageText;
+    private String messageFromUserName;
+    private String messageStatus;
+
+    private String messageFromUserId;
+    private String messageToUserId;
 
-	private String messageId;
-	private String messageToUserId;
-	private MemberVO messageToMember;
-	private String messageFromUserId;
-	private MemberVO messageFromMember;
-	private String folderName;
-	private String priority;
-	private String subject;
-	private Date messageDate;
-	private String ipAddress;
-	private String messageText;
-	private String messageStatus;
-	private String copyMe ;
-	private String toWebmaster;
-	private String messageToUserName;
-	
-	// Non Database Support Attributes
-	private String privMsgsAction;
-	private String privAdminDelete;
-	private String privAdminMove;
-	private String type;	
-	private String RoleType;
-	private String guestEmail;
-	private String guestName;
-	
-	
-  public String getGuestName() {
-		return guestName;
-	}
+    private String messageToUserName;
 
+    // Non Database Support Attributes
+    private String privMsgsAction;
+    private String privAdminDelete;
+    private String privAdminMove;
+    private String type;
+    private String fromMemberFirstName;
+    private String fromMemberLastName;
+    private String toMemberFirstName;
+    private String toMemberLastName;
+    private String toUserName;
+    private String fromUserName;
+    private String copyMe = BaseConstants.BOOLEAN_NO;
+    private String RoleType;
+    private String guestEmail;
+    private String guestName;
 
-	public void setGuestName(String guestName) {
-		this.guestName = guestName;
-	}
 
+    public String getMemberUserName() {
+        return memberUserName;
+    }
 
-public String getRoleType() {
-		return RoleType;
-	}
+    public void setMemberUserName(String memberUserName) {
+        this.memberUserName = memberUserName;
+    }
 
+    public String getMessageFromUserName() {
+        return messageFromUserName;
+    }
 
-	public void setRoleType(String roleType) {
-		RoleType = roleType;
-	}
+    public void setMessageFromUserName(String messageFromUserName) {
+        this.messageFromUserName = messageFromUserName;
+    }
 
+    public String getToUserName() {
+        return toUserName;
+    }
 
-public PrivateMessageVO(String id) {
-  	this.messageId = id;
-	}
+    public void setToUserName(String toUserName) {
+        this.toUserName = toUserName;
+    }
 
-  
-  /**
-   * Constructor
-   */
-  public PrivateMessageVO() {
-    super();
-  }
+    public String getFromUserName() {
+        return fromUserName;
+    }
 
+    public void setFromUserName(String fromUserName) {
+        this.fromUserName = fromUserName;
+    }
 
-public String getFolderName() {
-	return folderName;
-}
+    public String getFromMemberFirstName() {
+        return fromMemberFirstName;
+    }
 
+    public void setFromMemberFirstName(String fromMemberFirstName) {
+        this.fromMemberFirstName = fromMemberFirstName;
+    }
 
-public void setFolderName(String folderName) {
-	this.folderName = folderName;
-}
+    public String getFromMemberLastName() {
+        return fromMemberLastName;
+    }
 
+    public void setFromMemberLastName(String fromMemberLastName) {
+        this.fromMemberLastName = fromMemberLastName;
+    }
 
-public String getIpAddress() {
-	return ipAddress;
-}
+    public String getToMemberFirstName() {
+        return toMemberFirstName;
+    }
 
+    public void setToMemberFirstName(String toMemberFirstName) {
+        this.toMemberFirstName = toMemberFirstName;
+    }
 
-public void setIpAddress(String ipAddress) {
-	this.ipAddress = ipAddress;
-}
+    public String getToMemberLastName() {
+        return toMemberLastName;
+    }
 
+    public void setToMemberLastName(String toMemberLastName) {
+        this.toMemberLastName = toMemberLastName;
+    }
 
-public Date getMessageDate() {
-	return messageDate;
-}
 
+    public String getGuestName() {
+        return guestName;
+    }
 
-public void setMessageDate(Date messageDate) {
-	this.messageDate = messageDate;
-}
 
-public String getMessageId() {
-	return messageId;
-}
+    public void setGuestName(String guestName) {
+        this.guestName = guestName;
+    }
 
 
-public void setMessageId(String messageId) {
-	this.messageId = messageId;
-}
+    public String getRoleType() {
+        return RoleType;
+    }
 
 
-public String getMessageStatus() {
-	return messageStatus;
-}
+    public void setRoleType(String roleType) {
+        RoleType = roleType;
+    }
 
 
-public void setMessageStatus(String messageStatus) {
-	this.messageStatus = messageStatus;
-}
+    public PrivateMessageVO(String id) {
+        this.messageId = id;
+    }
 
 
-public String getMessageText() {
-	return messageText;
-}
+    /**
+     * Constructor
+     */
+    public PrivateMessageVO() {
+        super();
+    }
 
 
-public void setMessageText(String messageText) {
-	this.messageText = messageText;
-}
+    public String getFolderName() {
+        return folderName;
+    }
 
 
-public String getPriority() {
-	return priority;
-}
+    public void setFolderName(String folderName) {
+        this.folderName = folderName;
+    }
 
 
-public void setPriority(String priority) {
-	this.priority = priority;
-}
+    public String getIpAddress() {
+        return ipAddress;
+    }
 
 
-public String getSubject() {
-	return subject;
-}
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
 
 
-public void setSubject(String subject) {
-	this.subject = subject;
-}
+    public Date getMessageDate() {
+        return messageDate;
+    }
 
 
-public String getCopyMe() {
-	return copyMe;
-}
+    public void setMessageDate(Date messageDate) {
+        this.messageDate = messageDate;
+    }
 
+    public String getMessageId() {
+        return messageId;
+    }
 
-public void setCopyMe(String copyMe) {
-	this.copyMe = copyMe;
-}
 
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
+    }
 
-public String getPrivAdminDelete() {
-	return privAdminDelete;
-}
 
+    public String getMessageStatus() {
+        return messageStatus;
+    }
 
-public void setPrivAdminDelete(String privAdminDelete) {
-	this.privAdminDelete = privAdminDelete;
-}
 
+    public void setMessageStatus(String messageStatus) {
+        this.messageStatus = messageStatus;
+    }
 
-public String getPrivAdminMove() {
-	return privAdminMove;
-}
 
+    public String getMessageText() {
+        return messageText;
+    }
 
-public void setPrivAdminMove(String privAdminMove) {
-	this.privAdminMove = privAdminMove;
-}
 
+    public void setMessageText(String messageText) {
+        this.messageText = messageText;
+    }
 
-public String getPrivMsgsAction() {
-	return privMsgsAction;
-}
 
+    public String getPriority() {
+        return priority;
+    }
 
-public void setPrivMsgsAction(String privMsgsAction) {
-	this.privMsgsAction = privMsgsAction;
-}
 
-public String getType() {
-	return type;
-}
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
 
 
-public void setType(String type) {
-	this.type = type;
-}
+    public String getSubject() {
+        return subject;
+    }
 
-public String getGuestEmail() {
-	return guestEmail;
-}
 
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
 
-public void setGuestEmail(String guestEmail) {
-	this.guestEmail = guestEmail;
-}
 
+    public String getCopyMe() {
+        return copyMe;
+    }
 
-public MemberVO getMessageFromMember() {
-	return messageFromMember;
-}
 
+    public void setCopyMe(String copyMe) {
+        this.copyMe = copyMe;
+    }
 
-public void setMessageFromMember(MemberVO messageFromMember) {
-	this.messageFromMember = messageFromMember;
-}
 
+    public String getPrivAdminDelete() {
+        return privAdminDelete;
+    }
 
-public String getMessageFromUserId() {
-	return messageFromUserId;
-}
 
+    public void setPrivAdminDelete(String privAdminDelete) {
+        this.privAdminDelete = privAdminDelete;
+    }
 
-public void setMessageFromUserId(String messageFromUserId) {
-	this.messageFromUserId = messageFromUserId;
-}
 
+    public String getPrivAdminMove() {
+        return privAdminMove;
+    }
 
-public MemberVO getMessageToMember() {
-	return messageToMember;
-}
 
+    public void setPrivAdminMove(String privAdminMove) {
+        this.privAdminMove = privAdminMove;
+    }
 
-public void setMessageToMember(MemberVO messageToMember) {
-	this.messageToMember = messageToMember;
-}
 
+    public String getPrivMsgsAction() {
+        return privMsgsAction;
+    }
 
-public String getMessageToUserId() {
-	return messageToUserId;
-}
 
+    public void setPrivMsgsAction(String privMsgsAction) {
+        this.privMsgsAction = privMsgsAction;
+    }
 
-public void setMessageToUserId(String messageToUserId) {
-	this.messageToUserId = messageToUserId;
-}
+    public String getType() {
+        return type;
+    }
 
 
-public String getToWebmaster() {
-	return toWebmaster;
-}
+    public void setType(String type) {
+        this.type = type;
+    }
 
+    public String getGuestEmail() {
+        return guestEmail;
+    }
 
-public void setToWebmaster(String toWebmaster) {
-	this.toWebmaster = toWebmaster;
-}
 
+    public void setGuestEmail(String guestEmail) {
+        this.guestEmail = guestEmail;
+    }
 
-public String getMessageToUserName() {
-	return messageToUserName;
-}
 
+    public MemberVO getMessageFromMember() {
+        return messageFromMember;
+    }
 
-public void setMessageToUserName(String messageToUserName) {
-	this.messageToUserName = messageToUserName;
-}
- 
-  
-  
+
+    public void setMessageFromMember(MemberVO messageFromMember) {
+        this.messageFromMember = messageFromMember;
+    }
+
+
+    public String getMessageFromUserId() {
+        return messageFromUserId;
+    }
+
+
+    public void setMessageFromUserId(String messageFromUserId) {
+        this.messageFromUserId = messageFromUserId;
+    }
+
+
+    public MemberVO getMessageToMember() {
+        return messageToMember;
+    }
+
+
+    public void setMessageToMember(MemberVO messageToMember) {
+        this.messageToMember = messageToMember;
+    }
+
+
+    public String getMessageToUserId() {
+        return messageToUserId;
+    }
+
+
+    public void setMessageToUserId(String messageToUserId) {
+        this.messageToUserId = messageToUserId;
+    }
+
+
+    public String getToWebmaster() {
+        return toWebmaster;
+    }
+
+
+    public void setToWebmaster(String toWebmaster) {
+        this.toWebmaster = toWebmaster;
+    }
+
+
+    public String getMessageToUserName() {
+        return messageToUserName;
+    }
+
+
+    public void setMessageToUserName(String messageToUserName) {
+        this.messageToUserName = messageToUserName;
+    }
+
+
 } //end of class PrivateMessageBean

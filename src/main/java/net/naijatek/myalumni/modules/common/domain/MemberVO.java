@@ -44,20 +44,40 @@ import java.util.Date;
 import java.util.List;
 
 
+import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.utilities.StringUtil;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 
 public class MemberVO  extends MyAlumniBaseVO implements ValueLabelItem {
 
-	//@Override
-	public String getItemLabel() {
-		return getFirstName() + " " + getLastName();
-	}
+    private String approach;   // used for ajax search
 
-	//@Override
-	public String getItemValue() {
-		return getMemberId();
-	}
+
+    private String messageToUserName;
+    private String memberTempUserName;
+    private String oldMemberPassword;
+    private String memberPasswordConfirm;
+    private String activated;
+    private String emailConfirm ;
+    private String careerOther;
+
+    private String promptChange = BaseConstants.BOOLEAN_NO; // if user should be prompted for memberPassword change
+
+
+    //	 Non Database Support Attributes
+    private String searchCategory;
+    private String searchCriteria;
+    private String ajaxFormat;
+    private CommonsMultipartFile avatarUpload;
+    private String avatarUploadOverwrite;
+    private String adminAction;
+    private String adminDisplay;
+    private String deleteConfirm;
+    private String guestEmail;
+
+
+    //-----------------------------
 
 	private String memberId;
 	private String memberUserName;
@@ -101,14 +121,14 @@ public class MemberVO  extends MyAlumniBaseVO implements ValueLabelItem {
 	private String comments;
 	private String adminComments;
 	private Date dob;
-	private String hideEmail;
-	private String hideAddress;
-	private String hidePhone;
-	private String hideIm;
-	
-	private String[] lstSelectedIMs;
-	private String[] lstAvailableIMs;
-	private List<XlatDetailVO> messengers = new ArrayList<XlatDetailVO>();
+    private String hideEmail = BaseConstants.BOOLEAN_NO;
+    private String hideAddress = BaseConstants.BOOLEAN_NO;
+    private String hidePhone = BaseConstants.BOOLEAN_NO;
+    private String hideIm = BaseConstants.BOOLEAN_NO;
+
+    private String[] lstSelectedIMs;
+    private String[] lstAvailableIMs;
+    private List<XlatDetailVO> messengers = new ArrayList<XlatDetailVO>();
     
     
 	// Other Attributes
@@ -118,18 +138,170 @@ public class MemberVO  extends MyAlumniBaseVO implements ValueLabelItem {
 	private boolean overWriteAvatar = false;  // for the update avatar
     private String[] lstAvailableUsers;
     private String[] lstSelectedUsers;
-	private String promptChange; // if user should be prompted for memberPassword change
-	
-	
+
+
+
+    //@Override
+    public String getItemLabel() {
+        return getFirstName() + " " + getLastName();
+    }
+
+    //@Override
+    public String getItemValue() {
+        return getMemberId();
+    }
+
+
     // iphone
     private String alpha;
-	
-	
-	
 
-  
-//	 Non Database Support Attributes
-	private String partialNameSearch ;
+
+    public String getApproach() {
+        return approach;
+    }
+
+    public void setApproach(String approach) {
+        this.approach = approach;
+    }
+
+    public String getMessageToUserName() {
+        return messageToUserName;
+    }
+
+    public void setMessageToUserName(String messageToUserName) {
+        this.messageToUserName = messageToUserName;
+    }
+
+    public String getMemberTempUserName() {
+        return memberTempUserName;
+    }
+
+    public void setMemberTempUserName(String memberTempUserName) {
+        this.memberTempUserName = memberTempUserName;
+    }
+
+    public String getOldMemberPassword() {
+        return oldMemberPassword;
+    }
+
+    public void setOldMemberPassword(String oldMemberPassword) {
+        this.oldMemberPassword = oldMemberPassword;
+    }
+
+    public String getMemberPasswordConfirm() {
+        return memberPasswordConfirm;
+    }
+
+    public void setMemberPasswordConfirm(String memberPasswordConfirm) {
+        this.memberPasswordConfirm = memberPasswordConfirm;
+    }
+
+    public String getActivated() {
+        return activated;
+    }
+
+    public void setActivated(String activated) {
+        this.activated = activated;
+    }
+
+    public String getEmailConfirm() {
+        return emailConfirm;
+    }
+
+    public void setEmailConfirm(String emailConfirm) {
+        this.emailConfirm = emailConfirm;
+    }
+
+    public String getCareerOther() {
+        return careerOther;
+    }
+
+    public void setCareerOther(String careerOther) {
+        this.careerOther = careerOther;
+    }
+
+    public String getSearchCategory() {
+        return searchCategory;
+    }
+
+    public void setSearchCategory(String searchCategory) {
+        this.searchCategory = searchCategory;
+    }
+
+    public String getSearchCriteria() {
+        return searchCriteria;
+    }
+
+    public void setSearchCriteria(String searchCriteria) {
+        this.searchCriteria = searchCriteria;
+    }
+
+    public String getAjaxFormat() {
+        return ajaxFormat;
+    }
+
+    public void setAjaxFormat(String ajaxFormat) {
+        this.ajaxFormat = ajaxFormat;
+    }
+
+    public CommonsMultipartFile getAvatarUpload() {
+        return avatarUpload;
+    }
+
+    public void setAvatarUpload(CommonsMultipartFile avatarUpload) {
+        this.avatarUpload = avatarUpload;
+    }
+
+    public String getAvatarUploadOverwrite() {
+        return avatarUploadOverwrite;
+    }
+
+    public void setAvatarUploadOverwrite(String avatarUploadOverwrite) {
+        this.avatarUploadOverwrite = avatarUploadOverwrite;
+    }
+
+    public String getAdminAction() {
+        return adminAction;
+    }
+
+    public void setAdminAction(String adminAction) {
+        this.adminAction = adminAction;
+    }
+
+    public String getAdminDisplay() {
+        return adminDisplay;
+    }
+
+    public void setAdminDisplay(String adminDisplay) {
+        this.adminDisplay = adminDisplay;
+    }
+
+    public String getDeleteConfirm() {
+        return deleteConfirm;
+    }
+
+    public void setDeleteConfirm(String deleteConfirm) {
+        this.deleteConfirm = deleteConfirm;
+    }
+
+    public String getGuestEmail() {
+        return guestEmail;
+    }
+
+    public void setGuestEmail(String guestEmail) {
+        this.guestEmail = guestEmail;
+    }
+
+    public String getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(String admin) {
+        isAdmin = admin;
+    }
+
+    //	 Non Database Support Attributes
+    private String partialNameSearch = BaseConstants.BOOLEAN_NO;
 	
 
   public String getPartialNameSearch() {
@@ -140,12 +312,12 @@ public class MemberVO  extends MyAlumniBaseVO implements ValueLabelItem {
 		this.partialNameSearch = partialNameSearch;
 	}
 
-	public MemberVO() {
-	  }
+        public MemberVO() {
+          }
 	
-  public MemberVO(String id) {
-  	this.memberId = id;
-	}
+      public MemberVO(String id) {
+        this.memberId = id;
+        }
 
 		public String getActivationCode() {
 			return activationCode;

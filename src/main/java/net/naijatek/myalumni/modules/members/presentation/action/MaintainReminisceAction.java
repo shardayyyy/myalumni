@@ -46,7 +46,8 @@ import javax.servlet.http.HttpServletResponse;
 import net.naijatek.myalumni.framework.extensions.MyAlumniBaseController;
 import net.naijatek.myalumni.modules.common.domain.ReminisceVO;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
-import net.naijatek.myalumni.modules.common.presentation.form.ReminisceForm;
+import net.naijatek.myalumni.modules.common.helper.MyAlumniMessage;
+import net.naijatek.myalumni.modules.common.helper.MyAlumniMessages;
 import net.naijatek.myalumni.modules.common.service.IReminisceService;
 import net.naijatek.myalumni.util.BaseConstants;
 
@@ -55,6 +56,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -71,8 +77,11 @@ public class MaintainReminisceAction extends MyAlumniBaseController {
 	 * { this.reminisceService = reminisceService; }
 	 */
 
-	public ModeAndView listReminisce(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+    @RequestMapping(value="/listReminisce", method= RequestMethod.POST)
+    public ModelAndView listReminisce(@ModelAttribute("reminisce")ReminisceVO reminisceVO, BindingResult result, SessionStatus status,
+                                                   HttpServletRequest request,
+                                                   HttpServletResponse response) throws
+            Exception {
 		logger.debug("in listReminisce");
 
 		List<ReminisceVO> list = reminisceService
@@ -81,8 +90,11 @@ public class MaintainReminisceAction extends MyAlumniBaseController {
 		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
-	public ModelAndView prepareAddReminisce(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+    @RequestMapping(value="/prepareAddReminisce", method= RequestMethod.POST)
+    public ModelAndView prepareAddReminisce(@ModelAttribute("reminisce")ReminisceVO reminisceVO, BindingResult result, SessionStatus status,
+                                      HttpServletRequest request,
+                                      HttpServletResponse response) throws
+            Exception {
 		logger.debug("in prepareAddReminisce");
 
 		MemberVO token = getCurrentLoggedInUser(request);
@@ -92,33 +104,31 @@ public class MaintainReminisceAction extends MyAlumniBaseController {
 			return new ModelAndView(BaseConstants.FWD_LOGIN);
 		}
 
-		ReminisceForm cnForm = (ReminisceForm) form;
-
-		cnForm.setFromYear(String.valueOf(token.getYearIn()));
-		cnForm.setToYear(String.valueOf(token.getYearOut()));
+        reminisceVO.setFromYear(String.valueOf(token.getYearIn()));
+        reminisceVO.setToYear(String.valueOf(token.getYearOut()));
 
 		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 	}
 
-	public ModelAndView addReminisce(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+    @RequestMapping(value="/addReminisce", method= RequestMethod.POST)
+    public ModelAndView addReminisce(@ModelAttribute("reminisce")ReminisceVO reminisceVO, BindingResult result, SessionStatus status,
+                                            HttpServletRequest request,
+                                            HttpServletResponse response) throws
+            Exception {
 
 		logger.debug("in prepareAddReminisce");
 
-		if (isCancelled(request)) {
-			return new ModelAndView(BaseConstants.FWD_CANCEL);
-		}
+//		if (isCancelled(request)) {
+//			return new ModelAndView(BaseConstants.FWD_CANCEL);
+//		}
 
-		ReminisceForm cnForm = (ReminisceForm) form;
-		ReminisceVO cnVO = new ReminisceVO();
 
-		BeanUtils.copyProperties(cnVO, cnForm);
-		cnVO.setLastModifiedBy(getLastModifiedBy(request));
-		cnVO.setAuthorId(getCurrentUserId(request));
-		reminisceService.save(cnVO);
-		ActionMessages errors = new ActionMessages();
-		errors.add(BaseConstants.INFO_KEY, new ActionMessage(
-				"message.reminiscesubmitted"));
+
+        reminisceVO.setLastModifiedBy(getLastModifiedBy(request));
+        reminisceVO.setAuthorId(getCurrentUserId(request));
+		reminisceService.save(reminisceVO);
+		MyAlumniMessages errors = new MyAlumniMessages();
+		errors.add(BaseConstants.INFO_KEY, new MyAlumniMessage("message.reminiscesubmitted"));
 		saveMessages(request, errors);
 		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 

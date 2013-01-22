@@ -62,7 +62,6 @@ import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
 import net.naijatek.myalumni.modules.common.helper.MyAlumniMessage;
 import net.naijatek.myalumni.modules.common.helper.MyAlumniMessages;
 import net.naijatek.myalumni.modules.common.helper.PrivateMessageHelper;
-import net.naijatek.myalumni.modules.common.presentation.form.MemberForm;
 import net.naijatek.myalumni.modules.common.service.IClassNewsService;
 import net.naijatek.myalumni.modules.common.service.IMemberService;
 import net.naijatek.myalumni.modules.common.service.IPrivateMessageService;
@@ -324,7 +323,7 @@ public abstract class MyAlumniBaseController extends AbstractController {
 	// -----------------------------------------------------------------------------------
 
 	
-	protected List<MemberVO> baseMemberSearch(final MemberForm memberForm,
+	protected List<MemberVO> baseMemberSearch(final MemberVO memberForm,
 			final HttpServletRequest req, int searchCount,
 			final IMemberService memService, final String isAdmin)
 			throws Exception {

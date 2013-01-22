@@ -47,7 +47,6 @@ import net.naijatek.myalumni.framework.extensions.MyAlumniBaseController;
 import net.naijatek.myalumni.modules.common.domain.FrontPageVO;
 import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
 import net.naijatek.myalumni.modules.common.domain.XlatGroupVO;
-import net.naijatek.myalumni.modules.common.presentation.form.FrontPageForm;
 import net.naijatek.myalumni.modules.common.presentation.form.SystemGroupForm;
 import net.naijatek.myalumni.modules.common.service.IFrontPageService;
 import net.naijatek.myalumni.modules.common.service.IXlatGroupService;

@@ -38,18 +38,21 @@
  */
 package net.naijatek.myalumni.modules.common.domain;
 
+import net.naijatek.myalumni.util.BaseConstants;
+
 public class FrontPageVO extends MyAlumniBaseVO {
 
-	private String linkId ;
-	private String label;
-	private String linkurl;
-	private String important;
-	private String status;
-	
-	
-	
 
-	public String getStatus() {
+    private String linkId ;
+    private String label;
+    private String linkurl;
+    private String important = BaseConstants.BOOLEAN_NO;
+    private String status;
+
+
+
+
+    public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {

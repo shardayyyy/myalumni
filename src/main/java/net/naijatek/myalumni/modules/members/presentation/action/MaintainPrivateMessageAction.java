@@ -47,8 +47,9 @@ import net.naijatek.myalumni.framework.extensions.MyAlumniUserContainer;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.domain.PrivateMessageVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
+import net.naijatek.myalumni.modules.common.helper.MyAlumniMessage;
+import net.naijatek.myalumni.modules.common.helper.MyAlumniMessages;
 import net.naijatek.myalumni.modules.common.helper.PrivateMessageHelper;
-import net.naijatek.myalumni.modules.common.presentation.form.PrivateMessageForm;
 import net.naijatek.myalumni.modules.common.service.IMemberService;
 import net.naijatek.myalumni.modules.common.service.IPrivateMessageService;
 import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
@@ -58,16 +59,15 @@ import net.naijatek.myalumni.util.mail.SendMailUtil;
 import net.naijatek.myalumni.util.utilities.DateFormatUtil;
 import net.naijatek.myalumni.util.utilities.StringUtil;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -91,17 +91,16 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
         this.memService = memService;
         this.sysConfigSerivce = sysConfigSerivce;
     }*/
-    
-    
-    public ModelAndView deleteMail(ActionMapping mapping,
-                                       ActionForm form,
-                                       HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
 
-      if (isCancelled(request)) {
-        return new ModelAndView(BaseConstants.FWD_CANCEL);
-      }
+    @RequestMapping(value="/deleteMail", method= RequestMethod.POST)
+    public ModelAndView deleteMail(@ModelAttribute("privateMessage")PrivateMessageVO privateMessageVO, BindingResult result, SessionStatus status,
+                                      HttpServletRequest request,
+                                      HttpServletResponse response) throws
+            Exception {
+
+//      if (isCancelled(request)) {
+//        return new ModelAndView(BaseConstants.FWD_CANCEL);
+//      }
       
       MemberVO token = getCurrentLoggedInUser(request);  
       
@@ -115,12 +114,11 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
   
         String[] mailArray = new String[0];    
 
-        PrivateMessageForm pmForm = (PrivateMessageForm)form;
         String memberId = token.getMemberId();
-        String privMsgsAction = pmForm.getPrivMsgsAction();
+        String privMsgsAction = privateMessageVO.getPrivMsgsAction();
 
-        String privAdminDelete =  StringUtil.safeString(pmForm.getPrivAdminDelete());
-        String privAdminMove = StringUtil.safeString(pmForm.getPrivAdminMove());
+        String privAdminDelete =  StringUtil.safeString(privateMessageVO.getPrivAdminDelete());
+        String privAdminMove = StringUtil.safeString(privateMessageVO.getPrivAdminMove());
 
 
         if ( privAdminDelete.equalsIgnoreCase("yes") || privAdminMove.equalsIgnoreCase("yes")){
@@ -134,10 +132,10 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
          mailArray = request.getParameterValues("messageId");
 
         if (mailArray == null) {
-          ActionMessages errors = new ActionMessages();
-          errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.selectOne"));
+          MyAlumniMessages errors = new MyAlumniMessages();
+          errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage("error.selectOne"));
           saveMessages(request, errors);
-          return mapping.getInputForward();
+          return new ModelAndView(BaseConstants.FWD_REDISPLAY);
         }
 
         /**
@@ -151,7 +149,7 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
          * MOVE MAIL
          */
         else  if (privMsgsAction.equalsIgnoreCase("move")){
-        	String toFolder = pmForm.getFolderName();
+        	String toFolder = privateMessageVO.getFolderName();
           	pmService.moveMail(mailArray, memberId, toFolder, getLastModifiedBy(request));
             doMailDuties(token, request);
         }
@@ -164,10 +162,10 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
         }
 
         else {
-           ActionMessages errors = new ActionMessages();
-           errors.add(BaseConstants.FATAL_KEY,  new ActionMessage("errors.technical.difficulty"));
+           MyAlumniMessages errors = new MyAlumniMessages();
+           errors.add(BaseConstants.FATAL_KEY,  new MyAlumniMessage("errors.technical.difficulty"));
            saveMessages(request, errors);
-           return mapping.getInputForward();
+           return new ModelAndView(BaseConstants.FWD_REDISPLAY);
          }
 
          return new ModelAndView(BaseConstants.FWD_SUCCESS);
@@ -179,13 +177,12 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
         PrivateMessageHelper pmHelper = pmService.getMessageCenter(token.getMemberId(), BaseConstants.FOLDER_INBOX, container );
         setSessionObject(request, BaseConstants.MESSAGE_CENTER , pmHelper);
     }
-    
-    //done
-    public ModelAndView listMailBox(ActionMapping mapping,
-                                       ActionForm form,
-                                       HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
+
+    @RequestMapping(value="/listMailBox", method= RequestMethod.POST)
+    public ModelAndView listMailBox(@ModelAttribute("privateMessage")PrivateMessageVO privateMessageVO, BindingResult result, SessionStatus status,
+                                   HttpServletRequest request,
+                                   HttpServletResponse response) throws
+            Exception {
 
         
       MemberVO token = getCurrentLoggedInUser(request);
@@ -200,14 +197,15 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
       PrivateMessageHelper pmHelper = pmService.getMessageCenter(token.getMemberId(), BaseConstants.FOLDER_INBOX, container );
       setSessionObject(request, BaseConstants.MESSAGE_CENTER , pmHelper);
       return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    }    
-    
-    
-    public ModelAndView displayMailFolder(ActionMapping mapping,
-                                       ActionForm form,
-                                       HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
+    }
+
+
+    @RequestMapping(value="/displayMailFolder", method= RequestMethod.POST)
+    public ModelAndView displayMailFolder(@ModelAttribute("privateMessage")PrivateMessageVO privateMessageVO, BindingResult result, SessionStatus status,
+                                    HttpServletRequest request,
+                                    HttpServletResponse response) throws
+            Exception {
+  
 
        MemberVO token = getCurrentLoggedInUser(request);
     	
@@ -215,9 +213,8 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
       if (!memberSecurityCheck(request, token)) {
         return new ModelAndView(BaseConstants.FWD_LOGIN);
       }
-      
-      PrivateMessageForm pmForm =  (PrivateMessageForm)form;     
-      String folderName = pmForm.getType();
+
+      String folderName = privateMessageVO.getType();
 
       /**
        * Checking for specific folders for now.
@@ -232,21 +229,22 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
           setSessionObject(request, BaseConstants.MESSAGE_CENTER , pmHelper);
       }
       else{
-        ActionMessages errors = new ActionMessages();
-        errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.folderdoesnotexist"));
+        MyAlumniMessages errors = new MyAlumniMessages();
+        errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage("error.folderdoesnotexist"));
         saveMessages(request, errors);
         return new ModelAndView(BaseConstants.FWD_SUCCESS);
       }
       return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    }    
-    
-    
-    
-    public ModelAndView prepareContactMessage( ActionMapping mapping,
-                                  ActionForm form,
-                                  HttpServletRequest request,
-                                  HttpServletResponse response )
-      throws Exception {
+    }
+
+
+    @RequestMapping(value="/prepareContactMessage", method= RequestMethod.POST)
+    public ModelAndView prepareContactMessage(@ModelAttribute("privateMessage")PrivateMessageVO privateMessageVO, BindingResult result, SessionStatus status,
+                                          HttpServletRequest request,
+                                          HttpServletResponse response) throws
+            Exception {
+
+
 
     MemberVO token = getCurrentLoggedInUser(request);
 
@@ -255,61 +253,60 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
       return new ModelAndView(BaseConstants.FWD_LOGIN);
     }
 
-    PrivateMessageForm pmForm = (PrivateMessageForm) form;
+    privateMessageVO.setMessageToUserId(privateMessageVO.getMessageToUserId());
+    privateMessageVO.setMessageFromUserId(token.getMemberId());
+    MemberVO memberVO = memService.getMemberProfileByMemberId(privateMessageVO.getMessageToUserId());
+    privateMessageVO.setToMemberFirstName(memberVO.getFirstName());
+    privateMessageVO.setToMemberLastName(memberVO.getLastName());
 
-    pmForm.setMessageToUserId(pmForm.getMessageToUserId());
-    pmForm.setMessageFromUserId(token.getMemberId());
-    MemberVO memberVO = memService.getMemberProfileByMemberId(pmForm.getMessageToUserId());
-    pmForm.setToMemberFirstName(memberVO.getFirstName());
-    pmForm.setToMemberLastName(memberVO.getLastName());
-    
-    pmForm.setSubject(token.getFirstName() + " " + token.getLastName() + " " + BaseConstants.CONTACT_SUBJECT);  
+    privateMessageVO.setSubject(token.getFirstName() + " " + token.getLastName() + " " + BaseConstants.CONTACT_SUBJECT);
 
     return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    }    
-    
-    
-    
-    public ModelAndView prepareComposePrivateMessage(ActionMapping mapping, ActionForm form,
-            HttpServletRequest request, 
-            HttpServletResponse response) throws Exception {
+    }
+
+
+    @RequestMapping(value="/prepareComposePrivateMessage", method= RequestMethod.POST)
+    public ModelAndView prepareComposePrivateMessage(@ModelAttribute("privateMessage")PrivateMessageVO privateMessageVO, BindingResult result, SessionStatus status,
+                                              HttpServletRequest request,
+                                              HttpServletResponse response) throws
+            Exception {
+
 
 		MemberVO token = getCurrentLoggedInUser(request);
-        ActionMessages errors = new ActionMessages();
+        MyAlumniMessages errors = new MyAlumniMessages();
 		
 		
 		// check to see if the user logged on is a member
 		if (!memberSecurityCheck(request, token)) {
 			return new ModelAndView(BaseConstants.FWD_LOGIN);
 		}
-		
-		
-	    PrivateMessageForm pmForm = (PrivateMessageForm) form;
 
-	    pmForm.setMessageToUserId(pmForm.getMessageToUserName());
-	    pmForm.setMessageFromUserId(token.getMemberId());
-	    MemberVO memberVO = memService.getMemberProfileByMemberId(pmForm.getMessageToUserId());
+        privateMessageVO.setMessageToUserId(privateMessageVO.getMessageToUserName());
+        privateMessageVO.setMessageFromUserId(token.getMemberId());
+	    MemberVO memberVO = memService.getMemberProfileByMemberId(privateMessageVO.getMessageToUserId());
 	    
 	    if (memberVO != null){
-	    	pmForm.setToMemberFirstName(memberVO.getFirstName());
-	    	pmForm.setToMemberLastName(memberVO.getLastName());
+            privateMessageVO.setToMemberFirstName(memberVO.getFirstName());
+            privateMessageVO.setToMemberLastName(memberVO.getLastName());
 	    }
 	    else{
-	        errors.add(BaseConstants.WARN_KEY, new ActionMessage("message.membernotfound"));
+	        errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage("message.membernotfound"));
 	        saveMessages(request, errors);	   
-	        return mapping.getInputForward();	        
+	        return new ModelAndView(BaseConstants.FWD_REDISPLAY);	        
 	    }
-	    
-	    pmForm.setSubject(token.getFirstName() + " " + token.getLastName() + " " + BaseConstants.CONTACT_SUBJECT);  
+
+        privateMessageVO.setSubject(token.getFirstName() + " " + token.getLastName() + " " + BaseConstants.CONTACT_SUBJECT);
 		
 		return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
-}    
+}
 
-    
-    public ModelAndView prepareReplyMessage(ActionMapping mapping, ActionForm form,
-                                       HttpServletRequest request, 
-                                       HttpServletResponse response) throws Exception {
+    @RequestMapping(value="/prepareReplyMessage", method= RequestMethod.POST)
+    public ModelAndView prepareReplyMessage(@ModelAttribute("privateMessage")PrivateMessageVO privateMessageVO, BindingResult result, SessionStatus status,
+                                                     HttpServletRequest request,
+                                                     HttpServletResponse response) throws
+            Exception {
+
 
         MemberVO token = getCurrentLoggedInUser(request);
 
@@ -318,38 +315,35 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
             return new ModelAndView(BaseConstants.FWD_LOGIN);
         }
 
-        PrivateMessageForm pmForm = (PrivateMessageForm)form;
-
         String memberId = token.getMemberId();
-        String mailId = pmForm.getMessageId();
+        String mailId = privateMessageVO.getMessageId();
         PrivateMessageVO pmVO = pmService.prepareReply(memberId, mailId);
 
         pmVO.setMessageToUserId(pmVO.getMessageFromMember().getMemberId());        
         pmVO.setMessageFromUserId(token.getMemberId());
+
         
-        BeanUtils.copyProperties(pmForm, pmVO);
-        
-        if (!pmForm.getSubject().startsWith("Re: ")) {
-        	pmForm.setSubject("Re: " + pmForm.getSubject());
+        if (!privateMessageVO.getSubject().startsWith("Re: ")) {
+            privateMessageVO.setSubject("Re: " + privateMessageVO.getSubject());
         }
-        
-        pmForm.setMessageText("\n\n\n------------------------------------------------\n" + 
+
+        privateMessageVO.setMessageText("\n\n\n------------------------------------------------\n" +
                 pmVO.getMessageFromMember().getFirstName() + " " + pmVO.getMessageFromMember().getLastName() + 
                 " wrote on " + DateFormatUtil.getDateYYYYMMMDDHHMMA(pmVO.getMessageDate()) + ":\n\n" + pmVO.getMessageText());
-        
-        pmForm.setToMemberFirstName(pmVO.getMessageFromMember().getFirstName());
-        pmForm.setToMemberLastName(pmVO.getMessageFromMember().getLastName());
+
+        privateMessageVO.setToMemberFirstName(pmVO.getMessageFromMember().getFirstName());
+        privateMessageVO.setToMemberLastName(pmVO.getMessageFromMember().getLastName());
         
         return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
-    }    
-    
-    
-    public ModelAndView prepareEmailWebmaster( ActionMapping mapping,
-                                  ActionForm form,
-                                  HttpServletRequest request,
-                                  HttpServletResponse response )
-      throws Exception {
+    }
+
+    @RequestMapping(value="/prepareEmailWebmaster", method= RequestMethod.POST)
+    public ModelAndView prepareEmailWebmaster(@ModelAttribute("privateMessage")PrivateMessageVO privateMessageVO, BindingResult result, SessionStatus status,
+                                            HttpServletRequest request,
+                                            HttpServletResponse response) throws
+            Exception {
+
 
     boolean guest = false;
     String adminLastName = "Administrator";
@@ -372,8 +366,6 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
       guest = true;
     }
 
-    PrivateMessageForm pmForm = (PrivateMessageForm)form;
-
     messageToUserId = BaseConstants.ADMIN_USERNAME_ID;
     toMemberFirstName = "";
     toMemberLastName = adminLastName;
@@ -389,23 +381,22 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
     	fromLastName = "";
     }
 
-    pmForm.setMessageFromUserId(messageFromUserId);
-    pmForm.setFromMemberFirstName(fromFirstName);
-    pmForm.setFromMemberLastName(fromLastName);
+    privateMessageVO.setMessageFromUserId(messageFromUserId);
+    privateMessageVO.setFromMemberFirstName(fromFirstName);
+    privateMessageVO.setFromMemberLastName(fromLastName);
 
-    pmForm.setMessageToUserId(messageToUserId);
-    pmForm.setToMemberFirstName(toMemberFirstName);
-    pmForm.setToMemberLastName(toMemberLastName);
+    privateMessageVO.setMessageToUserId(messageToUserId);
+    privateMessageVO.setToMemberFirstName(toMemberFirstName);
+    privateMessageVO.setToMemberLastName(toMemberLastName);
     return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
-    }    
-    
-    
-    public ModelAndView readOneMail( ActionMapping mapping,
-                                  ActionForm form,
-                                  HttpServletRequest request,
-                                  HttpServletResponse response )
-      throws Exception {
+    }
+
+    @RequestMapping(value="/readOneMail", method= RequestMethod.POST)
+    public ModelAndView readOneMail(@ModelAttribute("privateMessage")PrivateMessageVO privateMessageVO, BindingResult result, SessionStatus status,
+                                              HttpServletRequest request,
+                                              HttpServletResponse response) throws
+            Exception {
 
      MemberVO token = getCurrentLoggedInUser(request);
         
@@ -414,31 +405,30 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
       return new ModelAndView(BaseConstants.FWD_LOGIN);
     }    
 
-    PrivateMessageForm pmForm = (PrivateMessageForm) form;
     String memberId = token.getMemberId();
-    String mailId =  pmForm.getMessageId();
+    String mailId =  privateMessageVO.getMessageId();
     PrivateMessageVO pmVO = pmService.readOneMailByMemberId(memberId, mailId, getLastModifiedBy(request));
    
     
     if (pmVO != null){
-        BeanUtils.copyProperties(pmForm, pmVO);
-        pmForm.setFromMemberLastName(pmVO.getMessageFromMember().getLastName());
-        pmForm.setFromMemberFirstName(pmVO.getMessageFromMember().getFirstName());
-        pmForm.setMessageDate(DateFormatUtil.getDateYYYYMMMDDHHMMA(pmVO.getMessageDate()));
+        privateMessageVO.setFromMemberLastName(pmVO.getMessageFromMember().getLastName());
+        privateMessageVO.setFromMemberFirstName(pmVO.getMessageFromMember().getFirstName());
+        //privateMessageVO.setMessageDate(DateFormatUtil.getDateYYYYMMMDDHHMMA(pmVO.getMessageDate()));
+        privateMessageVO.setMessageDate(pmVO.getMessageDate());
     }
 
     return new ModelAndView(BaseConstants.FWD_SUCCESS);
 
-    }    
+    }
 
 
 
+    @RequestMapping(value="/contactAndReplyMail", method= RequestMethod.POST)
+    public ModelAndView contactAndReplyMail(@ModelAttribute("privateMessage")PrivateMessageVO privateMessageVO, BindingResult result, SessionStatus status,
+                                              HttpServletRequest request,
+                                              HttpServletResponse response) throws
+            Exception {
 
-    public ModelAndView contactAndReplyMail( ActionMapping mapping,
-                                  ActionForm form,
-                                  HttpServletRequest request,
-                                  HttpServletResponse response )
-      throws Exception {
 
     	MemberVO token = getCurrentLoggedInUser(request);
 
@@ -448,15 +438,16 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
 	    }
 	
 	
-	    if (isCancelled(request)){
-	       return new ModelAndView(BaseConstants.FWD_CANCEL);
-	    }
-	
-	    PrivateMessageForm pmForm = (PrivateMessageForm) form;
-	    PrivateMessageVO pmVO = new PrivateMessageVO();
-	    PrivateMessageVO pmVOCopy = new PrivateMessageVO();
-	    BeanUtils.copyProperties(pmVO, pmForm);
-	    BeanUtils.copyProperties(pmVOCopy, pmForm);
+//	    if (isCancelled(request)){
+//	       return new ModelAndView(BaseConstants.FWD_CANCEL);
+//	    }
+
+	    //PrivateMessageVO pmVO = new PrivateMessageVO();
+	    //PrivateMessageVO pmVOCopy = new PrivateMessageVO();
+        PrivateMessageVO pmVO = privateMessageVO;
+        PrivateMessageVO pmVOCopy = privateMessageVO;
+//	    BeanUtils.copyProperties(pmVO, pmForm);
+//	    BeanUtils.copyProperties(pmVOCopy, pmForm);
 	
 	    String toMemberEmail = memService.getMemberEmailByMemberId(pmVO.getMessageToUserId());
 	    SystemConfigVO sysConfigVO = sysConfigSerivce.getSystemConfig();
@@ -464,10 +455,10 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
 	
 	    if (pmVO.getType().equals("contact")) {
 	      if (!memService.isAccountActivatedByMemberId(pmVO.getMessageToUserId())) {
-	          ActionMessages errors = new ActionMessages();
-	          errors.add(BaseConstants.FATAL_KEY, new ActionMessage("message.mail.unactivatedmember"));
+	          MyAlumniMessages errors = new MyAlumniMessages();
+	          errors.add(BaseConstants.FATAL_KEY, new MyAlumniMessage("message.mail.unactivatedmember"));
 	          saveMessages(request, errors);
-	          return mapping.getInputForward();
+	          return new ModelAndView(BaseConstants.FWD_REDISPLAY);
 	      }
 	      else {
 	        int quota = pmService.getQuotaRatioByMemberId(pmVO.getMessageToUserId());
@@ -477,13 +468,13 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
 	        	pmService.contactMail(pmVO, getLastModifiedBy(request), getCurrentIPAddress(request));
 	        	SendMailUtil.memberNewMessageNotification(pmVO, sysConfigVO, toMemberEmail);
 	        	//copy to sent
-		        if (pmForm.getCopyMe().equalsIgnoreCase(BaseConstants.BOOLEAN_YES)){
+		        if (privateMessageVO.getCopyMe().equalsIgnoreCase(BaseConstants.BOOLEAN_YES)){
 		            pmService.copyMeOnContactMail(pmVOCopy, getLastModifiedBy(request),getCurrentIPAddress(request));
 		        }
 	        }
 	        else{
-	          ActionMessages errors = new ActionMessages();
-	          errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.mailboxfull"));
+	          MyAlumniMessages errors = new MyAlumniMessages();
+	          errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage("error.mailboxfull"));
 	          saveMessages(request, errors);
 	        }
 	      }
@@ -496,22 +487,22 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
 	        pmService.replyMail(pmVO, getLastModifiedBy(request),getCurrentIPAddress(request));
 	        SendMailUtil.memberNewMessageNotification(pmVO, sysConfigVO, toMemberEmail);
 	        //copy to sent
-	        if (pmForm.getCopyMe().equalsIgnoreCase(BaseConstants.BOOLEAN_YES)){
+	        if (pmVO.getCopyMe().equalsIgnoreCase(BaseConstants.BOOLEAN_YES)){
 	          pmService.copyMeOnReplyMail(pmVOCopy, getLastModifiedBy(request),getCurrentIPAddress(request));
 	        }
 	      }
 	      else{
 	    	// TODO: Maybe save the message as a draft to be sent later
-	        ActionMessages errors = new ActionMessages();
-	        errors.add(BaseConstants.WARN_KEY, new ActionMessage("error.mailboxfull"));
+	        MyAlumniMessages errors = new MyAlumniMessages();
+	        errors.add(BaseConstants.WARN_KEY, new MyAlumniMessage("error.mailboxfull"));
 	        saveMessages(request, errors);
 	      }
 	    }
 	    else {
-	      ActionMessages errors = new ActionMessages();
-	      errors.add(BaseConstants.FATAL_KEY, new ActionMessage("errors.technical.difficulty"));
+	      MyAlumniMessages errors = new MyAlumniMessages();
+	      errors.add(BaseConstants.FATAL_KEY, new MyAlumniMessage("errors.technical.difficulty"));
 	      saveMessages(request, errors);
-	      return mapping.getInputForward();
+	      return new ModelAndView(BaseConstants.FWD_REDISPLAY);
 	    }
       
 
@@ -520,24 +511,19 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
 	    setSessionObject(request, BaseConstants.MESSAGE_CENTER , pmHelper);
 	
 	    return new ModelAndView(BaseConstants.FWD_SUCCESS);
-    }    
-    
-    
-    
-    // done
-    public ModelAndView emailWebmaster( ActionMapping mapping,
-                                  ActionForm form,
-                                  HttpServletRequest request,
-                                  HttpServletResponse response )
-      throws Exception {
+    }
+
+
+
+    @RequestMapping(value="/emailWebmaster", method= RequestMethod.POST)
+    public ModelAndView emailWebmaster(@ModelAttribute("privateMessage")PrivateMessageVO privateMessageVO, BindingResult result, SessionStatus status,
+                                            HttpServletRequest request,
+                                            HttpServletResponse response) throws
+            Exception {
+
 
     MemberVO token = new MemberVO();
-
-    PrivateMessageForm pmForm = (PrivateMessageForm)form;
     PrivateMessageVO pmVO = new PrivateMessageVO();
-
-    BeanUtils.copyProperties(pmVO, pmForm);
-   
     
     if(pmVO.getType().equals("contact")){
     	if (pmVO.getMessageFromUserId().equalsIgnoreCase(BaseConstants.GUEST_USERNAME_ID)){
@@ -559,10 +545,10 @@ public class MaintainPrivateMessageAction  extends MyAlumniBaseController {
 
     }
     else{
-      ActionMessages errors = new ActionMessages();
-      errors.add(BaseConstants.FATAL_KEY, new ActionMessage("errors.technical.difficulty"));
+      MyAlumniMessages errors = new MyAlumniMessages();
+      errors.add(BaseConstants.FATAL_KEY, new MyAlumniMessage("errors.technical.difficulty"));
       saveMessages(request, errors);
-      return mapping.getInputForward();
+      return new ModelAndView(BaseConstants.FWD_REDISPLAY);
     }
 
     StringBuffer message = new StringBuffer();

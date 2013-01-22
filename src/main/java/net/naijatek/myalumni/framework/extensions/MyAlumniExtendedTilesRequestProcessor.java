@@ -52,11 +52,6 @@ import net.naijatek.myalumni.util.SystemConfigConstants;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.Globals;
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.taglib.html.Constants;
-import org.apache.struts.util.RequestUtils;
 import org.springframework.web.struts.DelegatingTilesRequestProcessor;
 
 /**

@@ -39,21 +39,19 @@
 package net.naijatek.myalumni.modules.common.domain;
 
 
-import org.hibernate.annotations.Entity;
+import net.naijatek.myalumni.util.BaseConstants;
 
-@Entity
 public class ClassNewsVO extends MyAlumniBaseVO{
 
-	private String classNewsId;
-	private String subject;
-	private String news;
-	private Integer fromClassYear;
-	private Integer toClassYear;
-	private String systemNews;
-	private MemberVO author;
-	private String authorId;
-	private String status;
-	
+    private String classNewsId;
+    private String subject;
+    private String news;
+    private int fromClassYear;
+    private int toClassYear;
+    private String systemNews = BaseConstants.BOOLEAN_NO;
+    private MemberVO author;
+    private String authorId;
+    private String status;
 	
 
     public ClassNewsVO() {
@@ -76,11 +74,11 @@ public class ClassNewsVO extends MyAlumniBaseVO{
 	public void setAuthorId(String authorId) {
 		this.authorId = authorId;
 	}
-	public Integer getFromClassYear() {
+	public int getFromClassYear() {
 		return fromClassYear;
 	}
 
-	public void setFromClassYear(Integer fromClassYear) {
+	public void setFromClassYear(int fromClassYear) {
 		this.fromClassYear = fromClassYear;
 	}
 
@@ -92,11 +90,11 @@ public class ClassNewsVO extends MyAlumniBaseVO{
 		this.systemNews = systemNews;
 	}
 
-	public Integer getToClassYear() {
+	public int getToClassYear() {
 		return toClassYear;
 	}
 
-	public void setToClassYear(Integer toClassYear) {
+	public void setToClassYear(int toClassYear) {
 		this.toClassYear = toClassYear;
 	}
 

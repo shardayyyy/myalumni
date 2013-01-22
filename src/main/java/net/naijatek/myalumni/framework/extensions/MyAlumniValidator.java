@@ -35,25 +35,21 @@
  * <p>Company: Naijatek Solutions (http://www.naijatek.com)</p>
  * @author Folashade Adeyosoye (shardayyy@naijatek.com)
  * @version 1.0
+ *
  */
 package net.naijatek.myalumni.framework.extensions;
 
-import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.StringTokenizer;
 
-import javax.servlet.http.HttpServletRequest;
-
+import net.naijatek.myalumni.contacts.Contact;
 import net.naijatek.myalumni.framework.exceptions.BadInputException;
-import net.naijatek.myalumni.modules.admin.presentation.form.SystemConfigForm;
-import net.naijatek.myalumni.modules.common.presentation.form.ClassNewsForm;
-import net.naijatek.myalumni.modules.common.presentation.form.FrontPageForm;
-import net.naijatek.myalumni.modules.common.presentation.form.LoginForm;
-import net.naijatek.myalumni.modules.common.presentation.form.MemberForm;
-import net.naijatek.myalumni.modules.common.presentation.form.PrivateMessageForm;
-import net.naijatek.myalumni.modules.common.presentation.form.ReminisceForm;
-import net.naijatek.myalumni.modules.common.presentation.form.ScrollForm;
+import net.naijatek.myalumni.modules.common.domain.LoginVO;
+import net.naijatek.myalumni.modules.common.domain.MemberVO;
+import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
 import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.utilities.AppProp;
 import net.naijatek.myalumni.util.utilities.ParamUtil;
@@ -62,14 +58,15 @@ import net.naijatek.myalumni.util.utilities.SystemProp;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.commons.validator.Field;
-import org.apache.commons.validator.ValidatorAction;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
-import org.apache.struts.validator.Resources;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
+import org.springframework.validation.Validator;
 
+
+@Component("myAlumniValidator")
 public class MyAlumniValidator extends MyAlumniBaseController implements
-		Serializable {
+        Validator {
 
 	private static Log logger = LogFactory.getLog(MyAlumniValidator.class);
 
@@ -89,16 +86,46 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 	// --
 	// --------------------------------------------------------------------------
 
-	
-	
-	/**
+        @SuppressWarnings("unchecked")
+        @Override
+        public boolean supports(Class clazz)
+        {
+            return Contact.class.isAssignableFrom(clazz);
+        }
+
+        @Override
+        public void validate(Object model, Errors errors)
+        {
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name","required.name", "Name is required.");
+        }
+
+    /**
+     * MyFormValidator validator = new MyFormValidator();
+     validator.validate(form, result);
+     if (result.hasErrors()) {
+     ModelAndView mav = new ModelAndView("showSummaryPage");
+     mav.addObject(form);
+     return mav;
+     * @param target
+     * @param errors
+     */
+    public void validateTest(Object target, Errors errors) {
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "creationDate", "defaultDate.required", "date is required.");
+        MemberVO form = (MemberVO)target;
+        SimpleDateFormat sdfDate = new SimpleDateFormat("MM/dd/yyyy");
+        try {
+            sdfDate.parse(form.getCreationDate().toString());
+        } catch (ParseException e) {
+            errors.rejectValue("defaultDate", "defaultDate.formatError");
+        }
+    }
+
+    /**
 	 * 
 	 */
-	public boolean orgFirstYear(Object bean,
-			ValidatorAction va, Field field, ActionMessages msgs,
-			HttpServletRequest request) {
+	public void orgFirstYear(Object target, Errors errors) {
 
-		SystemConfigForm sysConfigForm = (SystemConfigForm)bean;
+        SystemConfigVO sysConfigForm = (SystemConfigVO)target;
 		
 		String orgYear = sysConfigForm.getOrgFirstYear();
 		int intOrgYear = Integer.parseInt(orgYear);
@@ -106,133 +133,88 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
         GregorianCalendar ct = new GregorianCalendar();
         int currentYear = ct.get(Calendar.YEAR);		
 
-		if (intOrgYear > currentYear) {			
-				msgs.add(field.getKey(), new ActionMessage("error.orgfirstyear", String.valueOf(currentYear)));
-				saveErrors(request, msgs);
+		if (intOrgYear > currentYear) {
+            errors.rejectValue("error.orgfirstyear", String.valueOf(currentYear));
+		    //saveErrors(request, msgs);
 		}
-		return msgs.isEmpty();
 	}	
 	
 	
 	/**
 	 * Compares both the password and confirmation password be the same
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param msgs
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
+	 *
 	 * @return boolean
 	 */
-	public boolean common_compareLoginPasswords(Object bean,
-			ValidatorAction va, Field field, ActionMessages msgs,
-			HttpServletRequest request) {
+	public void common_compareLoginPasswords(Object target, Errors errors) {
 
-		LoginForm loginForm = (LoginForm)bean;
+		LoginVO loginForm = (LoginVO)target;
 		
 		String memberPassword = loginForm.getMemberPassword();
-		String memberPasswordConfirm = loginForm.getMemberPasswordConfirm();;
+		String memberPasswordConfirm = loginForm.getMemberPasswordConfirm();
 
 		if (memberPassword != null && memberPassword.length() > 0
 				&& memberPasswordConfirm != null
 				&& memberPasswordConfirm.length() > 0) {
 			if (!memberPassword.equals(memberPasswordConfirm)) {
-				msgs.add(field.getKey() + "1", new ActionMessage(
-						"errors.password.notequal"));
-				saveErrors(request, msgs);
+                errors.rejectValue("1", "errors.password.notequal");
+				//saveErrors(request, msgs);
 			}
 		}
-		return msgs.isEmpty();
 	}
 
 	/**
 	 * Compares the Primary Email and confirmation email and validates them
 	 * to_email be the same
 	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
 	 */
-	public boolean compareEmails(Object bean, ValidatorAction va, Field field,
-			ActionMessages messages, HttpServletRequest request) {
+	public void compareEmails(Object target, Errors errors) {
 
-		MemberForm memForm = (MemberForm)bean;
+		MemberForm memForm = (MemberForm)target;
 		String email = memForm.getEmail();
 		String emailConfirm = memForm.getEmailConfirm();
 
 		if (email != null && email.length() > 0 && emailConfirm != null
 				&& emailConfirm.length() > 0) {
 			if (!email.equals(emailConfirm)) {
-				messages.add(field.getKey(), Resources.getActionMessage(
-						request, va, field));
+                errors.rejectValue("1", "error.emailnotequal");
 			}
 		}
-		return messages.isEmpty();
 	}
 
 	// ================================================================================================
 	/**
 	 * Compares the Arrival year and departure years. Makes sure that the
 	 * departure year is not earlier than the arrival year
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
+	 *
 	 */
-	public boolean compareYear(Object bean, ValidatorAction va, Field field,
-			ActionMessages messages, HttpServletRequest request) {
+	public void compareYear(Object target, Errors errors) {
 		int intArrival = 0;
 		int intDepart = 0;
-		MemberForm memForm = (MemberForm)bean;
+		MemberVO memForm = (MemberVO)target;
 		
-		String strArrival = StringUtil.safeString(memForm.getYearIn());
-		String strDepart = StringUtil.safeString(memForm.getYearOut());
+		int strArrival = memForm.getYearIn();
+		int strDepart = memForm.getYearOut();
 
-		if (strArrival.length() == 0) {
-			messages.add(field.getKey(), new ActionMessage("messages.required",
-					"Arrival Year"));
+		if (strArrival == 0) {
+            //@TODO errors.rejectValue("1", new ActionMessage("messages.required", "Arrival Year"));
 		}
 
-		if (strDepart.length() == 0) {
-			messages.add(field.getKey(), new ActionMessage("messages.required",
-					"Departure Year"));
+		if (strDepart == 0) {
+            //@TODO errors.rejectValue("2", new ActionMessage("messages.required","Departure Year"));
 		}
 
-		if (!messages.isEmpty()) {
-			messages.isEmpty();
-		}
+//		if (errors.hasErrors()) {
+//            errors.isEmpty();
+//		}
 
-		if (strArrival.length() == 0 && strDepart.length() == 0) {
-			intArrival = Integer.parseInt(strArrival);
-			intDepart = Integer.parseInt(strDepart);
+		if (strArrival == 0 && strDepart == 0) {
+			intArrival = strArrival;
+			intDepart = strDepart;
 		}
 
 		if (intDepart < intArrival) {
-			messages.add(field.getKey(), Resources.getActionMessage(request,
-					va, field));
+            //@TODO errors.rejectValue(field.getKey(), Resources.getActionMessage(request,va, field));
 		}
-		return messages.isEmpty();
 	}
 
 	// ================================================================================================
@@ -240,21 +222,9 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 	/**
 	 * Compares the FROM year and TO years. Makes sure that the
 	 * TO year is not earlier than the FROM year
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
+	 *
 	 */
-	public boolean compareClassNewsYear(Object bean, ValidatorAction va, Field field,
-			ActionMessages messages, HttpServletRequest request) {
+	public void compareClassNewsYear(Object target, Errors errors) {
 
 		ClassNewsForm classForm = (ClassNewsForm)bean;
 
@@ -282,21 +252,8 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 	/**
 	 * Compares the FROM year and TO years. Makes sure that the
 	 * TO year is not earlier than the FROM year
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
 	 */
-	public boolean compareReminisceYear(Object bean, ValidatorAction va, Field field,
-			ActionMessages messages, HttpServletRequest request) {
+	public void compareReminisceYear(Object target, Errors errors) {
 
 		ReminisceForm reminisceForm = (ReminisceForm)bean;
 
@@ -322,21 +279,9 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 	// ================================================================================================	
 	/**
 	 * Make use the user selects a valid name as a username
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
+	 *
 	 */
-	public boolean checkGoodName(Object bean, ValidatorAction va, Field field,
-			ActionMessages messages, HttpServletRequest request) {
+	public void checkGoodName(Object target, Errors errors) {
 
 		MemberForm memForm = (MemberForm)bean;
 		String username = memForm.getMemberUserName();
@@ -371,21 +316,8 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 	// ================================================================================================
 	/**
 	 * Validate a URL
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
 	 */
-	public boolean validateUrlHomePage(Object bean, ValidatorAction va,
-			Field field, ActionMessages messages, HttpServletRequest request) {
+	public void validateUrlHomePage(Object target, Errors errors) {
 
 		MemberForm memForm = (MemberForm)bean;
 		String url = memForm.getWebsite();
@@ -405,21 +337,8 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 	// ================================================================================================
 	/**
 	 * Validate a URL
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
 	 */
-	public boolean validateFrontPageUrl(Object bean, ValidatorAction va,
-			Field field, ActionMessages messages, HttpServletRequest request) {
+	public void validateFrontPageUrl(Object target, Errors errors) {
 
 		FrontPageForm form = (FrontPageForm)bean;
 		String url = form.getLinkurl();
@@ -439,21 +358,8 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 	// ================================================================================================
 	/**
 	 * Validate a URL
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
 	 */
-	public boolean validateUrlCoolLink1(Object bean, ValidatorAction va,
-			Field field, ActionMessages messages, HttpServletRequest request) {
+	public void validateUrlCoolLink1(Object target, Errors errors) {
 
 		MemberForm memForm = (MemberForm)bean;
 		String url = memForm.getFavUrl2();
@@ -473,21 +379,8 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 	// ================================================================================================
 	/**
 	 * Validate a URL
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
 	 */
-	public boolean validateUrlCoolLink2(Object bean, ValidatorAction va,
-			Field field, ActionMessages messages, HttpServletRequest request) {
+	public void validateUrlCoolLink2(Object target, Errors errors) {
 
 		MemberForm memForm = (MemberForm)bean;
 		String url = memForm.getFavUrl2();
@@ -507,21 +400,8 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 	// ================================================================================================
 	/**
 	 * Makes sure if the maiden name is entered, that the gender is Female
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
 	 */
-	public boolean genderMaiden(Object bean, ValidatorAction va, Field field,
-			ActionMessages messages, HttpServletRequest request) {
+	public void genderMaiden(Object target, Errors errors) {
 
 		MemberForm memForm = (MemberForm)bean;
 		
@@ -541,21 +421,8 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 	// --------------------------------------------------------------------------------------
 	/**
 	 * Compares both the password and confirmation password to_email be the same
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
 	 */
-	public boolean comparePasswordReset(Object bean, ValidatorAction va,
-			Field field, ActionMessages messages, HttpServletRequest request) {
+	public void comparePasswordReset(Object target, Errors errors) {
 		MemberForm memForm = (MemberForm)bean;
 		
 		String password = memForm.getMemberPassword();
@@ -575,21 +442,8 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 
 	/**
 	 * Compares both the password and confirmation password to_email be the same
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
 	 */
-	public boolean searchCategory(Object bean, ValidatorAction va, Field field,
-			ActionMessages messages, HttpServletRequest request) {
+	public void searchCategory(Object target, Errors errors) {
 		boolean condition = true;
 		
 		MemberForm memForm = (MemberForm)bean;
@@ -668,8 +522,7 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 	}
 
 	// --------------------------------------------------------------------------------------
-	public boolean requiresDeleteId(Object bean, ValidatorAction va,
-			Field field, ActionMessages messages, HttpServletRequest request) {
+	public void requiresDeleteId(Object target, Errors errors) {
 		String[] mailArray = new String[0];
 		
 		PrivateMessageForm pmForm = (PrivateMessageForm)bean;
@@ -687,21 +540,9 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 	// ---------------------------------------------------------------------------------------
 
 	/**
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
+	 *
 	 */
-	public boolean memberComments(Object bean, ValidatorAction va, Field field,
-			ActionMessages messages, HttpServletRequest request) {
+	public void memberComments(Object target, Errors errors) {
 		int maxLength = 0;
 		int memberComment = 0;
 
@@ -719,21 +560,9 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 	// ---------------------------------------------------------------------------------------
 
 	/**
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
+	 *
 	 */
-	public boolean adminComments(Object bean, ValidatorAction va, Field field,
-			ActionMessages messages, HttpServletRequest request) {
+	public void adminComments(Object target, Errors errors) {
 		int maxLength = 0;
 		int adminComment = 0;
 		
@@ -750,21 +579,9 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 	// ---------------------------------------------------------------------------------------
 
 	/**
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
+	 *
 	 */
-	public boolean signature(Object bean, ValidatorAction va, Field field,
-			ActionMessages messages, HttpServletRequest request) {
+	public void signature(Object target, Errors errors) {
 
 		int maxLength = 0;
 		int memberSignature = 0;
@@ -784,21 +601,9 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 	// ---------------------------------------------------------------------------------------
 
 	/**
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
+	 *
 	 */
-	public boolean goodNameCheck(Object bean, ValidatorAction va, Field field,
-			ActionMessages messages, HttpServletRequest request) {
+	public void goodNameCheck(Object target, Errors errors) {
 
 		MemberForm memForm = (MemberForm)bean;
 		
@@ -834,21 +639,9 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 	// ---------------------------------------------------------------------------------------
 
 	/**
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
+	 *
 	 */
-	public boolean migrationCheck(Object bean, ValidatorAction va, Field field,
-			ActionMessages messages, HttpServletRequest request) {
+	public void migrationCheck(Object target, Errors errors) {
 
 		MemberForm memForm = (MemberForm)bean;
 		
@@ -874,8 +667,7 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 
 	// --------------------------------------------------------------------------
 
-	public boolean emailWebmasterEmailCheck(Object bean, ValidatorAction va,
-			Field field, ActionMessages messages, HttpServletRequest request) {
+	public void emailWebmasterEmailCheck(Object target, Errors errors) {
 
 		PrivateMessageForm pmForm = (PrivateMessageForm)bean;
 		
@@ -895,8 +687,7 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 
 	// -------------------------------------------------------------------------------------------------
 
-	public boolean adminMaintainScroll(Object bean, ValidatorAction va,
-			Field field, ActionMessages messages, HttpServletRequest request) {
+	public void adminMaintainScroll(Object target, Errors errors) {
 
 		ScrollForm scrollForm = (ScrollForm)bean;
 		String scrollType = StringUtil.safeString(scrollForm.getType());
@@ -915,21 +706,9 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 
 	/**
 	 * Compares both the password and confirmation password to_email be the same
-	 * 
-	 * @param bean
-	 *            Object
-	 * @param va
-	 *            ValidatorAction
-	 * @param field
-	 *            Field
-	 * @param messages
-	 *            ActionMessages
-	 * @param request
-	 *            HttpServletRequest
-	 * @return boolean
+	 *
 	 */
-	public boolean comparePassword(Object bean, ValidatorAction va,
-			Field field, ActionMessages messages, HttpServletRequest request) {
+	public void comparePassword(Object target, Errors errors) {
 
 		// SystemProp sysprop = SystemProp.getInstance();
 		// int maxlength =

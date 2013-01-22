@@ -49,7 +49,6 @@ import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.domain.PrivateMessageVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
 import net.naijatek.myalumni.modules.common.helper.PrivateMessageHelper;
-import net.naijatek.myalumni.modules.common.presentation.form.PrivateMessageForm;
 import net.naijatek.myalumni.modules.common.service.IMemberService;
 import net.naijatek.myalumni.modules.common.service.IPrivateMessageService;
 import net.naijatek.myalumni.modules.common.service.ISystemConfigService;

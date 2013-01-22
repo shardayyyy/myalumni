@@ -46,7 +46,7 @@ import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class MyAlumniBaseForm extends ValidatorActionForm {
+public class MyAlumniBaseForm /*extends ValidatorActionForm*/ {
 
 	private static Log logger = LogFactory.getLog(MyAlumniBaseForm.class);
 

@@ -46,15 +46,20 @@ import javax.servlet.http.HttpServletResponse;
 import net.naijatek.myalumni.framework.extensions.MyAlumniBaseController;
 import net.naijatek.myalumni.modules.common.domain.ClassNewsVO;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
-import net.naijatek.myalumni.modules.common.presentation.form.ClassNewsForm;
+import net.naijatek.myalumni.modules.common.helper.MyAlumniMessage;
+import net.naijatek.myalumni.modules.common.helper.MyAlumniMessages;
 import net.naijatek.myalumni.modules.common.service.IClassNewsService;
 import net.naijatek.myalumni.util.BaseConstants;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -68,10 +73,12 @@ public class MaintainClassNewsAction extends MyAlumniBaseController {
 /*    public MaintainClassNewsAction(final IClassNewsService classNewsService) {
         this.classNewsService = classNewsService;
     }*/
-    
-    public ModelAndView listClassNews(HttpServletRequest request,
-            HttpServletResponse response) throws
-			Exception {
+
+    @RequestMapping(value="/listClassNews", method= RequestMethod.POST)
+    public ModelAndView listClassNews(@ModelAttribute("member")MemberVO memberVO, BindingResult result, SessionStatus status,
+                                                   HttpServletRequest request,
+                                                   HttpServletResponse response) throws
+            Exception {
     	logger.debug("in listClassNews");
     	
     	MemberVO token = getCurrentLoggedInUser(request);
@@ -92,10 +99,11 @@ public class MaintainClassNewsAction extends MyAlumniBaseController {
         //return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
 
-
-    public ModelAndView prepareAddClassNews(HttpServletRequest request,
-            HttpServletResponse response) throws
-			Exception {
+    @RequestMapping(value="/prepareAddClassNews", method= RequestMethod.POST)
+    public ModelAndView prepareAddClassNews(@ModelAttribute("classnews")ClassNewsVO classNewsVO, BindingResult result, SessionStatus status,
+                                      HttpServletRequest request,
+                                      HttpServletResponse response) throws
+            Exception {
     	logger.debug("in prepareAddClassNews");
         ModelAndView model = new ModelAndView();
     	MemberVO token = getCurrentLoggedInUser(request);
@@ -106,52 +114,45 @@ public class MaintainClassNewsAction extends MyAlumniBaseController {
             model.setViewName(BaseConstants.FWD_LOGIN);
             return model;
         }
-        
-        ClassNewsForm cnForm =  (ClassNewsForm)form;
-    	
-    	cnForm.setFromClassYear(String.valueOf(token.getYearIn()));
-    	cnForm.setToClassYear(String.valueOf(token.getYearOut()));
+
+        classNewsVO.setFromClassYear(token.getYearIn());
+        classNewsVO.setToClassYear(token.getYearOut());
     	
     	return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }
-    
-    
-    public ModelAndView addClassNews(HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
+
+
+    @RequestMapping(value="/addClassNews", method= RequestMethod.POST)
+    public ModelAndView addClassNews(@ModelAttribute("classnews")ClassNewsVO classNewsVO, BindingResult result, SessionStatus status,
+                                            HttpServletRequest request,
+                                            HttpServletResponse response) throws
+            Exception {
 
     	logger.debug("in prepareAddClassNews");
     	
-      if (isCancelled(request)){
-        return new ModelAndView(BaseConstants.FWD_CANCEL);
-      }
-      
-      ClassNewsForm cnForm =  (ClassNewsForm)form;
-      ClassNewsVO cnVO = new ClassNewsVO();   
+//      if (isCancelled(request)){
+//        return new ModelAndView(BaseConstants.FWD_CANCEL);
+//      }
 
-      BeanUtils.copyProperties(cnVO, cnForm);
-      cnVO.setLastModifiedBy(getLastModifiedBy(request));
-      cnVO.setAuthorId(getCurrentUserId(request));
-      classNewsService.save(cnVO);
-      ActionMessages errors = new ActionMessages();
-      errors.add(BaseConstants.INFO_KEY, new ActionMessage("message.classnewssubmitted"));
+      classNewsVO.setLastModifiedBy(getLastModifiedBy(request));
+      classNewsVO.setAuthorId(getCurrentUserId(request));
+      classNewsService.save(classNewsVO);
+      MyAlumniMessages errors = new MyAlumniMessages();
+      errors.add(BaseConstants.INFO_KEY, new MyAlumniMessage("message.classnewssubmitted"));
       saveMessages(request, errors);      
       return new ModelAndView(BaseConstants.FWD_SUCCESS);
+    }
 
-    }    
-    
 
-    
-    public ModelAndView viewClassNews(HttpServletRequest request,
-                                       HttpServletResponse response) throws
-        Exception {
+    @RequestMapping(value="/viewClassNews", method= RequestMethod.POST)
+    public ModelAndView viewClassNews(@ModelAttribute("classnews")ClassNewsVO classNewsVO, BindingResult result, SessionStatus status,
+                                     HttpServletRequest request,
+                                     HttpServletResponse response) throws
+            Exception {
 
       logger.debug("in viewClassNews");
-      ClassNewsForm cnForm =  (ClassNewsForm)form;
-      ClassNewsVO cnVO = new ClassNewsVO();   
-      
-      cnVO = classNewsService.findById(cnForm.getClassNewsId());
-      BeanUtils.copyProperties(cnForm, cnVO);
+
+      classNewsVO = classNewsService.findById(classNewsVO.getClassNewsId());
       return new ModelAndView(BaseConstants.FWD_SUCCESS);
     }       
     
