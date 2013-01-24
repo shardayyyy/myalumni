@@ -45,6 +45,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.BodyTagSupport;
+import javax.servlet.jsp.tagext.TagSupport;
 
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.domain.ValueLabelItem;
@@ -57,23 +59,29 @@ import net.naijatek.myalumni.util.utilities.AppProp;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.struts.taglib.TagUtils;
-import org.apache.struts.taglib.html.BaseInputTag;
+//import org.apache.struts.taglib.TagUtils;
+//import org.apache.struts.taglib.html.BaseInputTag;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-
-
- 
+import org.springframework.web.util.TagUtils;
 
 
 @SuppressWarnings("serial")
-public class BuildDropdownTag extends BaseInputTag {
+public class BuildDropdownTag extends TagSupport {
     private String group = null;
     private String type = null;
     private boolean multiple = false;
     private String isRequired = null;
+    private String property = null;
+    private String value = null;
     private String data = null;
     private String size = null;
+    private String disabled = null;
+    private String onchange = null;
+    private String onblur = null;
+    private String styleId = null;
+    private String styleClass = null;
+    private String titleKey = null;
     private String firstOptionBlank = null;
     
     
@@ -106,7 +114,7 @@ public class BuildDropdownTag extends BaseInputTag {
         memberService = (IMemberService) wac.getBean(BaseConstants.SERVICE_MEMBER_LOOKUP);
         systemConfigService = (ISystemConfigService) wac.getBean(BaseConstants.SERVICE_SYSTEM_CONFIG);
 
-        return EVAL_BODY_BUFFERED;
+        return EVAL_BODY_INCLUDE;// EVAL_BODY_BUFFERED;
     }
 
 
@@ -388,10 +396,10 @@ public class BuildDropdownTag extends BaseInputTag {
 	private void lookupData() throws JspException {
 		if(this.getProperty() != null && !this.getProperty().equals(BaseConstants.NO_PROPERTY)) {
 			data = this.getValue();
-			if(data == null) {
-				data = this.lookupProperty(this.getName(), this.getProperty());
-			}
-			data = (data == null) ? "" : TagUtils.getInstance().filter(data);
+			//if(data == null) {
+			//	data = this.lookupProperty(this.getName(), this.getProperty());
+			//}
+			//data = (data == null) ? "" : TagUtils.getInstance().filter(data);
 		}
 	}
 	
@@ -454,7 +462,7 @@ public class BuildDropdownTag extends BaseInputTag {
 			results.append("\"");
 		}
 
-		if (this.getDisabled()) {
+		if ((this.getDisabled() != null && this.getDisabled().equalsIgnoreCase("disabled")) || (this.getDisabled().equalsIgnoreCase("true"))) {
 			results.append(" disabled=\"disabled\"");
 		}
 
@@ -487,13 +495,93 @@ public class BuildDropdownTag extends BaseInputTag {
      * Release any acquired resources.
      */
     public void release() {
-      super.release();
-      group = null;
-      type = null;
-      firstOptionBlank = null;
-	  isRequired = null;
+        super.release();
+        group = null;
+        property = null;
+        type = null;
+        firstOptionBlank = null;
+	    isRequired = null;
+        value = null;
+        disabled = null;
+        onchange = null;
+        onblur = null;
+        styleId = null;
+        styleClass = null;
+        titleKey = null;
     }
 
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public String getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(String disabled) {
+        this.disabled = disabled;
+    }
+
+    public String getOnchange() {
+        return onchange;
+    }
+
+    public void setOnchange(String onchange) {
+        this.onchange = onchange;
+    }
+
+    public String getOnblur() {
+        return onblur;
+    }
+
+    public void setOnblur(String onblur) {
+        this.onblur = onblur;
+    }
+
+    public String getStyleId() {
+        return styleId;
+    }
+
+    public void setStyleId(String styleId) {
+        this.styleId = styleId;
+    }
+
+    public String getStyleClass() {
+        return styleClass;
+    }
+
+    public void setStyleClass(String styleClass) {
+        this.styleClass = styleClass;
+    }
+
+    public String getTitleKey() {
+        return titleKey;
+    }
+
+    public void setTitleKey(String titleKey) {
+        this.titleKey = titleKey;
+    }
+
+    public String getProperty() {
+        return property;
+    }
+
+    public void setProperty(String property) {
+        this.property = property;
+    }
+
+    public String getRequired() {
+        return isRequired;
+    }
+
+    public void setRequired(String required) {
+        isRequired = required;
+    }
 
     public void setGroup(String groupId) {
         this.group = groupId;
