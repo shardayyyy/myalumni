@@ -60,6 +60,9 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import twitter4j.Status;
 import twitter4j.Twitter;
+import twitter4j.TwitterFactory;
+import twitter4j.User;
+import twitter4j.conf.Configuration;
 
 
 public class TwitterTag extends BodyTagSupport {
@@ -68,8 +71,14 @@ public class TwitterTag extends BodyTagSupport {
    * LOGGER
    */
   private static Log logger = LogFactory.getLog(TwitterTag.class);
-  private ISystemConfigService configService;
-  private HttpServletRequest request = null;
+
+
+    private ISystemConfigService configService;
+
+    private HttpServletRequest request = null;
+
+
+
   //private HttpSession session = null;
   //private MyAlumniUserContainer container = null;
   
@@ -86,8 +95,7 @@ public class TwitterTag extends BodyTagSupport {
 public final int doStartTag() throws JspException
     {
       	request = (HttpServletRequest) pageContext.getRequest();
-        //session = request.getSession();
-        //container = (MyAlumniUserContainer)session.getAttribute(BaseConstants.USER_CONTAINER);
+
         WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(pageContext.getServletContext());
         configService = (ISystemConfigService) wac.getBean(BaseConstants.SERVICE_SYSTEM_CONFIG);
         return EVAL_BODY_BUFFERED;
@@ -106,6 +114,8 @@ public final int doEndTag() throws JspException {
        StringBuffer sb = new StringBuffer();
        AppProp ap = AppProp.getInstance();
 
+
+
 		
 		//MemberVO token = null;
 
@@ -118,6 +128,7 @@ public final int doEndTag() throws JspException {
     	   		List<String> list = new ArrayList<String>();
     	   		
     	   	   Twitter twitter = new Twitter(twitterVO.getTwitteruser(),twitterVO.getTwitterpswd());
+
     	       List<Status> statuses = twitter.getFriendsTimeline();
     	       // System.out.println("Showing friends timeline.");
     	       for (Status status : statuses) {

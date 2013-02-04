@@ -47,6 +47,7 @@ import java.util.StringTokenizer;
 
 import net.naijatek.myalumni.contacts.Contact;
 import net.naijatek.myalumni.framework.exceptions.BadInputException;
+import net.naijatek.myalumni.modules.common.domain.ClassNewsVO;
 import net.naijatek.myalumni.modules.common.domain.LoginVO;
 import net.naijatek.myalumni.modules.common.domain.MemberVO;
 import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
@@ -226,13 +227,13 @@ public class MyAlumniValidator extends MyAlumniBaseController implements
 	 */
 	public void compareClassNewsYear(Object target, Errors errors) {
 
-		ClassNewsForm classForm = (ClassNewsForm)bean;
+		ClassNewsVO classVO = (ClassNewsVO)target;
 
 		int fromClassYear = 0;
 		int toClassYear = 0;
 		
-		String strFromClassYear = StringUtil.safeString(classForm.getFromClassYear());
-		String strToClassYear = StringUtil.safeString(classForm.getToClassYear());
+		String strFromClassYear = StringUtil.safeString(classVO.getFromClassYear().toString());
+		String strToClassYear = StringUtil.safeString(classVO.getToClassYear().toString());
 
 
 		fromClassYear = Integer.parseInt(strFromClassYear);

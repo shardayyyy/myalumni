@@ -41,12 +41,11 @@ package net.naijatek.myalumni.framework.spring;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 
-import net.naijatek.myalumni.modules.common.domain.ScrollVO;
-import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
-import net.naijatek.myalumni.modules.common.domain.ValueLabelItem;
+import net.naijatek.myalumni.modules.common.domain.*;
 import net.naijatek.myalumni.modules.common.helper.DropDownCacheBuilder;
 import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
 import net.naijatek.myalumni.modules.common.service.ISystemTaskService;
@@ -58,47 +57,60 @@ import net.naijatek.myalumni.util.utilities.AppProp;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.context.ContextLoaderServlet;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-public class MyAlumniStartupServlet extends DispatcherServlet {
+@Controller
+public class MyAlumniStartupServlet /*extends DispatcherServlet*/ {
 
 	private static Log logger = LogFactory.getLog(MyAlumniStartupServlet.class);
 
 	private final AppProp appProp = AppProp.getInstance();
 
-	private MyJobScheduler sched = null;
+    // @see:
+    // net.naijatek.myalumni.util.date.DateConverterUtil::getDatePattern()
+    private String dateFormatPattern = SystemConfigConstants.DATE_FORMAT_JSP;
+    private String dateTimeFormatPattern = SystemConfigConstants.DATE_TIME_FORMAT_JSP;
+
+    private String ORGANIZATION_NAME = "";
+    private String ORGANIZATION_SHORT_NAME  = "";
+    private String ORG_EMAIL = "";
+    private String ORGANIZATION_ABOUTUS = "";
+    private String ORGANIZATION_INTRO = "";
+    private String ALBUM_URL = "";
+    private String FORUM_URL = "";
+    private String SERVER_URL = "";
+    private String LOGO_NAME = "";
+    private String CSS_TYPE = "";
+    private String hasDorm = "";
+    private String FIRST_STARTUP = "";
+    private ScrollVO luScrollVO = new ScrollVO();
+
+    private List<DropDownVO> luAdminSearchCategory = new ArrayList<DropDownVO>();
+    private List<DropDownVO> luSearchCategory = new ArrayList<DropDownVO>();
 
 
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        logger.info("MyAlumniStartupServlet init()...");
-        super.init(config);
-        initSystem();
-    }
 
-    @Override
-    protected WebApplicationContext initWebApplicationContext()
-            throws BeansException {
-        // TODO Auto-generated method stub
-        logger.info("In dispatcher servlet WebApplicationContext method");
+    private List<DropDownVO> luGender = new ArrayList<DropDownVO>();
+    private List<DropDownVO> luAdminAction = new ArrayList<DropDownVO>();
+    private List<DropDownVO> luApprovalAction = new ArrayList<DropDownVO>();
+    private List<DropDownVO> luAccountStatus = new ArrayList<DropDownVO>();
+    private List<DropDownVO> luStatus = new ArrayList<DropDownVO>();
 
-        WebApplicationContext wac = super.initWebApplicationContext();
-        if(null!=wac){
-            logger.info("WAC Display Name " + wac.getDisplayName());
-            String[] beanNames = wac.getBeanDefinitionNames();
-            for(String bean:beanNames){
-                logger.info(" bean names " + bean) ;
-            }
-        }else{
+    @Autowired
+    private ISystemConfigService sysConfigService;
 
-            logger.info("Web Application context is null ") ;
-        }
-        return wac;
-    }
+    @Autowired
+    private ISystemTaskService startupService;
 
+	//private MyJobScheduler sched = null;
+
+
+    @PostConstruct
 	protected void initSystem() throws ServletException {
 		// Initialize the persistence service
 		
@@ -122,43 +134,32 @@ public class MyAlumniStartupServlet extends DispatcherServlet {
 
 	private void setupCache() throws Exception {
 
-		// @see:
-		// net.naijatek.myalumni.util.date.DateConverterUtil::getDatePattern()
-		getServletContext().setAttribute(
-				BaseConstants.LOOKUP_DATE_FORMAT_PATTERN,
-				SystemConfigConstants.DATE_FORMAT_JSP);
-		getServletContext().setAttribute(
-				BaseConstants.LOOKUP_DATE_TIME_FORMAT_PATTERN,
-				SystemConfigConstants.DATE_TIME_FORMAT_JSP);
-
-		WebApplicationContext wac = WebApplicationContextUtils
-				.getWebApplicationContext(getServletContext());
-		ISystemTaskService startupService = (ISystemTaskService) wac
-				.getBean(BaseConstants.SERVICE_SYSTEM_TASK_LOOKUP);
-		ISystemConfigService sysConfigService = (ISystemConfigService) wac
-				.getBean(BaseConstants.SERVICE_SYSTEM_CONFIG);
-
 		SystemConfigVO sysConfigVO = sysConfigService.getSystemConfig();
-		getServletContext().setAttribute(BaseConstants.ORGANIZATION_NAME, sysConfigVO.getOrganizationName());
-		getServletContext().setAttribute(BaseConstants.ORGANIZATION_SHORT_NAME, sysConfigVO.getOrganizationShortName());
-		getServletContext().setAttribute(BaseConstants.ALBUM_URL, sysConfigVO.getAlbumUrl());
-		getServletContext().setAttribute(BaseConstants.FORUM_URL, sysConfigVO.getForumUrl());
-		getServletContext().setAttribute(BaseConstants.SERVER_URL, sysConfigVO.getServerUrl());
-		getServletContext().setAttribute(BaseConstants.ORG_EMAIL, sysConfigVO.getOrgEmail());
-		getServletContext().setAttribute(BaseConstants.LOGO_NAME, sysConfigVO.getLogoFileName());
-		getServletContext().setAttribute(BaseConstants.CSS_TYPE, "default");
+
+        ORGANIZATION_NAME = sysConfigVO.getOrganizationName();
+        ORGANIZATION_SHORT_NAME = sysConfigVO.getOrganizationShortName();
+        ORG_EMAIL = sysConfigVO.getOrgEmail();
+        ALBUM_URL = sysConfigVO.getAlbumUrl();
+        FORUM_URL = sysConfigVO.getForumUrl();
+        SERVER_URL = sysConfigVO.getServerUrl();
+        LOGO_NAME = sysConfigVO.getLogoFileName();
+        CSS_TYPE = "default";
+
 		
-		
-		String hasDorm = sysConfigVO.getHasDormitory();
+		hasDorm = sysConfigVO.getHasDormitory();
+
+        if (sysConfigVO.getHasDormitory() == null || sysConfigVO.getHasDormitory().length() == 0) {
+            hasDorm = BaseConstants.BOOLEAN_NO;
+        }
 
 		setupDatabaseCache(startupService, sysConfigService, hasDorm);
 		setupOtherCache(hasDorm);
 		
 		if (sysConfigVO.getSystemConfigId() == null){
-			getServletContext().setAttribute(BaseConstants.FIRST_STARTUP, BaseConstants.BOOLEAN_YES);
+			FIRST_STARTUP = BaseConstants.BOOLEAN_YES;
 		}
 		else{
-			getServletContext().setAttribute(BaseConstants.FIRST_STARTUP, BaseConstants.BOOLEAN_NO);
+            FIRST_STARTUP = BaseConstants.BOOLEAN_NO;
 		}
 		
 	}
@@ -174,13 +175,11 @@ public class MyAlumniStartupServlet extends DispatcherServlet {
 			throws Exception {
 
 		// load the scroll
-		ScrollVO scrollVO = sysConfigService.getLatestScroll();
-		getServletContext().setAttribute(BaseConstants.SCROLL_VO, scrollVO);
+        luScrollVO = sysConfigService.getLatestScroll();
 
-		if (hasDorm == null || hasDorm.length() == 0) {
-			hasDorm = BaseConstants.BOOLEAN_NO;
-		}
-		getServletContext().setAttribute(BaseConstants.HAS_DORMITORY, hasDorm);
+
+
+
 
 		logger.debug("Database Cache loaded...");
 	}
@@ -194,85 +193,49 @@ public class MyAlumniStartupServlet extends DispatcherServlet {
 	private void setupOtherCache(final String hasDormitory) throws Exception {
 
 		DropDownCacheBuilder ddb = new DropDownCacheBuilder();
-		List<LabelValueBean> adminSearchCategory = ddb.buildSearchOptions(
-				hasDormitory, true);
-		List<LabelValueBean> searchCategory = ddb.buildSearchOptions(
-				hasDormitory, false);
-
-		getServletContext()
-				.setAttribute(BaseConstants.LIST_OF_ADMIN_SEARCH_OPTIONS,
-						adminSearchCategory);
-		getServletContext().setAttribute(
-				BaseConstants.LIST_OF_MEMBER_SEARCH_OPTIONS, searchCategory);
+        luAdminSearchCategory = ddb.buildSearchOptions(hasDormitory, true);
+        luSearchCategory = ddb.buildSearchOptions(hasDormitory, false);
 
 		// --------------------------------------------------
 
-		// Gender
-		List<ValueLabelItem> gender = new ArrayList<ValueLabelItem>();
-		gender.add(new ValueLabelItem(appProp.getValue("label.male"),
-				BaseConstants.GENDER_MALE));
-		gender.add(new LabelValueBean(appProp.getValue("label.female"),
-				BaseConstants.GENDER_FEMALE));
-		gender.add(new LabelValueBean(appProp.getValue("label.unknown"),
-				BaseConstants.GENDER_UNKNOWN));
-		getServletContext().setAttribute(BaseConstants.LIST_OF_GENDER_OPTIONS,
-				gender);
+
+
+
+        // Gender
+        luGender.add(new DropDownVO(appProp.getValue("label.male"), BaseConstants.GENDER_MALE));
+        luGender.add(new DropDownVO(appProp.getValue("label.female"),BaseConstants.GENDER_FEMALE));
+        luGender.add(new DropDownVO(appProp.getValue("label.unknown"),BaseConstants.GENDER_UNKNOWN));
+
 
 		// Search Category
-		List<LabelValueBean> adminAction = new ArrayList<LabelValueBean>();
-		adminAction.add(new LabelValueBean(BaseConstants.ADMIN_ACTION_DELETE,
-				BaseConstants.ADMIN_ACTION_DELETE));
-		adminAction.add(new LabelValueBean(BaseConstants.ADMIN_ACTION_ACTIVATE,
-				BaseConstants.ADMIN_ACTION_ACTIVATE));
-		adminAction.add(new LabelValueBean(BaseConstants.ADMIN_ACTION_MODIFY,
-				BaseConstants.ADMIN_ACTION_MODIFY));
-		adminAction.add(new LabelValueBean(
-				BaseConstants.ADMIN_ACTION_DEACTIVATE,
-				BaseConstants.ADMIN_ACTION_DEACTIVATE));
-		adminAction.add(new LabelValueBean(BaseConstants.ADMIN_ACTION_LOCK,
-				BaseConstants.ADMIN_ACTION_LOCK));
-		getServletContext().setAttribute(BaseConstants.LIST_OF_ADMIN_OPTIONS,
-				adminAction);
+        luAdminAction.add(new DropDownVO(BaseConstants.ADMIN_ACTION_DELETE,BaseConstants.ADMIN_ACTION_DELETE));
+        luAdminAction.add(new DropDownVO(BaseConstants.ADMIN_ACTION_ACTIVATE,BaseConstants.ADMIN_ACTION_ACTIVATE));
+        luAdminAction.add(new DropDownVO(BaseConstants.ADMIN_ACTION_MODIFY,BaseConstants.ADMIN_ACTION_MODIFY));
+        luAdminAction.add(new DropDownVO(BaseConstants.ADMIN_ACTION_DEACTIVATE,BaseConstants.ADMIN_ACTION_DEACTIVATE));
+        luAdminAction.add(new DropDownVO(BaseConstants.ADMIN_ACTION_LOCK,BaseConstants.ADMIN_ACTION_LOCK));
+
 
 		// Approval Category
-		List<LabelValueBean> approvalAction = new ArrayList<LabelValueBean>();
-		approvalAction.add(new LabelValueBean(BaseConstants.MODIFY_IT,
-				BaseConstants.MODIFY_IT));
-		approvalAction.add(new LabelValueBean(BaseConstants.APPROVE_IT,
-				BaseConstants.APPROVE_IT));
-		approvalAction.add(new LabelValueBean(BaseConstants.DEACTIVATE_IT,
-				BaseConstants.DEACTIVATE_IT));
-		approvalAction.add(new LabelValueBean(BaseConstants.DECLINE_IT,
-				BaseConstants.DECLINE_IT));
-		approvalAction.add(new LabelValueBean(BaseConstants.DELETE_IT,
-				BaseConstants.DELETE_IT));
-		getServletContext().setAttribute(
-				BaseConstants.LIST_OF_APPROVAL_OPTIONS, approvalAction);
+        luApprovalAction.add(new DropDownVO(BaseConstants.MODIFY_IT,BaseConstants.MODIFY_IT));
+        luApprovalAction.add(new DropDownVO(BaseConstants.APPROVE_IT,BaseConstants.APPROVE_IT));
+        luApprovalAction.add(new DropDownVO(BaseConstants.DEACTIVATE_IT,BaseConstants.DEACTIVATE_IT));
+        luApprovalAction.add(new DropDownVO(BaseConstants.DECLINE_IT,BaseConstants.DECLINE_IT));
+        luApprovalAction.add(new DropDownVO(BaseConstants.DELETE_IT,BaseConstants.DELETE_IT));
+
+
+
 
 		// Account Status
-		List<LabelValueBean> accountStatus = new ArrayList<LabelValueBean>();
-		accountStatus.add(new LabelValueBean(appProp
-				.getValue("label.statusactive"), BaseConstants.ACCOUNT_ACTIVE));
-		accountStatus.add(new LabelValueBean(appProp
-				.getValue("label.accountdeactivated"),
-				BaseConstants.ACCOUNT_DEACTIVATED));
-		accountStatus
-				.add(new LabelValueBean(
-						appProp.getValue("label.accountlocked"),
-						BaseConstants.ACCOUNT_LOCKED));
-		accountStatus
-				.add(new LabelValueBean(appProp.getValue("label.accountnew"),
-						BaseConstants.ACCOUNT_UNAPPROVED));
-		getServletContext().setAttribute(BaseConstants.LOOKUP_ACCOUNT_STATUS,
-				accountStatus);
+        luAccountStatus.add(new DropDownVO(appProp.getValue("label.statusactive"), BaseConstants.ACCOUNT_ACTIVE));
+        luAccountStatus.add(new DropDownVO(appProp.getValue("label.accountdeactivated"),BaseConstants.ACCOUNT_DEACTIVATED));
+        luAccountStatus.add(new DropDownVO(appProp.getValue("label.accountlocked"),BaseConstants.ACCOUNT_LOCKED));
+        luAccountStatus.add(new DropDownVO(appProp.getValue("label.accountnew"),BaseConstants.ACCOUNT_UNAPPROVED));
+
 
 		// Status
-		List<LabelValueBean> status = new ArrayList<LabelValueBean>();
-		status.add(new LabelValueBean(appProp.getValue("label.statusactive"),
-				BaseConstants.ACTIVE));
-		status.add(new LabelValueBean(appProp.getValue("label.statusinactive"),
-				BaseConstants.INACTIVE));
-		getServletContext().setAttribute(BaseConstants.LOOKUP_STATUS, status);
+        luStatus.add(new DropDownVO(appProp.getValue("label.statusactive"),BaseConstants.ACTIVE));
+        luStatus.add(new DropDownVO(appProp.getValue("label.statusinactive"),BaseConstants.INACTIVE));
+
 
 		logger.debug("Other Cache loaded...");
 	}
