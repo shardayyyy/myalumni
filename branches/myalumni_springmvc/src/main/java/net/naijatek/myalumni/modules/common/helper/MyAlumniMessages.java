@@ -67,8 +67,7 @@ package net.naijatek.myalumni.modules.common.helper;
        * <p>The "property name" marker to use for global messages, as opposed to
        * those related to a specific property.</p>
        */
-    public static final String GLOBAL_MESSAGE =
-      "org.apache.struts.action.GLOBAL_MESSAGE";
+    public static final String GLOBAL_MESSAGE = "GLOBAL_MESSAGE";
   
   
       // ----------------------------------------------------- Instance Variables

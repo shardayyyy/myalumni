@@ -38,9 +38,8 @@
  */
 package net.naijatek.myalumni.modules.admin.presentation.form;
 
-import org.apache.struts.upload.FormFile;
-
 import net.naijatek.myalumni.framework.extensions.MyAlumniBaseForm;
+import org.springframework.web.multipart.MultipartFile;
 
 public class SystemConfigForm extends MyAlumniBaseForm{
 
@@ -61,7 +60,7 @@ public class SystemConfigForm extends MyAlumniBaseForm{
 	private String orgEmail;
 	private String orgAboutUs;
 	private String orgIntro;
-	private FormFile logoUpload;
+	private MultipartFile logoUpload;
 	
 	private String twitteruser;
 	private String twitterpswd;
@@ -180,10 +179,10 @@ public class SystemConfigForm extends MyAlumniBaseForm{
 	public void setLogoFileName(String logoFileName) {
 		this.logoFileName = logoFileName;
 	}
-	public FormFile getLogoUpload() {
+	public MultipartFile getLogoUpload() {
 		return logoUpload;
 	}
-	public void setLogoUpload(FormFile logoUpload) {
+	public void setLogoUpload(MultipartFile logoUpload) {
 		this.logoUpload = logoUpload;
 	}
 	public String getOrgIntro() {

@@ -46,8 +46,8 @@ public class ClassNewsVO extends MyAlumniBaseVO{
     private String classNewsId;
     private String subject;
     private String news;
-    private int fromClassYear;
-    private int toClassYear;
+    private Integer fromClassYear;
+    private Integer toClassYear;
     private String systemNews = BaseConstants.BOOLEAN_NO;
     private MemberVO author;
     private String authorId;
@@ -65,7 +65,16 @@ public class ClassNewsVO extends MyAlumniBaseVO{
 	public MemberVO getAuthor() {
 		return author;
 	}
-	public void setAuthor(MemberVO author) {
+
+    public Integer getFromClassYear() {
+        return fromClassYear;
+    }
+
+    public void setFromClassYear(Integer fromClassYear) {
+        this.fromClassYear = fromClassYear;
+    }
+
+    public void setAuthor(MemberVO author) {
 		this.author = author;
 	}
 	public String getAuthorId() {
@@ -74,14 +83,6 @@ public class ClassNewsVO extends MyAlumniBaseVO{
 	public void setAuthorId(String authorId) {
 		this.authorId = authorId;
 	}
-	public int getFromClassYear() {
-		return fromClassYear;
-	}
-
-	public void setFromClassYear(int fromClassYear) {
-		this.fromClassYear = fromClassYear;
-	}
-
 	public String getSystemNews() {
 		return systemNews;
 	}
@@ -90,11 +91,11 @@ public class ClassNewsVO extends MyAlumniBaseVO{
 		this.systemNews = systemNews;
 	}
 
-	public int getToClassYear() {
+	public Integer getToClassYear() {
 		return toClassYear;
 	}
 
-	public void setToClassYear(int toClassYear) {
+	public void setToClassYear(Integer toClassYear) {
 		this.toClassYear = toClassYear;
 	}
 

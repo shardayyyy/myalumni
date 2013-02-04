@@ -202,6 +202,7 @@ public interface BaseConstants {
    public static final String WARN_KEY = "WARN_KEY";
    public static final String ERROR_KEY = "ERROR_KEY";
    public static final String FATAL_KEY = "FATAL_KEY";
+   public static final String MESSAGE_KEY = "MESSAGE_KEY";
    
    // Lists
    public static final String LIST_OF_MEMBERS = "LIST_OF_MEMBERS";
