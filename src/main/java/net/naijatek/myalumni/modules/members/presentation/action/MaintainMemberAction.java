@@ -115,6 +115,12 @@ public class MaintainMemberAction extends MyAlumniBaseController {
     this.sysConfigSerivce = sysConfigSerivce;
     this.messengerService = messengerService;
 }*/
+    
+    private void appcontextdemo(){
+    	ApplicationContext appCtx = MyAlumniStartupServlet.getApplicationContext();
+    	MyAlumniStartupServlet ss = (MyAlumniStartupServlet) appCtx.getBean("starter"); // from the xml file
+    	String xxx = ss.getSomthing();
+    }
 
 
     @RequestMapping(value = "/genericAjaxSearch", method = RequestMethod.POST)

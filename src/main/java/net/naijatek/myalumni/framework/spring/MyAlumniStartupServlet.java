@@ -65,12 +65,15 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 @Controller
-public class MyAlumniStartupServlet /*extends DispatcherServlet*/ {
+public class MyAlumniStartupServlet implements ApplicationContextAware {
 
 	private static Log logger = LogFactory.getLog(MyAlumniStartupServlet.class);
 
 	private final AppProp appProp = AppProp.getInstance();
 
+	private static Appliactioncontext ctx;
+	
+	
     // @see:
     // net.naijatek.myalumni.util.date.DateConverterUtil::getDatePattern()
     private String dateFormatPattern = SystemConfigConstants.DATE_FORMAT_JSP;
@@ -110,6 +113,19 @@ public class MyAlumniStartupServlet /*extends DispatcherServlet*/ {
 	//private MyJobScheduler sched = null;
 
 
+    @Override
+    public setApplicationcontext(ApplicationContext appContext) throws BeansException{
+    	ctx = appContext;
+    }
+    
+    @override
+    public static ApplicationContext getApplicationContext(){
+    	return ctx;
+    }
+    
+    
+    
+    
     @PostConstruct
 	protected void initSystem() throws ServletException {
 		// Initialize the persistence service
