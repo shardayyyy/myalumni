@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping> 
+	<class name="net.naijatek.myalumni.entity.SystemConfigVO" table="MYALUMNI_SYSCONFIG_TBL">
+		<id name="systemConfigId" column="SYSCONFIG_ID" length="40">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="sessionTimeout" column="SESSION_TIMEOUT" length="6"/>
+		<property name="rssHeader" column="RSS_HEADER" length="35"/>
+		<property name="rssUrl" column="RSS_URL" length="250"/>
+		<property name="orgFirstYear" column="ORG_FIRST_YEAR" length="4"/>
+		<property name="serverUrl" column="SERVER_URL" length="250"/>
+		<property name="albumUrl" column="ALBUM_URL" length="250"/>
+		<property name="forumUrl" column="FORUM_URL" length="250"/>
+		<property name="organizationName" column="ORG_NAME" length="40"/>
+		<property name="organizationShortName" column="ORG_SHORT_NAME" length="20"/>			
+		<property name="orgEmail" column="ORG_EMAIL" length="100"/>
+		<property name="orgAboutUs" column="ORG_ABOUT_US" type="text" />
+		<property name="orgIntro" column="ORG_INTRO" type="text" />
+		
+		<property name="twitteruser" column="TWITTER_USER" length="40"/>
+		<property name="twitterpswd" column="TWITTER_PSWD" length="40"/>		
+		
+		
+		<property name="hasDormitory" column="HAS_DORMITORY" length="1"/>
+		<property name="birthdayNotification" column="BIRTHDAY_NOTIFICATION" length="1"/>
+		<property name="logoFileName" column="LOGO_FILE_NAME" length="200"/>
+		
+		<property name="lastModifiedBy" 	column="LASTMODIFIED_BY"	length="40" not-null="true"	type="string"/>
+		<property name="lastModification" 	column="LASTMODIFICATION" 	length="1" not-null="true"	type="string"/>
+		<property name="lastModifiedDate" 	column="LASTMODIFIED_DATE" not-null="true"	type="timestamp"/>
+		
+	</class>	
+	
+	<query name="get.systemConfig">
+		<![CDATA[ from SystemConfigVO ]]>
+	</query>  
+	
+	
+</hibernate-mapping>
