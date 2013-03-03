@@ -46,10 +46,10 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 
-import net.naijatek.myalumni.modules.common.domain.MemberVO;
-import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
-import net.naijatek.myalumni.modules.common.service.IMemberService;
-import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
+import net.naijatek.myalumni.entity.MemberVO;
+import net.naijatek.myalumni.entity.SystemConfigVO;
+import net.naijatek.myalumni.service.IMemberService;
+import net.naijatek.myalumni.service.ISystemConfigService;
 import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.mail.SendMailUtil;
 import net.naijatek.myalumni.util.utilities.StringUtil;

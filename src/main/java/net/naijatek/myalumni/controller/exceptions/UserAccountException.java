@@ -36,40 +36,44 @@
  * @author Folashade Adeyosoye (shardayyy@naijatek.com)
  * @version 1.0
  */
-package net.naijatek.myalumni.framework;
+package net.naijatek.myalumni.controller.exceptions;
 
-import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import net.naijatek.myalumni.util.BaseConstants;
-import org.displaytag.localization.LocaleResolver;
-
-public class MyAlumniLocaleResolver implements LocaleResolver {
+/**
+ * A runtime exception thrown by all methods of user profile management class
+ * to indicate an error condition.
+ *
+ */
+public class UserAccountException extends NotLoginException  {
+    
 
 	/**
-	 * Resolves the current user locale.
-	 * 
-	 * @return <b> requestLocale </b> user locale.
-	 * @param
-	 *            request  Http request.
-	 */
-	public Locale resolveLocale(HttpServletRequest request) {
+    * Default Constructor. Takes no arguments
+    *
+    * @since 1.0
+    */
+    public UserAccountException(String message) {
+        super(message);
+    }
+    
+    /**
+    * Constructor
+    *
+    * @param <b> message </b> The detailed exception message.
+    *
+    * @since 1.0
+    */
+    public UserAccountException(int message) {
+         super(message);
+    }
 
-		// Get the Locale (if any) that is stored in the user's session
-		HttpSession session = request.getSession();
-		Locale sessionLocale = (Locale) session
-				.getAttribute(BaseConstants.LOCALE_KEY);
-
-		// Get the user's preferred Locale from the request
-		Locale requestLocale = request.getLocale();
-		// If was never a Locale in the session or it has changed, set it
-		if (sessionLocale == null || (sessionLocale != requestLocale)) {
-			// Set the new Locale into the user's session
-			session.setAttribute(BaseConstants.LOCALE_KEY, requestLocale);
-		}
-
-		return requestLocale;
-	}
+    /**
+    * Constructor
+    *
+    * @param <b>thr</b> The Throwable class.
+    *
+    * @since 1.0
+    */
+    public UserAccountException(final Throwable thr) {
+        super((thr == null) ? null : thr.getMessage());
+    }
 }

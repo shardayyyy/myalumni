@@ -48,8 +48,8 @@ import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 
-import net.naijatek.myalumni.modules.common.domain.FrontPageVO;
-import net.naijatek.myalumni.modules.common.service.IFrontPageService;
+import net.naijatek.myalumni.entity.FrontPageVO;
+import net.naijatek.myalumni.service.IFrontPageService;
 import net.naijatek.myalumni.util.BaseConstants;
 
 

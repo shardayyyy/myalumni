@@ -41,7 +41,7 @@ package net.naijatek.myalumni.util.mail;
 import java.util.List;
 import java.util.Map;
 
-import net.naijatek.myalumni.framework.exceptions.MailServerException;
+import net.naijatek.myalumni.controller.exceptions.MailServerException;
 
 
 public interface ITemplateMailer {

@@ -48,12 +48,12 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TagSupport;
 
-import net.naijatek.myalumni.modules.common.domain.MemberVO;
-import net.naijatek.myalumni.modules.common.domain.ValueLabelItem;
-import net.naijatek.myalumni.modules.common.domain.XlatDetailVO;
-import net.naijatek.myalumni.modules.common.service.IMemberService;
-import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
-import net.naijatek.myalumni.modules.common.service.IXlatService;
+import net.naijatek.myalumni.entity.MemberVO;
+import net.naijatek.myalumni.entity.ValueLabelItem;
+import net.naijatek.myalumni.entity.XlatDetailVO;
+import net.naijatek.myalumni.service.IMemberService;
+import net.naijatek.myalumni.service.ISystemConfigService;
+import net.naijatek.myalumni.service.IXlatService;
 import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.utilities.AppProp;
 

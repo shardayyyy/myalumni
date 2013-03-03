@@ -51,6 +51,7 @@ public interface BaseConstants {
   public final static String GUEST_USERNAME_ID = "888888888888888888888888888888";
   public final static String DEFAULT_DISPLAY_SIZE = "20";
 
+  public final static String LOCALE_KEY = "LOCALE_KEY";
 
   public final static String MESSAGE = "MESSAGE";
   public final static String LOG_CONTENT = "logContent";

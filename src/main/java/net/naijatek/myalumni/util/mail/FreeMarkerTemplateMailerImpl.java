@@ -39,7 +39,7 @@
 package net.naijatek.myalumni.util.mail;
 
 
-import net.naijatek.myalumni.framework.exceptions.MailServerException;
+import net.naijatek.myalumni.controller.exceptions.MailServerException;
 
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.mail.javamail.JavaMailSender;

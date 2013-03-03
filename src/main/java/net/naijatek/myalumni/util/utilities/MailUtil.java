@@ -43,7 +43,7 @@ import java.util.StringTokenizer;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
-import net.naijatek.myalumni.framework.exceptions.BadInputException;
+import net.naijatek.myalumni.controller.exceptions.BadInputException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

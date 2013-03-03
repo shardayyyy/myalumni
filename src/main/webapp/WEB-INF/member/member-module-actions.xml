@@ -7,7 +7,7 @@
     <!-- ***********                  SECURITY            ************* -->
     <!-- ******************************************************************* --> 
         
-   <bean name="/member/login" class="net.naijatek.myalumni.modules.common.presentation.action.SecurityAction">
+   <bean name="/member/login" class="net.naijatek.myalumni.controller.LoginController">
         <constructor-arg index="0" ref="userAccountService"/>   
         <constructor-arg index="1" ref="systemConfigService"/>
         <constructor-arg index="2" ref="pmService"/>
@@ -16,7 +16,7 @@
     </bean>
     
     <!-- Forgot Password -->
-    <bean name="/forgotPassword" class="net.naijatek.myalumni.modules.common.presentation.action.SecurityAction">
+    <bean name="/forgotPassword" class="net.naijatek.myalumni.controller.LoginController">
         <constructor-arg index="0" ref="userAccountService"/>   
         <constructor-arg index="1" ref="systemConfigService"/>
         <constructor-arg index="2" ref="pmService"/>
@@ -25,7 +25,7 @@
     </bean>
     
     <!-- Forgot Username -->
-    <bean name="/forgotUserName" class="net.naijatek.myalumni.modules.common.presentation.action.SecurityAction">
+    <bean name="/forgotUserName" class="net.naijatek.myalumni.controller.LoginController">
         <constructor-arg index="0" ref="userAccountService"/>   
         <constructor-arg index="1" ref="systemConfigService"/>
         <constructor-arg index="2" ref="pmService"/>
@@ -34,7 +34,7 @@
     </bean>
         
     <!-- Update Expired Password -->
-    <bean name="/updateExpiredPassword" class="net.naijatek.myalumni.modules.common.presentation.action.SecurityAction">
+    <bean name="/updateExpiredPassword" class="net.naijatek.myalumni.controller.LoginController">
         <constructor-arg index="0" ref="userAccountService"/>   
         <constructor-arg index="1" ref="systemConfigService"/>
         <constructor-arg index="2" ref="pmService"/>
@@ -43,7 +43,7 @@
     </bean>  
     
     <!-- Reset Password -->
-    <bean name="/resetpassword" class="net.naijatek.myalumni.modules.common.presentation.action.SecurityAction">
+    <bean name="/resetpassword" class="net.naijatek.myalumni.controller.LoginController">
         <constructor-arg index="0" ref="userAccountService"/>   
         <constructor-arg index="1" ref="systemConfigService"/>
         <constructor-arg index="2" ref="pmService"/>
@@ -52,7 +52,7 @@
     </bean>    
     
     
-    <bean name="/memberActivateAccount" class="net.naijatek.myalumni.modules.common.presentation.action.SecurityAction">
+    <bean name="/memberActivateAccount" class="net.naijatek.myalumni.controller.LoginController">
         <constructor-arg index="0" ref="userAccountService"/>   
         <constructor-arg index="1" ref="systemConfigService"/>
         <constructor-arg index="2" ref="pmService"/>
@@ -61,7 +61,7 @@
     </bean>   
     
     
-    <bean name="/getActivationInstructions" class="net.naijatek.myalumni.modules.common.presentation.action.SecurityAction">
+    <bean name="/getActivationInstructions" class="net.naijatek.myalumni.controller.LoginController">
         <constructor-arg index="0" ref="userAccountService"/>   
         <constructor-arg index="1" ref="systemConfigService"/>
         <constructor-arg index="2" ref="pmService"/>
@@ -70,7 +70,7 @@
     </bean>
 
     
-    <bean name="/finalizeAccountActivation" class="net.naijatek.myalumni.modules.common.presentation.action.SecurityAction">
+    <bean name="/finalizeAccountActivation" class="net.naijatek.myalumni.controller.LoginController">
         <constructor-arg index="0" ref="userAccountService"/>   
         <constructor-arg index="1" ref="systemConfigService"/>
         <constructor-arg index="2" ref="pmService"/>
@@ -82,7 +82,7 @@
     <!-- ******************************************************************* -->
     <!-- ***********                  M E M B E R S            ************* -->
     <!-- ******************************************************************* -->
-    <bean name="/member/logout" class="net.naijatek.myalumni.modules.common.presentation.action.SecurityAction">
+    <bean name="/member/logout" class="net.naijatek.myalumni.controller.LoginController">
         <constructor-arg index="0" ref="userAccountService"/>   
         <constructor-arg index="1" ref="systemConfigService"/>
         <constructor-arg index="2" ref="pmService"/>
@@ -90,7 +90,7 @@
         <constructor-arg index="4" ref="classNewsService"/> 
     </bean>
      
-    <bean name="/member/viewReminisce" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/viewReminisce" class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -100,7 +100,7 @@
     </bean>
       
     <!-- Prepare Registation Page -->
-    <bean name="/member/prepareRegistration" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/prepareRegistration" class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -109,7 +109,7 @@
         <constructor-arg index="5" ref="messengerService"/>
     </bean>
     
-    <bean name="/member/memberSearch" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/memberSearch" class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -120,7 +120,7 @@
     
     <bean name="/member/addMember" class="com.octo.captcha.module.struts.VerifyCaptchaChallengeAction"/>
     
-    <bean name="/member/jcaptchaAddMember"  class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/jcaptchaAddMember"  class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -129,7 +129,7 @@
         <constructor-arg index="5" ref="messengerService"/> 
     </bean>
     
-    <bean name="/member/prepareDeleteMyMemberProfile"  class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/prepareDeleteMyMemberProfile"  class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -140,7 +140,7 @@
         
     <bean name="/member/deleteMyMemberProfile" class="com.octo.captcha.module.struts.VerifyCaptchaChallengeAction"/>
     
-    <bean name="/member/jcaptchaDeleteMyMemberProfile"  class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/jcaptchaDeleteMyMemberProfile"  class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -153,7 +153,7 @@
         
         
     
-    <bean name="/member/viewProfile" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/viewProfile" class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -162,7 +162,7 @@
         <constructor-arg index="5" ref="messengerService"/>  
     </bean>
     
-    <bean name="/member/viewMyDesktop" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/viewMyDesktop" class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -171,7 +171,7 @@
         <constructor-arg index="5" ref="messengerService"/>
     </bean>
     
-    <bean name="/member/prepareUpdateMemberProfile" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/prepareUpdateMemberProfile" class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -180,7 +180,7 @@
         <constructor-arg index="5" ref="messengerService"/> 
     </bean>
     
-    <bean name="/member/updateMemberProfile" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/updateMemberProfile" class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -189,7 +189,7 @@
         <constructor-arg index="5" ref="messengerService"/> 
     </bean>
     
-    <bean name="/member/updateEmail" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/updateEmail" class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -198,7 +198,7 @@
         <constructor-arg index="5" ref="messengerService"/> 
     </bean>
     
-    <bean name="/member/updatePassword" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/updatePassword" class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -207,7 +207,7 @@
         <constructor-arg index="5" ref="messengerService"/> 
     </bean>
     
-    <bean name="/member/updateSignature" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/updateSignature" class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -216,7 +216,7 @@
         <constructor-arg index="5" ref="messengerService"/>
     </bean>
     
-    <bean name="/member/updateAvatar" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/updateAvatar" class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -225,7 +225,7 @@
         <constructor-arg index="5" ref="messengerService"/> 
     </bean>
     
-    <bean name="/member/deleteAvatar" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/deleteAvatar" class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -234,7 +234,7 @@
         <constructor-arg index="5" ref="messengerService"/> 
     </bean>    
     
-    <bean name="/member/displayMiniProfile" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/displayMiniProfile" class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -243,7 +243,7 @@
         <constructor-arg index="5" ref="messengerService"/>
     </bean>
 
-    <bean name="/member/validateMemberUserName" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/validateMemberUserName" class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -253,7 +253,7 @@
     </bean>
 
         
-    <bean name="/member/genericAjaxSearch" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainMemberAction">
+    <bean name="/member/genericAjaxSearch" class="net.naijatek.myalumni.controller.MemberController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="mfService"/> 
@@ -267,67 +267,67 @@
     <!-- ******************************************************************* -->
     <!-- ***********                  PRIVATE MESSAGE            ************* -->
     <!-- ******************************************************************* -->    
-    <bean name="/member/listMailBox" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainPrivateMessageAction">
+    <bean name="/member/listMailBox" class="net.naijatek.myalumni.controller.PrivateMessageController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="systemConfigService"/>
     </bean>
 
-    <bean name="/member/viewFolderMail" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainPrivateMessageAction">
+    <bean name="/member/viewFolderMail" class="net.naijatek.myalumni.controller.PrivateMessageController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="systemConfigService"/>
     </bean>
 
-    <bean name="/member/deleteMail" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainPrivateMessageAction">
+    <bean name="/member/deleteMail" class="net.naijatek.myalumni.controller.PrivateMessageController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="systemConfigService"/>
     </bean>
     
-    <bean name="/member/readOneMailByUserName" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainPrivateMessageAction">
+    <bean name="/member/readOneMailByUserName" class="net.naijatek.myalumni.controller.PrivateMessageController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="systemConfigService"/>
     </bean>
     
-    <bean name="/member/prepareReply" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainPrivateMessageAction">
+    <bean name="/member/prepareReply" class="net.naijatek.myalumni.controller.PrivateMessageController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="systemConfigService"/>
     </bean>
     
-    <bean name="/member/replyMail" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainPrivateMessageAction">
+    <bean name="/member/replyMail" class="net.naijatek.myalumni.controller.PrivateMessageController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="systemConfigService"/>
     </bean>
     
-    <bean name="/member/contactMail" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainPrivateMessageAction">
+    <bean name="/member/contactMail" class="net.naijatek.myalumni.controller.PrivateMessageController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="systemConfigService"/>
     </bean>
     
-    <bean name="/member/prepareContact" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainPrivateMessageAction">
+    <bean name="/member/prepareContact" class="net.naijatek.myalumni.controller.PrivateMessageController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="systemConfigService"/>
     </bean>
     
-    <bean name="/member/prepareEmailWebmaster" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainPrivateMessageAction">
+    <bean name="/member/prepareEmailWebmaster" class="net.naijatek.myalumni.controller.PrivateMessageController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="systemConfigService"/>
     </bean>
 
-    <bean name="/member/jcaptchaEmailWebmaster" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainPrivateMessageAction">
+    <bean name="/member/jcaptchaEmailWebmaster" class="net.naijatek.myalumni.controller.PrivateMessageController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="systemConfigService"/>
     </bean>
 
-    <bean name="/member/prepareComposePrivateMessage" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainPrivateMessageAction">
+    <bean name="/member/prepareComposePrivateMessage" class="net.naijatek.myalumni.controller.PrivateMessageController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="pmService"/>
         <constructor-arg index="2" ref="systemConfigService"/>
@@ -343,19 +343,19 @@
     <!-- ******************************************************************* -->
     <!-- ***********                  CLASS NEWS            ************* -->
     <!-- ******************************************************************* -->   
-    <bean name="/member/prepareAddClassNews" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainClassNewsAction">
+    <bean name="/member/prepareAddClassNews" class="net.naijatek.myalumni.controller.ClassNewsController">
       <constructor-arg index="0" ref="classNewsService"/>
     </bean>
     
-    <bean name="/member/addClassNews" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainClassNewsAction">
+    <bean name="/member/addClassNews" class="net.naijatek.myalumni.controller.ClassNewsController">
       <constructor-arg index="0" ref="classNewsService"/>
     </bean>
     
-    <bean name="/member/viewClassNews" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainClassNewsAction">
+    <bean name="/member/viewClassNews" class="net.naijatek.myalumni.controller.ClassNewsController">
         <constructor-arg index="0" ref="classNewsService"/>
     </bean>
    
-    <bean name="/member/listClassNews" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainClassNewsAction">
+    <bean name="/member/listClassNews" class="net.naijatek.myalumni.controller.ClassNewsController">
         <constructor-arg index="0" ref="classNewsService"/>
     </bean>
       
@@ -363,15 +363,15 @@
           <!-- ******************************************************************* -->
     <!-- ***********                  REMINISCE            ************* -->
     <!-- ******************************************************************* -->    
-    <bean name="/member/prepareAddReminisce" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainReminisceAction">
+    <bean name="/member/prepareAddReminisce" class="net.naijatek.myalumni.controller.ReminisceController">
       <constructor-arg index="0" ref="reminisceService"/>
     </bean>
     
-    <bean name="/member/addReminisce" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainReminisceAction">
+    <bean name="/member/addReminisce" class="net.naijatek.myalumni.controller.ReminisceController">
       <constructor-arg index="0" ref="reminisceService"/>
     </bean>
     
-    <bean name="/member/listReminisce" class="net.naijatek.myalumni.modules.members.presentation.action.MaintainReminisceAction">
+    <bean name="/member/listReminisce" class="net.naijatek.myalumni.controller.ReminisceController">
       <constructor-arg index="0" ref="reminisceService"/>
     </bean>
     

@@ -29,31 +29,31 @@
 	<!--  ======================================================= -->
 
 	<mapping
-		resource="net/naijatek/myalumni/modules/common/persistence/hibernate/hbm/LoginHistory.hbm.xml" />
+		resource="net/naijatek/myalumni/persistence/hibernate/hbm/LoginHistory.hbm.xml" />
 	<mapping
-		resource="net/naijatek/myalumni/modules/common/persistence/hibernate/hbm/ClassNews.hbm.xml" />
+		resource="net/naijatek/myalumni/persistence/hibernate/hbm/ClassNews.hbm.xml" />
 	<mapping
-		resource="net/naijatek/myalumni/modules/common/persistence/hibernate/hbm/Members.hbm.xml" />
+		resource="net/naijatek/myalumni/persistence/hibernate/hbm/Members.hbm.xml" />
 	<mapping
-		resource="net/naijatek/myalumni/modules/common/persistence/hibernate/hbm/MessageFolder.hbm.xml" />
+		resource="net/naijatek/myalumni/persistence/hibernate/hbm/MessageFolder.hbm.xml" />
 	<mapping
-		resource="net/naijatek/myalumni/modules/common/persistence/hibernate/hbm/PrivateMessage.hbm.xml" />
+		resource="net/naijatek/myalumni/persistence/hibernate/hbm/PrivateMessage.hbm.xml" />
 	<mapping
-		resource="net/naijatek/myalumni/modules/common/persistence/hibernate/hbm/Scroll.hbm.xml" />
+		resource="net/naijatek/myalumni/persistence/hibernate/hbm/Scroll.hbm.xml" />
 	<mapping
-		resource="net/naijatek/myalumni/modules/common/persistence/hibernate/hbm/XlatGroup.hbm.xml" />
+		resource="net/naijatek/myalumni/persistence/hibernate/hbm/XlatGroup.hbm.xml" />
 	<mapping
-		resource="net/naijatek/myalumni/modules/common/persistence/hibernate/hbm/XlatDetail.hbm.xml" />
+		resource="net/naijatek/myalumni/persistence/hibernate/hbm/XlatDetail.hbm.xml" />
 	<mapping
-		resource="net/naijatek/myalumni/modules/common/persistence/hibernate/hbm/ErrorLog.hbm.xml" />
+		resource="net/naijatek/myalumni/persistence/hibernate/hbm/ErrorLog.hbm.xml" />
 	<mapping
-		resource="net/naijatek/myalumni/modules/common/persistence/hibernate/hbm/SystemConfig.hbm.xml" />
+		resource="net/naijatek/myalumni/persistence/hibernate/hbm/SystemConfig.hbm.xml" />
 	<mapping
-		resource="net/naijatek/myalumni/modules/common/persistence/hibernate/hbm/Messenger.hbm.xml" />
+		resource="net/naijatek/myalumni/persistence/hibernate/hbm/Messenger.hbm.xml" />
 	<mapping
-		resource="net/naijatek/myalumni/modules/common/persistence/hibernate/hbm/Reminisce.hbm.xml" />		
+		resource="net/naijatek/myalumni/persistence/hibernate/hbm/Reminisce.hbm.xml" />
 	<mapping
-		resource="net/naijatek/myalumni/modules/common/persistence/hibernate/hbm/FrontPage.hbm.xml" />		
+		resource="net/naijatek/myalumni/persistence/hibernate/hbm/FrontPage.hbm.xml" />
 
 
 </session-factory>
