@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="net.naijatek.myalumni.modules.common.domain">
+	<class name="net.naijatek.myalumni.entity.ReminisceVO" table="MYALUMNI_REMINISCE_TBL">
+		<id name="reminisceId" column="REMINISCE_ID" length="40">
+			<generator class="uuid" />
+		</id>
+  
+
+		<property name="fromYear" column="FROM_YEAR"	 not-null="true"	type="string"/>
+		<property name="toYear" column="TO_YEAR"	 not-null="true"	type="string"/>
+		<property name="slang" column="SLANG" 	length="1" not-null="true"	type="string"/>
+		<property name="meaning" column="MEANING" 	length="1" not-null="true"	type="string"/>
+		<property name="pronounce" column="PRONOUNCE" 	length="1" not-null="true"	type="string"/>
+		<property name="status" 	column="REMINISCE_STATUS" 	length="1" not-null="true"	type="string"/>
+
+		<property name="lastModifiedBy" 	column="LASTMODIFIED_BY"	 length="40" not-null="true"	type="string"/>
+		<property name="lastModification" 	column="LASTMODIFICATION" 	length="1" not-null="true"	type="string"/>
+		<property name="lastModifiedDate" 	column="LASTMODIFIED_DATE" not-null="true"	type="timestamp"/>
+			
+		<many-to-one name="author" column="AUTHOR_ID" update="false"/>
+		<property name="authorId" 	formula="AUTHOR_ID" 	length="40" not-null="true"	type="string"/>
+			
+	</class>
+	
+		<!--  All ReminisceVO by status  -->
+	<query name="reminisce.bystatus">
+			<![CDATA[ 
+				from ReminisceVO m 
+				left outer join fetch m.author
+				where m.status = :status 
+				order by m.status desc]]>
+    </query>
+    	
+   	
+    	
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="net.naijatek.myalumni.modules.common.domain">
+	<class name="net.naijatek.myalumni.entity.XlatGroupVO" table="MYALUMNI_SYSTEM_GROUP_TBL">
+		<id name="lookupGroupId" column="XLATGROUP_ID" length="3">
+			<generator class="assigned" />
+		</id>
+  
+		<property name="description" 	column="DESCRIPTION"	length="150"	not-null="true"	type="string"/>
+		<property name="minLength" 		column="MINLEN"			not-null="true"	type="integer"/>
+		<property name="maxLength" 		column="MAXLEN" 		not-null="true"	type="integer"/>
+		<property name="updateable" 	column="UPDATEABLE" 	length="1" 		not-null="true"	type="string"/>
+						 		
+	</class>	
+
+
+</hibernate-mapping>

@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="net.naijatek.myalumni.modules.common.domain">
+	<class name="net.naijatek.myalumni.entity.MemberVO" table="MYALUMNI_MEMBERS_TBL">
+		<id name="memberId" column="MEMBER_ID" length="40">
+			<generator class="uuid" />
+		</id>
+		
+		<property name="memberUserName" 	column="USER_NAME" 	length="40"	not-null="true"	type="string" unique-key="true"/>
+		<property name="memberStatus" 	column="MEMBER_STATUS" 	length="20" 		not-null="true"	type="string"/>
+		<property name="memberPassword" 	column="MEMBER_PASSWORD" 	length="40" 		not-null="true"	type="string"/>
+		<property name="email" 	column="EMAIL" 	length="60" 		not-null="false"	type="string" unique-key="true"/>
+		<property name="firstIPAddress" 	column="FIRST_IP_ADDRESS" 	length="40" 		not-null="true"	type="string"/>
+		<property name="lastIPAddress" 	column="LAST_IP_ADDRESS" 	length="40" 		not-null="true"	type="string"/>
+		<property name="creationDate" 	column="CREATION_DATE" 	not-null="true"	type="timestamp"/>
+		<property name="lastLogonDate" 	column="LAST_LOGON_DATE" not-null="true"	type="timestamp"/>
+		<property name="activationCode" column="ACTIVATION_CODE" 	length="40" 		not-null="false"	type="string"/>
+		<property name="signature" 	column="SIGNATURE" 	length="70" 		not-null="false"	type="string"/>
+		
+		<many-to-one name="title" column="title" not-null="true" />
+		<property name="titleId" 	formula="TITLE" 		length="30" 		not-null="true"		type="string"/>
+		
+		
+		<property name="avatar" 	column="AVATAR" 	length="200" 		not-null="false"	type="string"/>
+		<property name="firstName" 	column="FIRST_NAME" length="70" 		not-null="true"		type="string"/>
+		<property name="lastName" 	column="LAST_NAME" 	length="70" 		not-null="true"		type="string"/>
+		<property name="maidenName" 	column="MAIDEN_NAME" length="70" 		not-null="false"	type="string"/>
+		<property name="nickName" 	column="NICK_NAME" 	length="70" 		not-null="false"	type="string"/>
+		<property name="gender" 	column="GENDER" 	length="6" 			not-null="true"		type="string"/>
+		<property name="address" 	column="ADDRESS" 	length="200" 		not-null="false"	type="string"/>
+		<property name="firstEmail" 	column="FIRST_EMAIL" 	length="60" 		not-null="true"	type="string"/>
+		
+		<many-to-one name="country" column="country" not-null="true" />
+		<property name="countryId" formula="country" length="70" not-null="true" type="string"/>
+		
+		<property name="phone" 	column="PHONE" 	length="200" 		not-null="false"	type="string"/>
+		
+		<many-to-one name="career" column="OCCUPATION" not-null="false" />
+		<property name="careerId" 	formula="OCCUPATION" 	length="100" 		not-null="false"	type="string"/>
+		
+
+		<property name="website" 	column="WEBSITE" 	length="200" 		not-null="false"	type="string"/>
+		<property name="favUrl1" 	column="FAV_URL_1" 	length="200" 		not-null="false"	type="string"/>
+		<property name="favUrl2" 	column="FAV_URL_2" 	length="200" 		not-null="false"	type="string"/>
+		<property name="yearIn" 	column="YEAR_IN" 	not-null="true"	type="integer"/>
+		<property name="yearOut" 	column="YEAR_OUT" 	not-null="true"	type="integer"/>
+		<property name="isAdmin" 	column="IS_ADMIN" 	length="1" 		not-null="true"	type="string"/>
+		
+		<many-to-one name="dormitory" column="DORMITORY" not-null="false" />
+		<property name="dormitoryId" 	formula="DORMITORY" 	length="40" 		not-null="false"	type="string"/>
+			
+		
+		<property name="comments" 	column="COMMENTS" 	length="1000" 		not-null="false"	type="string"/>
+		<property name="adminComments" 	column="ADMIN_COMMENTS" 	length="1000" 		not-null="false"	type="string"/>
+		<property name="dob" 	column="DOB" not-null="false"	type="timestamp"/>
+		<property name="lastModifiedBy" 	column="LASTMODIFIED_BY"	length="40" not-null="true"	type="string"/>
+		<property name="lastModification" 	column="LASTMODIFICATION" 	length="1" not-null="true"	type="string"/>
+		<property name="lastModifiedDate" 	column="LASTMODIFIED_DATE" not-null="true"	type="timestamp"/>
+		<property name="hideEmail" 	column="HIDE_EMAIL" 	length="1" 		not-null="false"	type="string"/>
+		<property name="hideAddress" 	column="HIDE_ADDRESS" 	length="1" 		not-null="false"	type="string"/>
+		<property name="hidePhone" 	column="HIDE_PHONE" 	length="1" 		not-null="false"	type="string"/>
+		<property name="hideIm" 	column="HIDE_IM" 	length="1" 		not-null="false"	type="string"/>
+		<property name="promptChange" 	column="PROMPT_CHANGE" 	length="1" 		not-null="true"	type="string"/>
+		
+		
+	</class>	
+	
+	<!--  Members By Status -->
+	<query name="members.bystatus">
+			<![CDATA[ from MemberVO m where m.memberStatus = :memberStatus order by m.firstName ]]>
+    </query>
+	
+	<!--  Members By Administer, all by ACTIVE -->
+	<query name="members.toadminister">
+			<![CDATA[ from MemberVO m where m.memberStatus != 'A' order by m.firstName ]]>
+    </query>
+	
+	<!--  Members By UserName -->
+	<query name="members.byusername">
+			<![CDATA[ 
+				from MemberVO m	where m.memberUserName = :memberUserName
+			 ]]>
+    </query>
+
+	<!--  Members By Email except me -->
+	<query name="member.doesemailalreadyexist">
+			<![CDATA[ from MemberVO m where m.email = :email and m.memberId != :memberId]]>
+    </query>
+    
+   	<!--  Members By Email -->
+	<query name="members.byemail">
+			<![CDATA[ from MemberVO m where m.email = :email ]]>
+    </query>
+	
+	<query name="member.bday.bymonth">
+		<![CDATA[ from MemberVO c where MONTH(c.dob) = :month order by c.dob ]]>		
+	</query>
+	
+	<query name="member.bday.bymonth.list">
+		<![CDATA[ 
+			from MemberVO c 
+			where MONTH(c.dob) = :month 
+			and DAY(c.dob) >= :today
+			order by DAY(c.dob) ]]>		
+	</query>
+	
+	<query name="member.bday.bymonth.byday">
+		<![CDATA[ from MemberVO c where MONTH(c.dob) = :month and DAY(c.dob) = :day and memberStatus = 'A' order by c.dob ]]>		
+	</query>
+
+	<query name="member.byrole">
+		<![CDATA[ from MemberVO u where u.isAdmin = :isAdmin order by u.lastName, u.firstName]]>
+	</query>
+	
+	<query name="member.bydorm">
+		<![CDATA[ 
+			from MemberVO m
+			where m.dormitory = :dormitoryId
+			and m.memberStatus = 'A'
+			order by m.lastName desc				
+		]]>								
+    </query> 
+    
+    
+</hibernate-mapping>
