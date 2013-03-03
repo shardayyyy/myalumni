@@ -36,40 +36,29 @@
  * @author Folashade Adeyosoye (shardayyy@naijatek.com)
  * @version 1.0
  */
-package net.naijatek.myalumni.framework;
+package net.naijatek.myalumni.controller.exceptions;
 
-import java.util.Locale;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import net.naijatek.myalumni.util.BaseConstants;
-import org.displaytag.localization.LocaleResolver;
-
-public class MyAlumniLocaleResolver implements LocaleResolver {
+/**
+ * A runtime exception thrown by all methods of Mail Server management classes
+ * to indicate an error condition.
+ *
+ */
+public class MailServerException extends MyAlumniBaseException{
 
 	/**
-	 * Resolves the current user locale.
-	 * 
-	 * @return <b> requestLocale </b> user locale.
-	 * @param
-	 *            request  Http request.
-	 */
-	public Locale resolveLocale(HttpServletRequest request) {
-
-		// Get the Locale (if any) that is stored in the user's session
-		HttpSession session = request.getSession();
-		Locale sessionLocale = (Locale) session
-				.getAttribute(BaseConstants.LOCALE_KEY);
-
-		// Get the user's preferred Locale from the request
-		Locale requestLocale = request.getLocale();
-		// If was never a Locale in the session or it has changed, set it
-		if (sessionLocale == null || (sessionLocale != requestLocale)) {
-			// Set the new Locale into the user's session
-			session.setAttribute(BaseConstants.LOCALE_KEY, requestLocale);
-		}
-
-		return requestLocale;
-	}
+     * Default Constructor. Takes no argument.
+     * @since 1.0
+     */
+    public MailServerException() {
+    }
+    
+    /**
+     * Constructor.
+     * @param <b> message </b> The detailed exception message.
+     * @since 1.0
+     */
+    public MailServerException(final String msg) {
+       super(msg);
+    }
 }

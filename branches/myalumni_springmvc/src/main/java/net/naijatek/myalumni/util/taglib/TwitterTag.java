@@ -48,9 +48,9 @@ import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
-import net.naijatek.myalumni.modules.common.domain.TwitterVO;
-import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
-import net.naijatek.myalumni.modules.common.service.ITwitterService;
+import net.naijatek.myalumni.entity.TwitterVO;
+import net.naijatek.myalumni.service.ISystemConfigService;
+import net.naijatek.myalumni.service.ITwitterService;
 import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.utilities.AppProp;
 

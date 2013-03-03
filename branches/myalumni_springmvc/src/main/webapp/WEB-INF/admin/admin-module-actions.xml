@@ -6,7 +6,7 @@
     <!-- ******************************************************************* -->
     <!-- ***********                SECURITY                   ************* -->
     <!-- ******************************************************************* -->
-     <bean name="/admin/login" class="net.naijatek.myalumni.modules.common.presentation.action.SecurityAction">
+     <bean name="/admin/login" class="net.naijatek.myalumni.controller.LoginController">
         <constructor-arg index="0" ref="userAccountService"/>   
         <constructor-arg index="1" ref="systemConfigService"/>
         <constructor-arg index="2" ref="pmService"/>
@@ -14,7 +14,7 @@
         <constructor-arg index="4" ref="classNewsService"/>  
     </bean>
        
-    <bean name="/admin/logout" class="net.naijatek.myalumni.modules.common.presentation.action.SecurityAction">
+    <bean name="/admin/logout" class="net.naijatek.myalumni.controller.LoginController">
         <constructor-arg index="0" ref="userAccountService"/> 
         <constructor-arg index="1" ref="systemConfigService"/>  
         <constructor-arg index="2" ref="pmService"/>
@@ -188,7 +188,7 @@
     <!--  ========================================= -->
     <!--  ======            SETUP     ======== -->
     <!--  ========================================= -->    
-    <bean name="/admin/setupIntialization" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/setupIntialization" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -204,7 +204,7 @@
     <!--  ======     MANAGE ERROR LOGS     ======== -->
     <!--  ========================================= -->
     <!-- List Error Log -->
-    <bean name="/admin/listErrorLogs" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/listErrorLogs" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -216,7 +216,7 @@
     </bean>      
 
     <!-- Batch Error Log -->
-    <bean name="/admin/batchErrorLog" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/batchErrorLog" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -228,7 +228,7 @@
     </bean>         
 
     <!-- View Error Log -->
-    <bean name="/admin/viewErrorLog" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/viewErrorLog" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -240,7 +240,7 @@
     </bean>       
     
     <!-- Purge Error Log -->
-    <bean name="/admin/purgeLogHistory" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/purgeLogHistory" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -252,7 +252,7 @@
     </bean>       
 
     <!-- Delete Error Log -->    
-    <bean name="/admin/deleteErrorLog" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/deleteErrorLog" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -267,7 +267,7 @@
     <!--  ======     Organization About Us   ======== -->
     <!--  ========================================= -->    
     <!-- Prepare Update Org ABout Us -->
-    <bean name="/admin/prepareUpdateOrgAboutUs" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/prepareUpdateOrgAboutUs" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -279,7 +279,7 @@
     </bean>
     
     <!-- Update Org ABout Us -->
-    <bean name="/admin/updateOrgAboutUs" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/updateOrgAboutUs" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -294,7 +294,7 @@
     <!--  ======     Organization Intro   ======== -->
     <!--  ========================================= -->    
     <!-- Prepare Update Org Intro -->
-    <bean name="/admin/prepareUpdateOrgIntro" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/prepareUpdateOrgIntro" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -306,7 +306,7 @@
     </bean>
     
     <!-- Update Org Intro -->
-    <bean name="/admin/updateOrgIntro" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/updateOrgIntro" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -322,7 +322,7 @@
     <!--  ======     Organization    ======== -->
     <!--  ========================================= -->    
     <!-- Prepare Update Org Info -->
-    <bean name="/admin/prepareUpdateOrgInfo" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/prepareUpdateOrgInfo" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -334,7 +334,7 @@
     </bean>
     
     <!-- Update Org Info -->
-    <bean name="/admin/updateOrgInfo" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/updateOrgInfo" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -349,7 +349,7 @@
     <!--  ======     Rss Feed     ======== -->
     <!--  ========================================= -->    
     <!-- Prepare Update RssFeed -->
-    <bean name="/admin/prepareUpdateRssFeed" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/prepareUpdateRssFeed" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -361,7 +361,7 @@
     </bean>
     
     <!-- Update RssFeed -->
-    <bean name="/admin/updateRssFeed" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/updateRssFeed" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -376,7 +376,7 @@
     <!--  ====== MAINTAIN USER SESSION TIMEOUT     ======== -->
     <!--  =================================================== -->    
     <!-- Prepare Update Session Timeout -->
-    <bean name="/admin/prepareUpdateSessionTimeOut" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/prepareUpdateSessionTimeOut" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -388,7 +388,7 @@
     </bean>      
     
     <!-- Update Session Timeout -->
-    <bean name="/admin/updateSessionTimeOut" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/updateSessionTimeOut" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -404,7 +404,7 @@
     <!--  ======       MAINTAIN SERVER URL         ======== -->
     <!--  =================================================== -->    
     <!-- Prepare Update Server URL -->
-    <bean name="/admin/prepareUpdateServerUrl" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/prepareUpdateServerUrl" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -416,7 +416,7 @@
     </bean>     
     
     <!-- Update Server URL -->
-    <bean name="/admin/updateServerUrl" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/updateServerUrl" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -432,7 +432,7 @@
     <!--  ======       MAINTAIN TWITTER CRED         ======== -->
     <!--  =================================================== -->    
     <!-- Prepare Update Twitter Crred -->
-    <bean name="/admin/prepareUpdateTwitterCred" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/prepareUpdateTwitterCred" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -444,7 +444,7 @@
     </bean>     
     
     <!-- Update Twitter Crred -->
-    <bean name="/admin/updateTwitterCred" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/updateTwitterCred" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -460,7 +460,7 @@
     <!--  ======       MAINTAIN FORUM URL         ======== -->
     <!--  =================================================== -->    
     <!-- Prepare Update Server URL -->
-    <bean name="/admin/prepareUpdateForumUrl" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/prepareUpdateForumUrl" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -472,7 +472,7 @@
     </bean>     
     
     <!-- Update Server URL -->
-    <bean name="/admin/updateForumUrl" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/updateForumUrl" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -489,7 +489,7 @@
     <!--  ======       MAINTAIN ALBUM URL         ======== -->
     <!--  =================================================== -->    
     <!-- Prepare Update Server URL -->
-    <bean name="/admin/prepareUpdateAlbumUrl" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/prepareUpdateAlbumUrl" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -501,7 +501,7 @@
     </bean>     
     
     <!-- Update Server URL -->
-    <bean name="/admin/updateAlbumUrl" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/updateAlbumUrl" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -518,7 +518,7 @@
     <!--  ======       MAINTAIN DORMITORY         ======== -->
     <!--  =================================================== -->    
     <!-- Prepare Update Dormitory -->
-    <bean name="/admin/prepareUpdateDormitory" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/prepareUpdateDormitory" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -530,7 +530,7 @@
     </bean>     
     
     <!-- Update Server Dormitory -->
-    <bean name="/admin/updateDormitory" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/updateDormitory" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -546,7 +546,7 @@
     <!--  ======   UPLOAD LOGO      ======== -->
     <!--  =================================== -->
     <!-- Prepare Upload Logo  -->
-    <bean name="/admin/prepareUploadLogo" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/prepareUploadLogo" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -558,7 +558,7 @@
     </bean>     
     
     <!-- Upload Logo -->
-    <bean name="/admin/uploadLogo" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/uploadLogo" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -570,7 +570,7 @@
     </bean>   
     
     <!-- Remove Logo -->
-    <bean name="/admin/removeLogo" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/removeLogo" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -586,7 +586,7 @@
     <!--  ======       MAINTAIN BIRTHDAY NOTIFICATION         ======== -->
     <!--  =================================================== -->    
     <!-- Prepare Update BirthdayNotification -->
-    <bean name="/admin/prepareUpdateBirthdayNotification" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/prepareUpdateBirthdayNotification" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/>
@@ -598,7 +598,7 @@
     </bean>     
     
     <!-- Update BirthdayNotification -->
-    <bean name="/admin/updateBirthdayNotification" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/updateBirthdayNotification" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -616,7 +616,7 @@
     <!-- ***********                CLASSNEWS             ************* -->
     <!-- ******************************************************************* -->
     <!-- List ClassNews -->
-    <bean name="/admin/listClassNews" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/listClassNews" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -628,7 +628,7 @@
     </bean>     
     
     <!-- Prepare Add ClassNews -->
-    <bean name="/admin/prepareAddClassNews" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/prepareAddClassNews" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -640,7 +640,7 @@
     </bean>        
     
     <!-- Add ClassNews -->
-    <bean name="/admin/addClassNews" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/addClassNews" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -652,7 +652,7 @@
     </bean>  
   
     <!-- Prepare Update ClassNews -->
-    <bean name="/admin/prepareUpdateClassNews" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/prepareUpdateClassNews" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -664,7 +664,7 @@
     </bean>  
     
     <!-- Update ClassNews -->
-    <bean name="/admin/updateClassNews" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/updateClassNews" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -676,7 +676,7 @@
     </bean>  
      
     <!-- View ClassNews -->
-    <bean name="/admin/viewClassNews" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/viewClassNews" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -688,7 +688,7 @@
     </bean>  
     
     <!-- Delete ClassNews -->
-    <bean name="/admin/deleteClassNews" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/deleteClassNews" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -703,7 +703,7 @@
     <!-- ***********                REMINISCE             ************* -->
     <!-- ******************************************************************* -->
     <!-- List Reminisce -->
-    <bean name="/admin/listReminisce" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/listReminisce" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -715,7 +715,7 @@
     </bean>     
     
     <!-- Prepare Add Reminisce -->
-    <bean name="/admin/prepareAddReminisce" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/prepareAddReminisce" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -727,7 +727,7 @@
     </bean>        
     
     <!-- Add Reminisce -->
-    <bean name="/admin/addReminisce" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/addReminisce" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -739,7 +739,7 @@
     </bean>  
   
     <!-- Prepare Update Reminisce -->
-    <bean name="/admin/prepareUpdateReminisce" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/prepareUpdateReminisce" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -751,7 +751,7 @@
     </bean>  
     
     <!-- Update Reminisce -->
-    <bean name="/admin/updateReminisce" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/updateReminisce" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -763,7 +763,7 @@
     </bean>  
      
     <!-- View Reminisce -->
-    <bean name="/admin/viewReminisce" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/viewReminisce" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -775,7 +775,7 @@
     </bean>  
     
     <!-- Delete Reminisce -->
-    <bean name="/admin/deleteReminisce" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/deleteReminisce" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -791,7 +791,7 @@
     <!-- ***********        VALIDATE SYSTEM CONFIGURATION       ************* -->
     <!-- ******************************************************************* -->         
     <!-- Prepare Validate System Configuration -->
-    <bean name="/admin/prepareValidateSystemConfig" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/prepareValidateSystemConfig" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -803,7 +803,7 @@
     </bean>
     
      <!-- Validate System Configuration -->
-    <bean name="/admin/validateSystemConfig" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/validateSystemConfig" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -818,7 +818,7 @@
    <!--  =================================================== -->
     <!--  ======       BACKUP DATABASE         ======== -->
     <!--  =================================================== -->     
-    <bean name="/admin/listDatabaseBackup" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/listDatabaseBackup" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -829,7 +829,7 @@
 		<constructor-arg index="7" ref="mfService"/>
     </bean>
     
-    <bean name="/admin/databaseBackup" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/databaseBackup" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -840,7 +840,7 @@
 		<constructor-arg index="7" ref="mfService"/>
     </bean>
 
-    <bean name="/admin/deleteDatabaseBackup" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/deleteDatabaseBackup" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -851,7 +851,7 @@
 		<constructor-arg index="7" ref="mfService"/> 
     </bean>
     
-    <bean name="/admin/viewDatabaseBackup" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/viewDatabaseBackup" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -865,7 +865,7 @@
    <!--  =================================================== -->
     <!--  ======       VIEW LOG 4J Log         ======== -->
     <!--  =================================================== --> 
-    <bean name="/admin/viewSystemLogs" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/viewSystemLogs" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -876,7 +876,7 @@
 		<constructor-arg index="7" ref="mfService"/> 
     </bean>
     
-    <bean name="/admin/listSystemLogs" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/listSystemLogs" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -887,7 +887,7 @@
 		<constructor-arg index="7" ref="mfService"/>
     </bean>   
     
-    <bean name="/admin/deleteSystemLog" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/deleteSystemLog" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -901,7 +901,7 @@
     <!--  ========================================= -->
     <!--  ====== SCROLL       ======== -->
     <!--  ========================================= -->     
-    <bean name="/admin/maintainScroll" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/maintainScroll" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -916,7 +916,7 @@
    <!--  =================================================== -->
     <!--  ======      EMAIL EXCEPTION         ======== -->
     <!--  =================================================== --> 
-    <bean name="/admin/maintainEmailException" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSystemModuleAction">
+    <bean name="/admin/maintainEmailException" class="net.naijatek.myalumni.controller.AdminSystemController">
         <constructor-arg index="0" ref="errorLoggerService"/>  
         <constructor-arg index="1" ref="systemConfigService"/> 
         <constructor-arg index="2" ref="classNewsService"/> 
@@ -932,49 +932,49 @@
     <!-- ***********                 FRONT PAGE LINKS              ************* -->
     <!-- ******************************************************************* -->
     <!-- List Front Page Links -->
-    <bean name="/admin/listFrontPageLinks" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainGeneralModuleAction">
+    <bean name="/admin/listFrontPageLinks" class="net.naijatek.myalumni.controller.AdminGeneralModuleController">
         <constructor-arg index="0" ref="xlatService"/>
         <constructor-arg index="1" ref="xlatGroupService"/>       
         <constructor-arg index="2" ref="frontPageService"/> 
     </bean>     
     
     <!-- Prepare Add Front Page Links -->
-    <bean name="/admin/prepareAddFrontPageLinks" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainGeneralModuleAction">
+    <bean name="/admin/prepareAddFrontPageLinks" class="net.naijatek.myalumni.controller.AdminGeneralModuleController">
         <constructor-arg index="0" ref="xlatService"/>
         <constructor-arg index="1" ref="xlatGroupService"/>        
         <constructor-arg index="2" ref="frontPageService"/>      
     </bean>        
     
     <!-- Add Front Page Links -->
-    <bean name="/admin/addFrontPageLinks" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainGeneralModuleAction">
+    <bean name="/admin/addFrontPageLinks" class="net.naijatek.myalumni.controller.AdminGeneralModuleController">
         <constructor-arg index="0" ref="xlatService"/>
         <constructor-arg index="1" ref="xlatGroupService"/>        
         <constructor-arg index="2" ref="frontPageService"/>    
     </bean>  
   
     <!-- Prepare Update Front Page Links -->
-    <bean name="/admin/prepareUpdateFrontPageLinks" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainGeneralModuleAction">
+    <bean name="/admin/prepareUpdateFrontPageLinks" class="net.naijatek.myalumni.controller.AdminGeneralModuleController">
         <constructor-arg index="0" ref="xlatService"/>
         <constructor-arg index="1" ref="xlatGroupService"/>       
         <constructor-arg index="2" ref="frontPageService"/>      
     </bean>  
     
     <!-- Update Front Page Links -->
-    <bean name="/admin/updateFrontPageLinks" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainGeneralModuleAction">
+    <bean name="/admin/updateFrontPageLinks" class="net.naijatek.myalumni.controller.AdminGeneralModuleController">
         <constructor-arg index="0" ref="xlatService"/>
         <constructor-arg index="1" ref="xlatGroupService"/>        
         <constructor-arg index="2" ref="frontPageService"/>     
     </bean>  
      
     <!-- View Front Page Links -->
-    <bean name="/admin/viewFrontPageLinks" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainGeneralModuleAction">
+    <bean name="/admin/viewFrontPageLinks" class="net.naijatek.myalumni.controller.AdminGeneralModuleController">
         <constructor-arg index="0" ref="xlatService"/>
         <constructor-arg index="1" ref="xlatGroupService"/>        
         <constructor-arg index="2" ref="frontPageService"/>      
     </bean>  
     
     <!-- Delete Front Page Links -->
-    <bean name="/admin/deleteFrontPageLinks" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainGeneralModuleAction">
+    <bean name="/admin/deleteFrontPageLinks" class="net.naijatek.myalumni.controller.AdminGeneralModuleController">
         <constructor-arg index="0" ref="xlatService"/>
         <constructor-arg index="1" ref="xlatGroupService"/>        
         <constructor-arg index="2" ref="frontPageService"/>    
@@ -987,7 +987,7 @@
     <!--  ====== MANAGE LOOKUP CODES       ======== -->
     <!--  ========================================= -->
     <!-- List Lookup Codes -->
-    <bean name="/admin/listLookupCodes" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainGeneralModuleAction">
+    <bean name="/admin/listLookupCodes" class="net.naijatek.myalumni.controller.AdminGeneralModuleController">
         <constructor-arg index="0" ref="xlatService"/>
         <constructor-arg index="1" ref="xlatGroupService"/>       
         <constructor-arg index="2" ref="frontPageService"/>
@@ -995,35 +995,35 @@
 
     
     <!-- Prepare Add Lookup Code -->
-    <bean name="/admin/prepareAddLookupCode" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainGeneralModuleAction">
+    <bean name="/admin/prepareAddLookupCode" class="net.naijatek.myalumni.controller.AdminGeneralModuleController">
         <constructor-arg index="0" ref="xlatService"/>
         <constructor-arg index="1" ref="xlatGroupService"/>       
         <constructor-arg index="2" ref="frontPageService"/>
     </bean>       
     
     <!-- Add Lookup Code -->
-    <bean name="/admin/addLookupCode" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainGeneralModuleAction">
+    <bean name="/admin/addLookupCode" class="net.naijatek.myalumni.controller.AdminGeneralModuleController">
         <constructor-arg index="0" ref="xlatService"/>
         <constructor-arg index="1" ref="xlatGroupService"/>       
         <constructor-arg index="2" ref="frontPageService"/>
     </bean>    
     
     <!-- Prepare Update Lookup Code -->
-    <bean name="/admin/prepareUpdateLookupCode" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainGeneralModuleAction">
+    <bean name="/admin/prepareUpdateLookupCode" class="net.naijatek.myalumni.controller.AdminGeneralModuleController">
         <constructor-arg index="0" ref="xlatService"/>
         <constructor-arg index="1" ref="xlatGroupService"/>       
         <constructor-arg index="2" ref="frontPageService"/>
     </bean>    
     
     <!-- Update Lookup Code -->
-    <bean name="/admin/updateLookupCode" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainGeneralModuleAction">
+    <bean name="/admin/updateLookupCode" class="net.naijatek.myalumni.controller.AdminGeneralModuleController">
         <constructor-arg index="0" ref="xlatService"/>
         <constructor-arg index="1" ref="xlatGroupService"/>       
         <constructor-arg index="2" ref="frontPageService"/>
     </bean>    
     
     <!-- List Lookup Groups -->        
-    <bean name="/admin/listLookupGroups" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainGeneralModuleAction">
+    <bean name="/admin/listLookupGroups" class="net.naijatek.myalumni.controller.AdminGeneralModuleController">
         <constructor-arg index="0" ref="xlatService"/>
         <constructor-arg index="1" ref="xlatGroupService"/>       
         <constructor-arg index="2" ref="frontPageService"/>
@@ -1037,14 +1037,14 @@
     <!--  ======   LIST ACCESS HISTORY======== -->
     <!--  =================================== -->
     <!-- List Area -->
-    <bean name="/admin/listAccessHistory" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSecurityModuleAction">
+    <bean name="/admin/listAccessHistory" class="net.naijatek.myalumni.controller.AdminSecurityController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="errorLoggerService"/> 
         <constructor-arg index="2" ref="systemConfigService"/>
     </bean>     
     
     <!-- Purge Access history -->
-    <bean name="/admin/purgeAllAccessLogs" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSecurityModuleAction">
+    <bean name="/admin/purgeAllAccessLogs" class="net.naijatek.myalumni.controller.AdminSecurityController">
         <constructor-arg index="0" ref="memberService"/>  
         <constructor-arg index="1" ref="errorLoggerService"/> 
         <constructor-arg index="2" ref="systemConfigService"/> 
@@ -1055,56 +1055,56 @@
     <!--  ======   MANAGE USERS     ======== -->
     <!--  =================================== --> 
     <!-- Filter Users -->
-    <bean name="/admin/filterUsersByAlphabelt" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSecurityModuleAction">
+    <bean name="/admin/filterUsersByAlphabelt" class="net.naijatek.myalumni.controller.AdminSecurityController">
         <constructor-arg index="0" ref="memberService"/>  
         <constructor-arg index="1" ref="errorLoggerService"/> 
         <constructor-arg index="2" ref="systemConfigService"/> 
     </bean>
         
     <!-- Reset User Password -->
-    <bean name="/admin/resetMemberPassword" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSecurityModuleAction">
+    <bean name="/admin/resetMemberPassword" class="net.naijatek.myalumni.controller.AdminSecurityController">
         <constructor-arg index="0" ref="memberService"/>  
         <constructor-arg index="1" ref="errorLoggerService"/> 
         <constructor-arg index="2" ref="systemConfigService"/> 
     </bean>
            
     <!-- List User -->
-    <bean name="/admin/listUsers" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSecurityModuleAction">
+    <bean name="/admin/listUsers" class="net.naijatek.myalumni.controller.AdminSecurityController">
         <constructor-arg index="0" ref="memberService"/>  
         <constructor-arg index="1" ref="errorLoggerService"/> 
         <constructor-arg index="2" ref="systemConfigService"/> 
     </bean>
     
     <!-- Prepare Add User -->
-    <bean name="/admin/prepareAddUser" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSecurityModuleAction">
+    <bean name="/admin/prepareAddUser" class="net.naijatek.myalumni.controller.AdminSecurityController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="errorLoggerService"/> 
         <constructor-arg index="2" ref="systemConfigService"/> 
     </bean>    
     
     <!-- Add User -->
-    <bean name="/admin/addUser" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSecurityModuleAction">
+    <bean name="/admin/addUser" class="net.naijatek.myalumni.controller.AdminSecurityController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="errorLoggerService"/> 
         <constructor-arg index="2" ref="systemConfigService"/> 
     </bean>    
     
     <!-- Prepare Update User -->
-    <bean name="/admin/prepareUpdateUser" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSecurityModuleAction">
+    <bean name="/admin/prepareUpdateUser" class="net.naijatek.myalumni.controller.AdminSecurityController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="errorLoggerService"/> 
         <constructor-arg index="2" ref="systemConfigService"/> 
     </bean> 
     
     <!-- Update User -->
-    <bean name="/admin/updateUser" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSecurityModuleAction">
+    <bean name="/admin/updateUser" class="net.naijatek.myalumni.controller.AdminSecurityController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="errorLoggerService"/> 
         <constructor-arg index="2" ref="systemConfigService"/> 
     </bean>
     
     <!-- View User -->
-    <bean name="/admin/viewUser" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSecurityModuleAction">
+    <bean name="/admin/viewUser" class="net.naijatek.myalumni.controller.AdminSecurityController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="errorLoggerService"/> 
         <constructor-arg index="2" ref="systemConfigService"/> 
@@ -1114,21 +1114,21 @@
     <!--  ======   ASSIGN ROLE TO USER ACCESS HISTORY ======== -->
     <!--  ================================================== -->    
     <!-- Display Assign Role to User -->
-    <bean name="/admin/displayAssignRoleToUser" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSecurityModuleAction">
+    <bean name="/admin/displayAssignRoleToUser" class="net.naijatek.myalumni.controller.AdminSecurityController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="errorLoggerService"/> 
         <constructor-arg index="2" ref="systemConfigService"/> 
     </bean>    
     
     <!-- Assign Role to Users -->
-    <bean name="/admin/assignRoleToUsers" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSecurityModuleAction">
+    <bean name="/admin/assignRoleToUsers" class="net.naijatek.myalumni.controller.AdminSecurityController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="errorLoggerService"/> 
         <constructor-arg index="2" ref="systemConfigService"/> 
     </bean>     
     
     <!-- Refresh Display Users By Role -->
-    <bean name="/admin/displayUsersByRole" class="net.naijatek.myalumni.modules.admin.presentation.controllers.MaintainSecurityModuleAction">
+    <bean name="/admin/displayUsersByRole" class="net.naijatek.myalumni.controller.AdminSecurityController">
         <constructor-arg index="0" ref="memberService"/>
         <constructor-arg index="1" ref="errorLoggerService"/> 
         <constructor-arg index="2" ref="systemConfigService"/> 

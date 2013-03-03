@@ -41,7 +41,7 @@ package net.naijatek.myalumni.util.utilities;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import net.naijatek.myalumni.framework.exceptions.BadInputException;
+import net.naijatek.myalumni.controller.exceptions.BadInputException;
 
 
 

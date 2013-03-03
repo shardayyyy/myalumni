@@ -36,40 +36,63 @@
  * @author Folashade Adeyosoye (shardayyy@naijatek.com)
  * @version 1.0
  */
-package net.naijatek.myalumni.framework;
+package net.naijatek.myalumni.controller.helper;
 
-import java.util.Locale;
+import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import net.naijatek.myalumni.entity.MessageFolderVO;
+import net.naijatek.myalumni.entity.PrivateMessageVO;
 
-import net.naijatek.myalumni.util.BaseConstants;
-import org.displaytag.localization.LocaleResolver;
+public class PrivateMessageHelper {
 
-public class MyAlumniLocaleResolver implements LocaleResolver {
-
-	/**
-	 * Resolves the current user locale.
-	 * 
-	 * @return <b> requestLocale </b> user locale.
-	 * @param
-	 *            request  Http request.
-	 */
-	public Locale resolveLocale(HttpServletRequest request) {
-
-		// Get the Locale (if any) that is stored in the user's session
-		HttpSession session = request.getSession();
-		Locale sessionLocale = (Locale) session
-				.getAttribute(BaseConstants.LOCALE_KEY);
-
-		// Get the user's preferred Locale from the request
-		Locale requestLocale = request.getLocale();
-		// If was never a Locale in the session or it has changed, set it
-		if (sessionLocale == null || (sessionLocale != requestLocale)) {
-			// Set the new Locale into the user's session
-			session.setAttribute(BaseConstants.LOCALE_KEY, requestLocale);
-		}
-
-		return requestLocale;
+	private List<PrivateMessageVO> listOfMessages;
+	private String folderType;
+	private int memberQuota;
+	private int maxQuota;
+	private List<MessageFolderVO> messageFolders;
+	private double usedQuotaPercent;
+	
+	
+	
+	public String getFolderType() {
+		return folderType;
 	}
+	public void setFolderType(String folderType) {
+		this.folderType = folderType;
+	}
+	public List<PrivateMessageVO> getListOfMessages() {
+		return listOfMessages;
+	}
+	public void setListOfMessages(List<PrivateMessageVO> listOfMessages) {
+		this.listOfMessages = listOfMessages;
+	}
+	public int getMaxQuota() {
+		return maxQuota;
+	}
+	public void setMaxQuota(int maxQuota) {
+		this.maxQuota = maxQuota;
+	}
+	public int getMemberQuota() {
+		return memberQuota;
+	}
+	public void setMemberQuota(int memberQuota) {
+		this.memberQuota = memberQuota;
+	}
+	public List<MessageFolderVO> getMessageFolders() {
+		return messageFolders;
+	}
+	public void setMessageFolders(List<MessageFolderVO> messagFolders) {
+		this.messageFolders = messagFolders;
+	}
+	public double getUsedQuotaPercent() {
+		usedQuotaPercent = memberQuota/(maxQuota/100);  //usedQuotaPercent;
+		return usedQuotaPercent;
+	}
+	public void setUsedQuotaPercent(double usedQuotaPercent) {
+		this.usedQuotaPercent = usedQuotaPercent;
+	}
+	
+	
+	
+  
 }

@@ -13,7 +13,7 @@
          ======================================================================-->
     <!-- User Container-->
     <bean id="userContainer" singleton="false"
-          class="net.naijatek.myalumni.framework.extensions.MyAlumniUserContainer">
+          class="net.naijatek.myalumni.framework.MyAlumniUserContainer">
         <constructor-arg index="0" ref="userAccountService" />
     </bean>
 

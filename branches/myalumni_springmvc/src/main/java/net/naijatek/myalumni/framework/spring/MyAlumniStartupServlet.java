@@ -42,27 +42,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 
-import net.naijatek.myalumni.modules.common.domain.*;
-import net.naijatek.myalumni.modules.common.helper.DropDownCacheBuilder;
-import net.naijatek.myalumni.modules.common.service.ISystemConfigService;
-import net.naijatek.myalumni.modules.common.service.ISystemTaskService;
+import net.naijatek.myalumni.entity.DropDownVO;
+import net.naijatek.myalumni.entity.ScrollVO;
+import net.naijatek.myalumni.entity.SystemConfigVO;
+import net.naijatek.myalumni.controller.helper.DropDownCacheBuilder;
+import net.naijatek.myalumni.service.ISystemConfigService;
+import net.naijatek.myalumni.service.ISystemTaskService;
 import net.naijatek.myalumni.util.BaseConstants;
 import net.naijatek.myalumni.util.SystemConfigConstants;
-import net.naijatek.myalumni.util.quartz.MyJobScheduler;
 import net.naijatek.myalumni.util.utilities.AppProp;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.context.ContextLoaderServlet;
-import org.springframework.web.servlet.DispatcherServlet;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
 @Controller
 public class MyAlumniStartupServlet implements ApplicationContextAware {
@@ -71,7 +69,7 @@ public class MyAlumniStartupServlet implements ApplicationContextAware {
 
 	private final AppProp appProp = AppProp.getInstance();
 
-	private static Appliactioncontext ctx;
+	private static ApplicationContext ctx;
 	
 	
     // @see:
@@ -114,11 +112,10 @@ public class MyAlumniStartupServlet implements ApplicationContextAware {
 
 
     @Override
-    public setApplicationcontext(ApplicationContext appContext) throws BeansException{
+    public void setApplicationContext(ApplicationContext appContext) throws BeansException{
     	ctx = appContext;
     }
-    
-    @override
+
     public static ApplicationContext getApplicationContext(){
     	return ctx;
     }
@@ -255,5 +252,6 @@ public class MyAlumniStartupServlet implements ApplicationContextAware {
 
 		logger.debug("Other Cache loaded...");
 	}
+
 
 }

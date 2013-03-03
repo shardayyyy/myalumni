@@ -42,7 +42,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
-import net.naijatek.myalumni.framework.exceptions.BadInputException;
+import net.naijatek.myalumni.controller.exceptions.BadInputException;
 import net.naijatek.myalumni.util.BaseConstants;
 
 import org.apache.commons.logging.Log;

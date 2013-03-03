@@ -50,10 +50,10 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import javax.mail.MessagingException;
 
-import net.naijatek.myalumni.framework.exceptions.MailServerException;
-import net.naijatek.myalumni.modules.common.domain.MemberVO;
-import net.naijatek.myalumni.modules.common.domain.PrivateMessageVO;
-import net.naijatek.myalumni.modules.common.domain.SystemConfigVO;
+import net.naijatek.myalumni.controller.exceptions.MailServerException;
+import net.naijatek.myalumni.entity.MemberVO;
+import net.naijatek.myalumni.entity.PrivateMessageVO;
+import net.naijatek.myalumni.entity.SystemConfigVO;
 import net.naijatek.myalumni.util.utilities.StringUtil;
 
 import freemarker.template.Configuration;
